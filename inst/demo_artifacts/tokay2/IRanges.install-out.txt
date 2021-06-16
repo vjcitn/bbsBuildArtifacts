@@ -1,0 +1,399 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   C:\cygwin\bin\curl.exe -O http://155.52.207.165/BBS/3.13/bioc/src/contrib/IRanges_2.26.0.tar.gz && rm -rf IRanges.buildbin-libdir && mkdir IRanges.buildbin-libdir && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL --merge-multiarch --build --library=IRanges.buildbin-libdir IRanges_2.26.0.tar.gz && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL IRanges_2.26.0.zip && rm IRanges_2.26.0.tar.gz IRanges_2.26.0.zip
+###
+##############################################################################
+##############################################################################
+
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  256k  100  256k    0     0  1502k      0 --:--:-- --:--:-- --:--:-- 1519k
+
+install for i386
+
+* installing *source* package 'IRanges' ...
+** using staged installation
+** libs
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c CompressedAtomicList_utils.c -o CompressedAtomicList_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c CompressedIRangesList_class.c -o CompressedIRangesList_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c CompressedList_class.c -o CompressedList_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Grouping_class.c -o Grouping_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c IPosRanges_comparison.c -o IPosRanges_comparison.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c IRanges_class.c -o IRanges_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c IRanges_constructor.c -o IRanges_constructor.o
+IRanges_constructor.c: In function 'solve_range':
+IRanges_constructor.c:43:22: warning: unknown conversion type character 'l' in format [-Wformat=]
+      "the 'width' (%lld) inferred from the "
+                      ^
+IRanges_constructor.c:43:6: warning: too many arguments for format [-Wformat-extra-args]
+      "the 'width' (%lld) inferred from the "
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:66:22: warning: unknown conversion type character 'l' in format [-Wformat=]
+      "the 'start' (%lld) inferred from the "
+                      ^
+IRanges_constructor.c:66:6: warning: too many arguments for format [-Wformat-extra-args]
+      "the 'start' (%lld) inferred from the "
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:86:20: warning: unknown conversion type character 'l' in format [-Wformat=]
+      "the 'end' (%lld) inferred from the "
+                    ^
+IRanges_constructor.c:86:6: warning: too many arguments for format [-Wformat-extra-args]
+      "the 'end' (%lld) inferred from the "
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:98:5: warning: unknown conversion type character 'l' in format [-Wformat=]
+     "the supplied 'width' (%d) doesn't match "
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:100:27: note: format string is defined here
+     "'start' and 'end' (%lld)", width, tmp);
+                           ^
+IRanges_constructor.c:98:5: warning: too many arguments for format [-Wformat-extra-args]
+     "the supplied 'width' (%d) doesn't match "
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c NCList.c -o NCList.o
+NCList.c:1173:13: warning: 'NCList_get_y_overlaps_rec' defined but not used [-Wunused-function]
+ static void NCList_get_y_overlaps_rec(const NCList *x_nclist,
+             ^~~~~~~~~~~~~~~~~~~~~~~~~
+NCList.c:202:22: warning: 'next_top_down' defined but not used [-Wunused-function]
+ static const NCList *next_top_down(const NCList *nclist)
+                      ^~~~~~~~~~~~~
+NCList.c: In function 'C_print_NCListAsINTSXP':
+NCList.c:674:23: warning: '%d' directive writing between 1 and 11 bytes into a region of size 8 [-Wformat-overflow=]
+   sprintf(format, "%c0%d%c", '%', max_digits, 'd');
+                       ^~
+NCList.c:674:19: note: directive argument in the range [-2147483647, 2147483647]
+   sprintf(format, "%c0%d%c", '%', max_digits, 'd');
+                   ^~~~~~~~~
+NCList.c:674:3: note: 'sprintf' output between 5 and 15 bytes into a destination of size 10
+   sprintf(format, "%c0%d%c", '%', max_digits, 'd');
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NCList.c: In function 'C_find_overlaps_in_groups_NCList':
+NCList.c:1546:7: warning: 'ans' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  SEXP ans;
+       ^~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c R_init_IRanges.c -o R_init_IRanges.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Ranges_class.c -o Ranges_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c RleViews_utils.c -o RleViews_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c SimpleIRangesList_class.c -o SimpleIRangesList_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c coverage_methods.c -o coverage_methods.o
+coverage_methods.c: In function 'compute_coverage_from_IRanges_holder':
+coverage_methods.c:579:28: warning: 'x_end' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (*out_ranges_are_tiles && x_end != cvg_len)
+      ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+coverage_methods.c:495:21: note: 'x_end' was declared here
+      i, j, x_start, x_end, shift_elt, tmp;
+                     ^~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c extractListFragments.c -o extractListFragments.o
+extractListFragments.c: In function 'C_find_partition_overlaps':
+extractListFragments.c:66:5: warning: 'split_partitions_buf' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     IntAE_insert_at(split_partitions_buf,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      IntAE_get_nelt(split_partitions_buf),
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      q_prev_end);
+      ~~~~~~~~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c inter_range_methods.c -o inter_range_methods.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o IRanges.dll tmp.def CompressedAtomicList_utils.o CompressedIRangesList_class.o CompressedList_class.o Grouping_class.o IPosRanges_comparison.o IRanges_class.o IRanges_constructor.o NCList.o R_init_IRanges.o Ranges_class.o RleViews_utils.o S4Vectors_stubs.o SimpleIRangesList_class.o coverage_methods.o extractListFragments.o inter_range_methods.o -LC:/extsoft/lib/i386 -LC:/extsoft/lib -LC:/Users/BIOCBU~1/BBS-3~1.13-/R/bin/i386 -lR
+installing to C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/00LOCK-IRanges/00new/IRanges/libs/i386
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for 'drop' from package 'base' in package 'IRanges'
+Creating a generic function for 'runmed' from package 'stats' in package 'IRanges'
+Creating a generic function for 'chartr' from package 'base' in package 'IRanges'
+Creating a generic function for 'toupper' from package 'base' in package 'IRanges'
+Creating a generic function for 'tolower' from package 'base' in package 'IRanges'
+Creating a generic function for 'sub' from package 'base' in package 'IRanges'
+Creating a generic function for 'gsub' from package 'base' in package 'IRanges'
+Creating a generic function for 'startsWith' from package 'base' in package 'IRanges'
+Creating a generic function for 'endsWith' from package 'base' in package 'IRanges'
+Creating a generic function for 'smoothEnds' from package 'stats' in package 'IRanges'
+Creating a new generic function for 'windows' in package 'IRanges'
+** help
+*** installing help indices
+  converting help for package 'IRanges'
+    finding HTML links ... done
+    AtomicList-class                        html  
+REDIRECT:topic	 class:AtomicList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedAtomicList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleAtomicList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:LogicalList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedLogicalList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleLogicalList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:IntegerList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedIntegerList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleIntegerList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:NumericList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedNumericList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleNumericList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:ComplexList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedComplexList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleComplexList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CharacterList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedCharacterList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleCharacterList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:RawList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedRawList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleRawList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:RleList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedRleList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleRleList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:FactorList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedFactorList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleFactorList -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 runValue<-,CompressedRleList-method -> AtomicList-class.html [ FAIL ]
+REDIRECT:topic	 runValue<-,SimpleRleList-method -> AtomicList-class.html [ FAIL ]
+    finding level-2 HTML links ... done
+
+    AtomicList-utils                        html  
+    CompressedHitsList-class                html  
+REDIRECT:topic	 class:CompressedHitsList -> CompressedHitsList-class.html [ FAIL ]
+    CompressedList-class                    html  
+REDIRECT:topic	 class:CompressedList -> CompressedList-class.html [ FAIL ]
+REDIRECT:topic	 names<-,CompressedList-method -> CompressedList-class.html [ FAIL ]
+    DataFrameList-class                     html  
+REDIRECT:topic	 class:DataFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:DFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleDataFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleDFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:SplitDataFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:SplitDFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleSplitDataFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleSplitDFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedDataFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedDFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedSplitDataFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedSplitDFrameList -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 rownames<-,CompressedSplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 rownames<-,SimpleDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 colnames<-,CompressedSplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 colnames<-,SimpleDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 dimnames<-,DataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/00LOCK-IRanges/00new/IRanges/help/NROW,DataFrameList-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/00LOCK-IRanges/00new/IRanges/help/ROWNAMES,DataFrameList-method.html
+REDIRECT:topic	 ROWNAMES<-,DataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 columnMetadata<- -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 columnMetadata<-,SimpleSplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 columnMetadata<-,CompressedSplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 commonColnames<- -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 commonColnames<-,SimpleSplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 commonColnames<-,CompressedSplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 [<-,SplitDataFrameList-method -> DataFrameList-class.html [ FAIL ]
+REDIRECT:topic	 [[<-,SDFLWrapperForTransform-method -> DataFrameList-class.html [ FAIL ]
+    Grouping-class                          html  
+REDIRECT:topic	 class:Grouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:ManyToOneGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:H2LGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 length<-,H2LGrouping-method -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:Dups -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:ManyToManyGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:GroupingRanges -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:GroupingIRanges -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:Partitioning -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 names<-,Partitioning-method -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:PartitioningByEnd -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:PartitioningByWidth -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:PartitioningMap -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleManyToOneGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedManyToOneGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleManyToManyGrouping -> Grouping-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedManyToManyGrouping -> Grouping-class.html [ FAIL ]
+    Hits-class-leftovers                    html  
+    IPos-class                              html  
+REDIRECT:topic	 class:IPos -> IPos-class.html [ FAIL ]
+REDIRECT:topic	 class:UnstitchedIPos -> IPos-class.html [ FAIL ]
+REDIRECT:topic	 class:StitchedIPos -> IPos-class.html [ FAIL ]
+REDIRECT:topic	 names<-,IPos-method -> IPos-class.html [ FAIL ]
+    IPosRanges-class                        html  
+REDIRECT:topic	 class:IPosRanges -> IPosRanges-class.html [ FAIL ]
+REDIRECT:topic	 start<- -> IPosRanges-class.html [ FAIL ]
+REDIRECT:topic	 width<- -> IPosRanges-class.html [ FAIL ]
+REDIRECT:topic	 end<- -> IPosRanges-class.html [ FAIL ]
+    IPosRanges-comparison                   html  
+    IRanges-class                           html  
+REDIRECT:topic	 class:IRanges -> IRanges-class.html [ FAIL ]
+REDIRECT:topic	 start<-,IRanges-method -> IRanges-class.html [ FAIL ]
+REDIRECT:topic	 width<-,IRanges-method -> IRanges-class.html [ FAIL ]
+REDIRECT:topic	 end<-,IRanges-method -> IRanges-class.html [ FAIL ]
+REDIRECT:topic	 names<-,IRanges-method -> IRanges-class.html [ FAIL ]
+REDIRECT:topic	 class:NormalIRanges -> IRanges-class.html [ FAIL ]
+    IRanges-constructor                     html  
+    IRanges-internals                       html  
+    IRanges-utils                           html  
+    IRangesList-class                       html  
+REDIRECT:topic	 class:IRangesList -> IRangesList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedIRangesList -> IRangesList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleIRangesList -> IRangesList-class.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/00LOCK-IRanges/00new/IRanges/help/coerce,List,CompressedIRangesList-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/00LOCK-IRanges/00new/IRanges/help/coerce,List,SimpleIRangesList-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/00LOCK-IRanges/00new/IRanges/help/coerce,List,IRangesList-method.html
+REDIRECT:topic	 class:NormalIRangesList -> IRangesList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleNormalIRangesList -> IRangesList-class.html [ FAIL ]
+REDIRECT:topic	 class:CompressedNormalIRangesList -> IRangesList-class.html [ FAIL ]
+    IntegerRanges-class                     html  
+REDIRECT:topic	 class:IntegerRanges -> IntegerRanges-class.html [ FAIL ]
+    IntegerRangesList-class                 html  
+REDIRECT:topic	 class:IntegerRangesList -> IntegerRangesList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleIntegerRangesList -> IntegerRangesList-class.html [ FAIL ]
+REDIRECT:topic	 start<-,IntegerRangesList-method -> IntegerRangesList-class.html [ FAIL ]
+REDIRECT:topic	 end<-,IntegerRangesList-method -> IntegerRangesList-class.html [ FAIL ]
+REDIRECT:topic	 width<-,IntegerRangesList-method -> IntegerRangesList-class.html [ FAIL ]
+    MaskCollection-class                    html  
+REDIRECT:topic	 class:MaskCollection -> MaskCollection-class.html [ FAIL ]
+REDIRECT:topic	 active<- -> MaskCollection-class.html [ FAIL ]
+REDIRECT:topic	 active<-,MaskCollection-method -> MaskCollection-class.html [ FAIL ]
+REDIRECT:topic	 names<-,MaskCollection-method -> MaskCollection-class.html [ FAIL ]
+REDIRECT:topic	 desc<- -> MaskCollection-class.html [ FAIL ]
+REDIRECT:topic	 desc<-,MaskCollection-method -> MaskCollection-class.html [ FAIL ]
+    NCList-class                            html  
+REDIRECT:topic	 class:NCList -> NCList-class.html [ FAIL ]
+REDIRECT:topic	 class:NCLists -> NCList-class.html [ FAIL ]
+    RangedSelection-class                   html  
+REDIRECT:topic	 ranges<-,RangedSelection-method -> RangedSelection-class.html [ FAIL ]
+REDIRECT:topic	 colnames<-,RangedSelection-method -> RangedSelection-class.html [ FAIL ]
+    Rle-class-leftovers                     html  
+    RleViews-class                          html  
+REDIRECT:topic	 class:RleViews -> RleViews-class.html [ FAIL ]
+    RleViewsList-class                      html  
+    Vector-class-leftovers                  html  
+REDIRECT:topic	 window<-,Vector-method -> Vector-class-leftovers.html [ FAIL ]
+REDIRECT:topic	 window<-.Vector -> Vector-class-leftovers.html [ FAIL ]
+REDIRECT:topic	 window<-,vector-method -> Vector-class-leftovers.html [ FAIL ]
+REDIRECT:topic	 window<-.vector -> Vector-class-leftovers.html [ FAIL ]
+REDIRECT:topic	 window<-,factor-method -> Vector-class-leftovers.html [ FAIL ]
+REDIRECT:topic	 window<-.factor -> Vector-class-leftovers.html [ FAIL ]
+    Views-class                             html  
+REDIRECT:topic	 class:Views -> Views-class.html [ FAIL ]
+REDIRECT:topic	 ranges<- -> Views-class.html [ FAIL ]
+REDIRECT:topic	 ranges<-,Views-method -> Views-class.html [ FAIL ]
+REDIRECT:topic	 start<-,Views-method -> Views-class.html [ FAIL ]
+REDIRECT:topic	 end<-,Views-method -> Views-class.html [ FAIL ]
+REDIRECT:topic	 width<-,Views-method -> Views-class.html [ FAIL ]
+REDIRECT:topic	 names<-,Views-method -> Views-class.html [ FAIL ]
+    ViewsList-class                         html  
+REDIRECT:topic	 class:ViewsList -> ViewsList-class.html [ FAIL ]
+REDIRECT:topic	 class:SimpleViewsList -> ViewsList-class.html [ FAIL ]
+    coverage-methods                        html  
+    extractList                             html  
+    extractListFragments                    html  
+    findOverlaps-methods                    html  
+    inter-range-methods                     html  
+    intra-range-methods                     html  
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:94: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:102: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:123: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:136: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:146: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:160: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:188: missing link 'RangesList'
+Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:297: missing link 'RangesList'
+    multisplit                              html  
+    nearest-methods                         html  
+REDIRECT:topic	 class:IntegerRanges_OR_missing -> nearest-methods.html [ FAIL ]
+    range-squeezers                         html  
+    read.Mask                               html  
+    reverse-methods                         html  
+    seqapply                                html  
+REDIRECT:topic	 split<-,Vector-method -> seqapply.html [ FAIL ]
+    setops-methods                          html  
+    slice-methods                           html  
+    view-summarization-methods              html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+
+install for x64
+
+* installing *source* package 'IRanges' ...
+** libs
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c CompressedAtomicList_utils.c -o CompressedAtomicList_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c CompressedIRangesList_class.c -o CompressedIRangesList_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c CompressedList_class.c -o CompressedList_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Grouping_class.c -o Grouping_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c IPosRanges_comparison.c -o IPosRanges_comparison.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c IRanges_class.c -o IRanges_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c IRanges_constructor.c -o IRanges_constructor.o
+IRanges_constructor.c: In function 'solve_range':
+IRanges_constructor.c:43:22: warning: unknown conversion type character 'l' in format [-Wformat=]
+      "the 'width' (%lld) inferred from the "
+                      ^
+IRanges_constructor.c:43:6: warning: too many arguments for format [-Wformat-extra-args]
+      "the 'width' (%lld) inferred from the "
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:66:22: warning: unknown conversion type character 'l' in format [-Wformat=]
+      "the 'start' (%lld) inferred from the "
+                      ^
+IRanges_constructor.c:66:6: warning: too many arguments for format [-Wformat-extra-args]
+      "the 'start' (%lld) inferred from the "
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:86:20: warning: unknown conversion type character 'l' in format [-Wformat=]
+      "the 'end' (%lld) inferred from the "
+                    ^
+IRanges_constructor.c:86:6: warning: too many arguments for format [-Wformat-extra-args]
+      "the 'end' (%lld) inferred from the "
+      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:98:5: warning: unknown conversion type character 'l' in format [-Wformat=]
+     "the supplied 'width' (%d) doesn't match "
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IRanges_constructor.c:100:27: note: format string is defined here
+     "'start' and 'end' (%lld)", width, tmp);
+                           ^
+IRanges_constructor.c:98:5: warning: too many arguments for format [-Wformat-extra-args]
+     "the supplied 'width' (%d) doesn't match "
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c NCList.c -o NCList.o
+NCList.c:1173:13: warning: 'NCList_get_y_overlaps_rec' defined but not used [-Wunused-function]
+ static void NCList_get_y_overlaps_rec(const NCList *x_nclist,
+             ^~~~~~~~~~~~~~~~~~~~~~~~~
+NCList.c:202:22: warning: 'next_top_down' defined but not used [-Wunused-function]
+ static const NCList *next_top_down(const NCList *nclist)
+                      ^~~~~~~~~~~~~
+NCList.c: In function 'C_print_NCListAsINTSXP':
+NCList.c:674:23: warning: '%d' directive writing between 1 and 11 bytes into a region of size 8 [-Wformat-overflow=]
+   sprintf(format, "%c0%d%c", '%', max_digits, 'd');
+                       ^~
+NCList.c:674:19: note: directive argument in the range [-2147483647, 2147483647]
+   sprintf(format, "%c0%d%c", '%', max_digits, 'd');
+                   ^~~~~~~~~
+NCList.c:674:3: note: 'sprintf' output between 5 and 15 bytes into a destination of size 10
+   sprintf(format, "%c0%d%c", '%', max_digits, 'd');
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c R_init_IRanges.c -o R_init_IRanges.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Ranges_class.c -o Ranges_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c RleViews_utils.c -o RleViews_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c SimpleIRangesList_class.c -o SimpleIRangesList_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c coverage_methods.c -o coverage_methods.o
+coverage_methods.c: In function 'compute_coverage_from_IRanges_holder':
+coverage_methods.c:579:28: warning: 'x_end' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (*out_ranges_are_tiles && x_end != cvg_len)
+      ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+coverage_methods.c:495:21: note: 'x_end' was declared here
+      i, j, x_start, x_end, shift_elt, tmp;
+                     ^~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c extractListFragments.c -o extractListFragments.o
+extractListFragments.c: In function 'C_find_partition_overlaps':
+extractListFragments.c:66:5: warning: 'split_partitions_buf' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     IntAE_insert_at(split_partitions_buf,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      IntAE_get_nelt(split_partitions_buf),
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      q_prev_end);
+      ~~~~~~~~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG  -I'C:/Users/biocbuild/bbs-3.13-bioc/R/library/S4Vectors/include'   -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c inter_range_methods.c -o inter_range_methods.o
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o IRanges.dll tmp.def CompressedAtomicList_utils.o CompressedIRangesList_class.o CompressedList_class.o Grouping_class.o IPosRanges_comparison.o IRanges_class.o IRanges_constructor.o NCList.o R_init_IRanges.o Ranges_class.o RleViews_utils.o S4Vectors_stubs.o SimpleIRangesList_class.o coverage_methods.o extractListFragments.o inter_range_methods.o -LC:/extsoft/lib/x64 -LC:/extsoft/lib -LC:/Users/BIOCBU~1/BBS-3~1.13-/R/bin/x64 -lR
+installing to C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.buildbin-libdir/IRanges/libs/x64
+** testing if installed package can be loaded
+* MD5 sums
+packaged installation of 'IRanges' as IRanges_2.26.0.zip
+* DONE (IRanges)
+* installing to library 'C:/Users/biocbuild/bbs-3.13-bioc/R/library'
+package 'IRanges' successfully unpacked and MD5 sums checked

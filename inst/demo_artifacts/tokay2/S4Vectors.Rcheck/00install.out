@@ -1,0 +1,343 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   C:\cygwin\bin\curl.exe -O http://155.52.207.165/BBS/3.13/bioc/src/contrib/S4Vectors_0.30.0.tar.gz && rm -rf S4Vectors.buildbin-libdir && mkdir S4Vectors.buildbin-libdir && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL --merge-multiarch --build --library=S4Vectors.buildbin-libdir S4Vectors_0.30.0.tar.gz && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL S4Vectors_0.30.0.zip && rm S4Vectors_0.30.0.tar.gz S4Vectors_0.30.0.zip
+###
+##############################################################################
+##############################################################################
+
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 40  261k   40  106k    0     0   894k      0 --:--:-- --:--:-- --:--:--  897k100  261k  100  261k    0     0  1572k      0 --:--:-- --:--:-- --:--:-- 1575k
+
+install for i386
+
+* installing *source* package 'S4Vectors' ...
+** using staged installation
+** libs
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c AEbufs.c -o AEbufs.o
+AEbufs.c: In function '_increase_buflength':
+AEbufs.c:16:23: warning: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '4294967296' to '0' [-Woverflow]
+ #define MAX_BUFLENGTH (128ULL * MAX_BUFLENGTH_INC)  // 2^32
+                       ^
+AEbufs.c:31:9: note: in expansion of macro 'MAX_BUFLENGTH'
+  return MAX_BUFLENGTH;
+         ^~~~~~~~~~~~~
+AEbufs.c: In function '_IntAEAE_toEnvir':
+AEbufs.c:626:36: warning: format '%lu' expects argument of type 'long unsigned int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+   snprintf(key, sizeof(key), "%010lu", i + keyshift);
+                               ~~~~~^   ~~~~~~~~~~~~
+                               %010u
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c DataFrame_class.c -o DataFrame_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Hits_class.c -o Hits_class.o
+In file included from C:/Users/BIOCBU~1/BBS-3~1.13-/R/include/Rdefines.h:40,
+                 from ../inst/include/S4Vectors_defines.h:18,
+                 from S4Vectors.h:1,
+                 from Hits_class.c:4:
+Hits_class.c: In function 'Hits_new':
+C:/Users/BIOCBU~1/BBS-3~1.13-/R/include/Rinternals.h:1549:20: warning: 'revmap' may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define defineVar  Rf_defineVar
+                    ^~~~~~~~~~~~
+Hits_class.c:216:12: note: 'revmap' was declared here
+  SEXP ans, revmap, symbol;
+            ^~~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c LLint_class.c -o LLint_class.o
+LLint_class.c: In function 'from_llints_to_STRSXP':
+LLint_class.c:358:27: warning: unknown conversion type character 'l' in format [-Wformat=]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                           ^
+LLint_class.c:358:24: warning: too many arguments for format [-Wformat-extra-args]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                        ^~~~~~
+LLint_class.c:358:27: warning: unknown conversion type character 'l' in format [-Wformat=]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                           ^
+LLint_class.c:358:24: warning: too many arguments for format [-Wformat-extra-args]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                        ^~~~~~
+LLint_class.c: In function 'llints_summary':
+LLint_class.c:775:35: warning: 'res' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if (res == NA_LLINT || in_elt > res)
+                            ~~~~~~~^~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c List_class.c -o List_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c R_init_S4Vectors.c -o R_init_S4Vectors.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Rle_class.c -o Rle_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Rle_utils.c -o Rle_utils.o
+Rle_utils.c: In function 'Rle_real_runq':
+Rle_utils.c:701:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+     if (count_na != 0)
+     ^~
+Rle_utils.c:703:6: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+      q_index = roundingScale(window_len_na,
+      ^~~~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c SEXP_utils.c -o SEXP_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c SimpleList_class.c -o SimpleList_class.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c anyMissing.c -o anyMissing.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c character_utils.c -o character_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c eval_utils.c -o eval_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c hash_utils.c -o hash_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c integer_utils.c -o integer_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c logical_utils.c -o logical_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c map_ranges_to_runs.c -o map_ranges_to_runs.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c raw_utils.c -o raw_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c safe_arithm.c -o safe_arithm.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c sort_utils.c -o sort_utils.o
+sort_utils.c:263:13: warning: 'sort_uchar_array' defined but not used [-Wunused-function]
+ static void sort_uchar_array(unsigned char *x, int nelt, int desc)
+             ^~~~~~~~~~~~~~~~
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c subsetting_utils.c -o subsetting_utils.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c vector_utils.c -o vector_utils.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o S4Vectors.dll tmp.def AEbufs.o DataFrame_class.o Hits_class.o LLint_class.o List_class.o R_init_S4Vectors.o Rle_class.o Rle_utils.o SEXP_utils.o SimpleList_class.o anyMissing.o character_utils.o eval_utils.o hash_utils.o integer_utils.o logical_utils.o map_ranges_to_runs.o raw_utils.o safe_arithm.o sort_utils.o subsetting_utils.o vector_utils.o -LC:/extsoft/lib/i386 -LC:/extsoft/lib -LC:/Users/BIOCBU~1/BBS-3~1.13-/R/bin/i386 -lR
+installing to C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/libs/i386
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+in method for 'normalizeSingleBracketReplacementValue' with signature '"List"': no definition for class "List"
+Creating a new generic function for 'unname' in package 'S4Vectors'
+Creating a new generic function for 'expand.grid' in package 'S4Vectors'
+Creating a new generic function for 'findMatches' in package 'S4Vectors'
+Creating a generic function for 'setequal' from package 'base' in package 'S4Vectors'
+in method for 'coerce' with signature '"Hits","DFrame"': no definition for class "DFrame"
+Creating a generic function for 'as.factor' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'tabulate' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'cov' from package 'stats' in package 'S4Vectors'
+Creating a generic function for 'cor' from package 'stats' in package 'S4Vectors'
+Creating a generic function for 'smoothEnds' from package 'stats' in package 'S4Vectors'
+Creating a generic function for 'runmed' from package 'stats' in package 'S4Vectors'
+Creating a generic function for 'nchar' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'substr' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'substring' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'chartr' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'tolower' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'toupper' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'sub' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'gsub' from package 'base' in package 'S4Vectors'
+Creating a generic function for 'nlevels' from package 'base' in package 'S4Vectors'
+in method for 'coerce' with signature '"data.table","DFrame"': no definition for class "data.table"
+Creating a generic function for 'complete.cases' from package 'stats' in package 'S4Vectors'
+** help
+*** installing help indices
+  converting help for package 'S4Vectors'
+    finding HTML links ... done
+    Annotated-class                         html  
+REDIRECT:topic	 metadata<- -> Annotated-class.html [ FAIL ]
+REDIRECT:topic	 metadata<-,Annotated-method -> Annotated-class.html [ FAIL ]
+    DataFrame-class                         html  
+REDIRECT:topic	 class:DataFrame -> DataFrame-class.html [ FAIL ]
+REDIRECT:topic	 class:DFrame -> DataFrame-class.html [ FAIL ]
+REDIRECT:topic	 rownames<-,DataFrame-method -> DataFrame-class.html [ FAIL ]
+REDIRECT:topic	 colnames<-,DataFrame-method -> DataFrame-class.html [ FAIL ]
+REDIRECT:topic	 dimnames<-,DataFrame-method -> DataFrame-class.html [ FAIL ]
+REDIRECT:topic	 [<-,DataFrame-method -> DataFrame-class.html [ FAIL ]
+REDIRECT:topic	 [[<-,DataFrame-method -> DataFrame-class.html [ FAIL ]
+    DataFrame-combine                       html  
+    DataFrame-comparison                    html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<=,DataFrame,DataFrame-method.html
+    DataFrame-utils                         html  
+    Factor-class                            html  
+REDIRECT:topic	 class:Factor -> Factor-class.html [ FAIL ]
+REDIRECT:topic	 names<-,Factor-method -> Factor-class.html [ FAIL ]
+REDIRECT:topic	 levels<- -> Factor-class.html [ FAIL ]
+REDIRECT:topic	 levels<-,Factor-method -> Factor-class.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/unfactor,Factor-method.html
+    FilterMatrix-class                      html  
+    FilterRules-class                       html  
+REDIRECT:topic	 class:expression_OR_function -> FilterRules-class.html [ FAIL ]
+REDIRECT:topic	 class:FilterRules -> FilterRules-class.html [ FAIL ]
+REDIRECT:topic	 active<- -> FilterRules-class.html [ FAIL ]
+REDIRECT:topic	 active<-,FilterRules-method -> FilterRules-class.html [ FAIL ]
+REDIRECT:topic	 [[<-,FilterRules-method -> FilterRules-class.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/FilterRules.html
+    Hits-class                              html  
+REDIRECT:topic	 class:Hits -> Hits-class.html [ FAIL ]
+REDIRECT:topic	 class:SelfHits -> Hits-class.html [ FAIL ]
+REDIRECT:topic	 class:SortedByQueryHits -> Hits-class.html [ FAIL ]
+REDIRECT:topic	 class:SortedByQuerySelfHits -> Hits-class.html [ FAIL ]
+    Hits-comparison                         html  
+    Hits-setops                             html  
+    HitsList-class                          html  
+REDIRECT:topic	 class:HitsList -> HitsList-class.html [ FAIL ]
+REDIRECT:topic	 class:SelfHitsList -> HitsList-class.html [ FAIL ]
+REDIRECT:topic	 class:SortedByQueryHitsList -> HitsList-class.html [ FAIL ]
+REDIRECT:topic	 class:SortedByQuerySelfHitsList -> HitsList-class.html [ FAIL ]
+    LLint-class                             html  
+REDIRECT:topic	 class:LLint -> LLint-class.html [ FAIL ]
+REDIRECT:topic	 class:integer_OR_LLint -> LLint-class.html [ FAIL ]
+    List-class                              html  
+REDIRECT:topic	 class:List -> List-class.html [ FAIL ]
+REDIRECT:topic	 class:list_OR_List -> List-class.html [ FAIL ]
+REDIRECT:topic	 [<-,List-method -> List-class.html [ FAIL ]
+REDIRECT:topic	 [[<-,List-method -> List-class.html [ FAIL ]
+REDIRECT:topic	 $<-,List-method -> List-class.html [ FAIL ]
+    List-utils                              html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/revElements,List-method.html
+    Pairs-class                             html  
+REDIRECT:topic	 class:Pairs -> Pairs-class.html [ FAIL ]
+REDIRECT:topic	 first<- -> Pairs-class.html [ FAIL ]
+REDIRECT:topic	 first<-,Pairs-method -> Pairs-class.html [ FAIL ]
+REDIRECT:topic	 second<- -> Pairs-class.html [ FAIL ]
+REDIRECT:topic	 second<-,Pairs-method -> Pairs-class.html [ FAIL ]
+REDIRECT:topic	 names<-,Pairs-method -> Pairs-class.html [ FAIL ]
+    RectangularData-class                   html  
+REDIRECT:topic	 class:RectangularData -> RectangularData-class.html [ FAIL ]
+REDIRECT:topic	 ROWNAMES<- -> RectangularData-class.html [ FAIL ]
+REDIRECT:topic	 ROWNAMES<-,ANY-method -> RectangularData-class.html [ FAIL ]
+REDIRECT:topic	 ROWNAMES<-,RectangularData-method -> RectangularData-class.html [ FAIL ]
+    Rle-class                               html  
+REDIRECT:topic	 class:Rle -> Rle-class.html [ FAIL ]
+REDIRECT:topic	 runLength<- -> Rle-class.html [ FAIL ]
+REDIRECT:topic	 runLength<-,Rle-method -> Rle-class.html [ FAIL ]
+REDIRECT:topic	 runValue<- -> Rle-class.html [ FAIL ]
+REDIRECT:topic	 runValue<-,Rle-method -> Rle-class.html [ FAIL ]
+REDIRECT:topic	 [<-,Rle,ANY-method -> Rle-class.html [ FAIL ]
+    Rle-runstat                             html  
+    Rle-utils                               html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/summary,Rle-method.html
+REDIRECT:topic	 levels<-,Rle-method -> Rle-utils.html [ FAIL ]
+    S4Vectors-internals                     html  
+REDIRECT:topic	 class:character_OR_NULL -> S4Vectors-internals.html [ FAIL ]
+REDIRECT:topic	 class:vector_OR_factor -> S4Vectors-internals.html [ FAIL ]
+REDIRECT:topic	 class:atomic -> S4Vectors-internals.html [ FAIL ]
+REDIRECT:topic	 class:DataFrame_OR_NULL -> S4Vectors-internals.html [ FAIL ]
+    SimpleList-class                        html  
+REDIRECT:topic	 class:SimpleList -> SimpleList-class.html [ FAIL ]
+REDIRECT:topic	 names<-,SimpleList-method -> SimpleList-class.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/coerce,list,List-method.html
+    TransposedDataFrame-class               html  
+REDIRECT:topic	 class:TransposedDataFrame -> TransposedDataFrame-class.html [ FAIL ]
+REDIRECT:topic	 dimnames<-,TransposedDataFrame-method -> TransposedDataFrame-class.html [ FAIL ]
+REDIRECT:topic	 names<-,TransposedDataFrame-method -> TransposedDataFrame-class.html [ FAIL ]
+    Vector-class                            html  
+REDIRECT:topic	 class:Vector -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 class:vector_OR_Vector -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 elementMetadata<- -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 elementMetadata<-,Vector-method -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 mcols<- -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 mcols<-,Vector-method -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 values<- -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 values<-,Vector-method -> Vector-class.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/rename,Vector-method.html
+REDIRECT:topic	 [<-,Vector-method -> Vector-class.html [ FAIL ]
+    Vector-comparison                       html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<=,Vector,Vector-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<=,Vector,ANY-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<=,ANY,Vector-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/>=,Vector,Vector-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/>=,Vector,ANY-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/>=,ANY,Vector-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<,Vector,Vector-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<,Vector,ANY-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/<,ANY,Vector-method.html
+REDIRECT:topic	 >,Vector,Vector-method -> Vector-comparison.html [ FAIL ]
+REDIRECT:topic	 >,Vector,ANY-method -> Vector-comparison.html [ FAIL ]
+REDIRECT:topic	 >,ANY,Vector-method -> Vector-comparison.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/selfmatch,factor-method.html
+    Vector-merge                            html  
+    Vector-setops                           html  
+    aggregate-methods                       html  
+    bindROWS                                html  
+    character-utils                         html  
+    expand-methods                          html  
+    integer-utils                           html  
+    isSorted                                html  
+    shiftApply-methods                      html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/shiftApply,vector,vector-method.html
+    show-utils                              html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/showAsCell,list-method.html
+    splitAsList                             html  
+    stack-methods                           html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/mstack,vector-method.html
+    subsetting-utils                        html  
+REDIRECT:topic	 class:NSBS -> subsetting-utils.html [ FAIL ]
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/getListElement,list-method.html
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/00LOCK-S4Vectors/00new/S4Vectors/help/setListElement,list-method.html
+    zip-methods                             html  
+** building package indices
+** installing vignettes
+   'RleTricks.Rnw' using 'UTF-8' 
+   'S4QuickOverview.Rnw' using 'UTF-8' 
+   'S4VectorsOverview.Rnw' using 'UTF-8' 
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+
+install for x64
+
+* installing *source* package 'S4Vectors' ...
+** libs
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c AEbufs.c -o AEbufs.o
+AEbufs.c: In function '_IntAEAE_toEnvir':
+AEbufs.c:626:36: warning: format '%lu' expects argument of type 'long unsigned int', but argument 4 has type 'size_t' {aka 'long long unsigned int'} [-Wformat=]
+   snprintf(key, sizeof(key), "%010lu", i + keyshift);
+                               ~~~~~^   ~~~~~~~~~~~~
+                               %010I64u
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c DataFrame_class.c -o DataFrame_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Hits_class.c -o Hits_class.o
+In file included from C:/Users/BIOCBU~1/BBS-3~1.13-/R/include/Rdefines.h:40,
+                 from ../inst/include/S4Vectors_defines.h:18,
+                 from S4Vectors.h:1,
+                 from Hits_class.c:4:
+Hits_class.c: In function 'Hits_new':
+C:/Users/BIOCBU~1/BBS-3~1.13-/R/include/Rinternals.h:1549:20: warning: 'revmap' may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define defineVar  Rf_defineVar
+                    ^~~~~~~~~~~~
+Hits_class.c:216:12: note: 'revmap' was declared here
+  SEXP ans, revmap, symbol;
+            ^~~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c LLint_class.c -o LLint_class.o
+LLint_class.c: In function 'from_llints_to_STRSXP':
+LLint_class.c:358:27: warning: unknown conversion type character 'l' in format [-Wformat=]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                           ^
+LLint_class.c:358:24: warning: too many arguments for format [-Wformat-extra-args]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                        ^~~~~~
+LLint_class.c:358:27: warning: unknown conversion type character 'l' in format [-Wformat=]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                           ^
+LLint_class.c:358:24: warning: too many arguments for format [-Wformat-extra-args]
+   if (sprintf(val_buf, "%lld", from_elt) < 0)
+                        ^~~~~~
+LLint_class.c: In function 'llints_summary':
+LLint_class.c:775:35: warning: 'res' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if (res == NA_LLINT || in_elt > res)
+                            ~~~~~~~^~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c List_class.c -o List_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c R_init_S4Vectors.c -o R_init_S4Vectors.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Rle_class.c -o Rle_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Rle_utils.c -o Rle_utils.o
+Rle_utils.c: In function 'Rle_real_runq':
+Rle_utils.c:701:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+     if (count_na != 0)
+     ^~
+Rle_utils.c:703:6: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+      q_index = roundingScale(window_len_na,
+      ^~~~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c SEXP_utils.c -o SEXP_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c SimpleList_class.c -o SimpleList_class.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c anyMissing.c -o anyMissing.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c character_utils.c -o character_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c eval_utils.c -o eval_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c hash_utils.c -o hash_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c integer_utils.c -o integer_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c logical_utils.c -o logical_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c map_ranges_to_runs.c -o map_ranges_to_runs.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c raw_utils.c -o raw_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c safe_arithm.c -o safe_arithm.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c sort_utils.c -o sort_utils.o
+sort_utils.c:263:13: warning: 'sort_uchar_array' defined but not used [-Wunused-function]
+ static void sort_uchar_array(unsigned char *x, int nelt, int desc)
+             ^~~~~~~~~~~~~~~~
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c subsetting_utils.c -o subsetting_utils.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c vector_utils.c -o vector_utils.o
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o S4Vectors.dll tmp.def AEbufs.o DataFrame_class.o Hits_class.o LLint_class.o List_class.o R_init_S4Vectors.o Rle_class.o Rle_utils.o SEXP_utils.o SimpleList_class.o anyMissing.o character_utils.o eval_utils.o hash_utils.o integer_utils.o logical_utils.o map_ranges_to_runs.o raw_utils.o safe_arithm.o sort_utils.o subsetting_utils.o vector_utils.o -LC:/extsoft/lib/x64 -LC:/extsoft/lib -LC:/Users/BIOCBU~1/BBS-3~1.13-/R/bin/x64 -lR
+installing to C:/Users/biocbuild/bbs-3.13-bioc/meat/S4Vectors.buildbin-libdir/S4Vectors/libs/x64
+** testing if installed package can be loaded
+* MD5 sums
+packaged installation of 'S4Vectors' as S4Vectors_0.30.0.zip
+* DONE (S4Vectors)
+* installing to library 'C:/Users/biocbuild/bbs-3.13-bioc/R/library'
+package 'S4Vectors' successfully unpacked and MD5 sums checked

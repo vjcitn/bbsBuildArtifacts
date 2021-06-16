@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   C:\cygwin\bin\curl.exe -O http://155.52.207.165/BBS/3.13/bioc/src/contrib/a4_1.40.0.tar.gz && rm -rf a4.buildbin-libdir && mkdir a4.buildbin-libdir && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL --merge-multiarch --build --library=a4.buildbin-libdir a4_1.40.0.tar.gz && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL a4_1.40.0.zip && rm a4_1.40.0.tar.gz a4_1.40.0.zip
+###
+##############################################################################
+##############################################################################
+
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 24691  100 24691    0     0   138k      0 --:--:-- --:--:-- --:--:--  139k
+
+install for i386
+
+* installing *source* package 'a4' ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+No man pages found in package  'a4' 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+
+install for x64
+
+* installing *source* package 'a4' ...
+** testing if installed package can be loaded
+* MD5 sums
+packaged installation of 'a4' as a4_1.40.0.zip
+* DONE (a4)
+* installing to library 'C:/Users/biocbuild/bbs-3.13-bioc/R/library'
+package 'a4' successfully unpacked and MD5 sums checked

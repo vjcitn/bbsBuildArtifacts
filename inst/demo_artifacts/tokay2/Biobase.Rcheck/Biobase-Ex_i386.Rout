@@ -1,0 +1,2912 @@
+
+R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: i386-w64-mingw32/i386 (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "Biobase"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> base::assign(".ExTimings", "Biobase-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('Biobase')
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: 'BiocGenerics'
+
+The following objects are masked from 'package:parallel':
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from 'package:stats':
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from 'package:base':
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("Aggregate")
+> ### * Aggregate
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: Aggregate
+> ### Title: A Simple Aggregation Mechanism.
+> ### Aliases: Aggregate
+> ### Keywords: programming methods
+> 
+> ### ** Examples
+> 
+>   agg1 <- new("aggregator")
+>   Aggregate(letters[1:10], agg1)
+>   # the first 10 letters should be symbols in env1 with values of 1
+>   Aggregate(letters[5:11], agg1)
+>   # now letters[5:10] should have value 2
+>   bb <- mget(letters[1:11], env=aggenv(agg1), ifnotfound=NA)
+>   t1 <- as.numeric(bb); names(t1) <- names(bb)
+>   t1
+a b c d e f g h i j k 
+1 1 1 1 2 2 2 2 2 2 1 
+> # a b c d e f g h i j k
+> # 1 1 1 1 2 2 2 2 2 2 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("Aggregate", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("ScalarObject-class")
+> ### * ScalarObject-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ScalarObject-class
+> ### Title: Utility classes for length one (scalar) objects
+> ### Aliases: ScalarObject-class ScalarCharacter-class ScalarLogical-class
+> ###   ScalarInteger-class ScalarNumeric-class mkScalar
+> ###   show,ScalarObject-method show,ScalarCharacter-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> v <- list(mkScalar("a single string"),
++           mkScalar(1),
++           mkScalar(1L),
++           mkScalar(TRUE))
+> sapply(v, class)
+[1] "ScalarCharacter" "ScalarNumeric"   "ScalarInteger"   "ScalarLogical"  
+> sapply(v, length)
+[1] 1 1 1 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("ScalarObject-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("addVig2Menu")
+> ### * addVig2Menu
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: addVigs2WinMenu
+> ### Title: Add Menu Items to an Existing/New Menu of Window
+> ### Aliases: addVigs2WinMenu
+> ### Keywords: interface
+> 
+> ### ** Examples
+> 
+>     # Only works for windows now
+>     if(interactive() && .Platform$OS.type == "windows" &&
++              .Platform$GUI == "Rgui"){
++         addVigs2WinMenu("Biobase")
++     }
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("addVig2Menu", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("anyMissing")
+> ### * anyMissing
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: anyMissing
+> ### Title: Checks if there are any missing values in an object or not
+> ### Aliases: anyMissing
+> ### Keywords: iteration logic
+> 
+> ### ** Examples
+> 
+> x <- rnorm(n=1000)
+> x[seq(300,length(x),by=100)] <- NA
+> stopifnot(anyMissing(x) == any(is.na(x)))
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("anyMissing", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("cache")
+> ### * cache
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: cache
+> ### Title: Evaluate an expression if its value is not already cached.
+> ### Aliases: cache
+> ### Keywords: manip array
+> 
+> ### ** Examples
+> 
+>     bigCalc <- function() runif(10)
+>     cache(myComplicatedObject <- bigCalc())
+>     aCopy <- myComplicatedObject
+>     remove(myComplicatedObject)
+>     cache(myComplicatedObject <- bigCalc())
+>     stopifnot(all.equal(myComplicatedObject, aCopy))
+>     allCacheFiles <-
++        list.files(".", pattern="^tmp_R_cache_.*\\.RData$", full.name=TRUE)
+>     file.remove(allCacheFiles)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("cache", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("channel")
+> ### * channel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: channel
+> ### Title: Create a new ExpressionSet instance by selecting a specific
+> ###   channel
+> ### Aliases: channel
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> obj <- NChannelSet(
++            R=matrix(runif(100), 20, 5),
++            G=matrix(runif(100), 20, 5))
+> ## G channel as ExpressionSet
+> channel(obj, "G")
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 20 features, 5 samples 
+  element names: exprs 
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("channel", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("channelNames")
+> ### * channelNames
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: channelNames
+> ### Title: Retrieve and set channel names from object
+> ### Aliases: channelNames channelNames<-
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> ## channelNames default to alphabetical order of channels
+> obj <- NChannelSet(
++            R=matrix(runif(100), 20, 5),
++            G=matrix(-runif(100), 20, 5))
+> channelNames(obj)
+[1] "G" "R"
+> channelNames(obj) <- c(Gn="G", Rd="R")   ## rename
+> channelNames(obj)
+[1] "Gn" "Rd"
+> channelNames(obj) <- c("Rd", "Gn")       ## reorder
+> channelNames(obj)
+[1] "Rd" "Gn"
+> all(assayData(obj)[["Gn"]] <= 0)
+[1] TRUE
+> all(assayData(obj)[["Rd"]] >= 0)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("channelNames", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.AnnotatedDataFrame")
+> ### * class.AnnotatedDataFrame
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: AnnotatedDataFrame
+> ### Title: Class Containing Measured Variables and Their Meta-Data
+> ###   Description.
+> ### Aliases: class:AnnotatedDataFrame AnnotatedDataFrame
+> ###   AnnotatedDataFrame-class AnnotatedDataFrame,missing,missing-method
+> ###   AnnotatedDataFrame,data.frame,missing-method
+> ###   AnnotatedDataFrame,data.frame,data.frame-method dimLabels dimLabels<-
+> ###   [,AnnotatedDataFrame-method [[<-,AnnotatedDataFrame-method
+> ###   [[,AnnotatedDataFrame-method $<-,AnnotatedDataFrame-method
+> ###   $,AnnotatedDataFrame-method
+> ###   coerce,AnnotatedDataFrame,data.frame-method
+> ###   combine,AnnotatedDataFrame,AnnotatedDataFrame-method
+> ###   initialize,AnnotatedDataFrame-method
+> ###   coerce,data.frame,AnnotatedDataFrame-method
+> ###   coerce,phenoData,AnnotatedDataFrame-method head.AnnotatedDataFrame
+> ###   tail.AnnotatedDataFrame dim,AnnotatedDataFrame-method
+> ###   dimnames,AnnotatedDataFrame-method
+> ###   dimnames<-,AnnotatedDataFrame-method
+> ###   dimLabels,AnnotatedDataFrame-method
+> ###   dimLabels<-,AnnotatedDataFrame,character-method
+> ###   ncol,AnnotatedDataFrame-method
+> ###   pData<-,AnnotatedDataFrame,data.frame-method
+> ###   pData,AnnotatedDataFrame-method
+> ###   varMetadata<-,AnnotatedDataFrame,data.frame-method
+> ###   varMetadata,AnnotatedDataFrame-method
+> ###   sampleNames<-,AnnotatedDataFrame,ANY-method
+> ###   sampleNames,AnnotatedDataFrame-method
+> ###   featureNames,AnnotatedDataFrame-method
+> ###   featureNames<-,AnnotatedDataFrame-method
+> ###   show,AnnotatedDataFrame-method updateObject,AnnotatedDataFrame-method
+> ###   varLabels<-,AnnotatedDataFrame-method
+> ###   varLabels,AnnotatedDataFrame-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> df <- data.frame(x=1:6,
++                  y=rep(c("Low", "High"),3),
++                  z=I(LETTERS[1:6]),
++                  row.names=paste("Sample", 1:6, sep="_"))
+> metaData <-
++   data.frame(labelDescription=c(
++                "Numbers",
++                "Factor levels",
++                "Characters"))
+> 
+> AnnotatedDataFrame()
+An object of class 'AnnotatedDataFrame': none
+> AnnotatedDataFrame(data=df)
+An object of class 'AnnotatedDataFrame'
+  rowNames: Sample_1 Sample_2 ... Sample_6 (6 total)
+  varLabels: x y z
+  varMetadata: labelDescription
+> AnnotatedDataFrame(data=df, varMetadata=metaData)
+An object of class 'AnnotatedDataFrame'
+  rowNames: Sample_1 Sample_2 ... Sample_6 (6 total)
+  varLabels: x y z
+  varMetadata: labelDescription
+> as(df, "AnnotatedDataFrame")
+An object of class 'AnnotatedDataFrame'
+  rowNames: Sample_1 Sample_2 ... Sample_6 (6 total)
+  varLabels: x y z
+  varMetadata: labelDescription
+> 
+> obj <- AnnotatedDataFrame()
+> pData(obj) <- df
+> varMetadata(obj) <- metaData
+> validObject(obj)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.AnnotatedDataFrame", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.ExpressionSet")
+> ### * class.ExpressionSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ExpressionSet
+> ### Title: Class to Contain and Describe High-Throughput Expression Level
+> ###   Assays.
+> ### Aliases: class:ExpressionSet ExpressionSet ExpressionSet-class
+> ###   ExpressionSet,missing-method ExpressionSet,environment-method
+> ###   ExpressionSet,matrix-method exprs,ExpressionSet-method
+> ###   exprs<-,ExpressionSet,matrix-method initialize,ExpressionSet-method
+> ###   coerce,exprSet,ExpressionSet-method coerce,eSet,ExpressionSet-method
+> ###   coerce,ExpressionSet,data.frame-method esApply,ExpressionSet-method
+> ###   updateObject,ExpressionSet-method
+> ###   makeDataPackage,ExpressionSet-method as.data.frame.ExpressionSet
+> ###   write.exprs write.exprs,ExpressionSet-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> # create an instance of ExpressionSet
+> ExpressionSet()
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 0 features, 0 samples 
+  element names: exprs 
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> ExpressionSet(assayData=matrix(runif(1000), nrow=100, ncol=10))
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 100 features, 10 samples 
+  element names: exprs 
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> # update an existing ExpressionSet
+> data(sample.ExpressionSet)
+> updateObject(sample.ExpressionSet)
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 500 features, 26 samples 
+  element names: exprs, se.exprs 
+protocolData: none
+phenoData
+  sampleNames: A B ... Z (26 total)
+  varLabels: sex type score
+  varMetadata: labelDescription
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation: hgu95av2 
+> 
+> # information about assay and sample data
+> featureNames(sample.ExpressionSet)[1:10]
+ [1] "AFFX-MurIL2_at"  "AFFX-MurIL10_at" "AFFX-MurIL4_at"  "AFFX-MurFAS_at" 
+ [5] "AFFX-BioB-5_at"  "AFFX-BioB-M_at"  "AFFX-BioB-3_at"  "AFFX-BioC-5_at" 
+ [9] "AFFX-BioC-3_at"  "AFFX-BioDn-5_at"
+> sampleNames(sample.ExpressionSet)[1:5]
+[1] "A" "B" "C" "D" "E"
+> experimentData(sample.ExpressionSet)
+Experiment data
+  Experimenter name: Pierre Fermat 
+  Laboratory: Francis Galton Lab 
+  Contact information: pfermat@lab.not.exist 
+  Title: Smoking-Cancer Experiment 
+  URL: www.lab.not.exist 
+  PMIDs:  
+
+  Abstract: A 8 word abstract is available. Use 'abstract' method.
+  notes:
+   notes:     
+      An example object of expression set (exprSet) class
+> 
+> # subset: first 10 genes, samples 2, 4, and 10
+> expressionSet <- sample.ExpressionSet[1:10,c(2,4,10)]
+> 
+> # named features and their expression levels
+> subset <- expressionSet[c("AFFX-BioC-3_at","AFFX-BioDn-5_at"),]
+> exprs(subset)
+                      B        D         J
+AFFX-BioC-3_at  16.8006 46.52720 39.741900
+AFFX-BioDn-5_at 16.1789  9.73639  0.398779
+> 
+> # samples with above-average 'score' in phenoData
+> highScores <- expressionSet$score > mean(expressionSet$score)
+> expressionSet[,highScores]
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 10 features, 1 samples 
+  element names: exprs, se.exprs 
+protocolData: none
+phenoData
+  sampleNames: J
+  varLabels: sex type score
+  varMetadata: labelDescription
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation: hgu95av2 
+> 
+> # (automatically) coerce to data.frame
+> lm(score~AFFX.BioDn.5_at + AFFX.BioC.3_at, data=subset)
+
+Call:
+lm(formula = score ~ AFFX.BioDn.5_at + AFFX.BioC.3_at, data = subset)
+
+Coefficients:
+    (Intercept)  AFFX.BioDn.5_at   AFFX.BioC.3_at  
+        0.78217         -0.01985         -0.00363  
+
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.ExpressionSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.MIAxE")
+> ### * class.MIAxE
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: MIAxE
+> ### Title: MIAxE objects
+> ### Aliases: MIAxE class:MIAxE MIAxE-class show,MIAxE-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> 
+> # Create a new class
+> MyData <- setClass("MyData", contains="MIAxE")
+> MyData()
+MyData
+> 
+> # MIAxE objects cannot be instantiated directly
+> try(new("MIAxE"))
+Error in new("MIAxE") : 
+  trying to generate an object from a virtual class ("MIAxE")
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.MIAxE", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.MultiSet")
+> ### * class.MultiSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: MultiSet
+> ### Title: Class to Contain and Describe High-Throughput Expression Level
+> ###   Assays.
+> ### Aliases: class:MultiSet MultiSet MultiSet-class
+> ###   initialize,MultiSet-method coerce,eSet,MultiSet-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> # create an instance of ExpressionSet
+> new("MultiSet")
+MultiSet (storageMode: lockedEnvironment)
+  element names:  
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.MultiSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.NChannelSet")
+> ### * class.NChannelSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: NChannelSet-class
+> ### Title: Class to contain data from multiple channel array technologies
+> ### Aliases: NChannelSet-class NChannelSet class.NChannelSet
+> ###   assayData<-,NChannelSet,environment-method
+> ###   assayData<-,NChannelSet,list-method channelNames,NChannelSet-method
+> ###   channelNames<-,NChannelSet,character-method
+> ###   channelNames<-,NChannelSet,list-method
+> ###   channel,NChannelSet,character-method sampleNames,NChannelSet-method
+> ###   sampleNames<-,NChannelSet,list-method
+> ###   selectChannels,NChannelSet,character-method
+> ###   initialize,NChannelSet-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> ## An empty NChannelSet
+> obj <- NChannelSet()
+> 
+> ## An NChannelSet with two channels (R, G) and no phenotypic data
+> obj <- NChannelSet(R=matrix(0,10,5), G=matrix(0,10,5))
+> 
+> ## An NChannelSet with two channels and channel-specific phenoData
+> R <- matrix(0, 10, 3, dimnames=list(NULL, LETTERS[1:3]))
+> G <- matrix(1, 10, 3, dimnames=list(NULL, LETTERS[1:3]))
+> assayData <- assayDataNew(R=R, G=G)
+> data <- data.frame(ChannelRData=numeric(ncol(R)),
++                    ChannelGData=numeric(ncol(R)),
++                    ChannelRAndG=numeric(ncol(R)))
+> varMetadata <- data.frame(labelDescription=c(
++                             "R-specific phenoData",
++                             "G-specific phenoData",
++                             "Both channel phenoData"),
++                           channel=factor(c("R", "G", "_ALL_")))
+> phenoData <- AnnotatedDataFrame(data=data, varMetadata=varMetadata)
+> obj <- NChannelSet(assayData=assayData, phenoData=phenoData)
+> obj
+NChannelSet (storageMode: lockedEnvironment)
+assayData: 10 features, 3 samples 
+  element names: G, R 
+protocolData: none
+phenoData
+  sampleNames: A B C
+  varLabels: ChannelRData ChannelGData ChannelRAndG
+  varMetadata: labelDescription channel
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> ## G channel as NChannelSet
+> selectChannels(obj, "G")
+NChannelSet (storageMode: lockedEnvironment)
+assayData: 10 features, 3 samples 
+  element names: G 
+protocolData: none
+phenoData
+  sampleNames: A B C
+  varLabels: ChannelGData ChannelRAndG
+  varMetadata: labelDescription channel
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> ## G channel as ExpressionSet
+> channel(obj, "G")
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 10 features, 3 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: A B C
+  varLabels: ChannelGData ChannelRAndG
+  varMetadata: labelDescription channel
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> ## Samples "A" and "C"
+> obj[,c("A", "C")]
+NChannelSet (storageMode: lockedEnvironment)
+assayData: 10 features, 2 samples 
+  element names: G, R 
+protocolData: none
+phenoData
+  sampleNames: A C
+  varLabels: ChannelRData ChannelGData ChannelRAndG
+  varMetadata: labelDescription channel
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.NChannelSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.Versioned")
+> ### * class.Versioned
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: Versioned
+> ### Title: Class "Versioned"
+> ### Aliases: Versioned-class Versioned initialize,Versioned-method
+> ###   isVersioned,Versioned-method classVersion,Versioned-method
+> ###   classVersion<-,Versioned,Versions-method
+> ###   isCurrent,Versioned,missing-method
+> ###   isCurrent,Versioned,character-method show,Versioned-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> 
+> obj <- new("Versioned", versions=list(A="1.0.0"))
+> obj
+An object of class "Versioned"
+Slot ".__classVersion__":
+      A 
+"1.0.0" 
+
+> classVersion(obj)
+      A 
+"1.0.0" 
+> 
+> A <- setClass("A", contains="Versioned")
+> 
+> classVersion("A")
+[1] "Versioned; no version string"
+> a <- A()
+> a # 'show' nothing by default
+An object of class "A"
+Slot ".__classVersion__":
+[1] "Versioned; no version string"
+
+> classVersion(a)
+[1] "Versioned; no version string"
+> 
+> B <- setClass("B", contains="Versioned",
++          prototype=prototype(new("Versioned",versions=list(B="1.0.0"))))
+> 
+> classVersion("B")
+      B 
+"1.0.0" 
+> b <- B()
+> classVersion(b)
+      B 
+"1.0.0" 
+> 
+> classVersion(b)["B"] <- "1.0.1"
+> classVersion(b)
+      B 
+"1.0.1" 
+> classVersion("B")
+      B 
+"1.0.0" 
+> 
+> classVersion("B") < classVersion(b)
+   B 
+TRUE 
+> classVersion(b) == "1.0.1"
+   B 
+TRUE 
+> 
+> C <- setClass("C",
++          representation(x="numeric"),
++          contains=("VersionedBiobase"),
++          prototype=prototype(new("VersionedBiobase", versions=c(C="1.0.1"))))
+> 
+> setMethod("show", signature(object="C"),
++           function(object) print(object@x))
+> 
+> c <- C(x=1:10)
+> c
+ [1]  1  2  3  4  5  6  7  8  9 10
+> 
+> classVersion(c)
+       R  Biobase        C 
+ "4.1.0" "2.52.0"  "1.0.1" 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.Versioned", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.VersionedBiobase")
+> ### * class.VersionedBiobase
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: VersionedBiobase
+> ### Title: Class "VersionedBiobase"
+> ### Aliases: VersionedBiobase-class VersionedBiobase
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> 
+> obj <- new("VersionedBiobase")
+> classVersion(obj)
+       R  Biobase 
+ "4.1.0" "2.52.0" 
+> 
+> obj <- new("VersionedBiobase", versions=list(A="1.0.0"))
+> classVersion(obj)
+       R  Biobase        A 
+ "4.1.0" "2.52.0"  "1.0.0" 
+> 
+> A <- setClass("A", contains="VersionedBiobase")
+> 
+> classVersion("A")
+       R  Biobase 
+ "4.1.0" "2.52.0" 
+> a <- A()
+> classVersion(a)
+       R  Biobase 
+ "4.1.0" "2.52.0" 
+> 
+> obj <- new("VersionedBiobase", versions=c(MyVersion="1.0.0"))
+> classVersion(obj)
+        R   Biobase MyVersion 
+  "4.1.0"  "2.52.0"   "1.0.0" 
+> 
+> B <- setClass("B", contains="VersionedBiobase",
++          prototype=prototype(new("VersionedBiobase",versions=list(B="1.0.0"))))
+> 
+> classVersion("B")
+       R  Biobase        B 
+ "4.1.0" "2.52.0"  "1.0.0" 
+> b <- B()
+> classVersion(b)
+       R  Biobase        B 
+ "4.1.0" "2.52.0"  "1.0.0" 
+> 
+> removeClass("A")
+[1] TRUE
+> removeClass("B")
+[1] TRUE
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.VersionedBiobase", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.Versions")
+> ### * class.Versions
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: Versions
+> ### Title: Class "Versions"
+> ### Aliases: Versions-class Versions initialize,Versions-method
+> ###   [,Versions-method [<-,Versions-method [[<-,Versions-method
+> ###   $<-,Versions-method Compare,Versions,Versions-method
+> ###   Compare,Versions,character-method Compare,character,Versions-method
+> ###   updateObject,Versions-method show,Versions-method
+> ###   coerce,Versions,character-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> 
+> obj <- new("Versions", A="1.0.0")
+> obj
+      A 
+"1.0.0" 
+> 
+> obj["A"] <- "1.0.1"
+> obj
+      A 
+"1.0.1" 
+> obj["B"] <- "2.0"
+> obj
+      A       B 
+"1.0.1"   "2.0" 
+> 
+> obj1 <- obj
+> obj1["B"] <- "2.0.1"
+> 
+> obj1 == obj
+    A     B 
+ TRUE FALSE 
+> obj1["B"] > "2.0.0"
+   B 
+TRUE 
+> obj["B"] == "2.0" # TRUE!
+   B 
+TRUE 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.Versions", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.VersionsNull")
+> ### * class.VersionsNull
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: VersionsNull
+> ### Title: Class "VersionsNull"
+> ### Aliases: VersionsNull-class VersionsNull initialize,VersionsNull-method
+> ###   show,VersionsNull-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> 
+> obj <- new("VersionsNull")
+> obj
+[1] "No version"
+> 
+> obj <- new("VersionsNull", A="1.0.0") # warning
+Warning in initialize(value, ...) :
+  ignoring arguments to '.VersionsNull()')
+> obj
+[1] "No version"
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.VersionsNull", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.container")
+> ### * class.container
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: container
+> ### Title: A Lockable List Structure with Constraints on Content
+> ### Aliases: class:container container container-class [,container-method
+> ###   [[<-,container-method [[,container-method content,container-method
+> ###   length,container-method locked,container-method show,container-method
+> ### Keywords: methods classes
+> 
+> ### ** Examples
+> 
+>   x1 <- new("container", x=vector("list", length=3), content="lm")
+>   lm1 <- lm(rnorm(10)~runif(10))
+>   x1[[1]] <- lm1
+>  
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.container", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("class.eSet")
+> ### * class.eSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: eSet
+> ### Title: Class to Contain High-Throughput Assays and Experimental
+> ###   Metadata
+> ### Aliases: class:eSet eSet eSet-class [,eSet-method $,eSet-method
+> ###   $<-,eSet-method [[,eSet-method [[<-,eSet-method abstract,eSet-method
+> ###   annotation,eSet-method annotation<-,eSet,character-method
+> ###   assayData,eSet-method assayData<-,eSet,AssayData-method
+> ###   assayDataElement assayDataElement<- assayDataElementNames
+> ###   assayDataElementReplace combine,eSet,ANY-method
+> ###   combine,eSet,eSet-method description,eSet-method
+> ###   description<-,eSet,MIAME-method dimnames dimnames<-
+> ###   dimnames,eSet-method dimnames<-,eSet-method dim,eSet-method dims
+> ###   dims,eSet-method experimentData,eSet-method
+> ###   experimentData<-,eSet,MIAME-method exprs,eSet-method
+> ###   exprs<-,eSet,AssayData-method featureData,eSet-method
+> ###   featureData<-,eSet,AnnotatedDataFrame-method featureNames,eSet-method
+> ###   featureNames<-,eSet-method fData,eSet-method
+> ###   fData<-,eSet,data.frame-method fvarLabels,eSet-method
+> ###   fvarLabels<-,eSet-method fvarMetadata,eSet-method
+> ###   fvarMetadata<-,eSet,data.frame-method initialize,eSet-method
+> ###   ncol,eSet-method notes,eSet-method notes<-,eSet,ANY-method
+> ###   pData,eSet-method pData<-,eSet,data.frame-method
+> ###   phenoData,eSet-method phenoData<-,eSet,AnnotatedDataFrame-method
+> ###   pubMedIds,eSet-method pubMedIds<-,eSet,character-method
+> ###   preproc,eSet-method preproc<-,eSet-method protocolData,eSet-method
+> ###   protocolData<-,eSet,character-method sampleNames,eSet-method
+> ###   sampleNames<-,eSet,ANY-method show,eSet-method
+> ###   storageMode,eSet-method storageMode<-,eSet,character-method
+> ###   varLabels,eSet-method varLabels<-,eSet-method varMetadata,eSet-method
+> ###   varMetadata<-,eSet,data.frame-method storageMode,eSet-method
+> ###   storageMode<-,eSet,character-method updateObject,eSet-method
+> ###   updateObjectTo,eSet,eSet-method listOrEnv SW
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> 
+> # update previous eSet-like class oldESet to existing derived class
+> ## Not run: updateOldESet(oldESet, "ExpressionSet")
+> 
+> # create a new, ad hoc, class, for personal use
+> # all methods outlined above are available automatically
+> .MySet <- setClass("MySet", contains="eSet")
+> .MySet()
+MySet (storageMode: lockedEnvironment)
+  element names:  
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> # Create a more robust class, with constructor and validation methods
+> # to ensure assayData contains specific matricies
+> .TwoColorSet <- setClass("TwoColorSet", contains="eSet")
+> 
+> TwoColorSet <-
++     function(phenoData=AnnotatedDataFrame(), experimentData=MIAME(),
++              annotation=character(), R=new("matrix"), G=new("matrix"),
++              Rb=new("matrix"), Gb=new("matrix"), ...)
++ {
++     .TwoColorSet(phenoData=phenoData, experimentData=experimentData,
++                  annotation=annotation, R=R, G=G, Rb=Rb, Gb=Gb, ...)
++ }
+> 
+> setValidity("TwoColorSet", function(object) {
++   assayDataValidMembers(assayData(object), c("R", "G", "Rb", "Gb"))
++ })
+Class "TwoColorSet" [in ".GlobalEnv"]
+
+Slots:
+                                                               
+Name:           assayData          phenoData        featureData
+Class:          AssayData AnnotatedDataFrame AnnotatedDataFrame
+                                                               
+Name:      experimentData         annotation       protocolData
+Class:              MIAxE          character AnnotatedDataFrame
+                         
+Name:   .__classVersion__
+Class:           Versions
+
+Extends: 
+Class "eSet", directly
+Class "VersionedBiobase", by class "eSet", distance 2
+Class "Versioned", by class "eSet", distance 3
+> 
+> TwoColorSet()
+TwoColorSet (storageMode: lockedEnvironment)
+assayData: 0 features, 0 samples 
+  element names: G, Gb, R, Rb 
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> # eSet objects cannot be instantiated directly, only derived objects
+> try(new("eSet"))
+Error in new("eSet") : 
+  trying to generate an object from a virtual class ("eSet")
+> 
+> removeClass("MySet")
+[1] TRUE
+> removeClass("TwoColorSet")
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("class.eSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("classVersion")
+> ### * classVersion
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: classVersion
+> ### Title: Retrieve information about versioned classes
+> ### Aliases: classVersion classVersion<- classVersion,ANY-method
+> ###   classVersion,character-method
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> obj <- new("VersionedBiobase")
+> 
+> classVersion(obj)
+       R  Biobase 
+ "4.1.0" "2.52.0" 
+> classVersion(obj)["Biobase"]
+ Biobase 
+"2.52.0" 
+> classVersion(1:10) # no version
+[1] "No version"
+> classVersion("ExpressionSet") # consult ExpressionSet prototype
+            R       Biobase          eSet ExpressionSet 
+      "4.1.0"      "2.52.0"       "1.3.0"       "1.0.0" 
+> 
+> classVersion(obj)["MyVersion"] <- "1.0.0"
+> classVersion(obj)
+        R   Biobase MyVersion 
+  "4.1.0"  "2.52.0"   "1.0.0" 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("classVersion", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("contents")
+> ### * contents
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: contents
+> ### Title: Function to retrieve contents of environments
+> ### Aliases: contents
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+>   z <- new.env()
+>   multiassign(letters, 1:26, envir=z)
+>   contents(z)
+$f
+[1] 6
+
+$g
+[1] 7
+
+$h
+[1] 8
+
+$i
+[1] 9
+
+$j
+[1] 10
+
+$k
+[1] 11
+
+$l
+[1] 12
+
+$m
+[1] 13
+
+$n
+[1] 14
+
+$o
+[1] 15
+
+$p
+[1] 16
+
+$q
+[1] 17
+
+$r
+[1] 18
+
+$s
+[1] 19
+
+$t
+[1] 20
+
+$u
+[1] 21
+
+$v
+[1] 22
+
+$w
+[1] 23
+
+$x
+[1] 24
+
+$y
+[1] 25
+
+$z
+[1] 26
+
+$a
+[1] 1
+
+$b
+[1] 2
+
+$c
+[1] 3
+
+$d
+[1] 4
+
+$e
+[1] 5
+
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("contents", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("copyEnv")
+> ### * copyEnv
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: copyEnv
+> ### Title: List-Environment interactions
+> ### Aliases: copyEnv
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>    z <- new.env(hash=TRUE, parent=emptyenv(), size=29L)
+>    multiassign(c("a","b","c"), c(1,2,3), z)
+> 
+>    a <- copyEnv(z)
+>    ls(a)
+[1] "a" "b" "c"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("copyEnv", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("copySubstitute")
+> ### * copySubstitute
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: copySubstitute
+> ### Title: Copy Between Connections or Files with Configure-Like Name-Value
+> ###   Substitution
+> ### Aliases: copySubstitute
+> ### Keywords: connection programming
+> 
+> ### ** Examples
+> 
+> ## create an example file
+> infile  = tempfile()
+> outfile = tempfile()
+> 
+> writeLines(text=c("We will perform in @WHAT@:",
++   "So, thanks to @WHOM@ at once and to each one,",
++   "Whom we invite to see us crown'd at @WHERE@."),
++   con = infile)
+> 
+> ## create the symbol table
+> z = list(WHAT="measure, time and place", WHOM="all", WHERE="Scone")
+> 
+> ## run copySubstitute
+> copySubstitute(infile, outfile, z)
+> 
+> ## display the results
+> readLines(outfile)
+[1] "We will perform in measure, time and place:"
+[2] "So, thanks to all at once and to each one," 
+[3] "Whom we invite to see us crown'd at Scone." 
+> 
+> 
+> 
+> ##--------------------------------------------------------------
+> ## This is a slightly more complicated example that demonstrates
+> ## how copySubstitute works on nested directories
+> ##--------------------------------------------------------------
+> d = tempdir()
+> my.dir.create = function(x) {dir.create(x); return(x)}
+> 
+> unlink(file.path(d, "src"), recursive=TRUE)
+> unlink(file.path(d, "dest"), recursive=TRUE)
+> 
+> ## create some directories and files:
+> src  = my.dir.create(file.path(d, "src"))
+> dest = file.path(d, "dest")
+> d1   = my.dir.create(file.path(src, "dir1.in"))
+> d2   = my.dir.create(file.path(src, "dir2@FOO@.in"))
+> d3   = my.dir.create(file.path(d2, "dir3"))
+> d4   = my.dir.create(file.path(d3, "dir4"))
+> d5   = my.dir.create(file.path(d4, "dir5@BAR@"))
+> writeLines(c("File1:", "FOO: @FOO@"),     file.path(d1, "file1.txt.in"))
+> writeLines(c("File2:", "BAR: @BAR@"),     file.path(d2, "file2.txt.in"))
+> writeLines(c("File3:", "SUN: @SUN@"),     file.path(d3, "file3.txt.in"))
+> writeLines(c("File4:", "MOON: @MOON@"),   file.path(d4, "@SUN@.txt"))
+> 
+> ## call copySubstitute
+> copySubstitute(src, dest, recursive=TRUE,
++                symbolValues = list(FOO="thefoo", BAR="thebar",
++                                    SUN="thesun", MOON="themoon"))
+> 
+> ## view the result
+> listsrc  = dir(src,  full.names=TRUE, recursive=TRUE)
+> listdest = dir(dest, full.names=TRUE, recursive=TRUE)
+> listsrc
+[1] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/src/dir1.in/file1.txt.in"            
+[2] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/src/dir2@FOO@.in/dir3/dir4/@SUN@.txt"
+[3] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/src/dir2@FOO@.in/dir3/file3.txt.in"  
+[4] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/src/dir2@FOO@.in/file2.txt.in"       
+> listdest
+[1] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/dest/src/dir1/file1.txt"                 
+[2] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/dest/src/dir2thefoo/dir3/dir4/thesun.txt"
+[3] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/dest/src/dir2thefoo/dir3/file3.txt"      
+[4] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/dest/src/dir2thefoo/file2.txt"           
+> 
+> cat(unlist(lapply(listsrc,  readLines)), sep="\n")
+File1:
+FOO: @FOO@
+File4:
+MOON: @MOON@
+File3:
+SUN: @SUN@
+File2:
+BAR: @BAR@
+> cat(unlist(lapply(listdest, readLines)), sep="\n")
+File1:
+FOO: thefoo
+File4:
+MOON: themoon
+File3:
+SUN: thesun
+File2:
+BAR: thebar
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("copySubstitute", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("createPackage")
+> ### * createPackage
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: createPackage
+> ### Title: Create a Package Directory from a Template
+> ### Aliases: createPackage
+> ### Keywords: programming
+> 
+> ### ** Examples
+> 
+>   sym  = list(AUTHOR = "Hesiod", VERSION = "1.0",
++          TITLE = "the nine muses",
++          FORMAT = "Character vector containg the names of the 9 muses.")
+> 
+>   res  = createPackage("muses",
++            destinationDir = tempdir(),
++            originDir      = system.file("Code", package="Biobase"),
++            symbolValues   = sym,
++            unlink = TRUE, quiet = FALSE)
+Creating package in C:\Users\biocbuild\bbs-3.13-bioc\tmpdir\RtmpuQFEUn/muses 
+> 
+>   muses = c("Calliope", "Clio", "Erato", "Euterpe", "Melpomene",
++             "Polyhymnia", "Terpsichore", "Thalia", "Urania")
+> 
+>   dir.create(file.path(res$pkgdir, "data"))
+> 
+>   save(muses, file = file.path(res$pkgdir, "data", "muses.rda"))
+> 
+>   res$pkgdir
+[1] "C:\\Users\\biocbuild\\bbs-3.13-bioc\\tmpdir\\RtmpuQFEUn/muses"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("createPackage", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("data.aaMap")
+> ### * data.aaMap
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: data:aaMap
+> ### Title: Dataset: Names and Characteristics of Amino Acids
+> ### Aliases: data:aaMap aaMap
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(aaMap)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("data.aaMap", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("data.geneData")
+> ### * data.geneData
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: data:geneData
+> ### Title: Sample expression matrix and phenotype data.frames.
+> ### Aliases: data:geneData geneData data:geneCov geneCov data:geneCovariate
+> ###   geneCovariate data:seD seD
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(geneData)
+> data(geneCovariate)
+> data(seD)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("data.geneData", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("data.reporter")
+> ### * data.reporter
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: reporter
+> ### Title: Example data.frame representing reporter information
+> ### Aliases: data:reporter reporter
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(reporter)
+> ## maybe str(reporter) ; plot(reporter) ...
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("data.reporter", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("data.sample.ExpressionSet")
+> ### * data.sample.ExpressionSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: data:sample.ExpressionSet
+> ### Title: Dataset of class 'ExpressionSet'
+> ### Aliases: data:sample.ExpressionSet sample.ExpressionSet
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(sample.ExpressionSet)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("data.sample.ExpressionSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("data.sample.MultiSet")
+> ### * data.sample.MultiSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: data:sample.MultiSet
+> ### Title: Data set of class 'MultiSet'
+> ### Aliases: data:sample.MultiSet sample.MultiSet
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(sample.MultiSet)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("data.sample.MultiSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("dumpPackTxt")
+> ### * dumpPackTxt
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: dumpPackTxt
+> ### Title: Dump Textual Description of a Package
+> ### Aliases: dumpPackTxt
+> ### Keywords: models
+> 
+> ### ** Examples
+> 
+> dumpPackTxt("stats")
+Description:
+
+Package: stats
+Version: 4.1.0
+Priority: base
+Title: The R Stats Package
+Author: R Core Team and contributors worldwide
+Maintainer: R Core Team <do-use-Contact-address@r-project.org>
+Contact: R-help mailing list <r-help@r-project.org>
+Description: R statistical functions.
+License: Part of R 4.1.0
+Imports: utils, grDevices, graphics
+Suggests: MASS, Matrix, SuppDists, methods, stats4
+NeedsCompilation: yes
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-05-18 08:44:15 UTC; windows
+
+Index:
+
+.checkMFClasses         Functions to Check the Type of Variables passed
+                        to Model Frames
+AIC                     Akaike's An Information Criterion
+ARMAacf                 Compute Theoretical ACF for an ARMA Process
+ARMAtoMA                Convert ARMA Process to Infinite MA Process
+Beta                    The Beta Distribution
+Binomial                The Binomial Distribution
+Box.test                Box-Pierce and Ljung-Box Tests
+C                       Sets Contrasts for a Factor
+Cauchy                  The Cauchy Distribution
+Chisquare               The (non-central) Chi-Squared Distribution
+Distributions           Distributions in the stats package
+Exponential             The Exponential Distribution
+FDist                   The F Distribution
+GammaDist               The Gamma Distribution
+Geometric               The Geometric Distribution
+HoltWinters             Holt-Winters Filtering
+Hypergeometric          The Hypergeometric Distribution
+IQR                     The Interquartile Range
+KalmanLike              Kalman Filtering
+Logistic                The Logistic Distribution
+Lognormal               The Log Normal Distribution
+Multinomial             The Multinomial Distribution
+NLSstAsymptotic         Fit the Asymptotic Regression Model
+NLSstClosestX           Inverse Interpolation
+NLSstLfAsymptote        Horizontal Asymptote on the Left Side
+NLSstRtAsymptote        Horizontal Asymptote on the Right Side
+NegBinomial             The Negative Binomial Distribution
+Normal                  The Normal Distribution
+PP.test                 Phillips-Perron Test for Unit Roots
+Pair                    Construct paired-data object
+Poisson                 The Poisson Distribution
+SSD                     SSD Matrix and Estimated Variance Matrix in
+                        Multivariate Models
+SSasymp                 Self-Starting Nls Asymptotic Regression Model
+SSasympOff              Self-Starting Nls Asymptotic Regression Model
+                        with an Offset
+SSasympOrig             Self-Starting Nls Asymptotic Regression Model
+                        through the Origin
+SSbiexp                 Self-Starting Nls Biexponential model
+SSfol                   Self-Starting Nls First-order Compartment Model
+SSfpl                   Self-Starting Nls Four-Parameter Logistic Model
+SSgompertz              Self-Starting Nls Gompertz Growth Model
+SSlogis                 Self-Starting Nls Logistic Model
+SSmicmen                Self-Starting Nls Michaelis-Menten Model
+SSweibull               Self-Starting Nls Weibull Growth Curve Model
+SignRank                Distribution of the Wilcoxon Signed Rank
+                        Statistic
+StructTS                Fit Structural Time Series
+TDist                   The Student t Distribution
+Tukey                   The Studentized Range Distribution
+TukeyHSD                Compute Tukey Honest Significant Differences
+Uniform                 The Uniform Distribution
+Weibull                 The Weibull Distribution
+Wilcoxon                Distribution of the Wilcoxon Rank Sum Statistic
+acf                     Auto- and Cross- Covariance and -Correlation
+                        Function Estimation
+acf2AR                  Compute an AR Process Exactly Fitting an ACF
+add1                    Add or Drop All Possible Single Terms to a
+                        Model
+addmargins              Puts Arbitrary Margins on Multidimensional
+                        Tables or Arrays
+aggregate               Compute Summary Statistics of Data Subsets
+alias                   Find Aliases (Dependencies) in a Model
+anova                   Anova Tables
+anova.glm               Analysis of Deviance for Generalized Linear
+                        Model Fits
+anova.lm                ANOVA for Linear Model Fits
+anova.mlm               Comparisons between Multivariate Linear Models
+ansari.test             Ansari-Bradley Test
+aov                     Fit an Analysis of Variance Model
+approxfun               Interpolation Functions
+ar                      Fit Autoregressive Models to Time Series
+ar.ols                  Fit Autoregressive Models to Time Series by OLS
+arima                   ARIMA Modelling of Time Series
+arima.sim               Simulate from an ARIMA Model
+arima0                  ARIMA Modelling of Time Series - Preliminary
+                        Version
+as.hclust               Convert Objects to Class hclust
+asOneSidedFormula       Convert to One-Sided Formula
+ave                     Group Averages Over Level Combinations of
+                        Factors
+bartlett.test           Bartlett Test of Homogeneity of Variances
+binom.test              Exact Binomial Test
+biplot                  Biplot of Multivariate Data
+biplot.princomp         Biplot for Principal Components
+bw.nrd0                 Bandwidth Selectors for Kernel Density
+                        Estimation
+cancor                  Canonical Correlations
+case.names              Case and Variable Names of Fitted Models
+chisq.test              Pearson's Chi-squared Test for Count Data
+cmdscale                Classical (Metric) Multidimensional Scaling
+coef                    Extract Model Coefficients
+complete.cases          Find Complete Cases
+confint                 Confidence Intervals for Model Parameters
+constrOptim             Linearly Constrained Optimization
+contr.helmert           (Possibly Sparse) Contrast Matrices
+contrasts               Get and Set Contrast Matrices
+convolve                Convolution of Sequences via FFT
+cophenetic              Cophenetic Distances for a Hierarchical
+                        Clustering
+cor                     Correlation, Variance and Covariance (Matrices)
+cor.test                Test for Association/Correlation Between Paired
+                        Samples
+cov.wt                  Weighted Covariance Matrices
+cpgram                  Plot Cumulative Periodogram
+cutree                  Cut a Tree into Groups of Data
+decompose               Classical Seasonal Decomposition by Moving
+                        Averages
+delete.response         Modify Terms Objects
+dendrapply              Apply a Function to All Nodes of a Dendrogram
+dendrogram              General Tree Structures
+density                 Kernel Density Estimation
+deriv                   Symbolic and Algorithmic Derivatives of Simple
+                        Expressions
+deviance                Model Deviance
+df.residual             Residual Degrees-of-Freedom
+diff.ts                 Methods for Time Series Objects
+diffinv                 Discrete Integration: Inverse of Differencing
+dist                    Distance Matrix Computation
+dummy.coef              Extract Coefficients in Original Coding
+ecdf                    Empirical Cumulative Distribution Function
+eff.aovlist             Compute Efficiencies of Multistratum Analysis
+                        of Variance
+effects                 Effects from Fitted Model
+embed                   Embedding a Time Series
+expand.model.frame      Add new variables to a model frame
+extractAIC              Extract AIC from a Fitted Model
+factanal                Factor Analysis
+factor.scope            Compute Allowed Changes in Adding to or
+                        Dropping from a Formula
+family                  Family Objects for Models
+family.glm              Accessing Generalized Linear Model Fits
+family.lm               Accessing Linear Model Fits
+fft                     Fast Discrete Fourier Transform (FFT)
+filter                  Linear Filtering on a Time Series
+fisher.test             Fisher's Exact Test for Count Data
+fitted                  Extract Model Fitted Values
+fivenum                 Tukey Five-Number Summaries
+fligner.test            Fligner-Killeen Test of Homogeneity of
+                        Variances
+formula                 Model Formulae
+formula.nls             Extract Model Formula from nls Object
+friedman.test           Friedman Rank Sum Test
+ftable                  Flat Contingency Tables
+ftable.formula          Formula Notation for Flat Contingency Tables
+getInitial              Get Initial Parameter Estimates
+glm                     Fitting Generalized Linear Models
+glm.control             Auxiliary for Controlling GLM Fitting
+hclust                  Hierarchical Clustering
+heatmap                 Draw a Heat Map
+identify.hclust         Identify Clusters in a Dendrogram
+influence.measures      Regression Deletion Diagnostics
+integrate               Integration of One-Dimensional Functions
+interaction.plot        Two-way Interaction Plot
+is.empty.model          Test if a Model's Formula is Empty
+isoreg                  Isotonic / Monotone Regression
+kernapply               Apply Smoothing Kernel
+kernel                  Smoothing Kernel Objects
+kmeans                  K-Means Clustering
+kruskal.test            Kruskal-Wallis Rank Sum Test
+ks.test                 Kolmogorov-Smirnov Tests
+ksmooth                 Kernel Regression Smoother
+lag                     Lag a Time Series
+lag.plot                Time Series Lag Plots
+line                    Robust Line Fitting
+listof                  A Class for Lists of (Parts of) Model Fits
+lm                      Fitting Linear Models
+lm.fit                  Fitter Functions for Linear Models
+lm.influence            Regression Diagnostics
+loadings                Print Loadings in Factor Analysis
+loess                   Local Polynomial Regression Fitting
+loess.control           Set Parameters for Loess
+logLik                  Extract Log-Likelihood
+loglin                  Fitting Log-Linear Models
+lowess                  Scatter Plot Smoothing
+ls.diag                 Compute Diagnostics for 'lsfit' Regression
+                        Results
+ls.print                Print 'lsfit' Regression Results
+lsfit                   Find the Least Squares Fit
+mad                     Median Absolute Deviation
+mahalanobis             Mahalanobis Distance
+make.link               Create a Link for GLM Families
+makepredictcall         Utility Function for Safe Prediction
+manova                  Multivariate Analysis of Variance
+mantelhaen.test         Cochran-Mantel-Haenszel Chi-Squared Test for
+                        Count Data
+mauchly.test            Mauchly's Test of Sphericity
+mcnemar.test            McNemar's Chi-squared Test for Count Data
+median                  Median Value
+medpolish               Median Polish (Robust Twoway Decomposition) of
+                        a Matrix
+model.extract           Extract Components from a Model Frame
+model.frame             Extracting the Model Frame from a Formula or
+                        Fit
+model.matrix            Construct Design Matrices
+model.tables            Compute Tables of Results from an Aov Model Fit
+monthplot               Plot a Seasonal or other Subseries from a Time
+                        Series
+mood.test               Mood Two-Sample Test of Scale
+na.action               NA Action
+na.contiguous           Find Longest Contiguous Stretch of non-NAs
+na.fail                 Handle Missing Values in Objects
+naprint                 Adjust for Missing Values
+naresid                 Adjust for Missing Values
+nextn                   Find Highly Composite Numbers
+nlm                     Non-Linear Minimization
+nlminb                  Optimization using PORT routines
+nls                     Nonlinear Least Squares
+nls.control             Control the Iterations in nls
+nobs                    Extract the Number of Observations from a Fit.
+numericDeriv            Evaluate Derivatives Numerically
+offset                  Include an Offset in a Model Formula
+oneway.test             Test for Equal Means in a One-Way Layout
+optim                   General-purpose Optimization
+optimize                One Dimensional Optimization
+order.dendrogram        Ordering or Labels of the Leaves in a
+                        Dendrogram
+p.adjust                Adjust P-values for Multiple Comparisons
+pairwise.prop.test      Pairwise comparisons for proportions
+pairwise.t.test         Pairwise t tests
+pairwise.table          Tabulate p values for pairwise comparisons
+pairwise.wilcox.test    Pairwise Wilcoxon Rank Sum Tests
+plot.HoltWinters        Plot function for HoltWinters objects
+plot.acf                Plot Autocovariance and Autocorrelation
+                        Functions
+plot.density            Plot Method for Kernel Density Estimation
+plot.isoreg             Plot Method for isoreg Objects
+plot.lm                 Plot Diagnostics for an lm Object
+plot.ppr                Plot Ridge Functions for Projection Pursuit
+                        Regression Fit
+plot.profile.nls        Plot a profile.nls Object
+plot.spec               Plotting Spectral Densities
+plot.stepfun            Plot Step Functions
+plot.stl                Methods for STL Objects
+plot.ts                 Plotting Time-Series Objects
+poisson.test            Exact Poisson tests
+poly                    Compute Orthogonal Polynomials
+power                   Create a Power Link Object
+power.anova.test        Power Calculations for Balanced One-Way
+                        Analysis of Variance Tests
+power.prop.test         Power Calculations for Two-Sample Test for
+                        Proportions
+power.t.test            Power calculations for one and two sample t
+                        tests
+ppoints                 Ordinates for Probability Plotting
+ppr                     Projection Pursuit Regression
+prcomp                  Principal Components Analysis
+predict                 Model Predictions
+predict.Arima           Forecast from ARIMA fits
+predict.HoltWinters     Prediction Function for Fitted Holt-Winters
+                        Models
+predict.glm             Predict Method for GLM Fits
+predict.lm              Predict method for Linear Model Fits
+predict.loess           Predict Loess Curve or Surface
+predict.nls             Predicting from Nonlinear Least Squares Fits
+predict.smooth.spline   Predict from Smoothing Spline Fit
+preplot                 Pre-computations for a Plotting Object
+princomp                Principal Components Analysis
+print.power.htest       Print Methods for Hypothesis Tests and Power
+                        Calculation Objects
+print.ts                Printing and Formatting of Time-Series Objects
+printCoefmat            Print Coefficient Matrices
+profile                 Generic Function for Profiling Models
+profile.nls             Method for Profiling nls Objects
+proj                    Projections of Models
+prop.test               Test of Equal or Given Proportions
+prop.trend.test         Test for trend in proportions
+qbirthday               Probability of coincidences
+qqnorm                  Quantile-Quantile Plots
+quade.test              Quade Test
+quantile                Sample Quantiles
+r2dtable                Random 2-way Tables with Given Marginals
+rWishart                Random Wishart Distributed Matrices
+read.ftable             Manipulate Flat Contingency Tables
+rect.hclust             Draw Rectangles Around Hierarchical Clusters
+relevel                 Reorder Levels of Factor
+reorder.default         Reorder Levels of a Factor
+reorder.dendrogram      Reorder a Dendrogram
+replications            Number of Replications of Terms
+reshape                 Reshape Grouped Data
+residuals               Extract Model Residuals
+runmed                  Running Medians - Robust Scatter Plot Smoothing
+scatter.smooth          Scatter Plot with Smooth Curve Fitted by Loess
+screeplot               Screeplots
+sd                      Standard Deviation
+se.contrast             Standard Errors for Contrasts in Model Terms
+selfStart               Construct Self-starting Nonlinear Models
+setNames                Set the Names in an Object
+shapiro.test            Shapiro-Wilk Normality Test
+sigma                   Extract Residual Standard Deviation 'Sigma'
+simulate                Simulate Responses
+smooth                  Tukey's (Running Median) Smoothing
+smooth.spline           Fit a Smoothing Spline
+smoothEnds              End Points Smoothing (for Running Medians)
+sortedXyData            Create a 'sortedXyData' Object
+spec.ar                 Estimate Spectral Density of a Time Series from
+                        AR Fit
+spec.pgram              Estimate Spectral Density of a Time Series by a
+                        Smoothed Periodogram
+spec.taper              Taper a Time Series by a Cosine Bell
+spectrum                Spectral Density Estimation
+splinefun               Interpolating Splines
+start                   Encode the Terminal Times of Time Series
+stat.anova              GLM Anova Statistics
+stats-deprecated        Deprecated Functions in Package 'stats'
+stats-package           The R Stats Package
+step                    Choose a model by AIC in a Stepwise Algorithm
+stepfun                 Step Functions - Creation and Class
+stl                     Seasonal Decomposition of Time Series by Loess
+summary.aov             Summarize an Analysis of Variance Model
+summary.glm             Summarizing Generalized Linear Model Fits
+summary.lm              Summarizing Linear Model Fits
+summary.manova          Summary Method for Multivariate Analysis of
+                        Variance
+summary.nls             Summarizing Non-Linear Least-Squares Model Fits
+summary.princomp        Summary method for Principal Components
+                        Analysis
+supsmu                  Friedman's SuperSmoother
+symnum                  Symbolic Number Coding
+t.test                  Student's t-Test
+termplot                Plot Regression Terms
+terms                   Model Terms
+terms.formula           Construct a terms Object from a Formula
+terms.object            Description of Terms Objects
+time                    Sampling Times of Time Series
+toeplitz                Form Symmetric Toeplitz Matrix
+ts                      Time-Series Objects
+ts.plot                 Plot Multiple Time Series
+ts.union                Bind Two or More Time Series
+tsSmooth                Use Fixed-Interval Smoothing on Time Series
+tsdiag                  Diagnostic Plots for Time-Series Fits
+tsp                     Tsp Attribute of Time-Series-like Objects
+uniroot                 One Dimensional Root (Zero) Finding
+update                  Update and Re-fit a Model Call
+update.formula          Model Updating
+var.test                F Test to Compare Two Variances
+varimax                 Rotation Methods for Factor Analysis
+vcov                    Calculate Variance-Covariance Matrix for a
+                        Fitted Model Object
+weighted.mean           Weighted Arithmetic Mean
+weighted.residuals      Compute Weighted Residuals
+weights                 Extract Model Weights
+wilcox.test             Wilcoxon Rank Sum and Signed Rank Tests
+window                  Time (Series) Windows
+xtabs                   Cross Tabulation
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("dumpPackTxt", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("esApply")
+> ### * esApply
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: esApply
+> ### Title: An apply-like function for ExpressionSet and related structures.
+> ### Aliases: esApply
+> ### Keywords: models methods
+> 
+> ### ** Examples
+> 
+> data(sample.ExpressionSet)
+> ## sum columns of exprs
+> res <- esApply(sample.ExpressionSet, 1, sum)
+> 
+> ## t-test, spliting samples by 'sex'
+> f <- function(x) {
++     xx <- split(x, sex)
++     t.test(xx[[1]], xx[[2]])$p.value
++ }
+> res <- esApply(sample.ExpressionSet, 1, f)
+> 
+> ## same, but using a variable passed in the function call
+> 
+> f <- function(x, s) {
++     xx <- split(x, s)
++     mean(xx[[1]]) - mean(xx[[2]])
++ }
+> sex <- sample.ExpressionSet[["sex"]]
+> res <- esApply(sample.ExpressionSet, 1, f, s = sex)
+> 
+> # obtain the p-value of the t-test for sex difference
+> mytt.demo <- function(y) {
++  ys <- split(y, sex)
++  t.test(ys[[1]], ys[[2]])$p.value
++ }
+> sexPValue <- esApply(sample.ExpressionSet, 1, mytt.demo)
+> 
+> # obtain the p-value of the slope associated with score, adjusting for sex
+> # (if we were concerned with sign we could save the z statistic instead at coef[3,3]
+> myreg.demo <- function(y) {
++    summary(lm(y ~ sex + score))$coef[3,4]
++ }
+> scorePValue <- esApply(sample.ExpressionSet, 1, myreg.demo)
+> 
+> # a resampling method
+> resamp <- function(ESET) {
++  ntiss <- ncol(exprs(ESET))
++  newind <- sample(1:ntiss, size = ntiss, replace = TRUE)
++  ESET[newind,]
++ }
+> 
+> # a filter
+> q3g100filt <- function(eset) {
++  apply(exprs(eset), 1, function(x) quantile(x,.75) > 100)
++ }
+> 
+> # filter after resampling and then apply
+> set.seed(123)
+> rest <- esApply({bool <- q3g100filt(resamp(sample.ExpressionSet)); sample.ExpressionSet[bool,]},
++                 1, mytt.demo)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("esApply", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("getPkgVigs")
+> ### * getPkgVigs
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: getPkgVigs
+> ### Title: List Vignette Files for a Package
+> ### Aliases: getPkgVigs
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>  z <- getPkgVigs()
+>  z # and look at them
+   package                                                             filename
+1 parallel C:/Users/biocbuild/bbs-3.13-bioc/R/library/parallel/doc/parallel.pdf
+2    utils      C:/Users/biocbuild/bbs-3.13-bioc/R/library/utils/doc/Sweave.pdf
+               title
+1 Package 'parallel'
+2 Sweave User Manual
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("getPkgVigs", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("isCurrent")
+> ### * isCurrent
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: isCurrent
+> ### Title: Use version information to test whether class is current
+> ### Aliases: isCurrent isCurrent,ANY,ANY-method
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> 
+> 
+> 
+> obj <- new("VersionedBiobase")
+> isCurrent(obj)
+     S4       R Biobase 
+   TRUE    TRUE    TRUE 
+> 
+> isCurrent(1:10) # NA
+[1] NA
+> 
+> A <- setClass("A", contains="VersionedBiobase",
++          prototype=prototype(new("VersionedBiobase", versions=c(A="1.0.0"))))
+> 
+> a <- A()
+> classVersion(a)
+       R  Biobase        A 
+ "4.1.0" "2.52.0"  "1.0.0" 
+> 
+> isCurrent(a, "VersionedBiobase") # is the 'VersionedBiobase' portion current?
+     S4       R Biobase 
+   TRUE    TRUE    TRUE 
+> classVersion(a)["A"] <- "1.0.1"
+> classVersion(a)
+       R  Biobase        A 
+ "4.1.0" "2.52.0"  "1.0.1" 
+> isCurrent(a, "VersionedBiobase")
+     S4       R Biobase 
+   TRUE    TRUE    TRUE 
+> isCurrent(a) # more recent, so does not match 'current' defined by prototype
+     S4       R Biobase       A 
+   TRUE    TRUE    TRUE   FALSE 
+> 
+> removeClass("A")
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("isCurrent", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("isUnique")
+> ### * isUnique
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: isUnique
+> ### Title: Determine Unique Elements
+> ### Aliases: isUnique
+> ### Keywords: logic manip
+> 
+> ### ** Examples
+> 
+> x <- c(9:20, 1:5, 3:7, 0:8)
+> isUnique(x)
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[25] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("isUnique", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("isVersioned")
+> ### * isVersioned
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: isVersioned
+> ### Title: Determine whether object or class contains versioning
+> ###   information
+> ### Aliases: isVersioned isVersioned,ANY-method
+> ###   isVersioned,character-method
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> 
+> obj <- new("VersionedBiobase")
+> isVersioned(obj)
+[1] TRUE
+> 
+> isVersioned(1:10) # FALSE
+[1] FALSE
+> 
+> A <- setClass("A", contains="VersionedBiobase",
++          prototype=prototype(new("VersionedBiobase", versions=c(A="1.0.0"))))
+> a <- A()
+> isVersioned(a)
+[1] TRUE
+> 
+> removeClass("A")
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("isVersioned", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("lcSuffix")
+> ### * lcSuffix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: lcSuffix
+> ### Title: Compute the longest common prefix or suffix of a string
+> ### Aliases: lcSuffix lcPrefix lcPrefixC
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> s1 <- c("ABC.CEL", "DEF.CEL")
+> lcSuffix(s1)
+[1] ".CEL"
+> 
+> s2 <- c("ABC.123", "ABC.456")
+> lcPrefix(s2)
+[1] "ABC."
+> 
+> 
+> CHK <- stopifnot
+> 
+> CHK(".CEL" == lcSuffix(s1))
+> CHK("bc" == lcSuffix(c("abc", "333abc", "bc")))
+> CHK("c" == lcSuffix(c("c", "abc", "xxxc")))
+> CHK("" == lcSuffix(c("c", "abc", "xxx")))
+> 
+> CHK("ABC." == lcPrefix(s2))
+> CHK("ab" == lcPrefix(c("abcd", "abcd123", "ab", "abc", "abc333333")))
+> CHK("a" == lcPrefix(c("abcd", "abcd123", "ax")))
+> CHK("a" == lcPrefix(c("a", "abcd123", "ax")))
+> CHK("" == lcPrefix(c("a", "abc", "xxx")))
+> 
+> CHK("ab" == lcPrefixC(c("abcd", "abcd123", "ab", "abc", "abc333333")))
+> CHK("a" == lcPrefixC(c("abcd", "abcd123", "ax")))
+> CHK("a" == lcPrefixC(c("a", "abcd123", "ax")))
+> CHK("" == lcPrefixC(c("a", "abc", "xxx")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("lcSuffix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("listLen")
+> ### * listLen
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: listLen
+> ### Title: Lengths of list elements
+> ### Aliases: listLen
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>   foo = lapply(1:8, rnorm)
+>   listLen(foo)
+[1] 1 2 3 4 5 6 7 8
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("listLen", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("makeDataPackage")
+> ### * makeDataPackage
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: makeDataPackage
+> ### Title: Make an R package from a data object
+> ### Aliases: makeDataPackage makeDataPackage,ANY-method
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+>  data(sample.ExpressionSet)
+>  ## package created in tempdir()
+>  s1 <- makeDataPackage(sample.ExpressionSet,
++                        author = "Foo Author",
++                        email = "foo@bar",
++                        packageName = "FooBarPkg",
++                        packageVersion = "1.0.0")
+Creating package in C:\Users\biocbuild\bbs-3.13-bioc\tmpdir\RtmpuQFEUn/FooBarPkg 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("makeDataPackage", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("matchpt")
+> ### * matchpt
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: matchpt
+> ### Title: Nearest neighbor search.
+> ### Aliases: matchpt
+> ### Keywords: manip array
+> 
+> ### ** Examples
+> 
+>     a <- matrix(c(2,2,3,5,1,8,-1,4,5,6), ncol=2L, nrow=5L)
+>     rownames(a) = LETTERS[seq_len(nrow(a))]
+>     matchpt(a)
+  index distance
+A     5 2.236068
+B     3 5.099020
+C     4 2.236068
+D     3 2.236068
+E     1 2.236068
+>     b <- c(1,2,4,5,6)
+>     d <- c(5.3, 3.2, 8.9, 1.3, 5.6, -6, 4.45, 3.32)
+>     matchpt(b, d)
+  index distance
+1     4     0.30
+2     4     0.70
+3     7     0.45
+4     1     0.30
+5     5     0.40
+>     matchpt(d, b)
+  index distance
+1     4     0.30
+2     3     0.80
+3     5     2.90
+4     1     0.30
+5     5     0.40
+6     1     7.00
+7     3     0.45
+8     3     0.68
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("matchpt", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("multiassign")
+> ### * multiassign
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: multiassign
+> ### Title: Assign Values to a Names
+> ### Aliases: multiassign
+> ### Keywords: data
+> 
+> ### ** Examples
+> 
+> #-- Create objects  'r1', 'r2', ... 'r6' --
+> nam <- paste("r",1:6, sep=".")
+> 
+> multiassign(nam, 11:16)
+> ls(pat="^r..$")
+[1] "r.1" "r.2" "r.3" "r.4" "r.5" "r.6"
+> 
+> #assign the values in y to variables with the names from y
+> 
+> y<-list(a=4,d=mean,c="aaa")
+> multiassign(y)
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("multiassign", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("note")
+> ### * note
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: note
+> ### Title: Informational Messages
+> ### Aliases: note
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>    note("This is an example of a note")
+Note: This is an example of a note 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("note", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("openPDF")
+> ### * openPDF
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: openPDF
+> ### Title: Open PDF Files in a Standard Viewer
+> ### Aliases: openPDF
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+> ## Not run: openPDF("annotate.pdf")
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("openPDF", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("openVignette")
+> ### * openVignette
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: openVignette
+> ### Title: Open a Vignette or Show Vignette Selection Menu
+> ### Aliases: openVignette
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>   if( interactive() )
++     openVignette("Biobase")
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("openVignette", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("package.version")
+> ### * package.version
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: package.version
+> ### Title: Report Version of a Package
+> ### Aliases: package.version
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>   package.version("Biobase")
+[1] "2.52.0"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("package.version", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("read.AnnotatedDataFrame")
+> ### * read.AnnotatedDataFrame
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: read.AnnotatedDataFrame
+> ### Title: Read and write 'AnnotatedDataFrame'
+> ### Aliases: read.AnnotatedDataFrame write.AnnotatedDataFrame
+> ### Keywords: file manip
+> 
+> ### ** Examples
+> 
+> 
+> exampleFile = system.file("extdata", "pData.txt", package="Biobase")
+> 
+> adf <- read.AnnotatedDataFrame(exampleFile)
+> adf
+An object of class 'AnnotatedDataFrame'
+  rowNames: A B ... Z (26 total)
+  varLabels: gender type score
+  varMetadata: labelDescription
+> head(pData(adf))
+  gender    type score
+A Female Control  0.75
+B   Male    Case  0.40
+C   Male Control  0.73
+D   Male    Case  0.42
+E Female    Case  0.93
+F   Male Control  0.22
+> head(noquote(readLines(exampleFile)), 11)
+ [1] # id: case identifier                                              
+ [2] # gender: sex of the patient at time of study begin                
+ [3] # type: is the patient a case or a control in this study?          
+ [4] # score: Huffmann-Berelizka score of psychocognitive transcendance.
+ [5] id\tgender\ttype\tscore                                               
+ [6] A\tFemale\tControl\t0.75                                              
+ [7] B\tMale\tCase\t0.4                                                    
+ [8] C\tMale\tControl\t0.73                                                
+ [9] D\tMale\tCase\t0.42                                                   
+[10] E\tFemale\tCase\t0.93                                                 
+[11] F\tMale\tControl\t0.22                                                
+> 
+> write.AnnotatedDataFrame(adf)           # write to console by default
+# gender: sex of the patient at time of study begin
+# type: is the patient a case or a control in this study?
+# score: Huffmann-Berelizka score of psychocognitive transcendance.
+"gender" "type" "score"
+"A" "Female" "Control" 0.75
+"B" "Male" "Case" 0.4
+"C" "Male" "Control" 0.73
+"D" "Male" "Case" 0.42
+"E" "Female" "Case" 0.93
+"F" "Male" "Control" 0.22
+"G" "Male" "Case" 0.96
+"H" "Male" "Case" 0.79
+"I" "Female" "Case" 0.37
+"J" "Male" "Control" 0.63
+"K" "Male" "Case" 0.26
+"L" "Female" "Control" 0.36
+"M" "Male" "Case" 0.41
+"N" "Male" "Case" 0.8
+"O" "Female" "Case" 0.1
+"P" "Female" "Control" 0.41
+"Q" "Female" "Case" 0.16
+"R" "Male" "Control" 0.72
+"S" "Male" "Case" 0.17
+"T" "Female" "Case" 0.74
+"U" "Male" "Control" 0.35
+"V" "Female" "Control" 0.77
+"W" "Male" "Control" 0.27
+"X" "Male" "Control" 0.98
+"Y" "Female" "Case" 0.94
+"Z" "Female" "Case" 0.32
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("read.AnnotatedDataFrame", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("read.MIAME")
+> ### * read.MIAME
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: read.MIAME
+> ### Title: Read MIAME Information into an Instance of Class 'MIAME'
+> ### Aliases: read.MIAME
+> ### Keywords: file
+> 
+> ### ** Examples
+> 
+> miame <- read.MIAME(widget=FALSE) ##creates an empty instance
+> show(miame)
+Experiment data
+  Experimenter name:  
+  Laboratory:  
+  Contact information:  
+  Title:  
+  URL:  
+  PMIDs:  
+  No abstract available.
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("read.MIAME", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("readExpressionSet")
+> ### * readExpressionSet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: readExpressionSet
+> ### Title: Read 'ExpressionSet'
+> ### Aliases: readExpressionSet
+> ### Keywords: file manip
+> 
+> ### ** Examples
+> 
+> 
+> exprsFile = system.file("extdata", "exprsData.txt", package="Biobase")
+> phenoFile = system.file("extdata", "pData.txt", package="Biobase")
+> 
+> ## Read ExpressionSet with appropriate parameters
+> obj = readExpressionSet(exprsFile, phenoFile, sep = "\t", header=TRUE)
+> obj
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 500 features, 26 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: A B ... Z (26 total)
+  varLabels: gender type score
+  varMetadata: labelDescription
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("readExpressionSet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("reverseSplit")
+> ### * reverseSplit
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: reverseSplit
+> ### Title: A function to reverse the role of names and values in a list.
+> ### Aliases: reverseSplit
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+>  l1 = list(a=1:4, b=c(2,3), d=c(4,5))
+>  reverseSplit(l1)
+$`1`
+[1] "a"
+
+$`2`
+[1] "a" "b"
+
+$`3`
+[1] "a" "b"
+
+$`4`
+[1] "a" "d"
+
+$`5`
+[1] "d"
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("reverseSplit", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("rowMedians")
+> ### * rowMedians
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: rowMedians
+> ### Title: Calculates the median for each row in a matrix
+> ### Aliases: rowMedians rowMedians,matrix-method
+> ###   rowMedians,ExpressionSet-method
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> set.seed(1)
+> x <- rnorm(n=234*543)
+> x[sample(1:length(x), size=0.1*length(x))] <- NA
+> dim(x) <- c(234,543)
+> y1 <- rowMedians(x, na.rm=TRUE)
+> y2 <- apply(x, MARGIN=1, FUN=median, na.rm=TRUE)
+> stopifnot(all.equal(y1, y2))
+> 
+> x <- cbind(x1=3, x2=c(4:1, 2:5))
+> stopifnot(all.equal(rowMeans(x), rowMedians(x)))
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("rowMedians", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("rowQ")
+> ### * rowQ
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: rowQ
+> ### Title: A function to compute empirical row quantiles.
+> ### Aliases: rowQ rowQ,matrix,numeric-method
+> ###   rowQ,ExpressionSet,numeric-method rowMin rowMax
+> 
+> ### ** Examples
+> 
+>  data(sample.ExpressionSet)
+>  rowMin(sample.ExpressionSet)
+  [1]  5.69039e+01 -8.68811e+00  5.94492e+00 -7.91911e+00  1.97183e+01
+  [6]  2.47007e+01  1.05778e+02  2.40654e+01  1.68006e+01 -6.86196e+00
+ [11]  3.64233e+02  1.95271e+01  3.54588e+01  6.53565e+00 -2.28600e+00
+ [16]  8.80773e+01  5.47312e+01  3.74892e+01 -8.39302e+01  1.44421e+02
+ [21]  8.60768e+01 -1.26489e+01  4.65285e+03  7.59488e+00  2.59624e+01
+ [26]  1.12079e+01  1.13737e+01  1.29576e+01  6.50798e+01 -1.67811e+01
+ [31] -1.69785e+00 -5.38352e+01  5.90705e+01  1.56287e+01  4.91484e+00
+ [36]  4.68633e+01  1.59616e+00 -3.92957e+00  7.76640e+01  8.26372e+01
+ [41]  7.87713e+01  4.26569e+02 -7.17969e+01 -6.47658e+01  1.38909e+01
+ [46]  7.87855e+02  1.76315e+03  2.29872e+03  9.65540e+02  1.99291e+03
+ [51]  3.49170e+03  3.60172e+01 -1.47753e+01  8.23804e+00  3.91224e+01
+ [56]  4.74480e+02  3.15533e+02  7.31467e+01  8.20596e+01  4.65439e+00
+ [61]  2.50958e+01  1.32294e+02  1.48895e+02  3.08823e+01  1.56800e+01
+ [66]  2.85536e+01  1.72825e+02  8.43104e+00 -2.57326e+01 -5.03244e+00
+ [71] -1.76818e+01  1.26720e+02  7.76879e+01  6.78371e+01  4.20460e+01
+ [76]  6.57495e+01 -1.82870e+01 -3.51601e+00 -7.61071e-01 -6.77262e+00
+ [81]  6.27575e+01  1.03080e+02 -2.09740e+00 -1.58624e+02  3.05327e+01
+ [86]  1.98654e+01  4.26069e+02 -4.62152e+01  9.20310e+01  5.18994e+00
+ [91]  1.44557e+03 -7.18337e-02 -6.88391e+01  4.71695e+00 -7.55392e+00
+ [96]  2.98097e+01 -2.20775e+01  2.26395e+02 -4.70361e+00 -3.39540e+01
+[101]  1.17081e+01  8.41063e+01  6.96939e+01 -6.06860e+01 -3.94553e+02
+[106]  7.46991e+00  3.56071e+01  5.17135e+01  1.93178e+00 -4.94748e+01
+[111]  1.25988e+02 -2.75173e+01  7.00295e+00  1.72512e+02 -3.24216e+00
+[116]  8.64926e+01  1.13380e+02  1.19037e+02 -2.94263e+01 -1.58291e+00
+[121]  9.36118e+00  2.59895e+00  1.99349e+02  6.84194e+01 -6.91375e-01
+[126]  4.91238e+00  4.10314e+00  1.92189e+01  1.49616e+01 -1.70780e+01
+[131] -7.77694e+01 -6.48440e+01  8.72036e+01  1.69201e+01 -6.66585e+01
+[136]  3.03763e+02 -1.97231e+01  6.01475e+00  5.92687e+01  6.71811e+01
+[141]  4.00276e+01  3.04414e+01 -2.61654e+01  5.38349e+01  5.91011e+01
+[146]  1.93177e+03  1.42504e+02 -1.81664e+03 -1.73857e+01 -2.56195e+01
+[151] -6.10733e+01  2.87765e+02  2.88216e+01  7.32503e+02 -5.03949e+00
+[156] -7.13015e+00  1.80613e+03  2.07209e+01 -1.76152e+01  2.64139e+01
+[161] -2.37586e+01 -2.30799e+01  8.53045e+01 -8.10250e+00 -1.00328e+01
+[166]  1.65546e+02  2.66425e+01 -2.02743e+01  1.82502e+01 -2.43948e+01
+[171]  1.07954e+02 -8.08758e-01  2.80719e+01  4.11490e+01  2.31902e+02
+[176]  4.35010e+00  5.55420e+01  6.09461e+01 -3.70138e+00  1.11155e+03
+[181]  7.54955e+00  7.69656e+00  2.28445e+00 -2.11244e+00  2.63404e+02
+[186]  6.98056e+01  9.90671e+01 -1.36988e+01  4.71624e+02  6.54321e+00
+[191]  3.40030e+00  8.38563e+01  1.78409e+02  5.41925e+01  3.08850e+01
+[196] -4.75884e+01  2.04002e+02  1.23606e+01  5.59491e+01  9.21831e+01
+[201]  4.75680e+02  3.70291e+01 -1.66086e+00  1.41695e+02  2.87639e+03
+[206]  6.08176e+01  3.92241e+01 -7.37320e+00 -1.50820e+01  3.35574e+01
+[211]  1.08053e+01  2.13557e+02  2.35485e+01  2.58187e+01  1.37713e+01
+[216]  2.26946e+00 -3.38286e+00  2.63733e+02  7.42649e+01 -1.38760e+01
+[221] -3.23943e+01  4.21187e+00 -4.08948e+01  2.42757e+02 -5.94627e+00
+[226]  1.72514e+00  1.54752e+02  1.13532e+00  1.32269e+02 -1.01540e+01
+[231] -1.06577e+00  1.57120e+02  2.74265e+01 -1.22723e+00  2.85114e+01
+[236]  6.98331e+01  1.33271e+01  3.33823e-03  1.00743e+02 -9.84966e+00
+[241] -1.09743e+00  8.99497e+02  3.02030e+01  1.14680e+01  6.44413e+01
+[246]  8.42689e+01 -6.63018e+00  2.61077e+00  6.90377e+01 -1.39703e+01
+[251]  1.20684e+02  1.19868e+01  7.80697e+01 -1.31019e+01 -1.04586e+01
+[256]  5.34390e+01  1.74086e+01  1.46015e+02  5.02503e+01  3.54081e+01
+[261]  2.74203e+01  7.48233e+00  8.18760e+01  1.42026e+02  1.84335e+02
+[266]  1.54966e+03  5.70384e+01  2.98674e+01  5.62811e+02  1.46015e+03
+[271] -1.46388e+02  1.99236e+03 -5.22744e+00 -2.05783e+01  1.41131e+02
+[276]  2.56556e+01  3.96758e+00 -1.12889e+02 -1.37223e+01  2.96359e+01
+[281]  3.16990e+01  1.70563e+01  2.68489e+01  2.99881e+01  6.57770e+01
+[286]  9.56294e+01  1.60335e+01  1.43637e+03  5.13296e+01  2.87177e+02
+[291]  1.45819e+02  5.82959e+01 -1.03200e+01  5.78575e+01  9.82107e-01
+[296]  1.63841e+02  2.66358e+02  5.56239e+00  2.56007e+03 -5.28976e+01
+[301]  6.06603e+00 -2.94872e+01 -1.94876e+01 -2.04174e+02  1.91506e+02
+[306]  1.61064e+03  6.22274e+02  3.69522e+02  1.86310e+01  9.49905e-02
+[311]  8.79791e+01  9.54446e+00  6.39377e+01 -2.61006e+01  2.19436e+02
+[316]  1.41333e+02  5.57119e+01  3.62029e+03  2.23793e+01  7.70613e+01
+[321]  9.46983e+00 -1.25336e+01 -4.38786e+01 -2.81437e+01  3.89174e+01
+[326]  1.93424e+01  1.62251e+02  1.33535e+00  1.25353e+03  3.65436e+01
+[331]  3.65156e+01 -8.05703e+00  2.95308e+01  6.77150e+02 -6.78946e+00
+[336]  2.80200e+01  8.76910e+00  1.15820e+01  1.38278e+01  2.98600e+01
+[341]  7.29694e+00 -3.64418e+01 -2.83335e+00  1.28771e+03  1.37377e+03
+[346]  6.13577e+00 -2.48298e+01  1.09559e+02  8.71382e+00  5.52523e+01
+[351]  1.73877e+02  1.87608e+01  8.88999e+01  4.42284e+01  1.66122e+02
+[356]  6.03990e+01  8.74469e+02  1.10224e+03  5.85186e+01  3.04737e+01
+[361]  8.09726e+01 -1.78222e+01  6.54532e+01  1.10459e+00  3.76332e+01
+[366]  6.56953e+01 -3.40231e+01  2.89883e+01  6.36107e+01  8.96443e+02
+[371]  1.16874e+02 -1.14613e+01 -1.17241e+01  2.93876e+01  1.09171e+01
+[376]  9.39525e+00 -2.99610e+00  6.40947e+00  1.71614e+01 -6.89469e+01
+[381]  3.15271e+02  3.73372e+02  6.87539e+02  1.40826e+02  1.10206e+01
+[386] -3.08367e+01  1.03190e+02 -8.46618e+03  1.50041e+01  1.42929e+00
+[391] -1.07732e+01 -6.25521e+01 -8.16856e+00 -9.25084e+01  1.70731e+02
+[396]  4.09725e+01  3.01383e+01  3.54996e+02  2.02659e+02 -2.61181e+00
+[401]  2.19578e+02  6.44162e+01 -9.22694e+01 -4.62999e+00  2.02027e+01
+[406]  3.41872e+01  4.75095e-01 -8.66032e+00  4.38317e+01  1.73605e+01
+[411] -2.68523e+01 -2.99146e+01 -4.11939e+01 -5.29367e+00  1.50201e+01
+[416]  2.45317e+02 -7.93034e+00 -5.15476e+01  3.91700e+01 -7.55812e+02
+[421] -1.64234e+01  1.53461e+01 -1.00960e+02  8.39283e+01 -4.97404e+01
+[426] -8.78064e+01 -7.59186e+00  5.28138e+02  1.49244e+02  8.09406e+01
+[431]  7.79898e+01  1.25727e+02 -4.43778e+00  1.22683e+02  3.13008e+00
+[436] -6.65000e+00  2.13584e+00  9.63194e+00 -1.33931e+01  2.54821e+01
+[441]  2.12304e+02  1.92798e+02 -1.32615e+01  1.11847e+01  3.55603e+01
+[446]  2.01533e+02  4.96752e+01  2.71680e+02 -8.41617e+01  1.22464e-01
+[451]  4.09501e+01  7.90888e+01  2.59707e+01  5.17012e+02  9.35619e+01
+[456] -1.20217e+02 -1.75734e+01  9.29993e+02 -7.71132e+00  1.76598e+02
+[461]  1.59881e+02  3.85724e+02 -1.93199e+01 -7.00055e+00  1.74373e+02
+[466]  5.75928e+01 -8.35253e+00 -2.81106e+01  7.22220e+02  1.36541e+02
+[471]  3.54569e+02  3.11731e+01  1.97390e+01 -4.73579e+00 -1.21801e+01
+[476]  1.40925e+02  1.06366e+02  3.88573e+00 -1.56778e+01  3.40142e+02
+[481]  1.41886e+02  9.37185e+01  2.09188e+03 -2.81626e+01  1.32319e+02
+[486]  3.30178e+01  1.20393e+02  1.59900e+02  7.37824e+01 -5.24786e+01
+[491]  5.16358e+01 -5.09898e+00  7.80274e+00  8.33834e+00  6.98382e+01
+[496]  1.86868e+01  1.73935e+02  1.02954e+01  1.55007e+02  1.37959e+02
+>  rowQ(sample.ExpressionSet, 4)
+  [1]  6.44939e+01  6.85827e+01  1.41554e+01  7.55564e+00  3.07927e+01
+  [6]  3.99136e+01  1.44784e+02  4.06705e+01  2.31008e+01  2.98167e+00
+ [11]  4.01430e+02  2.87707e+01  4.38619e+01  1.24804e+01  1.21731e+01
+ [16]  1.10536e+02  7.49809e+01  4.57015e+01 -4.90879e+01  1.52327e+02
+ [21]  9.81799e+01  3.34283e+01  7.85125e+03  2.36290e+01  5.96070e+01
+ [26]  1.70458e+01  2.04447e+01  1.83142e+01  6.79807e+01  9.25781e+00
+ [31]  9.27033e+00  2.51295e+01  6.31381e+01  1.98722e+01  1.52479e+01
+ [36]  5.55277e+01  2.93514e+01  1.30735e+00  8.34850e+01  1.21308e+02
+ [41]  9.84066e+01  4.89626e+02 -2.32247e+01 -5.05899e+01  2.24197e+01
+ [46]  1.07156e+03  2.14177e+03  2.99559e+03  1.71231e+03  2.63474e+03
+ [51]  3.95701e+03  5.14973e+01 -2.45485e+00  2.76003e+01  4.46594e+01
+ [56]  4.89808e+02  3.87529e+02  8.43918e+01  1.26173e+02  5.34802e+01
+ [61]  3.81879e+01  1.46577e+02  1.67249e+02  5.26598e+01  2.17620e+01
+ [66]  3.57027e+01  1.99737e+02  1.28276e+01 -4.33529e+00  5.41475e-01
+ [71] -3.43857e+00  1.35855e+02  9.00128e+01  8.59635e+01  4.56489e+01
+ [76]  1.92701e+02 -5.98093e+00  1.37556e+00  3.94058e-01  7.25462e+00
+ [81]  8.92497e+01  1.12344e+02  1.32872e+01  7.64309e+00  5.66119e+01
+ [86]  3.84677e+01  5.01736e+02  1.42032e+00  1.04303e+02  1.28777e+01
+ [91]  1.69909e+03  1.11243e+01 -4.15181e+01  9.04877e+00  2.68704e-01
+ [96]  3.85609e+01 -3.18541e+00  3.21994e+02  3.81431e+00 -3.00532e+01
+[101]  1.72074e+01  2.78807e+02  9.70745e+01 -1.75306e+00  2.90413e+01
+[106]  1.29422e+01  4.33699e+01  6.99862e+01  8.80947e+00 -8.31580e+00
+[111]  1.51320e+02 -1.74408e+00  1.94808e+01  3.08891e+02  3.62471e+01
+[116]  1.22576e+02  1.27058e+02  1.53814e+02  1.73591e+01  3.72669e+00
+[121]  1.49580e+01  1.34520e+01  2.40273e+02  7.27142e+01  8.23201e+00
+[126]  1.77547e+01  2.85318e+01  2.76514e+01  3.39682e+01 -7.25167e+00
+[131]  1.92886e+00 -3.68072e+01  1.32130e+02  2.60275e+01  2.25468e+01
+[136]  3.33499e+02 -6.20708e+00  9.26315e+00  7.77341e+01  7.92893e+01
+[141]  6.31586e+01  5.78896e+01 -1.80720e+01  7.75852e+01  7.18631e+01
+[146]  2.63620e+03  1.58830e+02  8.18201e+01  1.02713e+01  5.72227e+00
+[151]  3.98389e+00  3.28929e+02  3.60296e+01  1.02223e+03  1.88084e+01
+[156]  8.87588e+00  1.98759e+03  2.63003e+01 -2.62148e-01  4.59531e+01
+[161] -1.38029e+01  3.64566e-01  9.24059e+01 -3.70685e+00  1.03074e+01
+[166]  2.02256e+02  7.34631e+01 -1.66187e+01  4.23457e+01 -2.00826e+01
+[171]  1.15845e+02  7.82848e+00  4.51189e+01  9.17946e+01  2.55983e+02
+[176]  5.35646e+00  5.86564e+01  8.78448e+01  1.13960e+01  1.21814e+03
+[181]  2.03943e+01  9.15350e+00  1.76052e+01  2.87847e+01  2.97141e+02
+[186]  8.88359e+01  1.50161e+02  3.55299e+00  7.03197e+02  2.08281e+01
+[191]  2.55943e+01  1.09691e+02  2.75601e+02  5.76749e+01  9.28670e+01
+[196]  3.02641e+00  2.43968e+02  3.50417e+01  7.92471e+01  9.94039e+01
+[201]  5.31768e+02  4.53206e+01  1.26023e+01  1.70293e+02  3.19140e+03
+[206]  9.28416e+01  7.42093e+01  4.13558e+01 -2.53157e+00  5.07251e+01
+[211]  1.39721e+01  2.28745e+02  3.19545e+01  2.96072e+01  2.21161e+01
+[216]  9.80769e+00  1.66150e+01  3.29908e+02  8.92151e+01 -9.08171e-01
+[221] -7.08199e+00  2.40036e+01  2.85680e+00  4.85993e+02  2.95855e+00
+[226]  9.40026e+00  1.71903e+02  1.12774e+01  1.82748e+02  4.93328e+01
+[231]  2.97481e+00  1.63045e+02  2.87157e+01  3.61940e+00  3.51276e+01
+[236]  9.24704e+01  1.60125e+01  2.67318e+01  1.76946e+02  6.19620e+00
+[241]  3.69219e+00  1.05191e+03  5.14997e+01  2.85485e+01  9.53916e+01
+[246]  8.76597e+01  3.93020e+00  1.20538e+01  1.08560e+02 -6.01692e+00
+[251]  1.46591e+02  1.29271e+01  1.02159e+02 -6.54072e+00 -7.80733e-01
+[256]  6.89702e+01  2.09132e+01  1.82812e+02  6.07932e+01  4.83643e+01
+[261]  3.80677e+01  1.17789e+01  1.22642e+02  1.99440e+02  3.02636e+02
+[266]  2.11627e+03  6.34817e+01  4.35644e+01  6.85466e+02  1.74397e+03
+[271] -8.43726e+01  2.18963e+03 -6.62038e-01  2.98467e-01  1.69325e+02
+[276]  5.22877e+01  2.85838e+01 -9.29327e+01  5.93088e+00  5.91934e+01
+[281]  5.41917e+01  2.41385e+01  4.04373e+01  5.21777e+01  7.33428e+01
+[286]  1.04615e+02  5.74955e+01  2.12574e+03  1.13995e+02  3.17819e+02
+[291]  1.66311e+02  9.05501e+01  1.75142e+01  6.77007e+01  1.76704e+01
+[296]  2.06460e+02  3.73029e+02  1.78202e+01  2.90201e+03 -1.73042e+00
+[301]  1.18532e+01 -2.23056e+01  4.94772e+00 -1.59404e+02  2.64947e+02
+[306]  2.27354e+03  1.03079e+03  4.03001e+02  2.97574e+01  1.12342e+01
+[311]  1.03038e+02  1.74802e+01  8.08697e+01 -3.16035e+00  2.80371e+02
+[316]  6.46211e+02  6.01188e+01  4.69422e+03  2.84735e+01  8.30734e+01
+[321]  3.14733e+01  2.08305e+01 -2.27521e+01 -1.23541e+00  5.02078e+01
+[326]  4.13750e+01  2.86712e+02  5.17689e+01  1.72388e+03  4.96829e+01
+[331]  4.84845e+01  4.07751e+00  5.42085e+01  1.04022e+03  1.60303e+01
+[336]  8.00400e+01  1.10189e+01  2.16207e+01  2.07669e+01  7.46600e+01
+[341]  1.30111e+01 -1.13853e+01  8.26861e+00  1.64682e+03  2.11727e+03
+[346]  1.46744e+01  3.48990e+00  1.25396e+02  1.66308e+01  6.27111e+01
+[351]  1.97019e+02  3.39799e+01  1.01539e+02  5.91124e+01  1.84085e+02
+[356]  6.66054e+01  9.56885e+02  1.39303e+03  6.49968e+01  3.41960e+01
+[361]  1.06270e+02 -5.50171e+00  7.48823e+01  1.49692e+01  8.65805e+01
+[366]  7.76654e+01  8.51480e+00  4.22539e+01  1.04507e+02  1.11041e+03
+[371]  1.48854e+02 -3.47425e+00  3.52808e+00  4.34975e+01  1.16607e+02
+[376]  2.20745e+01  7.93100e+00  2.23491e+01  2.20010e+01 -8.55452e+00
+[381]  3.79140e+02  4.23109e+02  9.17604e+02  4.78210e+02  5.99694e+01
+[386]  4.32573e+00  1.43844e+02  1.67758e+02  1.79015e+01  6.82277e+00
+[391] -3.76102e+00 -5.63115e+01  2.51954e+01 -1.10401e+01  1.94558e+02
+[396]  9.33090e+01  1.65025e+02  4.40508e+02  2.43310e+02  1.50102e+01
+[401]  2.51218e+02  8.34933e+01 -8.12397e+01  6.72849e+00  4.30696e+01
+[406]  5.33323e+01  2.27909e+00  2.30820e+01  6.47069e+01  3.35924e+01
+[411]  7.69903e+00 -1.05329e+00 -3.67863e+01 -7.30059e-01  4.07261e+01
+[416]  2.61552e+02 -2.84178e+00 -2.33501e+01  4.91153e+01  9.94379e+01
+[421]  1.46407e+01  1.92536e+01  4.18341e+01  1.28613e+02  1.11088e+00
+[426] -7.76078e+01 -3.26063e+00  6.23697e+02  1.99883e+02  1.45558e+02
+[431]  1.48234e+02  1.46150e+02  3.33742e+00  1.86140e+02  4.38515e+00
+[436]  8.87041e-03  8.26035e+00  1.63533e+01  6.52523e+00  5.75619e+01
+[441]  3.19764e+02  2.25069e+02  2.10290e+00  3.82034e+01  5.57597e+01
+[446]  2.57995e+02  8.02816e+01  3.10937e+02 -7.37725e+00  1.04668e+01
+[451]  7.07562e+01  1.79195e+02  6.89870e+01  6.00212e+02  1.10807e+02
+[456]  3.66009e+01 -4.35968e+00  1.73995e+03  4.51199e+01  1.94218e+02
+[461]  2.14658e+02  4.41536e+02 -5.85108e+00  1.18492e+01  1.90050e+02
+[466]  2.50068e+02  1.83518e+00  2.62564e+00  1.41874e+03  3.00787e+02
+[471]  3.82372e+02  5.25746e+01  3.36031e+01  2.17774e+01  3.83873e+00
+[476]  1.68408e+02  1.26496e+02  1.01773e+01 -6.26833e-02  5.68050e+02
+[481]  6.63228e+02  1.23841e+02  2.83970e+03 -2.00849e+01  1.82813e+02
+[486]  4.53099e+01  1.54763e+02  1.97053e+02  9.57585e+01 -3.05011e+01
+[491]  7.13147e+01  1.97505e+01  1.66599e+01  2.89834e+01  9.55045e+01
+[496]  2.67016e+01  2.39852e+02  1.50567e+01  2.05697e+02  1.75866e+02
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("rowQ", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("selectChannels")
+> ### * selectChannels
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: selectChannels
+> ### Title: Create a new NChannelSet instance by selecting specific channels
+> ### Aliases: selectChannels
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> obj <- NChannelSet(R=matrix(runif(100), 20, 5), G=matrix(runif(100), 20, 5))
+> 
+> ## G channel as NChannelSet
+> selectChannels(obj, "G")
+NChannelSet (storageMode: lockedEnvironment)
+assayData: 20 features, 5 samples 
+  element names: G 
+protocolData: none
+phenoData: none
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation:  
+>   
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("selectChannels", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("selectSome")
+> ### * selectSome
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: selectSome
+> ### Title: Extract elements of a vector for concise rendering
+> ### Aliases: selectSome
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+> selectSome(1:20)
+[1] "1"   "2"   "..." "19"  "20" 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("selectSome", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("strbreak")
+> ### * strbreak
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: strbreak
+> ### Title: Break Character Strings to Fit Width
+> ### Aliases: strbreak
+> ### Keywords: character
+> 
+> ### ** Examples
+> 
+> longString = paste(rep(LETTERS, 10), collapse="", sep="")
+> cat(strbreak(longString))
+ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZAB
+  CDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZAB
+  CDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZAB
+  CDEFGHIJKLMNOPQRSTUVWXYZ> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("strbreak", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("subListExtract")
+> ### * subListExtract
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: subListExtract
+> ### Title: Extract the same element from the sublists of a list
+> ### Aliases: subListExtract
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> list_size = 500000
+> innerL = list(foo="foo", bar="bar")
+> L = rep(list(innerL), list_size)
+> 
+> system.time({j0 = sapply(L, function(x) x$foo)})
+   user  system elapsed 
+   0.58    0.02    0.60 
+> system.time({j1 = subListExtract(L, "foo", simplify=TRUE)})
+   user  system elapsed 
+   0.03    0.00    0.03 
+> stopifnot(all.equal(j0, j1))
+> 
+> LS = L[1:3]
+> names(LS) = LETTERS[1:3]
+> subListExtract(LS, "bar", simplify=TRUE)
+    A     B     C 
+"bar" "bar" "bar" 
+> subListExtract(LS, "bar", simplify=FALSE)
+$A
+[1] "bar"
+
+$B
+[1] "bar"
+
+$C
+[1] "bar"
+
+> subListExtract(LS, "bar", simplify=TRUE, keep.names=FALSE)
+[1] "bar" "bar" "bar"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("subListExtract", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("testBioCConnection")
+> ### * testBioCConnection
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: testBioCConnection
+> ### Title: A function to check internet connectivity to Bioconductor
+> ### Aliases: testBioCConnection
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+>  z <- testBioCConnection()
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("testBioCConnection", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("updateOldESet")
+> ### * updateOldESet
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: updateOldESet
+> ### Title: Update previously created eSet object to current eSet structure
+> ### Aliases: updateOldESet
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D updateOldESet(oldESet, "ExpressionSet")
+> ## End(Not run)
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("updateOldESet", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("validMsg")
+> ### * validMsg
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: validMsg
+> ### Title: Conditionally append result to validity message
+> ### Aliases: validMsg
+> ### Keywords: utilities
+> 
+> ### ** Examples
+> 
+> msg <- NULL
+> validMsg(msg, FALSE) # still NULL
+NULL
+> msg <- validMsg(msg, "one")
+> validMsg(msg, "two")
+[1] "one" "two"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("validMsg", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  4.39 0.17 5.7 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

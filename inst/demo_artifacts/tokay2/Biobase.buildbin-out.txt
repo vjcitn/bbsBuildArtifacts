@@ -1,0 +1,250 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   rm -rf Biobase.buildbin-libdir && mkdir Biobase.buildbin-libdir && C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD INSTALL --merge-multiarch --build --library=Biobase.buildbin-libdir Biobase_2.52.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+
+install for i386
+
+* installing *source* package 'Biobase' ...
+** using staged installation
+** libs
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Rinit.c -o Rinit.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c anyMissing.c -o anyMissing.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c envir.c -o envir.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c matchpt.c -o matchpt.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c rowMedians.c -o rowMedians.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c sublist_extract.c -o sublist_extract.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o Biobase.dll tmp.def Rinit.o anyMissing.o envir.o matchpt.o rowMedians.o sublist_extract.o -LC:/extsoft/lib/i386 -LC:/extsoft/lib -LC:/Users/BIOCBU~1/BBS-3~1.13-/R/bin/i386 -lR
+installing to C:/Users/biocbuild/bbs-3.13-bioc/meat/Biobase.buildbin-libdir/00LOCK-Biobase/00new/Biobase/libs/i386
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'Biobase'
+    finding HTML links ... done
+    Aggregate                               html  
+    Biobase-package                         html  
+    ScalarObject-class                      html  
+    abstract                                html  
+REDIRECT:topic	 pubMedIds<- -> abstract.html [ FAIL ]
+REDIRECT:topic	 experimentData<- -> abstract.html [ FAIL ]
+    addVig2Menu                             html  
+    annotatedDataFrameFrom-methods          html  
+    anyMissing                              html  
+    assayData                               html  
+REDIRECT:topic	 assayData<- -> assayData.html [ FAIL ]
+    cache                                   html  
+    channel                                 html  
+    channelNames                            html  
+REDIRECT:topic	 channelNames<- -> channelNames.html [ FAIL ]
+    class.AnnotatedDataFrame                html  
+REDIRECT:topic	 class:AnnotatedDataFrame -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 dimLabels<- -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 [[<-,AnnotatedDataFrame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 $<-,AnnotatedDataFrame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 dimnames<-,AnnotatedDataFrame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 dimLabels<-,AnnotatedDataFrame,character-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 pData<-,AnnotatedDataFrame,data.frame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 varMetadata<-,AnnotatedDataFrame,data.frame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 sampleNames<-,AnnotatedDataFrame,ANY-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 featureNames<-,AnnotatedDataFrame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+REDIRECT:topic	 varLabels<-,AnnotatedDataFrame-method -> class.AnnotatedDataFrame.html [ FAIL ]
+    finding level-2 HTML links ... done
+
+    class.AssayData                         html  
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/biocbuild/bbs-3.13-bioc/meat/Biobase.buildbin-libdir/00LOCK-Biobase/00new/Biobase/help/AssayData.html
+REDIRECT:topic	 featureNames<-,AssayData-method -> class.AssayData.html [ FAIL ]
+REDIRECT:topic	 sampleNames<-,AssayData,ANY-method -> class.AssayData.html [ FAIL ]
+REDIRECT:topic	 sampleNames<-,AssayData,list-method -> class.AssayData.html [ FAIL ]
+REDIRECT:topic	 storageMode<-,AssayData,character-method -> class.AssayData.html [ FAIL ]
+    class.ExpressionSet                     html  
+REDIRECT:topic	 class:ExpressionSet -> class.ExpressionSet.html [ FAIL ]
+REDIRECT:topic	 exprs<-,ExpressionSet,matrix-method -> class.ExpressionSet.html [ FAIL ]
+    class.MIAME                             html  
+REDIRECT:topic	 class:MIAME -> class.MIAME.html [ FAIL ]
+REDIRECT:topic	 preproc<-,MIAME-method -> class.MIAME.html [ FAIL ]
+REDIRECT:topic	 preproc<- -> class.MIAME.html [ FAIL ]
+REDIRECT:topic	 notes<-,MIAME,list-method -> class.MIAME.html [ FAIL ]
+REDIRECT:topic	 notes<-,MIAME,character-method -> class.MIAME.html [ FAIL ]
+REDIRECT:topic	 pubMedIds<-,MIAME,ANY-method -> class.MIAME.html [ FAIL ]
+    class.MIAxE                             html  
+REDIRECT:topic	 class:MIAxE -> class.MIAxE.html [ FAIL ]
+    class.MultiSet                          html  
+REDIRECT:topic	 class:MultiSet -> class.MultiSet.html [ FAIL ]
+    class.NChannelSet                       html  
+REDIRECT:topic	 assayData<-,NChannelSet,environment-method -> class.NChannelSet.html [ FAIL ]
+REDIRECT:topic	 assayData<-,NChannelSet,list-method -> class.NChannelSet.html [ FAIL ]
+REDIRECT:topic	 channelNames<-,NChannelSet,character-method -> class.NChannelSet.html [ FAIL ]
+REDIRECT:topic	 channelNames<-,NChannelSet,list-method -> class.NChannelSet.html [ FAIL ]
+REDIRECT:topic	 sampleNames<-,NChannelSet,list-method -> class.NChannelSet.html [ FAIL ]
+    class.SnpSet                            html  
+REDIRECT:topic	 class:SnpSet -> class.SnpSet.html [ FAIL ]
+REDIRECT:topic	 exprs<-,SnpSet,matrix-method -> class.SnpSet.html [ FAIL ]
+REDIRECT:topic	 snpCall<-,SnpSet,matrix-method -> class.SnpSet.html [ FAIL ]
+REDIRECT:topic	 snpCallProbability<-,SnpSet,matrix-method -> class.SnpSet.html [ FAIL ]
+    class.Versioned                         html  
+REDIRECT:topic	 classVersion<-,Versioned,Versions-method -> class.Versioned.html [ FAIL ]
+    class.VersionedBiobase                  html  
+    class.Versions                          html  
+REDIRECT:topic	 [<-,Versions-method -> class.Versions.html [ FAIL ]
+REDIRECT:topic	 [[<-,Versions-method -> class.Versions.html [ FAIL ]
+REDIRECT:topic	 $<-,Versions-method -> class.Versions.html [ FAIL ]
+    class.VersionsNull                      html  
+    class.aggregator                        html  
+REDIRECT:topic	 class:aggregator -> class.aggregator.html [ FAIL ]
+    class.characterORmiame                  html  
+REDIRECT:topic	 class:characterORMIAME -> class.characterORmiame.html [ FAIL ]
+    class.container                         html  
+REDIRECT:topic	 class:container -> class.container.html [ FAIL ]
+REDIRECT:topic	 [[<-,container-method -> class.container.html [ FAIL ]
+    class.eSet                              html  
+REDIRECT:topic	 class:eSet -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 $<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 [[<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 annotation<-,eSet,character-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 assayData<-,eSet,AssayData-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 assayDataElement<- -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 description<-,eSet,MIAME-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 dimnames<- -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 dimnames<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 experimentData<-,eSet,MIAME-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 exprs<-,eSet,AssayData-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 featureData<-,eSet,AnnotatedDataFrame-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 featureNames<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 fData<-,eSet,data.frame-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 fvarLabels<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 fvarMetadata<-,eSet,data.frame-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 notes<-,eSet,ANY-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 pData<-,eSet,data.frame-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 phenoData<-,eSet,AnnotatedDataFrame-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 pubMedIds<-,eSet,character-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 preproc<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 protocolData<-,eSet,character-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 sampleNames<-,eSet,ANY-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 storageMode<-,eSet,character-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 varLabels<-,eSet-method -> class.eSet.html [ FAIL ]
+REDIRECT:topic	 varMetadata<-,eSet,data.frame-method -> class.eSet.html [ FAIL ]
+    classVersion                            html  
+REDIRECT:topic	 classVersion<- -> classVersion.html [ FAIL ]
+    contents                                html  
+    copyEnv                                 html  
+    copySubstitute                          html  
+    createPackage                           html  
+    data.aaMap                              html  
+REDIRECT:topic	 data:aaMap -> data.aaMap.html [ FAIL ]
+    data.geneData                           html  
+REDIRECT:topic	 data:geneData -> data.geneData.html [ FAIL ]
+REDIRECT:topic	 data:geneCov -> data.geneData.html [ FAIL ]
+REDIRECT:topic	 data:geneCovariate -> data.geneData.html [ FAIL ]
+REDIRECT:topic	 data:seD -> data.geneData.html [ FAIL ]
+    data.reporter                           html  
+REDIRECT:topic	 data:reporter -> data.reporter.html [ FAIL ]
+    data.sample.ExpressionSet               html  
+REDIRECT:topic	 data:sample.ExpressionSet -> data.sample.ExpressionSet.html [ FAIL ]
+    data.sample.MultiSet                    html  
+REDIRECT:topic	 data:sample.MultiSet -> data.sample.MultiSet.html [ FAIL ]
+    defunct                                 html  
+REDIRECT:topic	 class:annotatedDataset -> defunct.html [ FAIL ]
+REDIRECT:topic	 class:exprList -> defunct.html [ FAIL ]
+REDIRECT:topic	 class:exprMatrix -> defunct.html [ FAIL ]
+REDIRECT:topic	 class:exprSet -> defunct.html [ FAIL ]
+REDIRECT:topic	 class:phenoData -> defunct.html [ FAIL ]
+REDIRECT:topic	 data:sample.eSet -> defunct.html [ FAIL ]
+REDIRECT:topic	 data:sample.exprSet.1 -> defunct.html [ FAIL ]
+REDIRECT:topic	 data:sample.exprSet -> defunct.html [ FAIL ]
+REDIRECT:topic	 geneNames<- -> defunct.html [ FAIL ]
+REDIRECT:topic	 geneNames<-,ExpressionSet,character-method -> defunct.html [ FAIL ]
+REDIRECT:topic	 eList<- -> defunct.html [ FAIL ]
+REDIRECT:topic	 eList<-,eSet,AssayData-method -> defunct.html [ FAIL ]
+REDIRECT:topic	 reporterNames<- -> defunct.html [ FAIL ]
+REDIRECT:topic	 reporterNames<-,eSet,character-method -> defunct.html [ FAIL ]
+    description                             html  
+REDIRECT:topic	 description<- -> description.html [ FAIL ]
+    dumpPackTxt                             html  
+    esApply                                 html  
+    exprs                                   html  
+REDIRECT:topic	 exprs<- -> exprs.html [ FAIL ]
+REDIRECT:topic	 se.exprs<- -> exprs.html [ FAIL ]
+    featureData                             html  
+REDIRECT:topic	 featureData<- -> featureData.html [ FAIL ]
+REDIRECT:topic	 fData<- -> featureData.html [ FAIL ]
+REDIRECT:topic	 fvarLabels<- -> featureData.html [ FAIL ]
+REDIRECT:topic	 fvarMetadata<- -> featureData.html [ FAIL ]
+    featureNames                            html  
+REDIRECT:topic	 featureNames<- -> featureNames.html [ FAIL ]
+REDIRECT:topic	 sampleNames<- -> featureNames.html [ FAIL ]
+    getPkgVigs                              html  
+    internals                               html  
+    isCurrent                               html  
+    isUnique                                html  
+    isVersioned                             html  
+    lcSuffix                                html  
+    listLen                                 html  
+    makeDataPackage                         html  
+    matchpt                                 html  
+    multiassign                             html  
+    note                                    html  
+    notes                                   html  
+REDIRECT:topic	 notes<- -> notes.html [ FAIL ]
+    openPDF                                 html  
+    openVignette                            html  
+    package.version                         html  
+    phenoData                               html  
+REDIRECT:topic	 phenoData<- -> phenoData.html [ FAIL ]
+REDIRECT:topic	 varLabels<- -> phenoData.html [ FAIL ]
+REDIRECT:topic	 varMetadata<- -> phenoData.html [ FAIL ]
+REDIRECT:topic	 pData<- -> phenoData.html [ FAIL ]
+    protocolData                            html  
+REDIRECT:topic	 protocolData<- -> protocolData.html [ FAIL ]
+REDIRECT:topic	 protocolData<-,eSet,AnnotatedDataFrame-method -> protocolData.html [ FAIL ]
+    read.AnnotatedDataFrame                 html  
+    read.MIAME                              html  
+    readExpressionSet                       html  
+    reverseSplit                            html  
+    rowMedians                              html  
+    rowQ                                    html  
+    selectChannels                          html  
+    selectSome                              html  
+    snpCall                                 html  
+REDIRECT:topic	 snpCall<- -> snpCall.html [ FAIL ]
+REDIRECT:topic	 snpCallProbability<- -> snpCall.html [ FAIL ]
+    storageMode                             html  
+REDIRECT:topic	 storageMode<- -> storageMode.html [ FAIL ]
+    strbreak                                html  
+    subListExtract                          html  
+    testBioCConnection                      html  
+    updateObjectTo                          html  
+    updateOldESet                           html  
+    userQuery                               html  
+    validMsg                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+
+install for x64
+
+* installing *source* package 'Biobase' ...
+** libs
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c Rinit.c -o Rinit.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c anyMissing.c -o anyMissing.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c envir.c -o envir.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c matchpt.c -o matchpt.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c rowMedians.c -o rowMedians.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/Users/BIOCBU~1/BBS-3~1.13-/R/include" -DNDEBUG     -I"C:/extsoft/include"     -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c sublist_extract.c -o sublist_extract.o
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o Biobase.dll tmp.def Rinit.o anyMissing.o envir.o matchpt.o rowMedians.o sublist_extract.o -LC:/extsoft/lib/x64 -LC:/extsoft/lib -LC:/Users/BIOCBU~1/BBS-3~1.13-/R/bin/x64 -lR
+installing to C:/Users/biocbuild/bbs-3.13-bioc/meat/Biobase.buildbin-libdir/Biobase/libs/x64
+** testing if installed package can be loaded
+* MD5 sums
+packaged installation of 'Biobase' as Biobase_2.52.0.zip
+* DONE (Biobase)

@@ -1,0 +1,227 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   C:\Users\biocbuild\bbs-3.13-bioc\R\bin\R.exe CMD check --force-multiarch --install=check:IRanges.install-out.txt --library=C:\Users\biocbuild\bbs-3.13-bioc\R\library --no-vignettes --timings IRanges_2.26.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory 'C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.Rcheck'
+* using R version 4.1.0 (2021-05-18)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* using option '--no-vignettes'
+* checking for file 'IRanges/DESCRIPTION' ... OK
+* this is package 'IRanges' version '2.26.0'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking whether package 'IRanges' can be installed ... WARNING
+Found the following significant warnings:
+  IRanges_constructor.c:43:6: warning: too many arguments for format [-Wformat-extra-args]
+  IRanges_constructor.c:66:6: warning: too many arguments for format [-Wformat-extra-args]
+  IRanges_constructor.c:86:6: warning: too many arguments for format [-Wformat-extra-args]
+  IRanges_constructor.c:98:5: warning: too many arguments for format [-Wformat-extra-args]
+  NCList.c:674:23: warning: '%d' directive writing between 1 and 11 bytes into a region of size 8 [-Wformat-overflow=]
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:94: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:102: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:123: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:136: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:146: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:160: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:188: missing link 'RangesList'
+  Rd warning: C:/Users/biocbuild/bbs-3.13-bioc/tmpdir/Rtmp0Ev81P/R.INSTALLddc4e68b36/IRanges/man/intra-range-methods.Rd:297: missing link 'RangesList'
+See 'C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.Rcheck/00install.out' for details.
+* checking installed package size ... NOTE
+  installed size is  5.1Mb
+  sub-directories of 1Mb or more:
+    R      2.2Mb
+    help   1.8Mb
+* checking package directory ... OK
+* checking 'build' directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* loading checks for arch 'i386'
+** checking whether the package can be loaded ... OK
+** checking whether the package can be loaded with stated dependencies ... OK
+** checking whether the package can be unloaded cleanly ... OK
+** checking whether the namespace can be loaded with stated dependencies ... OK
+** checking whether the namespace can be unloaded cleanly ... OK
+* loading checks for arch 'x64'
+** checking whether the package can be loaded ... OK
+** checking whether the package can be loaded with stated dependencies ... OK
+** checking whether the package can be unloaded cleanly ... OK
+** checking whether the namespace can be loaded with stated dependencies ... OK
+** checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+setCompressedListSummaryMethod : <anonymous>: no visible binding for
+  global variable 'C_fun'
+setCompressedListWhichSummaryMethod : def: no visible binding for
+  global variable 'C_fun'
+Undefined global functions or variables:
+  C_fun
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'IntegerRangesList-class.Rd':
+  '[IRanges]{RangesList}'
+
+Missing link or links in documentation object 'intra-range-methods.Rd':
+  'RangesList'
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  '%poutside%' '%pover%' '%pwithin%' 'cvg' 'heads' 'slidingIRanges'
+  'slidingViews' 'tails' 'windows'
+Undocumented S4 classes:
+  'SimpleRangesList' 'IPosList' 'SimpleIPosList' 'Pos'
+  'CompressedIPosList' 'RangesList' 'BaseManyToManyGrouping' 'Ranges'
+  'CompressedRangesList' 'CompressedIntegerRangesList' 'SimplePosList'
+  'PosList' 'CompressedPosList'
+Undocumented S4 methods:
+  generic 'anyDuplicated' and siglist 'RangesNSBS'
+  generic 'as.factor' and siglist 'ManyToOneGrouping'
+  generic 'as.integer' and siglist 'NormalIRanges'
+  generic 'as.integer' and siglist 'Pos'
+  generic 'as.integer' and siglist 'RangesNSBS'
+  generic 'cbind' and siglist 'Rle'
+  generic 'cbind' and siglist 'RleList'
+  generic 'chartr' and siglist 'ANY,ANY,CharacterList'
+  generic 'chartr' and siglist 'ANY,ANY,RleList'
+  generic 'coerce' and siglist 'ANY,IPosRanges'
+  generic 'coerce' and siglist 'AtomicList,RleViews'
+  generic 'coerce' and siglist 'IPosRanges,CompressedIntegerList'
+  generic 'coerce' and siglist 'IPosRanges,IntegerList'
+  generic 'coerce' and siglist 'IRanges,IPosList'
+  generic 'coerce' and siglist 'IntegerRanges,CompressedIPosList'
+  generic 'coerce' and siglist 'IntegerRanges,IPosList'
+  generic 'coerce' and siglist 'PartitioningByEnd,PartitioningMap'
+  generic 'coerce' and siglist 'factor,ManyToOneGrouping'
+  generic 'commonColnames<-' and siglist 'SplitDataFrameList'
+  generic 'cvg' and siglist 'IntegerRanges'
+  generic 'cvg' and siglist 'IntegerRangesList'
+  generic 'endsWith' and siglist 'CharacterList'
+  generic 'endsWith' and siglist 'RleList'
+  generic 'extractROWS' and siglist 'CompressedList,ANY'
+  generic 'extractROWS' and siglist 'IPos,ANY'
+  generic 'extractROWS' and siglist 'MaskCollection,ANY'
+  generic 'extractROWS' and siglist 'NormalIRanges,ANY'
+  generic 'extractROWS' and siglist 'Partitioning,ANY'
+  generic 'extractROWS' and siglist 'Rle,RangesNSBS'
+  generic 'extractROWS' and siglist 'vector_OR_factor,RangesNSBS'
+  generic 'getListElement' and siglist 'CompressedList'
+  generic 'getListElement' and siglist 'CompressedNormalIRangesList'
+  generic 'getListElement' and siglist 'H2LGrouping'
+  generic 'getListElement' and siglist 'MaskCollection'
+  generic 'getListElement' and siglist 'NCLists'
+  generic 'getListElement' and siglist 'Partitioning'
+  generic 'getListElement' and siglist 'Views'
+  generic 'gsub' and siglist 'ANY,ANY,CharacterList'
+  generic 'gsub' and siglist 'ANY,ANY,RleList'
+  generic 'ifelse2' and siglist 'ANY,List,List'
+  generic 'is.unsorted' and siglist 'CompressedIntegerList'
+  generic 'is.unsorted' and siglist 'CompressedLogicalList'
+  generic 'is.unsorted' and siglist 'CompressedNumericList'
+  generic 'isNormal' and siglist 'IntegerRanges'
+  generic 'length' and siglist 'RangesNSBS'
+  generic 'nchar' and siglist 'CharacterList'
+  generic 'nchar' and siglist 'RleList'
+  generic 'pcompareRecursively' and siglist 'IPosRanges'
+  generic 'range' and siglist 'CompressedRleList'
+  generic 'relist' and siglist 'grouping,missing'
+  generic 'replaceROWS' and siglist 'IRanges'
+  generic 'replaceROWS' and siglist 'NormalIRanges'
+  generic 'slidingWindows' and siglist 'IntegerRanges'
+  generic 'startsWith' and siglist 'CharacterList'
+  generic 'startsWith' and siglist 'RleList'
+  generic 'sub' and siglist 'ANY,ANY,CharacterList'
+  generic 'sub' and siglist 'ANY,ANY,RleList'
+  generic 'tile' and siglist 'IntegerRanges'
+  generic 'tolower' and siglist 'CharacterList'
+  generic 'tolower' and siglist 'RleList'
+  generic 'toupper' and siglist 'CharacterList'
+  generic 'toupper' and siglist 'RleList'
+  generic 'updateObject' and siglist 'CompressedList'
+  generic 'updateObject' and siglist 'IPosRanges'
+  generic 'whichFirstNotNormal' and siglist 'IntegerRanges'
+  generic 'windows' and siglist 'list_OR_List'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'nearest-methods':
+  'hits' '...'
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files for i386 is not available
+Note: information on .o files for x64 is not available
+File 'C:/Users/biocbuild/bbs-3.13-bioc/R/library/IRanges/libs/i386/IRanges.dll':
+  Found 'abort', possibly from 'abort' (C), 'runtime' (Fortran)
+File 'C:/Users/biocbuild/bbs-3.13-bioc/R/library/IRanges/libs/x64/IRanges.dll':
+  Found 'abort', possibly from 'abort' (C), 'runtime' (Fortran)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs. The detected symbols are linked into the code but
+might come from libraries and not actually be called.
+
+See 'Writing portable packages' in the 'Writing R Extensions' manual.
+* checking files in 'vignettes' ... OK
+* checking examples ...
+** running examples for arch 'i386' ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+           user system elapsed
+IPos-class 6.27    0.5    6.76
+read.Mask  0.06    0.0   32.78
+** running examples for arch 'x64' ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+           user system elapsed
+IPos-class 6.45   0.31    6.77
+* checking for unstated dependencies in 'tests' ... OK
+* checking tests ...
+** running tests for arch 'i386' ...
+  Running 'run_unitTests.R'
+ OK
+** running tests for arch 'x64' ...
+  Running 'run_unitTests.R'
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in 'inst/doc' ... OK
+* checking running R code from vignettes ... SKIPPED
+* checking re-building of vignette outputs ... SKIPPED
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 WARNINGs, 3 NOTEs
+See
+  'C:/Users/biocbuild/bbs-3.13-bioc/meat/IRanges.Rcheck/00check.log'
+for details.
+
+
