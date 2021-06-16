@@ -1,8 +1,0 @@
-Package: a4
-Version: 1.40.0
-Command: /home/biocbuild/bbs-3.13-bioc/R/bin/R CMD INSTALL a4
-StartedAt: 2021-06-13 08:19:54 -0400 (Sun, 13 Jun 2021)
-EndedAt: 2021-06-13 08:20:11 -0400 (Sun, 13 Jun 2021)
-EllapsedTime: 17.1 seconds
-RetCode: 0
-Status: OK

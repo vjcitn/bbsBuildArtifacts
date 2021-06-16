@@ -19,6 +19,8 @@ collect the paths to a set of artifacts
 Could be improved to work on a comprehensive tarball.
 }
 \examples{
-eg = select_artifacts(system.file("demo_artifacts/tokay2", package="bbsBuildArtifacts"), c("IRanges", "S4V*", "a4\\\\."))
+setup_demo_artifacts()
+eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
+    c("IRanges", "S4V*", "a4\\\\."))
 eg
 }

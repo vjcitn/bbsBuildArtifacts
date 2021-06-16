@@ -4,7 +4,9 @@
 #' @param packs_re character() a vector of regular expressions defining packages of interest
 #' @note Could be improved to work on a comprehensive tarball.
 #' @examples
-#' eg = select_artifacts(system.file("demo_artifacts/tokay2", package="bbsBuildArtifacts"), c("IRanges", "S4V*", "a4\\."))
+#' setup_demo_artifacts()
+#' eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
+#'     c("IRanges", "S4V*", "a4\\."))
 #' eg
 #' @export
 select_artifacts = function(hostpath, packs_re) {
@@ -35,9 +37,10 @@ getb = function(x) gsub(".*>(.*)<.*", "\\1", x)
 #' @param process character(1) one of "buildbin", "buildsrc", "install", "check"
 #' @param type character(1) one of "EllapsedTime", "Status", "PackageFileSize"
 #' @examples
-#' eg = select_artifacts(system.file("demo_artifacts/tokay2", package="bbsBuildArtifacts"), 
+#' setup_demo_artifacts()
+#' eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
 #'      c("IRanges", "S4V*", "a4\\."))
-#' eg2 = select_artifacts(system.file("demo_artifacts/nebbiolo1", package="bbsBuildArtifacts"), 
+#' eg2 = select_artifacts(paste(tempdir(), "nebbiolo1", sep="/"),
 #'      c("IRanges", "S4V*", "a4\\."))
 #' get_process_outcomes(eg, process="buildsrc", type="Status")
 #' get_process_outcomes(eg2, "buildsrc", type="EllapsedTime")
@@ -48,11 +51,41 @@ get_process_outcomes = function( apathset , process, type ) {
   sel = grep(paste(process, "..*dcf$", sep=""), apathset$artifacts, value=TRUE)
   dat = lapply(sel, read.dcf)
   tmp = sapply(dat, function(x) c(x[,"Package"], x[,type]))
+  vers = sapply(dat, function(x) c(x[,"Version"], x[,type]))
   if (type == "EllapsedTime") outco = as.numeric(gsub(" seconds", "", tmp[type,]))
   else if (type == "PackageFileSize") outco = unname(sapply(tmp[type,], getpfsz))
   else outco=tmp[type,]
-  ans = data.frame(package=tmp[1,,drop=TRUE], host=apathset$host, process=process)
+  ans = data.frame(package=tmp[1,,drop=TRUE], version=vers[1,,drop=TRUE], host=apathset$host, process=process)
   ans[[type]] = outco
   ans
 }
 
+#' get events from an artifact set using rcmdcheck::parse_check
+#' @param apathset instance of artifact_paths
+#' @param type character(1) one of "error", "warning", "note"
+#' @examples
+#' setup_demo_artifacts()
+#' eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
+#'      c("IRanges", "S4V*", "a4\\."))
+#' get_events(eg)
+#' @export
+get_events = function( apathset, type ) {
+  chkdirs = grep("Rcheck", apathset$artifacts, value=TRUE)
+  tmp = lapply(chkdirs, dir, full.names=TRUE)
+  logs = lapply(tmp, function(x) grep("00check.log", x, value=TRUE))
+  ps = lapply(logs, rcmdcheck::parse_check)
+  ans = lapply(ps, function(x) x[c("warnings", "notes", "errors")])
+  ans
+}
+
+#' .Rcheck artifacts are not reliably installed from inst, so we use a zip file
+#' @importFrom utils unzip
+#' @export
+setup_demo_artifacts = function() {
+ td = tempdir()
+ curd = getwd()
+ on.exit(setwd(curd))
+ setwd(td)
+ if (!file.exists("tokay2"))
+   unzip(system.file("demo_artifacts/demo.zip", package="bbsBuildArtifacts"))
+}

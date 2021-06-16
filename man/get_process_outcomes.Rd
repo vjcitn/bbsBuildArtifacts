@@ -4,7 +4,7 @@
 \alias{get_process_outcomes}
 \title{get process outcomes for artifacts}
 \usage{
-get_process_outcomes(apathset, process)
+get_process_outcomes(apathset, process, type)
 }
 \arguments{
 \item{apathset}{instance of artifact_paths}
@@ -17,9 +17,10 @@ get_process_outcomes(apathset, process)
 get process outcomes for artifacts
 }
 \examples{
-eg = select_artifacts(system.file("demo_artifacts/tokay2", package="bbsBuildArtifacts"), 
+setup_demo_artifacts()
+eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
      c("IRanges", "S4V*", "a4\\\\."))
-eg2 = select_artifacts(system.file("demo_artifacts/nebbiolo1", package="bbsBuildArtifacts"), 
+eg2 = select_artifacts(paste(tempdir(), "nebbiolo1", sep="/"),
      c("IRanges", "S4V*", "a4\\\\."))
 get_process_outcomes(eg, process="buildsrc", type="Status")
 get_process_outcomes(eg2, "buildsrc", type="EllapsedTime")
