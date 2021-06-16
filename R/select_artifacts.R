@@ -62,19 +62,19 @@ get_process_outcomes = function( apathset , process, type ) {
 
 #' get events from an artifact set using rcmdcheck::parse_check
 #' @param apathset instance of artifact_paths
-#' @param type character(1) one of "error", "warning", "note"
 #' @examples
 #' setup_demo_artifacts()
 #' eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
 #'      c("IRanges", "S4V*", "a4\\."))
 #' get_events(eg)
 #' @export
-get_events = function( apathset, type ) {
+get_events = function( apathset ) {
   chkdirs = grep("Rcheck", apathset$artifacts, value=TRUE)
   tmp = lapply(chkdirs, dir, full.names=TRUE)
   logs = lapply(tmp, function(x) grep("00check.log", x, value=TRUE))
   ps = lapply(logs, rcmdcheck::parse_check)
   ans = lapply(ps, function(x) x[c("warnings", "notes", "errors")])
+  names(ans) = apathset$pnames
   ans
 }
 

@@ -4,12 +4,10 @@
 \alias{get_events}
 \title{get events from an artifact set using rcmdcheck::parse_check}
 \usage{
-get_events(apathset, type)
+get_events(apathset)
 }
 \arguments{
 \item{apathset}{instance of artifact_paths}
-
-\item{type}{character(1) one of "error", "warning", "note"}
 }
 \description{
 get events from an artifact set using rcmdcheck::parse_check
