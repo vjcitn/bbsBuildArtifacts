@@ -36,10 +36,11 @@ isolate a group of packages of interest.
 ```{r chk1}
 suppressPackageStartupMessages({
 library(bbsBuildArtifacts)
+library(DT)
 })
 setup_demo_artifacts() # writes to tempdir()
-eg = select_artifacts(paste(tempdir(), "tokay2", sep="/"),
-      c("IRanges", "S4V*", "a4\\."))
+hpath = paste(tempdir(), "tokay2", sep="/")
+eg = select_artifacts(hpath, c("IRanges", "S4V*", "a4\\."))
 eg
 ```
 We use the fact that the artifact for package `a4` will 
@@ -52,10 +53,24 @@ get_process_outcomes(eg, "buildsrc", "EllapsedTime")
 get_process_outcomes(eg, "buildbin", "PackageFileSize")
 ```
 
+A simple way to generate a more comprehensive table for a host is:
+```{r domo}
+tabulate_bbs_metrics( c("IRanges", "^S4V", "a4"), hpath)
+```
+
+To acquire detailed text on errors, warnings and notes, use `get_events`.
 
 ```{r lkev}
 ev = get_events(eg)
 sapply(ev, sapply, length)
 ```
 
+# A larger example
 
+We have a snapshot of build artifacts from 2021 June 14, to which
+`tabulate_bbs_metrics` was applied.
+
+```{r lksnap}
+data(sc_614)
+datatable(sc_614)
+```

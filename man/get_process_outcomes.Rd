@@ -9,7 +9,7 @@ get_process_outcomes(apathset, process, type)
 \arguments{
 \item{apathset}{instance of artifact_paths}
 
-\item{process}{character(1) one of "buildbin", "buildsrc", "install", "check"}
+\item{process}{character(1) one of "buildbin", "buildsrc", "install", "checksrc"}
 
 \item{type}{character(1) one of "EllapsedTime", "Status", "PackageFileSize"}
 }
@@ -24,5 +24,7 @@ eg2 = select_artifacts(paste(tempdir(), "nebbiolo1", sep="/"),
      c("IRanges", "S4V*", "a4\\\\."))
 get_process_outcomes(eg, process="buildsrc", type="Status")
 get_process_outcomes(eg2, "buildsrc", type="EllapsedTime")
+get_process_outcomes(eg2, "checksrc", type="EllapsedTime")
+get_process_outcomes(eg2, "checksrc", type="Status")
 get_process_outcomes(eg2, "buildsrc", type="PackageFileSize")
 }

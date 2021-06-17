@@ -33,8 +33,9 @@ getb = function(x) gsub(".*>(.*)<.*", "\\1", x)
 
 
 #' get process outcomes for artifacts
+#' @import dplyr
 #' @param apathset instance of artifact_paths
-#' @param process character(1) one of "buildbin", "buildsrc", "install", "check"
+#' @param process character(1) one of "buildbin", "buildsrc", "install", "checksrc"
 #' @param type character(1) one of "EllapsedTime", "Status", "PackageFileSize"
 #' @examples
 #' setup_demo_artifacts()
@@ -44,10 +45,13 @@ getb = function(x) gsub(".*>(.*)<.*", "\\1", x)
 #'      c("IRanges", "S4V*", "a4\\."))
 #' get_process_outcomes(eg, process="buildsrc", type="Status")
 #' get_process_outcomes(eg2, "buildsrc", type="EllapsedTime")
+#' get_process_outcomes(eg2, "checksrc", type="EllapsedTime")
+#' get_process_outcomes(eg2, "checksrc", type="Status")
 #' get_process_outcomes(eg2, "buildsrc", type="PackageFileSize")
 #' @export
 get_process_outcomes = function( apathset , process, type ) {
   stopifnot( inherits(apathset, "artifact_paths") )
+  stopifnot( type %in% c("EllapsedTime", "Status", "PackageFileSize") )
   sel = grep(paste(process, "..*dcf$", sep=""), apathset$artifacts, value=TRUE)
   dat = lapply(sel, read.dcf)
   tmp = sapply(dat, function(x) c(x[,"Package"], x[,type]))
@@ -57,6 +61,12 @@ get_process_outcomes = function( apathset , process, type ) {
   else outco=tmp[type,]
   ans = data.frame(package=tmp[1,,drop=TRUE], version=vers[1,,drop=TRUE], host=apathset$host, process=process)
   ans[[type]] = outco
+  targtags = c(EllapsedTime = "_sec", Status = "_status", PackageFileSize = "_sz")
+  #if (type == "EllapsedTime") {
+  targ = paste0(ans[1,"process"],targtags[type])
+  ans[[targ]] = ans[[type]]
+  ans = ans[,c("package", "version", "host", targ)]
+  #   }
   ans
 }
 
