@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/404.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/bbsBuildArtifacts.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/authors.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/index.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/artifact_folder_paths.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_events.html</loc>
@@ -10,7 +25,22 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_process_outcomes.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_report_tgz_cacheid.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/infr.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/package_by_host_data.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/path_to_untarred_artifact_folders.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_folder_paths.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_paths.html</loc>
@@ -28,9 +58,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/simplecore.html</loc>
   </url>
   <url>
-    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/tabulate_bbs_metrics.html</loc>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/simplify_artifact_build_dcfs.html</loc>
   </url>
   <url>
-    <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/bbsBuildArtifacts.html</loc>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/tabulate_bbs_metrics.html</loc>
   </url>
 </urlset>

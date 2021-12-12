@@ -16,3 +16,5 @@ VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.1.2
 Encoding: UTF-8
+BugReports: https://github.com/vjcitn/bbsBuildArtifacts/issues
+URL: https://github.com/vjcitn/bbsBuildArtifacts
