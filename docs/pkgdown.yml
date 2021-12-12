@@ -3,7 +3,7 @@ pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   bbsBuildArtifacts: bbsBuildArtifacts.html
-last_built: 2021-12-12T20:28Z
+last_built: 2021-12-12T20:45Z
 urls:
   reference: https://vjcitn.github.io/bbsBuildArtifacts/reference
   article: https://vjcitn.github.io/bbsBuildArtifacts/articles
