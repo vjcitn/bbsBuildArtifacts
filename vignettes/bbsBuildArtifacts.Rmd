@@ -21,9 +21,39 @@ subset of Bioconductor packages.  "Status" is relative to
 Bioconductor version, package version, build platform, and
 condition of the platform.
 
+## New approach, December 2021
+
+We want to be able to work with the current artifacts provided
+at, e.g., `https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz`.
+Such gzipped tar resources are prepared for different types
+of resource.
+
+```{r lktypes}
+suppressPackageStartupMessages({
+  library(bbsBuildArtifacts)
+})
+bbsBuildArtifacts:::valid_types()
+```
+
+We'll focus on type `bioc` for now, which associates with Software packages.
+We don't know if all types are handled in the same way, but we hope so.
+
+Our objective is to learn the status and processing times for
+various phases of the build process for all packages.
+
+### Download and cache the report.tgz
+
+```{r demo1}
+our_cache = BiocFileCache::BiocFileCache()
+cid = get_report_tgz_cacheid(version = "3.14", type="bioc", cache=our_cache)
+cid
+our_cache[cid] # metadata
+our_cache[[cid]]  # actual path
+```
+
 We'll gradually assemble all the relevant information.
 
-## Example
+## Example -- legacy approach
 
 We have the artifacts for Bioconductor 3.13 for a small
 number of packages.  These are placed in `tempdir()`

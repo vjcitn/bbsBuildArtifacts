@@ -18,6 +18,7 @@ build_report_tgz_url = function(version, type) {
 
 #' get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)
 #' @import BiocFileCache
+#' @importFrom utils download.file untar
 #' @param version character(1) defaults to "3.14"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
@@ -42,7 +43,7 @@ clean_cache = function(version, type, cache=BiocFileCache::BiocFileCache()) {
         message(sprintf("%s not found in supplied cache, returning FALSE", current_url))
         return(FALSE)
         }
-    bfcremove(cache, rid=chk$rid)
+    bfcremove(cache, rids = chk$rid)
 }
 
 #' untar the artifact archive and return the path
@@ -50,6 +51,7 @@ clean_cache = function(version, type, cache=BiocFileCache::BiocFileCache()) {
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param destination character(1) path to folder to use, defaults to `tempdir()`
+#' @param verbose logical(1) will indicate start and end of untar() process
 #' @return character(1) path to folder beneath which all artifacts are found
 #' @note Typically some additional files exist in addition to the package-related folders
 #' at the returned path.
