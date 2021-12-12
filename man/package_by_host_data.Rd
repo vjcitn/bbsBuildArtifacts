@@ -7,7 +7,8 @@
 package_by_host_data(
   afpath,
   host = "nebbiolo2",
-  summary_types = c("install", "buildsrc", "checksrc")
+  summary_types = c("install", "buildsrc", "checksrc"),
+  read.dcf.silent = TRUE
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ package_by_host_data(
 \item{host}{character(1) host used in BBS}
 
 \item{summary_types}{character() defaults to `c("install", "buildsrc", "checksrc")`}
+
+\item{read.dcf.silent}{logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note}
 }
 \description{
 ingest dcf files for a package

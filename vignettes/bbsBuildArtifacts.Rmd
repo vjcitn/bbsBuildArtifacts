@@ -31,6 +31,8 @@ of resource.
 ```{r lktypes}
 suppressPackageStartupMessages({
   library(bbsBuildArtifacts)
+  library(dplyr)
+  library(DT)
 })
 bbsBuildArtifacts:::valid_types()
 ```
@@ -81,6 +83,27 @@ tab = do.call(rbind, unname(dcfs))
 library(DT)
 datatable(tab)
 ```
+
+Building a comprehensive table requires some fault tolerance.  We
+have used silent `try` calls in `package_by_host_data`; silent can
+be set to FALSE if desired.
+
+```{r doall}
+suppressWarnings({
+alldcfs = lapply(allpaths, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)))
+})
+fulltab = do.call(rbind, unname(alldcfs))
+```
+
+Let's get a sense of the distribution of build times.
+
+```{r lkbtr}
+library(dplyr)
+bdat = fulltab |> filter(phase=="buildsrc")
+hist(bdat$elapsed_time)
+sum(bdat$elapsed_time > 600)
+```
+
 
 
 ## Example -- legacy approach

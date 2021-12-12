@@ -100,8 +100,8 @@ structure(c("NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA",
 "RetCode", "Status", "PackageFile", "PackageFileSize")))
 }
 
-safe.read.dcf = function(x) {
-   tmp = try(read.dcf(x))
+safe.read.dcf = function(x, silent=TRUE) {
+   tmp = try(read.dcf(x), silent=silent)
    if (!inherits(tmp, "try-error")) return(tmp)
    return(dummy.dcf())
    }
@@ -110,12 +110,14 @@ safe.read.dcf = function(x) {
 #' @param afpath an element of an artifact_folder_paths instance
 #' @param host character(1) host used in BBS
 #' @param summary_types character() defaults to `c("install", "buildsrc", "checksrc")`
+#' @param read.dcf.silent logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note
 #' @export
-package_by_host_data = function(afpath, host="nebbiolo2", summary_types = c("install", "buildsrc", "checksrc")) {
+package_by_host_data = function(afpath, host="nebbiolo2", 
+      summary_types = c("install", "buildsrc", "checksrc"), read.dcf.silent = TRUE) {
    stopifnot(length(afpath)==1)
    stopifnot(dir.exists(afpath))
    pas = sprintf(paste0(afpath, "/raw-results/", host, "//%s-summary.dcf"), summary_types)
-   dcfs = lapply(pas, function(x) safe.read.dcf(x))
+   dcfs = lapply(pas, function(x) safe.read.dcf(x, silent=read.dcf.silent))
    names(dcfs) = summary_types
    attr(dcfs, "hostname") = host  # late discovery that host is not listed in DCF
    class(dcfs) = "artifact_build_dcfs"
