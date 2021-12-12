@@ -83,6 +83,10 @@ artifact_folder_paths = function(version = "3.14", type="bioc", cache=BiocFileCa
    vals
 }
 
+#' show artifact paths nicely
+#' @param x instance of `artifact_folder_paths`
+#' @param \dots not used
+#' @export
 print.artifact_folder_paths = function(x, ...) {
    cat("artifact_folders_paths instance:\n")
    cat(sprintf("  There are %d folders.", length(x)), "\n")
@@ -102,26 +106,40 @@ safe.read.dcf = function(x) {
    return(dummy.dcf())
    }
 
+#' ingest dcf files for a package
+#' @param afpath an element of an artifact_folder_paths instance
+#' @param host character(1) host used in BBS
+#' @param summary_types character() defaults to `c("install", "buildsrc", "checksrc")`
+#' @export
 package_by_host_data = function(afpath, host="nebbiolo2", summary_types = c("install", "buildsrc", "checksrc")) {
    stopifnot(length(afpath)==1)
    stopifnot(dir.exists(afpath))
    pas = sprintf(paste0(afpath, "/raw-results/", host, "//%s-summary.dcf"), summary_types)
    dcfs = lapply(pas, function(x) safe.read.dcf(x))
    names(dcfs) = summary_types
+   attr(dcfs, "hostname") = host  # late discovery that host is not listed in DCF
    class(dcfs) = "artifact_build_dcfs"
    dcfs
 }
 
+#' produce a data.frame from a collection of `package_by_host_data` outputs
+#' @param x instance of `artifact_build_dcfs`
+#' @export
 simplify_artifact_build_dcfs = function(x, ...) {
-   pkgname = x[[1]][, "Package"]
-   pkgversion = x[[1]][, "Version"]
-   ac = as.character
-   getsec = function(x) as.numeric(gsub(" seconds", "", x))
-   stats = do.call(rbind, lapply(x, function(z) data.frame(status=ac(z[, "Status"]), elapsed_time=getsec(ac(z[, "EllapsedTime"])))))
-   ans = data.frame(pkgname=ac(pkgname), pkgversion=ac(pkgversion), stats=stats, phase = rownames(stats))
-   rownames(ans) = NULL
-   ans
-   }
+    stopifnot(inherits(x, "artifact_build_dcfs"))
+    pkgname = x[[1]][, "Package"]
+    pkgversion = x[[1]][, "Version"]
+    curhost = attr(x, "hostname")
+    ac = as.character
+    getsec = function(x) as.numeric(gsub(" seconds", "", x))
+    stats = do.call(rbind, lapply(x, function(z) data.frame(status = ac(z[, 
+        "Status"]), elapsed_time = getsec(ac(z[, "EllapsedTime"])))))
+    ans = data.frame(host = curhost, pkgname = ac(pkgname), pkgversion = ac(pkgversion), 
+        stats, phase = rownames(stats))
+    rownames(ans) = NULL
+    ans
+}
+
 
 #> dir(paste0(aa[1], "/raw-results/nebbiolo2/"), full=TRUE)
 #[1] "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//RtmpzkUheQ/report/a4/raw-results/nebbiolo2//buildsrc-out.txt"    

@@ -51,7 +51,37 @@ our_cache[cid] # metadata
 our_cache[[cid]]  # actual path
 ```
 
-We'll gradually assemble all the relevant information.
+There is an unexported helper function to clean the cache of
+a path for a given version/type combination.
+
+### Process install-, build-, and check-related contents of a package
+
+We do not cache the untarred data.  The untar process must
+occur each time we want to analyze the artifacts.
+
+```{r lkallp}
+allpaths = artifact_folder_paths(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache())
+allpaths
+```
+
+The `package_by_host_data` function will parse the DCF files
+created for each package by the BBS.
+
+```{r lkpbh}
+allpaths["parody"] # simple retrieval
+package_by_host_data(allpaths["parody"])
+```
+
+We can produce a data table for a number of packages as follows.
+
+```{r domore}
+few = allpaths[1:10]
+dcfs = lapply(few, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)))
+tab = do.call(rbind, unname(dcfs))
+library(DT)
+datatable(tab)
+```
+
 
 ## Example -- legacy approach
 
