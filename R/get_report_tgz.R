@@ -127,7 +127,7 @@ package_by_host_data = function(afpath, host="nebbiolo2",
 #' produce a data.frame from a collection of `package_by_host_data` outputs
 #' @param x instance of `artifact_build_dcfs`
 #' @export
-simplify_artifact_build_dcfs = function(x, ...) {
+simplify_artifact_build_dcfs = function(x) {
     stopifnot(inherits(x, "artifact_build_dcfs"))
     pkgname = x[[1]][, "Package"]
     pkgversion = x[[1]][, "Version"]

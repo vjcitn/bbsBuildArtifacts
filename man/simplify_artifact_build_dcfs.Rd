@@ -4,7 +4,7 @@
 \alias{simplify_artifact_build_dcfs}
 \title{produce a data.frame from a collection of `package_by_host_data` outputs}
 \usage{
-simplify_artifact_build_dcfs(x, ...)
+simplify_artifact_build_dcfs(x)
 }
 \arguments{
 \item{x}{instance of `artifact_build_dcfs`}
