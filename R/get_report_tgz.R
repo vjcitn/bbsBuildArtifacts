@@ -87,11 +87,24 @@ print.artifact_folder_paths = function(x, ...) {
    cat(sprintf("  Use %s[pkgname] to get full path.", deparse(substitute(x))), "\n")
 }
 
+dummy.dcf = function() {   # in case a dcf file does not exist, we return this
+structure(c("NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 
+"NA"), .Dim = c(1L, 10L), .Dimnames = list(NULL, c("Package", 
+"Version", "Command", "StartedAt", "EndedAt", "EllapsedTime", 
+"RetCode", "Status", "PackageFile", "PackageFileSize")))
+}
+
+safe.read.dcf = function(x) {
+   tmp = try(read.dcf(x))
+   if (!inherits(tmp, "try-error")) return(tmp)
+   return(dummy.dcf())
+   }
+
 package_by_host_data = function(afpath, host="nebbiolo2", summary_types = c("install", "buildsrc", "checksrc")) {
    stopifnot(length(afpath)==1)
    stopifnot(dir.exists(afpath))
    pas = sprintf(paste0(afpath, "/raw-results/", host, "//%s-summary.dcf"), summary_types)
-   dcfs = lapply(pas, read.dcf)
+   dcfs = lapply(pas, function(x) safe.read.dcf(x))
    names(dcfs) = summary_types
    class(dcfs) = "artifact_build_dcfs"
    dcfs
