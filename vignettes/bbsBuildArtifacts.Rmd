@@ -33,6 +33,7 @@ suppressPackageStartupMessages({
   library(bbsBuildArtifacts)
   library(dplyr)
   library(DT)
+  library(ggplot2)
 })
 bbsBuildArtifacts:::valid_types()
 ```
@@ -42,6 +43,21 @@ We don't know if all types are handled in the same way, but we hope so.
 
 Our objective is to learn the status and processing times for
 various phases of the build process for all packages.
+
+## High-level approach
+
+We define an S4 class to manage key information about builds.
+
+```{r usecl, cache=TRUE}
+af = setup_artifacts(type="bioc", version="3.14")
+af
+d = as.data.frame(af)
+head(d)
+ggplot(mutate(d, elapsed_time_sec=elapsed_time), aes(y=elapsed_time_sec, x=host)) + 
+    geom_boxplot() + facet_grid(.~phase) + scale_y_log10() 
+```
+
+## Some details
 
 ### Download and cache the report.tgz
 
