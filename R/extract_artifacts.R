@@ -63,6 +63,10 @@ setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_r
 
 
 #' basic artifact data collected to tibble
+#' @param x instance of ArtifSet
+#' @param row.names defaults to NULL
+#' @param options defaults to FALSE
+#' @param \dots unused
 #' @export
 as.data.frame.ArtifSet = function (x, row.names = NULL, optional = FALSE, ...) {
   by_host = vector("list", length(x@hostnames))

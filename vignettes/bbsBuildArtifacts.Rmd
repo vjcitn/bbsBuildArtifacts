@@ -44,7 +44,7 @@ We don't know if all types are handled in the same way, but we hope so.
 Our objective is to learn the status and processing times for
 various phases of the build process for all packages.
 
-## High-level approach
+### Artifact set manager
 
 We define an S4 class to manage key information about builds.
 
@@ -52,10 +52,24 @@ We define an S4 class to manage key information about builds.
 af = setup_artifacts(type="bioc", version="3.14")
 af
 d = as.data.frame(af)
+dim(d)
 head(d)
+sapply(split(d$elapsed_time, d$host), sum, na.rm=TRUE)/3600 # hours
+sapply(split(d$elapsed_time, d$phase), sum, na.rm=TRUE)/3600 # hours
 ggplot(mutate(d, elapsed_time_sec=elapsed_time), aes(y=elapsed_time_sec, x=host)) + 
     geom_boxplot() + facet_grid(.~phase) + scale_y_log10() 
 ```
+
+### Digging deeper
+
+We want to extract details on errors.
+
+```{r lkhd}
+package_by_host_data(af@pkg_paths["AlpsNMR"], host="tokay2")
+```
+
+Because the full check logs are available, we can use rcmdcheck check_details/parse_check
+to get more details on events.
 
 ## Some details
 

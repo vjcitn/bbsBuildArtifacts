@@ -12,4 +12,4 @@ packages, by host, by version, in the existing code.
 For the linux host nebbiolo2 we show in the vignette
 how to create the display and query:
 
-<img src="man/figures/bldhist.png"/>
+<img src="man/figures/boxes.png"/>

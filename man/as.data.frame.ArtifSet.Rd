@@ -6,6 +6,15 @@
 \usage{
 \method{as.data.frame}{ArtifSet}(x, row.names = NULL, optional = FALSE, ...)
 }
+\arguments{
+\item{x}{instance of ArtifSet}
+
+\item{row.names}{defaults to NULL}
+
+\item{\dots}{unused}
+
+\item{options}{defaults to FALSE}
+}
 \description{
 basic artifact data collected to tibble
 }
