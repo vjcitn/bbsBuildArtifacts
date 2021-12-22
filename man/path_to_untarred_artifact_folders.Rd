@@ -9,7 +9,9 @@ path_to_untarred_artifact_folders(
   type = "bioc",
   cache = BiocFileCache::BiocFileCache(),
   destination = tempdir(),
-  verbose = TRUE
+  verbose = TRUE,
+  url = NULL,
+  destbase = "/report"
 )
 }
 \arguments{
@@ -22,6 +24,10 @@ path_to_untarred_artifact_folders(
 \item{destination}{character(1) path to folder to use, defaults to `tempdir()`}
 
 \item{verbose}{logical(1) will indicate start and end of untar() process}
+
+\item{url}{passed to `get_report_tgz_cacheid`}
+
+\item{destbase}{character(1) name of folder that includes all artifacts, defaults to "report"}
 }
 \value{
 character(1) path to folder beneath which all artifacts are found
@@ -33,4 +39,9 @@ untar the artifact archive and return the path
 Typically some additional files exist in addition to the package-related folders
 at the returned path.
 `:::non_package_pattern()` can be used to find these.
+}
+\examples{
+cururl = demo_url()
+td = tempdir()
+path_to_untarred_artifact_folders(url=cururl, destination=td, destbase="test_report")
 }

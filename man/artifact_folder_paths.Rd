@@ -7,7 +7,9 @@
 artifact_folder_paths(
   version = "3.14",
   type = "bioc",
-  cache = BiocFileCache::BiocFileCache()
+  cache = BiocFileCache::BiocFileCache(),
+  url = NULL,
+  destbase = "report"
 )
 }
 \arguments{
@@ -16,7 +18,15 @@ artifact_folder_paths(
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
 
 \item{cache}{instance of `BiocFileCache::BiocFileCache()`}
+
+\item{url}{passed to `get_report_tgz_cacheid`}
+
+\item{destbase}{passed to `path_to_untarred_artifact_folders`, defaults to "report"}
 }
 \description{
 obtain all package artifact folder paths
+}
+\examples{
+cururl = demo_url()
+artifact_folder_paths(url=cururl, destbase="test_report")
 }

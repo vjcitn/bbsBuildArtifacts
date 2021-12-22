@@ -23,3 +23,7 @@ package_by_host_data(
 \description{
 ingest dcf files for a package
 }
+\examples{
+cururl = demo_url()
+af = artifact_folder_paths(url=cururl)
+}

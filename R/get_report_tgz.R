@@ -16,6 +16,11 @@ build_report_tgz_url = function(version, type) {
 }
 
 
+#' A demonstration URL with trimmed report.tgz in a local file
+#' @export
+demo_url = function() paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz",
+    package="bbsBuildArtifacts"))
+
 #' get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)
 #' @import BiocFileCache
 #' @importFrom utils download.file untar
@@ -60,19 +65,25 @@ clean_cache = function(version, type, cache=BiocFileCache::BiocFileCache()) {
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param destination character(1) path to folder to use, defaults to `tempdir()`
 #' @param verbose logical(1) will indicate start and end of untar() process
+#' @param url passed to `get_report_tgz_cacheid`
+#' @param destbase character(1) name of folder that includes all artifacts, defaults to "report"
 #' @return character(1) path to folder beneath which all artifacts are found
 #' @note Typically some additional files exist in addition to the package-related folders
 #' at the returned path.
 #' `:::non_package_pattern()` can be used to find these.
+#' @examples
+#' cururl = demo_url()
+#' td = tempdir()
+#' path_to_untarred_artifact_folders(url=cururl, destination=td, destbase="test_report")
 #' @export
 path_to_untarred_artifact_folders = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
-       destination=tempdir(), verbose=TRUE) {
-    rid = get_report_tgz_cacheid(version = version, type=type, cache=cache)
+       destination=tempdir(), verbose=TRUE, url=NULL, destbase="/report") {
+    rid = get_report_tgz_cacheid(version = version, type=type, cache=cache, url=url)
     path = cache[[rid]]
     if (verbose) message("starting untar...")
     untar(path, exdir=destination)
     if (verbose) message("done")
-    paste0(destination, "/report")
+    paste0(destination, "/", destbase)
 }
 
 # length(grep(non_package_pattern(), dir(paste0(pp, "/report"), full=TRUE), invert=TRUE)
@@ -81,9 +92,15 @@ path_to_untarred_artifact_folders = function(version = "3.14", type="bioc", cach
 #' @param version character(1) defaults to "3.14"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
+#' @param url passed to `get_report_tgz_cacheid`
+#' @param destbase passed to `path_to_untarred_artifact_folders`, defaults to "report"
+#' @examples
+#' cururl = demo_url()
+#' artifact_folder_paths(url=cururl, destbase="test_report")
 #' @export
-artifact_folder_paths = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache()) {
-   pa = path_to_untarred_artifact_folders(version=version, type=type, cache=cache)
+artifact_folder_paths = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
+   url=NULL, destbase="report") {
+   pa = path_to_untarred_artifact_folders(version=version, type=type, cache=cache, url=url, destbase=destbase)
    allpa = dir(pa, full.names=TRUE)
    vals = grep( non_package_pattern(), allpa, invert=TRUE, value=TRUE)
    names(vals) = basename(vals)  # now use vals[pkgname] to get path
@@ -98,7 +115,7 @@ artifact_folder_paths = function(version = "3.14", type="bioc", cache=BiocFileCa
 print.artifact_folder_paths = function(x, ...) {
    cat("artifact_folders_paths instance:\n")
    cat(sprintf("  There are %d folders.", length(x)), "\n")
-   cat(sprintf("  Use %s[pkgname] to get full path.", deparse(substitute(x))), "\n")
+   cat("  Subset via [pkgname] to get full path.\n")
 }
 
 dummy.dcf = function() {   # in case a dcf file does not exist, we return this
@@ -123,6 +140,9 @@ safe.read.dcf = function(x, silent=TRUE) {
 #' @param host character(1) host used in BBS
 #' @param summary_types character() defaults to `c("install", "buildsrc", "checksrc")`
 #' @param read.dcf.silent logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note
+#' @examples
+#' cururl = demo_url()
+#' af = artifact_folder_paths(url=cururl)
 #' @export
 package_by_host_data = function(afpath, host="nebbiolo2", 
       summary_types = c("install", "buildsrc", "checksrc"), read.dcf.silent = TRUE) {
