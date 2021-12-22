@@ -11,7 +11,9 @@ setup_artifacts(
   cache = BiocFileCache::BiocFileCache(),
   destination = tempdir(),
   verbose = TRUE,
-  extracted = NULL
+  extracted = NULL,
+  url = NULL,
+  destbase = "report"
 )
 }
 \arguments{
@@ -28,7 +30,16 @@ setup_artifacts(
 \item{verbose}{logical(1) if TRUE (default) will provide message about tar activity}
 
 \item{extracted}{defaults to NULL, if non-null a character(1) path to folder that holds `report` folder}
+
+\item{url}{character(1) passed to `get_report_tgz_cacheid`}
+
+\item{destbase}{character(1) name of folder holding all artifacts, defaults to 'report'}
 }
 \description{
 Create ArtifSet instance
+}
+\examples{
+cururl = demo_url()
+z = setup_artifacts(url=cururl, destbase="test_report")
+z
 }

@@ -5,6 +5,11 @@
 #' @param BPPARAM instance of a BiocParallel BiocParallelParam subclass
 #' @param which_to_use vector of elements in ArtifSet (can be package names or numeric indices), defaults to NULL
 #' in which case all elements are examined for events
+#' @examples
+#' cururl = demo_url()
+#' z = setup_artifacts(url=cururl, destbase="test_report")
+#' collect_events(z, event_class="warnings")
+#' collect_events(z, event_class="errors")
 #' @export
 collect_events = function(af, event_class="warnings", BPPARAM=BiocParallel::bpparam(), which_to_use=NULL) {
   stopifnot(event_class %in% c("warnings", "errors"))

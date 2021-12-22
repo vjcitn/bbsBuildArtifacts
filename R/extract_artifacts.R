@@ -46,20 +46,26 @@ avail_hostnames = function(x) {
 #' @param destination character(1) path to folder to use for artifacts, defaults to `tempdir()`
 #' @param verbose logical(1) if TRUE (default) will provide message about tar activity 
 #' @param extracted defaults to NULL, if non-null a character(1) path to folder that holds `report` folder
+#' @param url character(1) passed to `get_report_tgz_cacheid`
+#' @param destbase character(1) name of folder holding all artifacts, defaults to 'report'
+#' @examples
+#' cururl = demo_url()
+#' z = setup_artifacts(url=cururl, destbase="test_report")
+#' z
 #' @export
 setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_release(version),
    cache=BiocFileCache::BiocFileCache(), destination=tempdir(),
-   verbose=TRUE, extracted=NULL) {
+   verbose=TRUE, extracted=NULL, url=NULL, destbase="report") {
    if (!is.null(extracted)) destination = extracted
    else {
-       tag = get_report_tgz_cacheid(version=version, type=type, cache=cache)
+       tag = get_report_tgz_cacheid(version=version, type=type, cache=cache, url=url)
        tarpath = cache[[tag]]
        if (verbose) message("starting untar...")
        chk = try(untar(tarpath, exdir=destination))
        if (inherits(chk, "try-error")) stop("could not untar artifact tgz")
        if (verbose) message("done.")
      }
-     allfiles = dir(paste0(destination, "/report"), full.names=TRUE)
+     allfiles = dir(paste0(destination, "/", destbase), full.names=TRUE)
      all_pkg_folders = grep( bbsBuildArtifacts:::non_package_pattern(), allfiles,
          invert=TRUE, value=TRUE)
      names(all_pkg_folders) = basename(all_pkg_folders)

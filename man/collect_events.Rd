@@ -24,3 +24,9 @@ in which case all elements are examined for events}
 \description{
 scan a slice of an ArtifSet for events produced in R CMD check of source
 }
+\examples{
+cururl = demo_url()
+z = setup_artifacts(url=cururl, destbase="test_report")
+collect_events(z, event_class="warnings")
+collect_events(z, event_class="errors")
+}
