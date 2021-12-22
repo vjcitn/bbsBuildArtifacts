@@ -25,5 +25,7 @@ ingest dcf files for a package
 }
 \examples{
 cururl = demo_url()
-af = artifact_folder_paths(url=cururl)
+af = artifact_folder_paths(url=cururl, destbase="test_report")
+pbh = package_by_host_data(af["affyPara"])
+pbh
 }

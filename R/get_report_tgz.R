@@ -1,4 +1,4 @@
-#
+#warnings
 # this R file includes resources to process BBS artifacts
 #
 
@@ -142,7 +142,9 @@ safe.read.dcf = function(x, silent=TRUE) {
 #' @param read.dcf.silent logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note
 #' @examples
 #' cururl = demo_url()
-#' af = artifact_folder_paths(url=cururl)
+#' af = artifact_folder_paths(url=cururl, destbase="test_report")
+#' pbh = package_by_host_data(af["affyPara"])
+#' pbh
 #' @export
 package_by_host_data = function(afpath, host="nebbiolo2", 
       summary_types = c("install", "buildsrc", "checksrc"), read.dcf.silent = TRUE) {
@@ -152,6 +154,7 @@ package_by_host_data = function(afpath, host="nebbiolo2",
    pas = sprintf(paste0(afpath, "/raw-results/", host, "//%s-summary.dcf"), summary_types)
    chk_out_pas = paste0(afpath, "/raw-results/", host, "//checksrc-out.txt")
    bld_out_pas = paste0(afpath, "/raw-results/", host, "//buildsrc-out.txt")
+   inst_out_pas = paste0(afpath, "/raw-results/", host, "//install-out.txt")
    bldbin_out_pas = paste0(afpath, "/raw-results/", host, "//buildbin-out.txt")
    dcfs = lapply(pas, function(x) safe.read.dcf(x, silent=read.dcf.silent))
    safe.parse.check = function(x) {
@@ -165,8 +168,16 @@ package_by_host_data = function(afpath, host="nebbiolo2",
    attr(dcfs, "hostname") = host  # late discovery that host is not listed in DCF
    class(dcfs) = "artifact_build_dcfs"
    bld_txt = lapply(bld_out_pas, function(x) try(readLines(x), silent=TRUE))
-   bldbin_txt = lapply(bldbin_out_pas, function(x) try(readLines(x), silent=TRUE))
-   ans = list(dcfs=dcfs, parsed_chks = parsed_chks, bld_txt=bld_txt, bldbin_txt=bldbin_txt, host=host,
+   inst_txt = lapply(inst_out_pas, function(x) {
+                   if (!file.exists(x)) return("no install-out.txt")
+                   try(readLines(x), silent=TRUE)
+                   })
+   bldbin_txt = lapply(bldbin_out_pas, function(x) {
+                   if (!file.exists(x)) return("no buildbin-out.txt")
+                   try(readLines(x), silent=TRUE)
+                   })
+   ans = list(dcfs=dcfs, parsed_chks = parsed_chks, bld_txt=bld_txt, inst_txt=inst_txt,
+     bldbin_txt=bldbin_txt, host=host,
      pkgname = basename(afpath))
    class(ans) = "pkg_by_host_data"
    ans
