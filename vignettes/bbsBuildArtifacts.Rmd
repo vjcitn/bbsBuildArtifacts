@@ -108,7 +108,7 @@ We can produce a data table for a number of packages as follows.
 
 ```{r domore}
 few = allpaths[1:10]
-dcfs = lapply(few, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)))
+dcfs = lapply(few, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)$dcfs))
 tab = do.call(rbind, unname(dcfs))
 library(DT)
 datatable(tab)
@@ -120,7 +120,7 @@ be set to FALSE if desired.
 
 ```{r doall}
 suppressWarnings({
-alldcfs = lapply(allpaths, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)))
+alldcfs = lapply(allpaths, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)$dcfs))
 })
 fulltab = do.call(rbind, unname(alldcfs))
 ```

@@ -106,6 +106,10 @@ safe.read.dcf = function(x, silent=TRUE) {
    return(dummy.dcf())
    }
 
+###
+### Enhancement get last git commit from info.dcf and add to data FIXME
+###
+
 #' ingest dcf files for a package
 #' @param afpath an element of an artifact_folder_paths instance
 #' @param host character(1) host used in BBS
@@ -116,12 +120,21 @@ package_by_host_data = function(afpath, host="nebbiolo2",
       summary_types = c("install", "buildsrc", "checksrc"), read.dcf.silent = TRUE) {
    stopifnot(length(afpath)==1)
    stopifnot(dir.exists(afpath))
+   if (!requireNamespace("rcmdcheck")) stop("install rcmdcheck to use this function") # too heavy to import?
    pas = sprintf(paste0(afpath, "/raw-results/", host, "//%s-summary.dcf"), summary_types)
+   chk_out_pas = paste0(afpath, "/raw-results/", host, "//checksrc-out.txt")
    dcfs = lapply(pas, function(x) safe.read.dcf(x, silent=read.dcf.silent))
+   safe.parse.check = function(x) {
+     if (!file.exists(x)) return(NA)
+     ans = try(rcmdcheck::check_details(rcmdcheck::parse_check(x)))
+     if (inherits(ans, "try-error")) return(NA)
+     ans
+   }
+   parsed_chks = lapply(chk_out_pas, safe.parse.check)
    names(dcfs) = summary_types
    attr(dcfs, "hostname") = host  # late discovery that host is not listed in DCF
    class(dcfs) = "artifact_build_dcfs"
-   dcfs
+   list(dcfs=dcfs, parsed_chks = parsed_chks)
 }
 
 #' produce a data.frame from a collection of `package_by_host_data` outputs

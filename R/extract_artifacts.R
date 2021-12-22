@@ -11,10 +11,21 @@ setMethod("show", "ArtifSet", function(object) {
   cat(sprintf("  %d pkg paths for type %s, version %s.\n", length(slot(object, "pkg_paths")), 
     slot(object, "type"), slot(object, "version")))
   cat(sprintf("  %d extra file paths.\n", length(slot(object, "extra_paths"))))
+  cat("  use paths(aset)[...] to see selected paths.\n")
 })
 
+#' helper
+#' @param x instance of ArtifSet
+#' @export
+setGeneric("paths", function(x) standardGeneric("paths"))
+
+#' helper subsetter
+#' @param x instance of ArtifSet
+#' @export
+setMethod("paths", "ArtifSet", function(x) slot(x, "pkg_paths"))
+
 #' vector of hostnames for build nodes
-#' @param version character(1) defaults to '3.14'
+#' @param release character(1) defaults to '3.14'
 #' @export
 hostnames_by_release = function(release="3.14") {
  if (release=="3.14") return(c(linux="nebbiolo2", macos="machv2", windows="tokay2"))
@@ -73,8 +84,10 @@ as.data.frame.ArtifSet = function (x, row.names = NULL, optional = FALSE, ...) {
   suppressWarnings({  # lots of try() here, we know some processes don't produce data
   for (i in seq_len(length(by_host))) {
     by_host[[i]] = do.call(rbind, lapply(x@pkg_paths, function(z) simplify_artifact_build_dcfs(package_by_host_data(z,
-               host=x@hostnames[i]))))
+               host=x@hostnames[i])$dcfs)))
     }
   })
-do.call(rbind, by_host)
+ans = do.call(rbind, by_host)
+rownames(ans) = NULL
+ans
 }

@@ -7,7 +7,7 @@
 hostnames_by_release(release = "3.14")
 }
 \arguments{
-\item{version}{character(1) defaults to '3.14'}
+\item{release}{character(1) defaults to '3.14'}
 }
 \description{
 vector of hostnames for build nodes
