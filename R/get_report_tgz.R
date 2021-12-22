@@ -22,11 +22,19 @@ build_report_tgz_url = function(version, type) {
 #' @param version character(1) defaults to "3.14"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
+#' @param url defaults to NULL, if supplied, used to retrieve and cache tgz file 
 #' @return A gzipped tarball is downloaded, copied to a cache, and the cache reference is returned.
 #' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+#' @examples
+#' cururl = paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz", 
+#'     package="bbsBuildArtifacts"))
+#' id = get_report_tgz_cacheid(url=cururl)
+#' BiocFileCache::bfcquery(BiocFileCache::BiocFileCache(), cururl)
 #' @export
-get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache()) {
-    current_url = build_report_tgz_url(version, type)
+get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
+     url=NULL) {
+    if (is.null(url)) current_url = build_report_tgz_url(version, type)
+    else current_url = url
     chk = bfcquery(cache, current_url)
     if (!(length(chk$rpath)==0)) return(chk$rid)
     tf = tempfile()
@@ -101,7 +109,7 @@ structure(c("NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA",
 }
 
 safe.read.dcf = function(x, silent=TRUE) {
-   tmp = try(read.dcf(x), silent=silent)
+   tmp = suppressWarnings(try(read.dcf(x), silent=silent))
    if (!inherits(tmp, "try-error")) return(tmp)
    return(dummy.dcf())
    }
@@ -123,6 +131,8 @@ package_by_host_data = function(afpath, host="nebbiolo2",
    if (!requireNamespace("rcmdcheck")) stop("install rcmdcheck to use this function") # too heavy to import?
    pas = sprintf(paste0(afpath, "/raw-results/", host, "//%s-summary.dcf"), summary_types)
    chk_out_pas = paste0(afpath, "/raw-results/", host, "//checksrc-out.txt")
+   bld_out_pas = paste0(afpath, "/raw-results/", host, "//buildsrc-out.txt")
+   bldbin_out_pas = paste0(afpath, "/raw-results/", host, "//buildbin-out.txt")
    dcfs = lapply(pas, function(x) safe.read.dcf(x, silent=read.dcf.silent))
    safe.parse.check = function(x) {
      if (!file.exists(x)) return(NA)
@@ -134,7 +144,20 @@ package_by_host_data = function(afpath, host="nebbiolo2",
    names(dcfs) = summary_types
    attr(dcfs, "hostname") = host  # late discovery that host is not listed in DCF
    class(dcfs) = "artifact_build_dcfs"
-   list(dcfs=dcfs, parsed_chks = parsed_chks)
+   bld_txt = lapply(bld_out_pas, function(x) try(readLines(x), silent=TRUE))
+   bldbin_txt = lapply(bldbin_out_pas, function(x) try(readLines(x), silent=TRUE))
+   ans = list(dcfs=dcfs, parsed_chks = parsed_chks, bld_txt=bld_txt, bldbin_txt=bldbin_txt, host=host,
+     pkgname = basename(afpath))
+   class(ans) = "pkg_by_host_data"
+   ans
+}
+
+#' simplify presentation of pkg data
+#' @param x instance of pkg_by_host_data
+#' @param \dots not used
+#' @export
+print.pkg_by_host_data = function(x, ...) {
+ cat(sprintf("pkg_by_host_data instance for %s on host %s\n", x$pkgname, x$host))
 }
 
 #' produce a data.frame from a collection of `package_by_host_data` outputs

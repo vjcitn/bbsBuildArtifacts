@@ -4,12 +4,19 @@
 \alias{collect_events}
 \title{scan a slice of an ArtifSet for events produced in R CMD check of source}
 \usage{
-collect_events(af, event_class = "warnings", which_to_use = NULL)
+collect_events(
+  af,
+  event_class = "warnings",
+  BPPARAM = BiocParallel::bpparam(),
+  which_to_use = NULL
+)
 }
 \arguments{
 \item{af}{instance of ArtifSet}
 
 \item{event_class}{character(1) "warnings" (default) or "errors"}
+
+\item{BPPARAM}{instance of a BiocParallel BiocParallelParam subclass}
 
 \item{which_to_use}{vector of elements in ArtifSet (can be package names or numeric indices), defaults to NULL
 in which case all elements are examined for events}

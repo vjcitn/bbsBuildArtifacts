@@ -11,9 +11,9 @@
 
 \item{row.names}{defaults to NULL}
 
-\item{\dots}{unused}
+\item{optional}{defaults to FALSE}
 
-\item{options}{defaults to FALSE}
+\item{\dots}{unused}
 }
 \description{
 basic artifact data collected to tibble

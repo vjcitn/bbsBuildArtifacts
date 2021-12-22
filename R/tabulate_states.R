@@ -1,3 +1,6 @@
+#' (memoised) retrieve data.frame from BUILD_STATUS_DB.txt
+#' @param aset ArtifSet instance
+#' @export
 tabulate_states = function(aset) {
  stopifnot(inherits(aset, "ArtifSet"))
  dat = read.delim(grep("BUILD_STATUS_DB.txt", aset@extra_paths, value=TRUE)[1], sep="#", h=FALSE)

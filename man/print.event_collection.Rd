@@ -6,6 +6,11 @@
 \usage{
 \method{print}{event_collection}(x, ...)
 }
+\arguments{
+\item{x}{event_collection instance}
+
+\item{\dots}{not used}
+}
 \description{
 short report of an event collection
 }

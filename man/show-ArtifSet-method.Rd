@@ -6,6 +6,9 @@
 \usage{
 \S4method{show}{ArtifSet}(object)
 }
+\arguments{
+\item{object}{instance of ArtifSet}
+}
 \description{
 display salient information about ArtifSet
 }

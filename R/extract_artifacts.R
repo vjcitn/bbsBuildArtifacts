@@ -5,6 +5,7 @@ setClass("ArtifSet", representation(type="character", version="character",
 
 
 #' display salient information about ArtifSet
+#' @param object instance of ArtifSet
 #' @export
 setMethod("show", "ArtifSet", function(object) {
   cat("bbsBuildArtifacts ArtifSet instance.\n")
@@ -76,7 +77,7 @@ setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_r
 #' basic artifact data collected to tibble
 #' @param x instance of ArtifSet
 #' @param row.names defaults to NULL
-#' @param options defaults to FALSE
+#' @param optional defaults to FALSE
 #' @param \dots unused
 #' @export
 as.data.frame.ArtifSet = function (x, row.names = NULL, optional = FALSE, ...) {
