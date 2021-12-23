@@ -10,3 +10,18 @@ tabulate_states = function(aset) {
  dat$state = vapply(tmp, function(x)x[2], character(1))
  dat[, c("package", "host", "phase", "state")]
 }
+
+#' get info on packages with non-ok status
+#' @return a list with one element per phase in which some package produced non-OK state
+#' @param aset ArtifSet instance
+#' @examples
+#' z = make_demo_ArtifSet()
+#' packages_with_events(z)
+#' @export
+packages_with_events = function(aset) {
+ tab = tabulate_states(aset)
+ ina = names(paths(aset))
+ tab = tab[ which(tab$package %in% ina), ]
+ tmp = tab[ which(tab$state != "OK"), ]
+ split(tmp, tmp$phase)
+}

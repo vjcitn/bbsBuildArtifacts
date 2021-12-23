@@ -47,9 +47,14 @@ various phases of the build process for all packages.
 ### Artifact set manager
 
 We define an S4 class to manage key information about builds.
+We've produced a thinned version of the BBS report.tgz accessible
+in the package at `demo_url()`.  If `url` is not supplied
+to `setup_artifacts()`, the report.tgz will be retrieved
+from bioconductor.org.
 
-```{r usecl, cache=TRUE}
-af = setup_artifacts(type="bioc", version="3.14")
+```{r usecl}
+af = setup_artifacts(type="bioc", version="3.14", url=demo_url(),
+   destbase="test_report")
 af
 d = as.data.frame(af)
 dim(d)
@@ -65,7 +70,7 @@ ggplot(mutate(d, elapsed_time_sec=elapsed_time), aes(y=elapsed_time_sec, x=host)
 We want to extract details on errors.
 
 ```{r lkhd}
-package_by_host_data(af@pkg_paths["AlpsNMR"], host="tokay2")
+package_by_host_data(af@pkg_paths["affyPara"], host="tokay2")
 ```
 
 Because the full check logs are available, we can use rcmdcheck check_details/parse_check

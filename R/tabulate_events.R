@@ -16,7 +16,7 @@ collect_events = function(af, event_class="warnings", BPPARAM=BiocParallel::bppa
   if (is.null(which_to_use)) pa = paths(af)
   else pa = paths(af)[which_to_use]
   out1 = BiocParallel::bplapply(pa, function(x) package_by_host_data(x))
-  out2 = lapply(out1, function(x) try(x$parsed_chks[[1]][[event_class]], silent=TRUE))
+  out2 = lapply(out1, function(x) try(x$parsed_chks[[event_class]], silent=TRUE))
   noparse = which(sapply(out2, inherits, "try-error"))
   if (length(noparse)>0) out = out2[-noparse]
   else out=out2

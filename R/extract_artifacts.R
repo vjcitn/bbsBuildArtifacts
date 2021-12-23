@@ -98,3 +98,12 @@ ans = do.call(rbind, by_host)
 rownames(ans) = NULL
 ans
 }
+
+#' simplify production of the test ArtifSet
+#' @examples
+#' make_demo_ArtifSet()
+#' @export
+make_demo_ArtifSet = function() {
+  cururl = demo_url()
+  setup_artifacts(url=cururl, destbase="test_report")
+}
