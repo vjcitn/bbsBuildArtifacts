@@ -25,6 +25,15 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/as.data.frame.ArtifSet.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/browse_event_collection.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/collect_events.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/demo_url.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_events.html</loc>
   </url>
   <url>
@@ -43,16 +52,34 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/infr.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/make_demo_ArtifSet.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/package_by_host_data.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/packages_with_events.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/path_to_untarred_artifact_folders.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/paths-ArtifSet-method.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/paths.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_folder_paths.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_paths.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.event_collection.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.pkg_by_host_data.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/sc_614.html</loc>
@@ -77,5 +104,8 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/tabulate_bbs_metrics.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/tabulate_states.html</loc>
   </url>
 </urlset>

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.17</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>ingest dcf files for a package</h1>
-    <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/R/get_report_tgz.R" class="external-link"><code>R/get_report_tgz.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/R/package_by_host_data.R" class="external-link"><code>R/package_by_host_data.R</code></a></small>
     <div class="hidden name"><code>package_by_host_data.Rd</code></div>
     </div>
 
@@ -79,6 +79,18 @@
 <dd><p>logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note</p></dd>
 </dl></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">cururl</span> <span class="op">=</span> <span class="fu"><a href="demo_url.html">demo_url</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="artifact_folder_paths.html">artifact_folder_paths</a></span><span class="op">(</span>url<span class="op">=</span><span class="va">cururl</span>, destbase<span class="op">=</span><span class="st">"test_report"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> done</span>
+<span class="r-in"><span class="va">pbh</span> <span class="op">=</span> <span class="fu">package_by_host_data</span><span class="op">(</span><span class="va">af</span><span class="op">[</span><span class="st">"affyPara"</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: rcmdcheck</span>
+<span class="r-in"><span class="va">pbh</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for affyPara on host nebbiolo2</span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

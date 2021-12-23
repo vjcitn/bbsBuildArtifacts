@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.17</span>
       </span>
     </div>
 
@@ -62,7 +62,9 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">artifact_folder_paths</span><span class="op">(</span>
   version <span class="op">=</span> <span class="st">"3.14"</span>,
   type <span class="op">=</span> <span class="st">"bioc"</span>,
-  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>
+  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,
+  url <span class="op">=</span> <span class="cn">NULL</span>,
+  destbase <span class="op">=</span> <span class="st">"report"</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -74,8 +76,23 @@
 <dd><p>character(1) defaults to 'bioc' which implies 'software'; see Note.</p></dd>
 <dt>cache</dt>
 <dd><p>instance of `BiocFileCache::BiocFileCache()`</p></dd>
+<dt>url</dt>
+<dd><p>passed to `get_report_tgz_cacheid`</p></dd>
+<dt>destbase</dt>
+<dd><p>passed to `path_to_untarred_artifact_folders`, defaults to "report"</p></dd>
 </dl></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">cururl</span> <span class="op">=</span> <span class="fu"><a href="demo_url.html">demo_url</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">artifact_folder_paths</span><span class="op">(</span>url<span class="op">=</span><span class="va">cururl</span>, destbase<span class="op">=</span><span class="st">"test_report"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> done</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> artifact_folders_paths instance:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   There are 15 folders. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Subset via [pkgname] to get full path.</span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

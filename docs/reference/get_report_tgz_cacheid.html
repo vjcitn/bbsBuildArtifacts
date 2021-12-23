@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.17</span>
       </span>
     </div>
 
@@ -62,7 +62,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_report_tgz_cacheid</span><span class="op">(</span>
   version <span class="op">=</span> <span class="st">"3.14"</span>,
   type <span class="op">=</span> <span class="st">"bioc"</span>,
-  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>
+  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,
+  url <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -74,6 +75,8 @@
 <dd><p>character(1) defaults to 'bioc' which implies 'software'; see Note.</p></dd>
 <dt>cache</dt>
 <dd><p>instance of `BiocFileCache::BiocFileCache()`</p></dd>
+<dt>url</dt>
+<dd><p>defaults to NULL, if supplied, used to retrieve and cache tgz file</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -84,6 +87,19 @@
     <p>Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">cururl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"file://"</span>, <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"test_report_3.14_bioc_20211210/test_report.tgz"</span>, </span>
+<span class="r-in">    package<span class="op">=</span><span class="st">"bbsBuildArtifacts"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">id</span> <span class="op">=</span> <span class="fu">get_report_tgz_cacheid</span><span class="op">(</span>url<span class="op">=</span><span class="va">cururl</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">bfcquery</a></span><span class="op">(</span><span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">cururl</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rid    rname  create_time access_time rpath rtype fpath last_modified_t… etag </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC109 file:… 2021-12-23… 2021-12-23… /Use… rela… /var…               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: expires &lt;dbl&gt;</span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

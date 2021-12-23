@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.17</span>
       </span>
     </div>
 
@@ -69,6 +69,18 @@
         </td>
         <td><p>basic artifact data collected to tibble</p></td>
       </tr><tr><td>
+          <p><code><a href="browse_event_collection.html">browse_event_collection()</a></code> </p>
+        </td>
+        <td><p>app to get details on events in packages</p></td>
+      </tr><tr><td>
+          <p><code><a href="collect_events.html">collect_events()</a></code> </p>
+        </td>
+        <td><p>scan a slice of an ArtifSet for events produced in R CMD check of source</p></td>
+      </tr><tr><td>
+          <p><code><a href="demo_url.html">demo_url()</a></code> </p>
+        </td>
+        <td><p>A demonstration URL with trimmed report.tgz in a local file</p></td>
+      </tr><tr><td>
           <p><code><a href="get_report_tgz_cacheid.html">get_report_tgz_cacheid()</a></code> </p>
         </td>
         <td><p>get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)</p></td>
@@ -77,17 +89,41 @@
         </td>
         <td><p>vector of hostnames for build nodes</p></td>
       </tr><tr><td>
+          <p><code><a href="make_demo_ArtifSet.html">make_demo_ArtifSet()</a></code> </p>
+        </td>
+        <td><p>simplify production of the test ArtifSet</p></td>
+      </tr><tr><td>
           <p><code><a href="package_by_host_data.html">package_by_host_data()</a></code> </p>
         </td>
         <td><p>ingest dcf files for a package</p></td>
+      </tr><tr><td>
+          <p><code><a href="packages_with_events.html">packages_with_events()</a></code> </p>
+        </td>
+        <td><p>get info on packages with non-ok status</p></td>
       </tr><tr><td>
           <p><code><a href="path_to_untarred_artifact_folders.html">path_to_untarred_artifact_folders()</a></code> </p>
         </td>
         <td><p>untar the artifact archive and return the path</p></td>
       </tr><tr><td>
+          <p><code><a href="paths-ArtifSet-method.html">paths(<i>&lt;ArtifSet&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>helper subsetter</p></td>
+      </tr><tr><td>
+          <p><code><a href="paths.html">paths()</a></code> </p>
+        </td>
+        <td><p>helper</p></td>
+      </tr><tr><td>
           <p><code><a href="print.artifact_folder_paths.html">print(<i>&lt;artifact_folder_paths&gt;</i>)</a></code> </p>
         </td>
         <td><p>show artifact paths nicely</p></td>
+      </tr><tr><td>
+          <p><code><a href="print.event_collection.html">print(<i>&lt;event_collection&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>short report of an event collection</p></td>
+      </tr><tr><td>
+          <p><code><a href="print.pkg_by_host_data.html">print(<i>&lt;pkg_by_host_data&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>simplify presentation of pkg data</p></td>
       </tr><tr><td>
           <p><code><a href="setup_artifacts.html">setup_artifacts()</a></code> </p>
         </td>
@@ -104,6 +140,10 @@
           <p><code><a href="simplify_artifact_build_dcfs.html">simplify_artifact_build_dcfs()</a></code> </p>
         </td>
         <td><p>produce a data.frame from a collection of `package_by_host_data` outputs</p></td>
+      </tr><tr><td>
+          <p><code><a href="tabulate_states.html">tabulate_states()</a></code> </p>
+        </td>
+        <td><p>(memoised) retrieve data.frame from BUILD_STATUS_DB.txt</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
