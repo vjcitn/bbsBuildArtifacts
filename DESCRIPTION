@@ -1,6 +1,6 @@
 Package: bbsBuildArtifacts
 Title: analyze build artifacts for Bioconductor
-Version: 0.0.20
+Version: 0.0.21
 Authors@R:
     person(given = "Vince",
            family = "Carey",
@@ -10,7 +10,8 @@ Authors@R:
 Description: Data structures and tools are provided for build artifact analysis.
 Depends: R (>= 4.0.0), utils
 Suggests: knitr, BiocStyle, testthat, rmarkdown, DT, ggplot2
-Imports: rcmdcheck, dplyr, BiocFileCache, memoise, shiny, BiocParallel
+Imports: rcmdcheck, dplyr, BiocFileCache, memoise, shiny, BiocParallel,
+	lubridate
 License: Artistic-2.0
 VignetteBuilder: knitr
 biocViews: Infrastructure
