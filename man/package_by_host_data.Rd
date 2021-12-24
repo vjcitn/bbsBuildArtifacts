@@ -7,7 +7,7 @@
 package_by_host_data(
   afpath,
   host = "nebbiolo2",
-  summary_types = c("install", "buildsrc", "checksrc"),
+  summary_types = c("install", "buildsrc", "checksrc", "buildbin"),
   read.dcf.silent = TRUE
 )
 }
@@ -16,7 +16,7 @@ package_by_host_data(
 
 \item{host}{character(1) host used in BBS}
 
-\item{summary_types}{character() defaults to `c("install", "buildsrc", "checksrc")`}
+\item{summary_types}{character() defaults to `c("install", "buildsrc", "checksrc", "buildbin")`}
 
 \item{read.dcf.silent}{logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note}
 }
@@ -28,4 +28,5 @@ cururl = demo_url()
 af = artifact_folder_paths(url=cururl, destbase="test_report")
 pbh = package_by_host_data(af["affyPara"])
 pbh
+package_by_host_data(af["SummarizedExperiment"])
 }
