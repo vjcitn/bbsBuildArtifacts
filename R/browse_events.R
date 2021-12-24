@@ -20,9 +20,9 @@ browse_events = function(af) {
     output$errtxt = renderPrint({
       validate(need(nchar(input$eventtype)>0, "waiting"))
       validate(need(nchar(input$curpack)>0, "waiting"))
-      print(input$eventtype)
-      print(input$curpack)
-      bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=input$host )[[input$eventtype]] 
+      dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=input$host )
+      if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
+      else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
       })
     }
 
