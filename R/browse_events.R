@@ -1,6 +1,9 @@
 #' app to get details on events in packages
 #' @param af ArtifSet S4 instance
 #' @import shiny
+#' @examples
+#' af = make_demo_ArtifSet()
+#' browse_events(af)
 #' @export
 browse_events = function(af) {
   stopifnot(inherits(af, "ArtifSet"))
