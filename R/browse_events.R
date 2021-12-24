@@ -17,26 +17,40 @@ browse_events = function(af) {
      selectInput("curpack", "packs", choices=get_packnames(input$eventtype))
      })
     output$def = renderPlot(plot(1, main=input$eventtype))
-    output$errtxt = renderPrint({
+    output$errtxt_old = renderPrint({
       validate(need(nchar(input$eventtype)>0, "waiting"))
       validate(need(nchar(input$curpack)>0, "waiting"))
       dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=input$host )
       if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
       else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
       })
-    }
+    get_err_txt = reactive({
+      function(HOST) {
+       validate(need(nchar(input$eventtype)>0, "waiting"))
+       validate(need(nchar(input$curpack)>0, "waiting"))
+       dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=HOST )
+       if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
+       else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
+       }
+      })
+    output$errtxt_neb = renderPrint({  get_err_txt()("nebbiolo2") })  # EVENTUALLY LINUX
+    output$errtxt_tok = renderPrint({  get_err_txt()("tokay2") })  # EVENTUALL WINDOWS
+    output$errtxt_mac = renderPrint({  get_err_txt()("machv2") })  # EVENTUALL MAC
+   }
 
   ui = fluidPage(
    sidebarLayout(
     sidebarPanel(
      helpText("event browser"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
-     radioButtons("host", "host", choices=c("nebbiolo2", "machv2", "tokay2")),
+     #radioButtons("host", "host", choices=c("nebbiolo2", "machv2", "tokay2")),
      uiOutput("abc")
      ),
     mainPanel(
      tabsetPanel(
-      tabPanel("stuf", verbatimTextOutput( "errtxt" ))
+      tabPanel("linux", verbatimTextOutput( "errtxt_neb" )),
+      tabPanel("windows", verbatimTextOutput( "errtxt_tok" )),
+      tabPanel("macos", verbatimTextOutput( "errtxt_mac" ))
       )
      )
     )
