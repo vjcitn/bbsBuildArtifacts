@@ -17,13 +17,14 @@ browse_events = function(af) {
      selectInput("curpack", "packs", choices=get_packnames(input$eventtype))
      })
     output$def = renderPlot(plot(1, main=input$eventtype))
-    output$errtxt_old = renderPrint({
-      validate(need(nchar(input$eventtype)>0, "waiting"))
-      validate(need(nchar(input$curpack)>0, "waiting"))
-      dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=input$host )
-      if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
-      else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
-      })
+#    output$errtxt_old = renderPrint({
+#      validate(need(nchar(input$eventtype)>0, "waiting"))
+#      validate(need(nchar(input$curpack)>0, "waiting"))
+#      dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=input$host )
+#      if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
+#      else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
+#      else if (input$eventtype=="wontinstall") cat(dat$bld_txt)
+#      })
     get_err_txt = reactive({
       function(HOST) {
        validate(need(nchar(input$eventtype)>0, "waiting"))
@@ -31,6 +32,7 @@ browse_events = function(af) {
        dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=HOST )
        if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
        else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
+       else if (input$eventtype=="wontinstall") cat(dat$bld_txt, sep="\n") # a readLines result
        }
       })
     output$errtxt_neb = renderPrint({  get_err_txt()("nebbiolo2") })  # EVENTUALLY LINUX
