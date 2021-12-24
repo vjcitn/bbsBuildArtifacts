@@ -3,7 +3,9 @@
 #' @import shiny
 #' @examples
 #' af = make_demo_ArtifSet()
-#' browse_events(af)
+#' if (interactive()) {
+#'  browse_events(af)
+#' }
 #' @export
 browse_events = function(af) {
   stopifnot(inherits(af, "ArtifSet"))

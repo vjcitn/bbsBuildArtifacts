@@ -14,5 +14,7 @@ app to get details on events in packages
 }
 \examples{
 af = make_demo_ArtifSet()
-browse_events(af)
+if (interactive()) {
+ browse_events(af)
+}
 }

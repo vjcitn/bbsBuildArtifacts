@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.19</span>
       </span>
     </div>
 
@@ -62,7 +62,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">package_by_host_data</span><span class="op">(</span>
   <span class="va">afpath</span>,
   host <span class="op">=</span> <span class="st">"nebbiolo2"</span>,
-  summary_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"install"</span>, <span class="st">"buildsrc"</span>, <span class="st">"checksrc"</span><span class="op">)</span>,
+  summary_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"install"</span>, <span class="st">"buildsrc"</span>, <span class="st">"checksrc"</span>, <span class="st">"buildbin"</span><span class="op">)</span>,
   read.dcf.silent <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -74,7 +74,7 @@
 <dt>host</dt>
 <dd><p>character(1) host used in BBS</p></dd>
 <dt>summary_types</dt>
-<dd><p>character() defaults to `c("install", "buildsrc", "checksrc")`</p></dd>
+<dd><p>character() defaults to `c("install", "buildsrc", "checksrc", "buildbin")`</p></dd>
 <dt>read.dcf.silent</dt>
 <dd><p>logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note</p></dd>
 </dl></div>
@@ -86,9 +86,13 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> done</span>
 <span class="r-in"><span class="va">pbh</span> <span class="op">=</span> <span class="fu">package_by_host_data</span><span class="op">(</span><span class="va">af</span><span class="op">[</span><span class="st">"affyPara"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: rcmdcheck</span>
 <span class="r-in"><span class="va">pbh</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for affyPara on host nebbiolo2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   last commit: 2021-10-26 16:52:06, n_err=NA, n_warn=NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [NA for n_err implies R CMD check could not be run...]</span>
+<span class="r-in"><span class="fu">package_by_host_data</span><span class="op">(</span><span class="va">af</span><span class="op">[</span><span class="st">"SummarizedExperiment"</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for SummarizedExperiment on host nebbiolo2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   last commit: 2021-10-26 17:20:46, n_err=0, n_warn=0</span>
 </code></pre></div>
     </div>
   </div>
