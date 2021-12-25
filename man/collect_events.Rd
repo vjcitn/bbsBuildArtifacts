@@ -6,6 +6,7 @@
 \usage{
 collect_events(
   af,
+  host,
   event_class = "warnings",
   BPPARAM = BiocParallel::bpparam(),
   which_to_use = NULL
@@ -13,6 +14,8 @@ collect_events(
 }
 \arguments{
 \item{af}{instance of ArtifSet}
+
+\item{host}{character(1) name of host on which build report was generated}
 
 \item{event_class}{character(1) "warnings" (default) or "errors"}
 

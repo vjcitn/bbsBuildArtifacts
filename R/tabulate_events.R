@@ -2,6 +2,7 @@
 #' @importFrom BiocParallel bpparam bplapply
 #' @param af instance of ArtifSet
 #' @param event_class character(1) "warnings" (default) or "errors"
+#' @param host character(1) name of host on which build report was generated
 #' @param BPPARAM instance of a BiocParallel BiocParallelParam subclass
 #' @param which_to_use vector of elements in ArtifSet (can be package names or numeric indices), defaults to NULL
 #' in which case all elements are examined for events
@@ -11,11 +12,12 @@
 #' collect_events(z, event_class="warnings")
 #' collect_events(z, event_class="errors")
 #' @export
-collect_events = function(af, event_class="warnings", BPPARAM=BiocParallel::bpparam(), which_to_use=NULL) {
+collect_events = function(af, host, event_class="warnings", BPPARAM=BiocParallel::bpparam(), which_to_use=NULL) {
   stopifnot(event_class %in% c("warnings", "errors"))
+  if (missing(host)) stop("must supply host")
   if (is.null(which_to_use)) pa = paths(af)
   else pa = paths(af)[which_to_use]
-  out1 = BiocParallel::bplapply(pa, function(x) package_by_host_data(x))
+  out1 = BiocParallel::bplapply(pa, function(x) package_by_host_data(x, host=host))
   out2 = lapply(out1, function(x) try(x$parsed_chks[[event_class]], silent=TRUE))
   noparse = which(sapply(out2, inherits, "try-error"))
   if (length(noparse)>0) out = out2[-noparse]

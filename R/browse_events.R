@@ -12,40 +12,39 @@
 browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
   stopifnot(inherits(af, "ArtifSet"))
   stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
-  ec = collect_events(af, event_class="errors")
-  wc = collect_events(af, event_class="warnings")
-  get_packnames = function(type) {
-   if (type == "errors") return(names(ec$events))
-   else if (type == "warnings") return(names(wc$events))
-   else if (type == "wontinstall") return(names(wc$noparse_paths))  # should be same in ec,wc
-   else stop("unrecognized type")
-   }
   server = function(input, output, session) {
-    output$abc = renderUI({
-     selectInput("curpack", "packs", choices=get_packnames(input$eventtype))
+    output$pack_selector = renderUI({
+     curhost = build_hosts[ input$curtab ]
+     eventmap = c(errors="ERROR", warnings="WARNINGS", 
+             wontinstall="wontinstall", skipped="skipped", timeout="TIMEOUT")
+     cur_event_class = eventmap[input$eventtype]
+#
+# the 'selected' parameter below is intended to make this 'sticky' as we
+# move across tabs -- we'll recompute the pack list for each host, and
+# select the 'current' one if present, as we switch tabs
+#
+     selectInput("curpack", "packs", choices=packnames_with_events(af=af, host=curhost,
+           phase=input$phase, event_class=cur_event_class), selected=input$curpack)
      })
-    output$def = renderPlot(plot(1, main=input$eventtype))
-#    output$errtxt_old = renderPrint({
-#      validate(need(nchar(input$eventtype)>0, "waiting"))
-#      validate(need(nchar(input$curpack)>0, "waiting"))
-#      dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=input$host )
-#      if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
-#      else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
-#      else if (input$eventtype=="wontinstall") cat(dat$bld_txt)
-#      })
-    get_err_txt = reactive({
+     get_err_txt = reactive({
       function(HOST) {
        validate(need(nchar(input$eventtype)>0, "waiting"))
        validate(need(nchar(input$curpack)>0, "waiting"))
-       dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=HOST )
-       if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
-       else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
-       else if (input$eventtype=="wontinstall") cat(dat$bld_txt, sep="\n") # a readLines result
+       validate(need(nchar(input$phase)>0, "waiting"))
+       dat = bbsBuildArtifacts::package_by_host_data( paths(af)[input$curpack], host=HOST )
+       if (input$eventtype=="wontinstall") return(cat(dat$bld_txt, sep="\n")) # a readLines result
+       lk = dat$parsed_chks
+       if (is.na(lk[[1]])) return(cat("no parsed check output available\n"))
+       if (input$eventtype=="errors") cat(lk$errors)
+       else if (input$eventtype=="warnings") cat(lk$warnings)
        }
       })
     output$errtxt_lin = renderPrint({  get_err_txt()(build_hosts["linux"]) })  
     output$errtxt_win = renderPrint({  get_err_txt()(build_hosts["windows"]) })  
     output$errtxt_mac = renderPrint({  get_err_txt()(build_hosts["macos"]) })
+    observeEvent(input$stopBtn, {
+       stopApp(returnValue=NULL)   # could return information here
+      })
    }
 
   ui = fluidPage(
@@ -53,13 +52,17 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
     sidebarPanel(
      helpText("event browser"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
-     uiOutput("abc")
+     radioButtons("phase", "phase", choices=c("install", "buildsrc", "checksrc", "buildbin"),
+       selected="checksrc"),
+     uiOutput("pack_selector"),
+#     actionButton("Reset", "Reset packs."),
+     actionButton("stopBtn", "Stop app.")
      ),
     mainPanel(
-     tabsetPanel(
-      tabPanel("linux", verbatimTextOutput( "errtxt_lin" )),
-      tabPanel("windows", verbatimTextOutput( "errtxt_win" )),
-      tabPanel("macos", verbatimTextOutput( "errtxt_mac" ))
+     tabsetPanel(id="curtab",
+      tabPanel("linux", id="linux", verbatimTextOutput( "errtxt_lin" )),
+      tabPanel("windows", id="windows", verbatimTextOutput( "errtxt_win" )),
+      tabPanel("macos", id="macos", verbatimTextOutput( "errtxt_mac" ))
       )
      )
     )
