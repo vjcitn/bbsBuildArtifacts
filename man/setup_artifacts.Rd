@@ -38,6 +38,9 @@ setup_artifacts(
 \description{
 Create ArtifSet instance
 }
+\note{
+Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+}
 \examples{
 cururl = demo_url()
 z = setup_artifacts(url=cururl, destbase="test_report")

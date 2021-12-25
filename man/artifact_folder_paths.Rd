@@ -26,6 +26,9 @@ artifact_folder_paths(
 \description{
 obtain all package artifact folder paths
 }
+\note{
+Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+}
 \examples{
 cururl = demo_url()
 artifact_folder_paths(url=cururl, destbase="test_report")

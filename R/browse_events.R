@@ -1,5 +1,7 @@
 #' app to get details on events in packages
 #' @param af ArtifSet S4 instance
+#' @param build_hosts named character(3) names of elements must be 'linux', 'macos', 'windows',
+#' element values are the host names used in the construction of html in package build report.
 #' @import shiny
 #' @examples
 #' af = make_demo_ArtifSet()
@@ -7,8 +9,9 @@
 #'  browse_events(af)
 #' }
 #' @export
-browse_events = function(af) {
+browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
   stopifnot(inherits(af, "ArtifSet"))
+  stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
   ec = collect_events(af, event_class="errors")
   wc = collect_events(af, event_class="warnings")
   get_packnames = function(type) {
@@ -40,9 +43,9 @@ browse_events = function(af) {
        else if (input$eventtype=="wontinstall") cat(dat$bld_txt, sep="\n") # a readLines result
        }
       })
-    output$errtxt_neb = renderPrint({  get_err_txt()("nebbiolo2") })  # EVENTUALLY LINUX
-    output$errtxt_tok = renderPrint({  get_err_txt()("tokay2") })  # EVENTUALL WINDOWS
-    output$errtxt_mac = renderPrint({  get_err_txt()("machv2") })  # EVENTUALL MAC
+    output$errtxt_lin = renderPrint({  get_err_txt()(build_hosts["linux"]) })  
+    output$errtxt_win = renderPrint({  get_err_txt()(build_hosts["windows"]) })  
+    output$errtxt_mac = renderPrint({  get_err_txt()(build_hosts["macos"]) })
    }
 
   ui = fluidPage(
@@ -50,13 +53,12 @@ browse_events = function(af) {
     sidebarPanel(
      helpText("event browser"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
-     #radioButtons("host", "host", choices=c("nebbiolo2", "machv2", "tokay2")),
      uiOutput("abc")
      ),
     mainPanel(
      tabsetPanel(
-      tabPanel("linux", verbatimTextOutput( "errtxt_neb" )),
-      tabPanel("windows", verbatimTextOutput( "errtxt_tok" )),
+      tabPanel("linux", verbatimTextOutput( "errtxt_lin" )),
+      tabPanel("windows", verbatimTextOutput( "errtxt_win" )),
       tabPanel("macos", verbatimTextOutput( "errtxt_mac" ))
       )
      )

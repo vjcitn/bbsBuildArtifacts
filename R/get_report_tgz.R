@@ -71,6 +71,7 @@ clean_cache = function(version, type, cache=BiocFileCache::BiocFileCache()) {
 #' @note Typically some additional files exist in addition to the package-related folders
 #' at the returned path.
 #' `:::non_package_pattern()` can be used to find these.
+#' Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
 #' @examples
 #' cururl = demo_url()
 #' td = tempdir()
@@ -94,6 +95,7 @@ path_to_untarred_artifact_folders = function(version = "3.14", type="bioc", cach
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param url passed to `get_report_tgz_cacheid`
 #' @param destbase passed to `path_to_untarred_artifact_folders`, defaults to "report"
+#' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
 #' @examples
 #' cururl = demo_url()
 #' artifact_folder_paths(url=cururl, destbase="test_report")

@@ -48,6 +48,7 @@ avail_hostnames = function(x) {
 #' @param extracted defaults to NULL, if non-null a character(1) path to folder that holds `report` folder
 #' @param url character(1) passed to `get_report_tgz_cacheid`
 #' @param destbase character(1) name of folder holding all artifacts, defaults to 'report'
+#' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
 #' @examples
 #' cururl = demo_url()
 #' z = setup_artifacts(url=cururl, destbase="test_report")

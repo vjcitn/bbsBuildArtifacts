@@ -39,6 +39,7 @@ untar the artifact archive and return the path
 Typically some additional files exist in addition to the package-related folders
 at the returned path.
 `:::non_package_pattern()` can be used to find these.
+Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
 }
 \examples{
 cururl = demo_url()
