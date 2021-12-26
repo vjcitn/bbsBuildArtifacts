@@ -2,7 +2,7 @@
 % Please edit documentation in R/tabulate_states.R
 \name{tabulate_states}
 \alias{tabulate_states}
-\title{(memoised) retrieve data.frame from BUILD_STATUS_DB.txt}
+\title{(can be memoised) retrieve data.frame from BUILD_STATUS_DB.txt}
 \usage{
 tabulate_states(aset)
 }
@@ -10,5 +10,8 @@ tabulate_states(aset)
 \item{aset}{ArtifSet instance}
 }
 \description{
-(memoised) retrieve data.frame from BUILD_STATUS_DB.txt
+(can be memoised) retrieve data.frame from BUILD_STATUS_DB.txt
+}
+\note{
+Restricts attention to packages in available paths.
 }

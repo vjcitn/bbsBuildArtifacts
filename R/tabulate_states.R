@@ -1,14 +1,17 @@
-#' (memoised) retrieve data.frame from BUILD_STATUS_DB.txt
+#' (can be memoised) retrieve data.frame from BUILD_STATUS_DB.txt
 #' @param aset ArtifSet instance
+#' @note Restricts attention to packages in available paths.
 #' @export
 tabulate_states = function(aset) {
  stopifnot(inherits(aset, "ArtifSet"))
+ avail = names(paths(aset))
  dat = read.delim(grep("BUILD_STATUS_DB.txt", aset@extra_paths, value=TRUE)[1], sep="#", h=FALSE)
  names(dat) = c("package", "host", "ph.stat")
  tmp = strsplit(dat$ph.stat, ": ")
  dat$phase = vapply(tmp, function(x)x[1], character(1))
  dat$state = vapply(tmp, function(x)x[2], character(1))
  dat[, c("package", "host", "phase", "state")]
+ dat[which(dat$package %in% avail), ]
 }
 
 #' get info on packages with non-ok status

@@ -12,28 +12,24 @@
   library(shiny)
   library(bbsBuildArtifacts)
   af <<- make_demo_ArtifSet()
-  ec <<- collect_events(af, event_class="errors")
-  wc <<- collect_events(af, event_class="warnings")
-  get_packnames = function(type) {
-   if (type == "errors") return(names(ec$events))
-   else if (type == "warnings") return(names(wc$events))
-   else if (type == "wontinstall") return(names(wc$noparse_paths))  # should be same in ec,wc
-   else stop("unrecognized type")
-   }
+  build_hosts <<- c(linux="nebbiolo2", macos="machv2", windows="tokay2")
 
   ui = fluidPage(
    sidebarLayout(
     sidebarPanel(
-     helpText("bbsBuildArtifacts event browser -- very limited slice of data collected 10 December 2021 for demonstration purposes"),
+     helpText("event browser"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
-     #radioButtons("host", "host", choices=c("nebbiolo2", "machv2", "tokay2")),
-     uiOutput("abc")
+     radioButtons("phase", "phase", choices=c("install", "buildsrc", "checksrc", "buildbin"),
+       selected="checksrc"),
+     uiOutput("pack_selector"),
+#     actionButton("Reset", "Reset packs."),
+     actionButton("stopBtn", "Stop app.")
      ),
     mainPanel(
-     tabsetPanel(
-      tabPanel("linux", verbatimTextOutput( "errtxt_neb" )),
-      tabPanel("windows", verbatimTextOutput( "errtxt_tok" )),
-      tabPanel("macos", verbatimTextOutput( "errtxt_mac" ))
+     tabsetPanel(id="curtab",
+      tabPanel("linux", id="linux", verbatimTextOutput( "errtxt_lin" )),
+      tabPanel("windows", id="windows", verbatimTextOutput( "errtxt_win" )),
+      tabPanel("macos", id="macos", verbatimTextOutput( "errtxt_mac" ))
       )
      )
     )

@@ -11,31 +11,41 @@
 #  stopifnot(inherits(af, "ArtifSet"))
   library(shiny)
   library(bbsBuildArtifacts)
-#  af <<- make_demo_ArtifSet()
-#  ec = collect_events(af, event_class="errors")
-#  wc = collect_events(af, event_class="warnings")
-  get_packnames = function(type) {
-   if (type == "errors") return(names(ec$events))
-   else if (type == "warnings") return(names(wc$events))
-   else if (type == "wontinstall") return(names(wc$noparse_paths))  # should be same in ec,wc
-   else stop("unrecognized type")
-   }
+
+
   server = function(input, output, session) {
-    output$abc = renderUI({
-     selectInput("curpack", "packs", choices=get_packnames(input$eventtype))
+    output$pack_selector = renderUI({
+     curhost = build_hosts[ input$curtab ]
+     eventmap = c(errors="ERROR", warnings="WARNINGS", 
+             wontinstall="wontinstall", skipped="skipped", timeout="TIMEOUT")
+     cur_event_class = eventmap[input$eventtype]
+#
+# the 'selected' parameter below is intended to make this 'sticky' as we
+# move across tabs -- we'll recompute the pack list for each host, and
+# select the 'current' one if present, as we switch tabs
+#
+     selectInput("curpack", "packs", choices=packnames_with_events(af=af, host=curhost,
+           phase=input$phase, event_class=cur_event_class), selected=input$curpack)
      })
-    output$def = renderPlot(plot(1, main=input$eventtype))
-    get_err_txt = reactive({
+     get_err_txt = reactive({
       function(HOST) {
-       validate(need(nchar(input$eventtype)>0, "waiting"))
-       validate(need(nchar(input$curpack)>0, "waiting"))
-       dat = bbsBuildArtifacts:::package_by_host_data( paths(af)[input$curpack], host=HOST )
-       if (input$eventtype=="errors") cat(dat$parsed_chks$errors)
-       else if (input$eventtype=="warnings") cat(dat$parsed_chks$warnings)
-       else if (input$eventtype=="wontinstall") cat(dat$bld_txt, sep="\n") # a readLines result
+       validate(need(nchar(input$eventtype)>0, "no entry with this set of choices"))
+       validate(need(nchar(input$curpack)>0, "no entry with this set of choices"))
+       validate(need(nchar(input$phase)>0, "no entry with this set of choices"))
+       validate(need(dir.exists(paths(af)[input$curpack]), "no entry with this set of choices"))
+       dat = bbsBuildArtifacts::package_by_host_data( paths(af)[input$curpack], host=HOST )
+       if (input$eventtype=="wontinstall") return(cat(dat$bld_txt, sep="\n")) # a readLines result
+       lk = dat$parsed_chks
+       if (is.na(lk[[1]])) return(cat("no parsed check output available\n"))
+       if (input$eventtype=="errors") cat(lk$errors)
+       else if (input$eventtype=="warnings") cat(lk$warnings)
        }
       })
-    output$errtxt_neb = renderPrint({  get_err_txt()("nebbiolo2") })  # EVENTUALLY LINUX
-    output$errtxt_tok = renderPrint({  get_err_txt()("tokay2") })  # EVENTUALL WINDOWS
-    output$errtxt_mac = renderPrint({  get_err_txt()("machv2") })  # EVENTUALL MAC
+    output$errtxt_lin = renderPrint({  get_err_txt()(build_hosts["linux"]) })  
+    output$errtxt_win = renderPrint({  get_err_txt()(build_hosts["windows"]) })  
+    output$errtxt_mac = renderPrint({  get_err_txt()(build_hosts["macos"]) })
+    observeEvent(input$stopBtn, {
+       stopApp(returnValue=NULL)   # could return information here
+      })
    }
+

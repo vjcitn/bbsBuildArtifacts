@@ -1,0 +1,14 @@
+name: bbsBrowseEvents
+title: bbsBrowseEvents
+username:
+account: vjcitn
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5368045
+bundleId: 5409339
+url: https://vjcitn.shinyapps.io/bbsBrowseEvents/
+when: 1640483779.03356
+lastSyncTime: 1640483779.03357
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: browse_events.R|old_server.R

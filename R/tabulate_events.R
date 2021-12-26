@@ -9,8 +9,8 @@
 #' @examples
 #' cururl = demo_url()
 #' z = setup_artifacts(url=cururl, destbase="test_report")
-#' collect_events(z, event_class="warnings")
-#' collect_events(z, event_class="errors")
+#' collect_events(z, event_class="warnings", host="nebbiolo2")
+#' collect_events(z, event_class="errors", host="nebbiolo2")
 #' @export
 collect_events = function(af, host, event_class="warnings", BPPARAM=BiocParallel::bpparam(), which_to_use=NULL) {
   stopifnot(event_class %in% c("warnings", "errors"))
