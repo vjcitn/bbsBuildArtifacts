@@ -83,16 +83,3 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
 
 #readLines("/Users/vincentcarey/report/affyPara/raw-results/nebbiolo2/install-out.txt")
 
-get_inst_error_text_by_host = function(pkname, af, host) {
-  stopifnot(host %in% c("nebbiolo2", "tokay2", "machv2")) # FIXME
-  pa = paths(af)[pkname]
-  stopifnot(length(pa)==1)
-  readLines(paste0(pa, "/raw-results/", host, "/install-out.txt"))
-}
-
-get_build_error_text_by_host = function(pkname, af, host) {
-  stopifnot(host %in% c("nebbiolo2", "tokay2", "machv2")) # FIXME
-  pa = paths(af)[pkname]
-  stopifnot(length(pa)==1)
-  readLines(paste0(pa, "/raw-results/", host, "/buildsrc-out.txt"))
-}

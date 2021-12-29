@@ -69,9 +69,13 @@ setGeneric("host_data_by_phase", function(bbspd, host, phase) standardGeneric("h
 #' pd1 = make_BBS_package_data(af, "SummarizedExperiment")
 #' hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
 #' head(hd)
+#' hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+#' head(hd)
 #' pd2 = make_BBS_package_data(af, "affyPara")
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "install")
+#' hd = host_data_by_phase( pd2, "nebbiolo2", "install")
 #' tail(hd)
+#' hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+#' head(hd)
 #' @export
 setMethod("host_data_by_phase", c("BBS_package_data", "character", "character"),
     function(bbspd, host, phase) {
@@ -103,6 +107,18 @@ setClass("BBS_package_data",
 #' @param afset instance of ArtifSet
 #' @param packagename character(1)
 #' @param hosts character() valid host names on which BBS was run
+#' @examples
+#' af = make_demo_ArtifSet()
+#' pd1 = make_BBS_package_data(af, "SummarizedExperiment")
+#' hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+#' head(hd)
+#' hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+#' head(hd)
+#' pd2 = make_BBS_package_data(af, "affyPara")
+#' hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+#' tail(hd)
+#' hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+#' head(hd)
 #' @export
 make_BBS_package_data = function(afset, packagename, 
    hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
@@ -134,27 +150,40 @@ setClass("BBS_pkg_data_for_host",
   host = "character",
   buildbin = "character",
   buildsrc = "character",
-  checksrc = "list",
+  checksrc = "character",
   install = "character"
  )
 )
 
 valid_phases = function() c("install", "buildbin", "buildsrc", "checksrc")
 
+# always returns a character vector
 get_out_txt = function(afset, packagename, host, phase) {
  path = paths(afset)[packagename]
  stopifnot(dir.exists(path))
  stopifnot(phase %in% valid_phases())
  target = sprintf(paste0(path, "/raw-results/", host, "/", phase, "-out.txt"))
- if (phase == "checksrc") {
-   if (!file.exists(target)) chk_dat = list(errors=NA_character_, warnings=NA_character_, notes=NA_character_)
-   else {
-    tmp = rcmdcheck::check_details(rcmdcheck::parse_check(target))
-    chk_dat = list(errors=tmp$errors, warnings=tmp$warnings, notes=tmp$notes)
-   }
-   return(chk_dat)
- }
+# if (phase == "checksrc") {
+#   if (!file.exists(target)) chk_dat = list(errors=NA_character_, warnings=NA_character_, notes=NA_character_)
+#   else {
+#    tmp = rcmdcheck::check_details(rcmdcheck::parse_check(target))
+#    chk_dat = list(errors=tmp$errors, warnings=tmp$warnings, notes=tmp$notes)
+#   
+#   }
+#   return(chk_dat)
+# }
  if (!file.exists(target)) return(paste0("no ", phase, "-out.txt available for ", packagename))
+ if (phase == "checksrc") {
+    ans = NULL
+    tmp = rcmdcheck::check_details(rcmdcheck::parse_check(target))
+    if (length(tmp$errors)==0) ans = c(ans, "NO ERROR EVENTS", "----")
+     else ans = c(ans, tmp$errors)
+    if (length(tmp$warnings)==0) ans = c(ans, "NO WARNING EVENTS", "----")
+     else ans = c(ans, tmp$warnings)
+    if (length(tmp$notes)==0) ans = c(ans, "NO NOTE EVENTS", "----")
+     else ans = c(ans, tmp$notes)
+    return(ans)
+    }
  readLines(target)
 }
  
