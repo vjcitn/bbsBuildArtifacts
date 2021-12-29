@@ -35,22 +35,22 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
      selectInput("curpack", "packs", choices=packnames_with_events(af=af, host=curhost,
            phase=input$phase, event_class=cur_event_class), selected=input$curpack)
      })
-     get_err_txt = reactive({
-      function(HOST) {
+     get_package_data = reactive({
        validate(need(nchar(input$eventtype)>0, "waiting"))
        validate(need(nchar(input$curpack)>0, "waiting"))
        validate(need(nchar(input$phase)>0, "waiting"))
-       dat = bbsBuildArtifacts::package_by_host_data( paths(af)[input$curpack], host=HOST )
-       if (input$eventtype=="wontinstall") return(cat(dat$bld_txt, sep="\n")) # a readLines result
-       lk = dat$parsed_chks
-       if (is.na(lk[[1]])) return("no parsed check output available\n")
-       if (input$eventtype=="errors") cat(lk$errors)
-       else if (input$eventtype=="warnings") cat(lk$warnings)
-       }
+       make_BBS_package_data( af, input$curpack )
+       })
+     get_event_txt = reactive({
+       function(HOST) {
+         pd = get_package_data()
+         cat(host_data_by_phase( pd, HOST, input$phase ), sep="\n")
+         }
       })
-    output$errtxt_lin = renderPrint({  get_err_txt()(build_hosts["linux"]) })  
-    output$errtxt_win = renderPrint({  get_err_txt()(build_hosts["windows"]) })  
-    output$errtxt_mac = renderPrint({  get_err_txt()(build_hosts["macos"]) })
+       
+    output$errtxt_lin = renderPrint({  get_event_txt()(build_hosts["linux"]) })  
+    output$errtxt_win = renderPrint({  get_event_txt()(build_hosts["windows"]) })  
+    output$errtxt_mac = renderPrint({  get_event_txt()(build_hosts["macos"]) })
     observeEvent(input$stopBtn, {
        stopApp(returnValue=NULL)   # could return information here
       })

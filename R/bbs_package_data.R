@@ -50,6 +50,24 @@ setOldClass("package_version")
 setOldClass("rcmdcheck")
 setOldClass("POSIXct")
 
+#' manage raw-results element info.dcf
+#' @export
+setClass("BBS_raw_pkg_info", slots=c(name="character", last_commit_date="POSIXct", version = "package_version",
+  commit_tag="character", branch="character", maint_email = "character"))
+
+#' encapsulate BBS information from multiple platforms for a package
+#' @export
+setClass("BBS_package_data",
+ slots=c(
+  package_name = "character",
+  bioc_version = "package_version",
+  raw_info = "BBS_raw_pkg_info",   # from raw-results/info.dcf
+  hosts = "character",
+  platforms = "character",
+  host_data = "list"
+ )
+)
+
 hosts = function(bbspd) slot(bbspd, "hosts")
 
 #' acquire data on a package's BBS state
@@ -85,23 +103,7 @@ setMethod("host_data_by_phase", c("BBS_package_data", "character", "character"),
     })
       
 
-#' manage raw-results element info.dcf
-#' @export
-setClass("BBS_raw_pkg_info", slots=c(name="character", last_commit_date="POSIXct", version = "package_version",
-  commit_tag="character", branch="character", maint_email = "character"))
 
-#' encapsulate BBS information from multiple platforms for a package
-#' @export
-setClass("BBS_package_data",
- slots=c(
-  package_name = "character",
-  bioc_version = "package_version",
-  raw_info = "BBS_raw_pkg_info",   # from raw-results/info.dcf
-  hosts = "character",
-  platforms = "character",
-  host_data = "list"
- )
-)
 
 #' encapsulate BBS state for a package
 #' @param afset instance of ArtifSet
