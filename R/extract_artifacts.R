@@ -67,7 +67,7 @@ setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_r
        if (verbose) message("done.")
      }
      allfiles = dir(paste0(destination, "/", destbase), full.names=TRUE)
-     all_pkg_folders = grep( bbsBuildArtifacts:::non_package_pattern(), allfiles,
+     all_pkg_folders = grep( non_package_pattern(), allfiles,
          invert=TRUE, value=TRUE)
      names(all_pkg_folders) = basename(all_pkg_folders)
      extra_files = grep( bbsBuildArtifacts:::non_package_pattern(), allfiles,
@@ -101,10 +101,18 @@ ans
 }
 
 #' simplify production of the test ArtifSet
+#' @param cache BiocFileCache instance to use for checking for available image and retrieving if possible
+#' @param preclean logical(1) defaults to TRUE, in which case we search `cache` for demostring in cache and remove
+#' @param demostring character(1) token to query BiocFileCache for in preclean step
 #' @examples
 #' make_demo_ArtifSet()
 #' @export
-make_demo_ArtifSet = function() {
+make_demo_ArtifSet = function(cache=BiocFileCache::BiocFileCache(), preclean=TRUE, demostring="test_report_3.14_bioc_20211210") {
+  if (preclean) {
+    ca = cache
+    lk = BiocFileCache::bfcquery(ca, demostring)
+    if (length(lk$rid)>0) bfcremove(ca, lk$rid)
+    }
   cururl = demo_url()
-  setup_artifacts(url=cururl, destbase="test_report")
+  setup_artifacts(url=cururl, destbase="test_report", cache=cache)
 }

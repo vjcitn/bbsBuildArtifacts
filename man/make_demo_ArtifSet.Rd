@@ -4,7 +4,18 @@
 \alias{make_demo_ArtifSet}
 \title{simplify production of the test ArtifSet}
 \usage{
-make_demo_ArtifSet()
+make_demo_ArtifSet(
+  cache = BiocFileCache::BiocFileCache(),
+  preclean = TRUE,
+  demostring = "test_report_3.14_bioc_20211210"
+)
+}
+\arguments{
+\item{cache}{BiocFileCache instance to use for checking for available image and retrieving if possible}
+
+\item{preclean}{logical(1) defaults to TRUE, in which case we search `cache` for demostring in cache and remove}
+
+\item{demostring}{character(1) token to query BiocFileCache for in preclean step}
 }
 \description{
 simplify production of the test ArtifSet

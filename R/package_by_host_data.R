@@ -61,8 +61,12 @@ package_by_host_data = function(afpath, host="nebbiolo2",
    if (length(parsed_chks)==1 && is.na(parsed_chks)) numwarn=NA
    else numwarn = length(parsed_chks$warnings)
 #
-   bld_txt = try(readLines(bld_out_pa), silent=TRUE) # lapply(bld_out_pas, function(x) try(readLines(x), silent=TRUE))
-   if (inherits(bld_txt, "try-error")) bld_txt = "no buildsrc-out.txt"
+#   bld_txt = try(readLines(bld_out_pa), silent=TRUE) # lapply(bld_out_pas, function(x) try(readLines(x), silent=TRUE))
+#   if (inherits(bld_txt, "try-error")) bld_txt = "no buildsrc-out.txt"
+   bld_txt = (function(x) {
+                   if (!file.exists(x)) return("no install-out.txt")
+                   try(readLines(x), silent=TRUE)
+                   })(bld_out_pa)
    inst_txt = (function(x) {
                    if (!file.exists(x)) return("no install-out.txt")
                    try(readLines(x), silent=TRUE)

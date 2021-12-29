@@ -3,6 +3,7 @@
 #' @param build_hosts named character(3) names of elements must be 'linux', 'macos', 'windows',
 #' element values are the host names used in the construction of html in package build report.
 #' @import shiny
+#' @importFrom shinyBS popify bsButton
 #' @examples
 #' af = make_demo_ArtifSet()
 #' if (interactive()) {
@@ -12,7 +13,15 @@
 browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
   stopifnot(inherits(af, "ArtifSet"))
   stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
+#
+# SERVER
+#
   server = function(input, output, session) {
+    output$initlabel = renderUI({tags$span(
+       popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
+         "A package may produce multiple events in different classes."))
+	})
+    output$curpackname = renderText( paste("Package: ", input$curpack, sep="") )
     output$pack_selector = renderUI({
      curhost = build_hosts[ input$curtab ]
      eventmap = c(errors="ERROR", warnings="WARNINGS", 
@@ -34,7 +43,7 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
        dat = bbsBuildArtifacts::package_by_host_data( paths(af)[input$curpack], host=HOST )
        if (input$eventtype=="wontinstall") return(cat(dat$bld_txt, sep="\n")) # a readLines result
        lk = dat$parsed_chks
-       if (is.na(lk[[1]])) return(cat("no parsed check output available\n"))
+       if (is.na(lk[[1]])) return("no parsed check output available\n")
        if (input$eventtype=="errors") cat(lk$errors)
        else if (input$eventtype=="warnings") cat(lk$warnings)
        }
@@ -45,12 +54,14 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
     observeEvent(input$stopBtn, {
        stopApp(returnValue=NULL)   # could return information here
       })
+    output$evfreq = renderTable(event_freqs(af))
    }
 
   ui = fluidPage(
    sidebarLayout(
     sidebarPanel(
-     helpText("event browser"),
+     uiOutput("initlabel"),
+     div(tableOutput("evfreq"), style="font-size:75%"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
      radioButtons("phase", "phase", choices=c("install", "buildsrc", "checksrc", "buildbin"),
        selected="checksrc"),
@@ -60,7 +71,7 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
      ),
     mainPanel(
      tabsetPanel(id="curtab",
-      tabPanel("linux", id="linux", verbatimTextOutput( "errtxt_lin" )),
+      tabPanel("linux", id="linux", verbatimTextOutput("curpackname"), verbatimTextOutput( "errtxt_lin" )),
       tabPanel("windows", id="windows", verbatimTextOutput( "errtxt_win" )),
       tabPanel("macos", id="macos", verbatimTextOutput( "errtxt_mac" ))
       )
