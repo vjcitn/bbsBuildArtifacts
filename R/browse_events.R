@@ -65,6 +65,7 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
      radioButtons("phase", "phase", choices=c("install", "buildsrc", "checksrc", "buildbin"),
        selected="checksrc"),
+     helpText("Note: changing phase will alter the set of packages to be viewed and reset panel contents."),
      uiOutput("pack_selector"),
 #     actionButton("Reset", "Reset packs."),
      actionButton("stopBtn", "Stop app.")
@@ -73,7 +74,8 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
      tabsetPanel(id="curtab",
       tabPanel("linux", id="linux", verbatimTextOutput("curpackname"), verbatimTextOutput( "errtxt_lin" )),
       tabPanel("windows", id="windows", verbatimTextOutput( "errtxt_win" )),
-      tabPanel("macos", id="macos", verbatimTextOutput( "errtxt_mac" ))
+      tabPanel("macos", id="macos", verbatimTextOutput( "errtxt_mac" )),
+      tabPanel("about", helpText("This shiny app is intended to help investigation of adverse events in the Bioconductor Build System.  The reports focus on packages exhibiting problems in different phases of build and check for different hosts."))
       )
      )
     )
