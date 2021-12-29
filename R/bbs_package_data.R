@@ -50,34 +50,58 @@ setOldClass("package_version")
 setOldClass("rcmdcheck")
 setOldClass("POSIXct")
 
+hosts = function(bbspd) slot(bbspd, "hosts")
+
+setGeneric("host_data_by_phase", function(bbspd, host, phase) standardGeneric("host_data_by_phase"))
+setMethod("host_data_by_phase", c("BBS_package_data", "character", "character"),
+    function(bbspd, host, phase) {
+      stopifnot(phase %in% valid_phases())
+      stopifnot(host %in% hosts(bbspd))
+      slot(slot(bbspd, "host_data")[[host]], phase)
+    })
+      
+
+setClass("BBS_raw_pkg_info", slots=c(name="character", last_commit_date="POSIXct", version = "package_version",
+  commit_tag="character", branch="character", maint_email = "character"))
+
 setClass("BBS_package_data",
  slots=c(
   package_name = "character",
-  package_version = "package_version",
   bioc_version = "package_version",
-  raw_info = "list",   # from raw-results/info.dcf
+  raw_info = "BBS_raw_pkg_info",   # from raw-results/info.dcf
   hosts = "character",
+  platforms = "character",
   host_data = "list"
  )
 )
 
-#make_BBS_package_data = function(afset, packagename, 
-#   hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
-# perhost = lapply(hosts, make_BBS
-#
+make_BBS_package_data = function(afset, packagename, 
+   hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
+ perhost = lapply(hosts, function(host) make_pkg_data_for_host( afset=afset, host=host, 
+              packagename=packagename))
+ names(perhost) = as.character(hosts)
+ platforms = names(hosts)
+ new("BBS_package_data", package_name=packagename,
+   bioc_version = package_version(slot(afset, "version")),
+   raw_info = make_raw_info(afset=afset, packagename=packagename),
+   hosts=hosts,
+   platforms=platforms,
+   host_data = perhost)
+}
+
 setMethod("show", "BBS_package_data", function(object) {
  cat(sprintf("BBS_package_data for package '%s' version %s\n",
-            slot(object, "package_name"), as.character(slot(object, "package_version"))))
+            slot(object, "package_name"), as.character(slot(object, "bioc_version"))))
 })
 
 setClass("BBS_pkg_data_for_host",
  slots=c(
   package_name = "character",
   host = "character",
-  build_bin_out = "character",
-  build_src_out = "character",
-  check_src_out = "list",
-  install_out = "character"
+  buildbin = "character",
+  buildsrc = "character",
+  checksrc = "list",
+  install = "character"
  )
 )
 
@@ -106,10 +130,10 @@ make_pkg_data_for_host = function(afset, host, packagename) {
  new("BBS_pkg_data_for_host", 
       package_name=packagename,
       host=host,
-      build_bin_out = get_out_txt(afset=afset, packagename=packagename, host=host, phase="buildbin"),
-      build_src_out = get_out_txt(afset=afset, packagename=packagename, host=host, phase="buildsrc"),
-      check_src_out = get_out_txt(afset=afset, packagename=packagename, host=host, phase="checksrc"),
-      install_out = get_out_txt(afset=afset, packagename=packagename, host=host, phase="install")
+      buildbin = get_out_txt(afset=afset, packagename=packagename, host=host, phase="buildbin"),
+      buildsrc = get_out_txt(afset=afset, packagename=packagename, host=host, phase="buildsrc"),
+      checksrc = get_out_txt(afset=afset, packagename=packagename, host=host, phase="checksrc"),
+      install = get_out_txt(afset=afset, packagename=packagename, host=host, phase="install")
    )
 }
 
@@ -121,8 +145,6 @@ setMethod("show", "BBS_pkg_data_for_host", function(object) {
  
  
 
-setClass("BBS_raw_pkg_info", slots=c(name="character", last_commit_date="POSIXct", version = "package_version",
-  commit_tag="character", branch="character", maint_email = "character"))
 
 make_raw_info = function(afset, packagename) {
     afpath = paths(afset)[packagename]
