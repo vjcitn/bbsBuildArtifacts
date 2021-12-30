@@ -178,12 +178,12 @@ get_out_txt = function(afset, packagename, host, phase) {
  if (phase == "checksrc") {
     ans = NULL
     tmp = rcmdcheck::check_details(rcmdcheck::parse_check(target))
-    if (length(tmp$errors)==0) ans = c(ans, "NO ERROR EVENTS", "----")
-     else ans = c(ans, tmp$errors)
-    if (length(tmp$warnings)==0) ans = c(ans, "NO WARNING EVENTS", "----")
-     else ans = c(ans, tmp$warnings)
-    if (length(tmp$notes)==0) ans = c(ans, "NO NOTE EVENTS", "----")
-     else ans = c(ans, tmp$notes)
+    if (length(tmp$errors)==0) ans = c(ans, "----", "NO ERROR EVENTS", "----")
+     else ans = c(ans, "----", "ERROR EVENTS:", "----", tmp$errors, "----")
+    if (length(tmp$warnings)==0) ans = c(ans, "----", "NO WARNING EVENTS", "----")
+     else ans = c(ans, "----", "WARNING EVENTS:", "----", tmp$warnings, "----")
+    if (length(tmp$notes)==0) ans = c(ans,  "----","NO NOTE EVENTS", "----")
+     else ans = c(ans, "----", "NOTES:", tmp$notes, "----")
     return(ans)
     }
  readLines(target)

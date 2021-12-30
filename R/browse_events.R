@@ -22,6 +22,8 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
          "A package may produce multiple events in different classes."))
 	})
     output$curpackname = renderText( paste("Package: ", input$curpack, sep="") )
+    output$curpackname2 = renderText( paste("Package: ", input$curpack, sep="") )
+    output$curpackname3 = renderText( paste("Package: ", input$curpack, sep="") )
     output$pack_selector = renderUI({
      curhost = build_hosts[ input$curtab ]
      eventmap = c(errors="ERROR", warnings="WARNINGS", 
@@ -73,8 +75,8 @@ browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", wi
     mainPanel(
      tabsetPanel(id="curtab",
       tabPanel("linux", id="linux", verbatimTextOutput("curpackname"), verbatimTextOutput( "errtxt_lin" )),
-      tabPanel("windows", id="windows", verbatimTextOutput( "errtxt_win" )),
-      tabPanel("macos", id="macos", verbatimTextOutput( "errtxt_mac" )),
+      tabPanel("windows", id="windows",verbatimTextOutput("curpackname2"), verbatimTextOutput( "errtxt_win" )),
+      tabPanel("macos", id="macos", verbatimTextOutput("curpackname3"), verbatimTextOutput( "errtxt_mac" )),
       tabPanel("about", helpText("This shiny app is intended to help investigation of adverse events in the Bioconductor Build System.  The reports focus on packages exhibiting problems in different phases of build and check for different hosts."))
       )
      )

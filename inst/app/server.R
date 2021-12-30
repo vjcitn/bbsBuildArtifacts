@@ -1,19 +1,18 @@
-#' app to get details on events in packages
-#' @param af ArtifSet S4 instance
-#' @import shiny
-#' @examples
-#' af = make_demo_ArtifSet()
-#' if (interactive()) {
-#'  browse_events(af)
-#' }
-#' @export
-#browse_events = function(af) {
-#  stopifnot(inherits(af, "ArtifSet"))
   library(shiny)
   library(bbsBuildArtifacts)
 
 
+#
+# SERVER
+#
   server = function(input, output, session) {
+    output$initlabel = renderUI({tags$span(
+       popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
+         "A package may produce multiple events in different classes."))
+	})
+    output$curpackname = renderText( paste("Package: ", input$curpack, sep="") )
+    output$curpackname2 = renderText( paste("Package: ", input$curpack, sep="") )
+    output$curpackname3 = renderText( paste("Package: ", input$curpack, sep="") )
     output$pack_selector = renderUI({
      curhost = build_hosts[ input$curtab ]
      eventmap = c(errors="ERROR", warnings="WARNINGS", 
@@ -27,25 +26,25 @@
      selectInput("curpack", "packs", choices=packnames_with_events(af=af, host=curhost,
            phase=input$phase, event_class=cur_event_class), selected=input$curpack)
      })
-     get_err_txt = reactive({
-      function(HOST) {
-       validate(need(nchar(input$eventtype)>0, "no entry with this set of choices"))
-       validate(need(nchar(input$curpack)>0, "no entry with this set of choices"))
-       validate(need(nchar(input$phase)>0, "no entry with this set of choices"))
-       validate(need(dir.exists(paths(af)[input$curpack]), "no entry with this set of choices"))
-       dat = bbsBuildArtifacts::package_by_host_data( paths(af)[input$curpack], host=HOST )
-       if (input$eventtype=="wontinstall") return(cat(dat$bld_txt, sep="\n")) # a readLines result
-       lk = dat$parsed_chks
-       if (is.na(lk[[1]])) return(cat("no parsed check output available\n"))
-       if (input$eventtype=="errors") cat(lk$errors)
-       else if (input$eventtype=="warnings") cat(lk$warnings)
-       }
+     get_package_data = reactive({
+       validate(need(nchar(input$eventtype)>0, "waiting"))
+       validate(need(nchar(input$curpack)>0, "waiting"))
+       validate(need(nchar(input$phase)>0, "waiting"))
+       make_BBS_package_data( af, input$curpack )
+       })
+     get_event_txt = reactive({
+       function(HOST) {
+         pd = get_package_data()
+         cat(host_data_by_phase( pd, HOST, input$phase ), sep="\n")
+         }
       })
-    output$errtxt_lin = renderPrint({  get_err_txt()(build_hosts["linux"]) })  
-    output$errtxt_win = renderPrint({  get_err_txt()(build_hosts["windows"]) })  
-    output$errtxt_mac = renderPrint({  get_err_txt()(build_hosts["macos"]) })
+       
+    output$errtxt_lin = renderPrint({  get_event_txt()(build_hosts["linux"]) })  
+    output$errtxt_win = renderPrint({  get_event_txt()(build_hosts["windows"]) })  
+    output$errtxt_mac = renderPrint({  get_event_txt()(build_hosts["macos"]) })
     observeEvent(input$stopBtn, {
        stopApp(returnValue=NULL)   # could return information here
       })
+    output$evfreq = renderTable(event_freqs(af))
    }
 
