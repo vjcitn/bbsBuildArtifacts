@@ -11,6 +11,21 @@
 #' }
 #' @export
 browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
+#
+# note -- source code modified so there is only one ui.R and server.R to maintain
+# for both basic usage and shinyapps.io deployment
+#
+  stopifnot(inherits(af, "ArtifSet"))
+  stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
+  fromPkg <<- TRUE  # should these be cleaned up on exit?  should we warn if found on startup?
+                    # could have a kill_globals parameter
+  build_hosts <<- build_hosts
+  af <<- af
+  runApp(appDir = system.file("app", package="bbsBuildArtifacts"))
+}
+  
+
+browse_events_old = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
   stopifnot(inherits(af, "ArtifSet"))
   stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
 #

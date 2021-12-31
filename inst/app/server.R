@@ -1,5 +1,5 @@
-  library(shiny)
-  library(bbsBuildArtifacts)
+  #library(shiny)
+  #library(bbsBuildArtifacts)
 
 
 #
@@ -54,6 +54,11 @@
     output$pkg_data = renderUI({
        tags$a(href=paste0("http://bioconductor.org/packages/", input$curpack), target="_blank", "Landing page")
        })
+    output$pkg_raw_info = renderPrint({
+       validate(need(nchar(input$curpack)>0, "select a package"))
+       bbsBuildArtifacts:::make_raw_info(af, input$curpack)
+       })
+
 
    }
 
