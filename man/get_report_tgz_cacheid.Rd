@@ -18,16 +18,17 @@ get_report_tgz_cacheid(
 
 \item{cache}{instance of `BiocFileCache::BiocFileCache()`}
 
-\item{url}{defaults to NULL, if supplied, used to retrieve and cache tgz file}
+\item{url}{defaults to NULL, if supplied, used to retrieve or cache tgz file}
 }
 \value{
-A gzipped tarball is downloaded, copied to a cache, and the cache reference is returned.
+A gzipped tarball is downloaded, informatively renamed, copied to a cache, and the cache reference is returned.
 }
 \description{
 get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)
 }
 \note{
-Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  If url is NULL, the
+report.tgz content will be cached with name formed with type, version, and date of command invocation.
 }
 \examples{
 cururl = paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz", 

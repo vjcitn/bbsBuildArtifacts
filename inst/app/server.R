@@ -10,6 +10,7 @@
        popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
          "A package may produce multiple events in different classes."))
 	})
+    output$bbsbavers = renderText( paste("bbsBuildArtifacts version: ", packageVersion("bbsBuildArtifacts")) )
     output$curpackname = renderText( paste("Package: ", input$curpack, sep="") )
     output$curpackname2 = renderText( paste("Package: ", input$curpack, sep="") )
     output$curpackname3 = renderText( paste("Package: ", input$curpack, sep="") )

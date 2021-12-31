@@ -21,15 +21,18 @@ build_report_tgz_url = function(version, type) {
 demo_url = function() paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz",
     package="bbsBuildArtifacts"))
 
+isFileURL = function(x) substr(x, 1, 7) == "file://"
+
 #' get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)
 #' @import BiocFileCache
 #' @importFrom utils download.file untar
 #' @param version character(1) defaults to "3.14"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
-#' @param url defaults to NULL, if supplied, used to retrieve and cache tgz file 
-#' @return A gzipped tarball is downloaded, copied to a cache, and the cache reference is returned.
-#' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+#' @param url defaults to NULL, if supplied, used to retrieve or cache tgz file
+#' @return A gzipped tarball is downloaded, informatively renamed, copied to a cache, and the cache reference is returned.
+#' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  If url is NULL, the
+#' report.tgz content will be cached with name formed with type, version, and date of command invocation.
 #' @examples
 #' cururl = paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz", 
 #'     package="bbsBuildArtifacts"))
@@ -38,14 +41,27 @@ demo_url = function() paste0("file://", system.file("test_report_3.14_bioc_20211
 #' @export
 get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
      url=NULL) {
-    if (is.null(url)) current_url = build_report_tgz_url(version, type)
-    else current_url = url
-    chk = bfcquery(cache, current_url)
+    if (is.null(url)) {
+       current_url = build_report_tgz_url(version, type)
+       informative_name = paste0(type, "_", version, "_", as.character(Sys.Date()), "_report.tgz")
+       }
+    else {
+       current_url = url
+       informative_name = current_url
+       }
+    chk = bfcquery(cache, informative_name)
     if (!(length(chk$rpath)==0)) return(chk$rid)
     tf = tempfile()
     download.file(current_url, tf)
-    bfcadd(cache, rname=current_url, fpath=tf, action="move")
-    chk = bfcquery(cache, current_url)
+    if (!isFileURL(current_url)) {
+      base = dirname(tf)
+      leaf = basename(tf)
+      full_inf_name = paste0(base, "/", informative_name)
+      file.rename(tf, full_inf_name)
+      }
+    else full_inf_name = tf # if file:// just move content to cache
+    bfcadd(cache, rname=informative_name, fpath=full_inf_name, action="move")
+    chk = bfcquery(cache, informative_name)
     chk$rid
 }
 

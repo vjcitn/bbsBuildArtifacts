@@ -21,124 +21,103 @@ subset of Bioconductor packages.  "Status" is relative to
 Bioconductor version, package version, build platform, and
 condition of the platform.
 
-## New approach, December 2021
-
 We want to be able to work with the current artifacts provided
 at, e.g., `https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz`.
 Such gzipped tar resources are prepared for different types
 of resource.
 
 ```{r lktypes}
-suppressPackageStartupMessages({
+suppressMessages({
+ suppressPackageStartupMessages({
   library(bbsBuildArtifacts)
   library(dplyr)
   library(DT)
   library(ggplot2)
+  })
 })
 bbsBuildArtifacts:::valid_types()
 ```
 
 We'll focus on type `bioc` for now, which associates with Software packages.
-We don't know if all types are handled in the same way, but we hope so.
+We don't yet know if report.gz has the same
+structure for all types, but we hope so.
 
 Our objective is to learn the status and processing times for
-various phases of the build process for all packages.
+various phases of the build process for all packages, and to
+analyze error, warning and note events programatically.
 
-### Artifact set manager
+## Artifact set manager
 
-We define an S4 class to manage key information about builds.
+We define an S4 class `ArtifSet` to manage key information about builds.
+`ArtifSet` instances are produced using `setup_artifacts`.
+
 We've produced a thinned version of the BBS report.tgz accessible
-in the package at `demo_url()`.  If `url` is not supplied
+in the package at `demo_url()`, which
+has prefix `file://` referring to a file in the locally installed `bbsBuildArtifacts`
+package.  If `url` is not supplied
 to `setup_artifacts()`, the report.tgz will be retrieved
-from bioconductor.org.
+from bioconductor.org, and cached using `BiocFileCache` with an informative `rname`.
 
 ```{r usecl}
 af = setup_artifacts(type="bioc", version="3.14", url=demo_url(),
    destbase="test_report")
 af
+```
+
+Information of immediate interest can be derived and tabulated
+in a data.frame instance.
+```{r convdf}
 d = as.data.frame(af)
 dim(d)
 head(d)
+```
+
+We use this to get statistics about timings for package
+installation, building and checking.
+```{r timings}
 sapply(split(d$elapsed_time, d$host), sum, na.rm=TRUE)/3600 # hours
 sapply(split(d$elapsed_time, d$phase), sum, na.rm=TRUE)/3600 # hours
 ggplot(mutate(d, elapsed_time_sec=elapsed_time), aes(y=elapsed_time_sec, x=host)) + 
     geom_boxplot() + facet_grid(.~phase) + scale_y_log10() 
 ```
 
-### Digging deeper
+## Information recorded about a package
 
-We want to extract details on errors.
+Because the build/check processes are error prone, some packages
+may lack information described below.
 
-```{r lkhd}
-package_by_host_data(af@pkg_paths["affyPara"], host="tokay2")
+### `raw_info`
+
+This is a selection from content of an `info.dcf` produced for each package.
+
+```
+str(bbsBuildArtifacts:::make_raw_info(af, "SummarizedExperiment"))
 ```
 
-Because the full check logs are available, we can use rcmdcheck check_details/parse_check
-to get more details on events.
+### Detailed information about events
 
-## Some details
+Here's how we can obtain the installation log for
+SummarizedExperiment on nebbiolo2, for December 10 2021.
+```{r lklk}
+pd1 <- make_BBS_package_data(af, "SummarizedExperiment")
+pd1
+names(slot(pd1, "host_data"))
+hd = slot(pd1, "host_data")
+cat(slot(hd$nebbiolo2, "install"), sep="\n")
+```
+The date of the build is not currently recorded in a convenient place.
 
-### Download and cache the report.tgz
-
-```{r demo1}
-our_cache = BiocFileCache::BiocFileCache()
-cid = get_report_tgz_cacheid(version = "3.14", type="bioc", cache=our_cache)
-cid
-our_cache[cid] # metadata
-our_cache[[cid]]  # actual path
+The installation information for affyPara is more interesting:
+```{r lklk2}
+pd2 <- make_BBS_package_data(af, "affyPara")
+hd = slot(pd2, "host_data")
+cat(slot(hd$nebbiolo2, "install"), sep="\n")
 ```
 
-There is an unexported helper function to clean the cache of
-a path for a given version/type combination.
+Much of the content of these logs is routine unilluminating chatter.
+Isolating the information of functional value is a project
+for future effort.
 
-### Process install-, build-, and check-related contents of a package
-
-We do not cache the untarred data.  The untar process must
-occur each time we want to analyze the artifacts.
-
-```{r lkallp}
-allpaths = artifact_folder_paths(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache())
-allpaths
-```
-
-The `package_by_host_data` function will parse the DCF files
-created for each package by the BBS.
-
-```{r lkpbh}
-allpaths["parody"] # simple retrieval
-package_by_host_data(allpaths["parody"])
-```
-
-We can produce a data table for a number of packages as follows.
-
-```{r domore}
-few = allpaths[1:10]
-dcfs = lapply(few, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)$dcfs))
-tab = do.call(rbind, unname(dcfs))
-library(DT)
-datatable(tab)
-```
-
-Building a comprehensive table requires some fault tolerance.  We
-have used silent `try` calls in `package_by_host_data`; silent can
-be set to FALSE if desired.
-
-```{r doall}
-suppressWarnings({
-alldcfs = lapply(allpaths, function(x) simplify_artifact_build_dcfs(package_by_host_data(x)$dcfs))
-})
-fulltab = do.call(rbind, unname(alldcfs))
-```
-
-Let's get a sense of the distribution of build times.
-
-```{r lkbtr}
-library(dplyr)
-bdat = fulltab |> filter(phase=="buildsrc")
-nrow(bdat)
-hist(bdat$elapsed_time)
-sum(bdat$elapsed_time > 600)
-```
 
 
 

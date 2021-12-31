@@ -7,7 +7,8 @@ if (!fromPkg) {
   ui = fluidPage(
    sidebarLayout(
     sidebarPanel(
-     helpText("Bioconductor build system event browser -- limited demonstration"),
+     helpText("Bioconductor build system event browser"),
+     verbatimTextOutput("bbsbavers"),
      div(tableOutput("evfreq"), style="font-size:75%"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
      radioButtons("phase", "phase", choices=c("install", "buildsrc", "checksrc", "buildbin"),
