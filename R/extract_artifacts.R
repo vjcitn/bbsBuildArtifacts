@@ -70,7 +70,7 @@ setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_r
      all_pkg_folders = grep( non_package_pattern(), allfiles,
          invert=TRUE, value=TRUE)
      names(all_pkg_folders) = basename(all_pkg_folders)
-     extra_files = grep( bbsBuildArtifacts:::non_package_pattern(), allfiles,
+     extra_files = grep( non_package_pattern(), allfiles,
          invert=FALSE, value=TRUE)
      ans = new("ArtifSet", type=type, version=version, pkg_paths=all_pkg_folders,
             extra_paths = extra_files, hostnames=hostnames)
