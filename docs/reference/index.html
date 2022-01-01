@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.33</span>
       </span>
     </div>
 
@@ -61,6 +61,18 @@
         </td>
         <td><p>Artifact set S4 class definition</p></td>
       </tr><tr><td>
+          <p><code><a href="BBS_package_data-class.html">BBS_package_data-class</a></code> </p>
+        </td>
+        <td><p>encapsulate BBS information from multiple platforms for a package</p></td>
+      </tr><tr><td>
+          <p><code><a href="BBS_pkg_data_for_host-class.html">BBS_pkg_data_for_host-class</a></code> </p>
+        </td>
+        <td><p>encapsulate data on BBS state for a single host</p></td>
+      </tr><tr><td>
+          <p><code><a href="BBS_raw_pkg_info-class.html">BBS_raw_pkg_info-class</a></code> </p>
+        </td>
+        <td><p>manage raw-results element info.dcf</p></td>
+      </tr><tr><td>
           <p><code><a href="artifact_folder_paths.html">artifact_folder_paths()</a></code> </p>
         </td>
         <td><p>obtain all package artifact folder paths</p></td>
@@ -68,10 +80,6 @@
           <p><code><a href="as.data.frame.ArtifSet.html">as.data.frame(<i>&lt;ArtifSet&gt;</i>)</a></code> </p>
         </td>
         <td><p>basic artifact data collected to tibble</p></td>
-      </tr><tr><td>
-          <p><code><a href="browse_event_collection.html">browse_event_collection()</a></code> </p>
-        </td>
-        <td><p>app to get details on events in packages</p></td>
       </tr><tr><td>
           <p><code><a href="browse_events.html">browse_events()</a></code> </p>
         </td>
@@ -85,13 +93,29 @@
         </td>
         <td><p>A demonstration URL with trimmed report.tgz in a local file</p></td>
       </tr><tr><td>
+          <p><code><a href="event_freqs.html">event_freqs()</a></code> </p>
+        </td>
+        <td><p>provide a concise table of events by host</p></td>
+      </tr><tr><td>
           <p><code><a href="get_report_tgz_cacheid.html">get_report_tgz_cacheid()</a></code> </p>
         </td>
         <td><p>get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)</p></td>
       </tr><tr><td>
+          <p><code><a href="host_data_by_phase-BBS_package_data-character-character-method.html">host_data_by_phase(<i>&lt;BBS_package_data&gt;</i>,<i>&lt;character&gt;</i>,<i>&lt;character&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>acquire data on a package's BBS state</p></td>
+      </tr><tr><td>
+          <p><code><a href="host_data_by_phase.html">host_data_by_phase()</a></code> </p>
+        </td>
+        <td><p>acquire data on a package's BBS state</p></td>
+      </tr><tr><td>
           <p><code><a href="hostnames_by_release.html">hostnames_by_release()</a></code> </p>
         </td>
         <td><p>vector of hostnames for build nodes</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_BBS_package_data.html">make_BBS_package_data()</a></code> </p>
+        </td>
+        <td><p>encapsulate BBS state for a package</p></td>
       </tr><tr><td>
           <p><code><a href="make_demo_ArtifSet.html">make_demo_ArtifSet()</a></code> </p>
         </td>
@@ -104,6 +128,10 @@
           <p><code><a href="packages_with_events.html">packages_with_events()</a></code> </p>
         </td>
         <td><p>get info on packages with non-ok status</p></td>
+      </tr><tr><td>
+          <p><code><a href="packnames_with_events.html">packnames_with_events()</a></code> </p>
+        </td>
+        <td><p>filter packages by host, phase, state</p></td>
       </tr><tr><td>
           <p><code><a href="path_to_untarred_artifact_folders.html">path_to_untarred_artifact_folders()</a></code> </p>
         </td>
@@ -129,6 +157,10 @@
         </td>
         <td><p>simplify presentation of pkg data</p></td>
       </tr><tr><td>
+          <p><code><a href="pull_R_meta.html">pull_R_meta()</a></code> </p>
+        </td>
+        <td><p>acquire information on build platform from BBS NodeInfo.html file</p></td>
+      </tr><tr><td>
           <p><code><a href="setup_artifacts.html">setup_artifacts()</a></code> </p>
         </td>
         <td><p>Create ArtifSet instance</p></td>
@@ -136,6 +168,18 @@
           <p><code><a href="show-ArtifSet-method.html">show(<i>&lt;ArtifSet&gt;</i>)</a></code> </p>
         </td>
         <td><p>display salient information about ArtifSet</p></td>
+      </tr><tr><td>
+          <p><code><a href="show-BBS_package_data-method.html">show(<i>&lt;BBS_package_data&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>simple display of BBS package data</p></td>
+      </tr><tr><td>
+          <p><code><a href="show-BBS_pkg_data_for_host-method.html">show(<i>&lt;BBS_pkg_data_for_host&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>simple display of BBS package data for host</p></td>
+      </tr><tr><td>
+          <p><code><a href="show-BBS_raw_pkg_info-method.html">show(<i>&lt;BBS_raw_pkg_info&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>simple display of BBS raw package info from info.dcf</p></td>
       </tr><tr><td>
           <p><code><a href="simplecore.html">simplecore</a></code> </p>
         </td>
@@ -147,7 +191,7 @@
       </tr><tr><td>
           <p><code><a href="tabulate_states.html">tabulate_states()</a></code> </p>
         </td>
-        <td><p>(memoised) retrieve data.frame from BUILD_STATUS_DB.txt</p></td>
+        <td><p>(can be memoised) retrieve data.frame from BUILD_STATUS_DB.txt</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

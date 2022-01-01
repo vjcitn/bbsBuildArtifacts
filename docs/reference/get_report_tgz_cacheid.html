@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.33</span>
       </span>
     </div>
 
@@ -76,15 +76,16 @@
 <dt>cache</dt>
 <dd><p>instance of `BiocFileCache::BiocFileCache()`</p></dd>
 <dt>url</dt>
-<dd><p>defaults to NULL, if supplied, used to retrieve and cache tgz file</p></dd>
+<dd><p>defaults to NULL, if supplied, used to retrieve or cache tgz file</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A gzipped tarball is downloaded, copied to a cache, and the cache reference is returned.</p>
+    <p>A gzipped tarball is downloaded, informatively renamed, copied to a cache, and the cache reference is returned.</p>
     </div>
     <div id="note">
     <h2>Note</h2>
-    <p>Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.</p>
+    <p>Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  If url is NULL, the
+report.tgz content will be cached with name formed with type, version, and date of command invocation.</p>
     </div>
 
     <div id="ref-examples">
@@ -96,7 +97,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rid    rname  create_time access_time rpath rtype fpath last_modified_t… etag </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC111 file:… 2021-12-24… 2021-12-24… /Use… rela… /var…               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC253 file:… 2022-01-01… 2022-01-01… /Use… rela… /var…               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: expires &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>

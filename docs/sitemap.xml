@@ -19,6 +19,15 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/ArtifSet-class.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/BBS_package_data-class.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/BBS_pkg_data_for_host-class.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/BBS_raw_pkg_info-class.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/artifact_folder_paths.html</loc>
   </url>
   <url>
@@ -37,6 +46,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/demo_url.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/event_freqs.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_events.html</loc>
   </url>
   <url>
@@ -44,6 +56,12 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_report_tgz_cacheid.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/host_data_by_phase-BBS_package_data-character-character-method.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/host_data_by_phase.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/hostnames_by_release.html</loc>
@@ -55,6 +73,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/infr.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/make_BBS_package_data.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/make_demo_ArtifSet.html</loc>
   </url>
   <url>
@@ -62,6 +83,9 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/packages_with_events.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/packnames_with_events.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/path_to_untarred_artifact_folders.html</loc>
@@ -85,6 +109,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.pkg_by_host_data.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/pull_R_meta.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/sc_614.html</loc>
   </url>
   <url>
@@ -98,6 +125,15 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/show-ArtifSet-method.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/show-BBS_package_data-method.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/show-BBS_pkg_data_for_host-method.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/show-BBS_raw_pkg_info-method.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/simplecore.html</loc>

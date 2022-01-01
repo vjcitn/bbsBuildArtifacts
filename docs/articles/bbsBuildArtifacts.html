@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.33</span>
       </span>
     </div>
 
@@ -69,17 +69,13 @@
 
       
 
-      </header><script src="bbsBuildArtifacts_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="bbsBuildArtifacts_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="bbsBuildArtifacts_files/datatables-binding-0.20/datatables.js"></script><script src="bbsBuildArtifacts_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="bbsBuildArtifacts_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="bbsBuildArtifacts_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="bbsBuildArtifacts_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="bbsBuildArtifacts_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="bbsBuildArtifacts_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>bbsBuildArtifacts: filtering build reports</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">December 24, 2021</h4>
+            <h4 data-toc-skip class="date">January 01, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/bbsBuildArtifacts.Rmd" class="external-link"><code>vignettes/bbsBuildArtifacts.Rmd</code></a></small>
       <div class="hidden name"><code>bbsBuildArtifacts.Rmd</code></div>
@@ -92,26 +88,26 @@
 <h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h1>
 <p>We’d like to be able to get a quick overview of status for a subset of Bioconductor packages. “Status” is relative to Bioconductor version, package version, build platform, and condition of the platform.</p>
-<div class="section level2">
-<h2 id="new-approach-december-2021">New approach, December 2021<a class="anchor" aria-label="anchor" href="#new-approach-december-2021"></a>
-</h2>
 <p>We want to be able to work with the current artifacts provided at, e.g., <code>https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz</code>. Such gzipped tar resources are prepared for different types of resource.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="op">{</span>
+ <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vjcitn/bbsBuildArtifacts" class="external-link">bbsBuildArtifacts</a></span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT" class="external-link">DT</a></span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">bbsBuildArtifacts</span><span class="fu">:::</span><span class="fu">valid_types</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "bioc"            "data-experiment" "workflows"       "books"          </span>
 <span class="co">## [5] "bioc-longtests"</span></code></pre>
-<p>We’ll focus on type <code>bioc</code> for now, which associates with Software packages. We don’t know if all types are handled in the same way, but we hope so.</p>
-<p>Our objective is to learn the status and processing times for various phases of the build process for all packages.</p>
-<div class="section level3">
-<h3 id="artifact-set-manager">Artifact set manager<a class="anchor" aria-label="anchor" href="#artifact-set-manager"></a>
-</h3>
-<p>We define an S4 class to manage key information about builds. We’ve produced a thinned version of the BBS report.tgz accessible in the package at <code><a href="../reference/demo_url.html">demo_url()</a></code>. If <code>url</code> is not supplied to <code><a href="../reference/setup_artifacts.html">setup_artifacts()</a></code>, the report.tgz will be retrieved from bioconductor.org.</p>
+<p>We’ll focus on type <code>bioc</code> for now, which associates with Software packages. We don’t yet know if report.gz has the same structure for all types, but we hope so.</p>
+<p>Our objective is to learn the status and processing times for various phases of the build process for all packages, and to analyze error, warning and note events programatically.</p>
+<div class="section level2">
+<h2 id="artifact-set-manager">Artifact set manager<a class="anchor" aria-label="anchor" href="#artifact-set-manager"></a>
+</h2>
+<p>We define an S4 class <code>ArtifSet</code> to manage key information about builds. <code>ArtifSet</code> instances are produced using <code>setup_artifacts</code>.</p>
+<p>We’ve produced a thinned version of the BBS report.tgz accessible in the package at <code><a href="../reference/demo_url.html">demo_url()</a></code>, which has prefix <code>file://</code> referring to a file in the locally installed <code>bbsBuildArtifacts</code> package. If <code>url</code> is not supplied to <code><a href="../reference/setup_artifacts.html">setup_artifacts()</a></code>, the report.tgz will be retrieved from bioconductor.org, and cached using <code>BiocFileCache</code> with an informative <code>rname</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_artifacts.html">setup_artifacts</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"bioc"</span>, version<span class="op">=</span><span class="st">"3.14"</span>, url<span class="op">=</span><span class="fu"><a href="../reference/demo_url.html">demo_url</a></span><span class="op">(</span><span class="op">)</span>,
    destbase<span class="op">=</span><span class="st">"test_report"</span><span class="op">)</span></code></pre></div>
@@ -120,13 +116,14 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">af</span></code></pre></div>
 <pre><code><span class="co">## bbsBuildArtifacts ArtifSet instance.</span>
-<span class="co">##   15 pkg paths for type bioc, version 3.14.</span>
-<span class="co">##   5 extra file paths.</span>
+<span class="co">##   40 pkg paths for type bioc, version 3.14.</span>
+<span class="co">##   8 extra file paths.</span>
 <span class="co">##   use paths(aset)[...] to see selected paths.</span></code></pre>
+<p>Information of immediate interest can be derived and tabulated in a data.frame instance.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">af</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 180   6</span></code></pre>
+<pre><code><span class="co">## [1] 480   6</span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##        host pkgname pkgversion status elapsed_time    phase</span>
@@ -136,123 +133,107 @@
 <span class="co">## 4 nebbiolo2      a4     1.42.0     NA           NA buildbin</span>
 <span class="co">## 5 nebbiolo2    affy     1.72.0     OK         16.5  install</span>
 <span class="co">## 6 nebbiolo2    affy     1.72.0     OK         55.4 buildsrc</span></code></pre>
+<p>We use this to get statistics about timings for package installation, building and checking.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">elapsed_time</span>, <span class="va">d</span><span class="op">$</span><span class="va">host</span><span class="op">)</span>, <span class="va">sum</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">/</span><span class="fl">3600</span> <span class="co"># hours</span></code></pre></div>
 <pre><code><span class="co">##    machv2 nebbiolo2    tokay2 </span>
-<span class="co">##  2.585000  1.508750  3.669028</span></code></pre>
+<span class="co">##  7.706083  5.101778 10.148417</span></code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">elapsed_time</span>, <span class="va">d</span><span class="op">$</span><span class="va">phase</span><span class="op">)</span>, <span class="va">sum</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">/</span><span class="fl">3600</span> <span class="co"># hours</span></code></pre></div>
 <pre><code><span class="co">##  buildbin  buildsrc  checksrc   install </span>
-<span class="co">## 0.5458889 1.4805833 4.4115556 1.3247500</span></code></pre>
+<span class="co">##  1.296389  7.345694 11.808917  2.505278</span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">d</span>, elapsed_time_sec<span class="op">=</span><span class="va">elapsed_time</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">elapsed_time_sec</span>, x<span class="op">=</span><span class="va">host</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span><span class="va">.</span><span class="op">~</span><span class="va">phase</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
-<pre><code><span class="co">## Warning: Removed 35 rows containing non-finite values (stat_boxplot).</span></code></pre>
-<p><img src="bbsBuildArtifacts_files/figure-html/usecl-1.png" width="700"></p>
-</div>
-<div class="section level3">
-<h3 id="digging-deeper">Digging deeper<a class="anchor" aria-label="anchor" href="#digging-deeper"></a>
-</h3>
-<p>We want to extract details on errors.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/package_by_host_data.html">package_by_host_data</a></span><span class="op">(</span><span class="va">af</span><span class="op">@</span><span class="va">pkg_paths</span><span class="op">[</span><span class="st">"affyPara"</span><span class="op">]</span>, host<span class="op">=</span><span class="st">"tokay2"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## pkg_by_host_data instance for affyPara on host tokay2</span>
-<span class="co">##   last commit: 2021-10-26 16:52:06, n_err=NA, n_warn=NA</span>
-<span class="co">##   [NA for n_err implies R CMD check could not be run...]</span></code></pre>
-<p>Because the full check logs are available, we can use rcmdcheck check_details/parse_check to get more details on events.</p>
-</div>
+<pre><code><span class="co">## Warning: Removed 102 rows containing non-finite values (stat_boxplot).</span></code></pre>
+<p><img src="bbsBuildArtifacts_files/figure-html/timings-1.png" width="700"></p>
 </div>
 <div class="section level2">
-<h2 id="some-details">Some details<a class="anchor" aria-label="anchor" href="#some-details"></a>
+<h2 id="information-recorded-about-a-package">Information recorded about a package<a class="anchor" aria-label="anchor" href="#information-recorded-about-a-package"></a>
 </h2>
+<p>Because the build/check processes are error prone, some packages may lack information described below.</p>
 <div class="section level3">
-<h3 id="download-and-cache-the-report-tgz">Download and cache the report.tgz<a class="anchor" aria-label="anchor" href="#download-and-cache-the-report-tgz"></a>
+<h3 id="raw_info">
+<code>raw_info</code><a class="anchor" aria-label="anchor" href="#raw_info"></a>
 </h3>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">our_cache</span> <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">cid</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_report_tgz_cacheid.html">get_report_tgz_cacheid</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"3.14"</span>, type<span class="op">=</span><span class="st">"bioc"</span>, cache<span class="op">=</span><span class="va">our_cache</span><span class="op">)</span>
-<span class="va">cid</span></code></pre></div>
-<pre><code><span class="co">## [1] "BFC98"</span></code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">our_cache</span><span class="op">[</span><span class="va">cid</span><span class="op">]</span> <span class="co"># metadata</span></code></pre></div>
-<pre><code><span class="co">## class: BiocFileCacheReadOnly</span>
-<span class="co">## bfccache: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache</span>
-<span class="co">## bfccount: 1</span>
-<span class="co">## For more information see: bfcinfo() or bfcquery()</span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">our_cache</span><span class="op">[[</span><span class="va">cid</span><span class="op">]</span><span class="op">]</span>  <span class="co"># actual path</span></code></pre></div>
-<pre><code><span class="co">##                                                                                              BFC98 </span>
-<span class="co">## "/Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/813523b2b272_file81352ffd6023"</span></code></pre>
-<p>There is an unexported helper function to clean the cache of a path for a given version/type combination.</p>
+<p>This is a selection from content of an <code>info.dcf</code> produced for each package.</p>
+<pre><code><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">bbsBuildArtifacts</span><span class="fu">:::</span><span class="fu">make_raw_info</span><span class="op">(</span><span class="va">af</span>, <span class="st">"SummarizedExperiment"</span><span class="op">)</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level3">
-<h3 id="process-install--build--and-check-related-contents-of-a-package">Process install-, build-, and check-related contents of a package<a class="anchor" aria-label="anchor" href="#process-install--build--and-check-related-contents-of-a-package"></a>
+<h3 id="detailed-information-about-events">Detailed information about events<a class="anchor" aria-label="anchor" href="#detailed-information-about-events"></a>
 </h3>
-<p>We do not cache the untarred data. The untar process must occur each time we want to analyze the artifacts.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">allpaths</span> <span class="op">=</span> <span class="fu"><a href="../reference/artifact_folder_paths.html">artifact_folder_paths</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"3.14"</span>, type<span class="op">=</span><span class="st">"bioc"</span>, cache<span class="op">=</span><span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## starting untar...</span></code></pre>
-<pre><code><span class="co">## done</span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">allpaths</span></code></pre></div>
-<pre><code><span class="co">## artifact_folders_paths instance:</span>
-<span class="co">##   There are 2083 folders. </span>
-<span class="co">##   Subset via [pkgname] to get full path.</span></code></pre>
-<p>The <code>package_by_host_data</code> function will parse the DCF files created for each package by the BBS.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">allpaths</span><span class="op">[</span><span class="st">"parody"</span><span class="op">]</span> <span class="co"># simple retrieval</span></code></pre></div>
-<pre><code><span class="co">##                                                                       parody </span>
-<span class="co">## "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//Rtmph5H2Vx/report/parody"</span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/package_by_host_data.html">package_by_host_data</a></span><span class="op">(</span><span class="va">allpaths</span><span class="op">[</span><span class="st">"parody"</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## pkg_by_host_data instance for parody on host nebbiolo2</span>
-<span class="co">##   last commit: 2021-10-26 16:53:06, n_err=0, n_warn=0</span></code></pre>
-<p>We can produce a data table for a number of packages as follows.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">few</span> <span class="op">=</span> <span class="va">allpaths</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>
-<span class="va">dcfs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">few</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/simplify_artifact_build_dcfs.html">simplify_artifact_build_dcfs</a></span><span class="op">(</span><span class="fu"><a href="../reference/package_by_host_data.html">package_by_host_data</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">dcfs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span>
-
-<span class="co">## Warning in getsec(ac(z[, "EllapsedTime"])): NAs introduced by coercion</span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tab</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">dcfs</span><span class="op">)</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT" class="external-link">DT</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-db4e31fce23939ce761e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-db4e31fce23939ce761e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40"],["nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2","nebbiolo2"],["a4","a4","a4","a4","a4Base","a4Base","a4Base","a4Base","a4Classif","a4Classif","a4Classif","a4Classif","a4Core","a4Core","a4Core","a4Core","a4Preproc","a4Preproc","a4Preproc","a4Preproc","a4Reporting","a4Reporting","a4Reporting","a4Reporting","ABAEnrichment","ABAEnrichment","ABAEnrichment","ABAEnrichment","ABarray","ABarray","ABarray","ABarray","abseqR","abseqR","abseqR","abseqR","ABSSeq","ABSSeq","ABSSeq","ABSSeq"],["1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.42.0","1.24.0","1.24.0","1.24.0","1.24.0","1.62.0","1.62.0","1.62.0","1.62.0","1.12.0","1.12.0","1.12.0","1.12.0","1.48.0","1.48.0","1.48.0","1.48.0"],["OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA","OK","OK","OK","NA"],[18.1,110.3,66.2,null,19,0.5,177.2,null,14.1,27.4,71.5,null,15.2,8,43.5,null,15.9,8.7,24.8,null,7.7,3.6,19.4,null,14.7,66.8,87.4,null,8.3,11.1,53.1,null,8.8,100.3,103.7,null,15.9,67.6,100.6,null],["install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin","install","buildsrc","checksrc","buildbin"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>host<\/th>\n      <th>pkgname<\/th>\n      <th>pkgversion<\/th>\n      <th>status<\/th>\n      <th>elapsed_time<\/th>\n      <th>phase<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":5},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Building a comprehensive table requires some fault tolerance. We have used silent <code>try</code> calls in <code>package_by_host_data</code>; silent can be set to FALSE if desired.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="op">{</span>
-<span class="va">alldcfs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">allpaths</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/simplify_artifact_build_dcfs.html">simplify_artifact_build_dcfs</a></span><span class="op">(</span><span class="fu"><a href="../reference/package_by_host_data.html">package_by_host_data</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">dcfs</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span>
-<span class="va">fulltab</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">alldcfs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Let’s get a sense of the distribution of build times.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="va">bdat</span> <span class="op">=</span> <span class="va">fulltab</span> |&gt; <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">phase</span><span class="op">==</span><span class="st">"buildsrc"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">bdat</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 2083</span></code></pre>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">bdat</span><span class="op">$</span><span class="va">elapsed_time</span><span class="op">)</span></code></pre></div>
-<p><img src="bbsBuildArtifacts_files/figure-html/lkbtr-1.png" width="700"></p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">bdat</span><span class="op">$</span><span class="va">elapsed_time</span> <span class="op">&gt;</span> <span class="fl">600</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 29</span></code></pre>
+<p>Here’s how we can obtain the installation log for SummarizedExperiment on nebbiolo2, for December 10 2021.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_BBS_package_data.html">make_BBS_package_data</a></span><span class="op">(</span><span class="va">af</span>, <span class="st">"SummarizedExperiment"</span><span class="op">)</span>
+<span class="va">pd1</span></code></pre></div>
+<pre><code><span class="co">## BBS_package_data for package 'SummarizedExperiment' version 3.14</span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">pd1</span>, <span class="st">"host_data"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "nebbiolo2" "machv2"    "tokay2"</span></code></pre>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hd</span> <span class="op">=</span> <span class="fu">slot</span><span class="op">(</span><span class="va">pd1</span>, <span class="st">"host_data"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">hd</span><span class="op">$</span><span class="va">nebbiolo2</span>, <span class="st">"install"</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## ##############################################################################</span>
+<span class="co">## ##############################################################################</span>
+<span class="co">## ###</span>
+<span class="co">## ### Running command:</span>
+<span class="co">## ###</span>
+<span class="co">## ###   /home/biocbuild/bbs-3.14-bioc/R/bin/R CMD INSTALL SummarizedExperiment</span>
+<span class="co">## ###</span>
+<span class="co">## ##############################################################################</span>
+<span class="co">## ##############################################################################</span>
+<span class="co">## </span>
+<span class="co">## </span>
+<span class="co">## * installing to library ‘/home/biocbuild/bbs-3.14-bioc/R/library’</span>
+<span class="co">## * installing *source* package ‘SummarizedExperiment’ ...</span>
+<span class="co">## ** using staged installation</span>
+<span class="co">## ** R</span>
+<span class="co">## ** inst</span>
+<span class="co">## ** byte-compile and prepare package for lazy loading</span>
+<span class="co">## ** help</span>
+<span class="co">## *** installing help indices</span>
+<span class="co">## ** building package indices</span>
+<span class="co">## ** installing vignettes</span>
+<span class="co">## ** testing if installed package can be loaded from temporary location</span>
+<span class="co">## ** testing if installed package can be loaded from final location</span>
+<span class="co">## ** testing if installed package keeps a record of temporary installation path</span>
+<span class="co">## * DONE (SummarizedExperiment)</span></code></pre>
+<p>The date of the build is not currently recorded in a convenient place.</p>
+<p>The installation information for affyPara is more interesting:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pd2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_BBS_package_data.html">make_BBS_package_data</a></span><span class="op">(</span><span class="va">af</span>, <span class="st">"affyPara"</span><span class="op">)</span>
+<span class="va">hd</span> <span class="op">=</span> <span class="fu">slot</span><span class="op">(</span><span class="va">pd2</span>, <span class="st">"host_data"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">hd</span><span class="op">$</span><span class="va">nebbiolo2</span>, <span class="st">"install"</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## ##############################################################################</span>
+<span class="co">## ##############################################################################</span>
+<span class="co">## ###</span>
+<span class="co">## ### Running command:</span>
+<span class="co">## ###</span>
+<span class="co">## ###   /home/biocbuild/bbs-3.14-bioc/R/bin/R CMD INSTALL affyPara</span>
+<span class="co">## ###</span>
+<span class="co">## ##############################################################################</span>
+<span class="co">## ##############################################################################</span>
+<span class="co">## </span>
+<span class="co">## </span>
+<span class="co">## * installing to library ‘/home/biocbuild/bbs-3.14-bioc/R/library’</span>
+<span class="co">## * installing *source* package ‘affyPara’ ...</span>
+<span class="co">## ** using staged installation</span>
+<span class="co">## ** R</span>
+<span class="co">## ** byte-compile and prepare package for lazy loading</span>
+<span class="co">## ** help</span>
+<span class="co">## *** installing help indices</span>
+<span class="co">## ** building package indices</span>
+<span class="co">## ** installing vignettes</span>
+<span class="co">## ** testing if installed package can be loaded from temporary location</span>
+<span class="co">## Error: package or namespace load failed for ‘affyPara’:</span>
+<span class="co">##  .onLoad failed in loadNamespace() for 'affyPara', details:</span>
+<span class="co">##   call: assign(".affyParaInternalEnv", .affyParaInternalEnv, envir = topenv(parent.frame()))</span>
+<span class="co">##   error: cannot add binding of '.affyParaInternalEnv' to the base environment</span>
+<span class="co">## Error: loading failed</span>
+<span class="co">## Execution halted</span>
+<span class="co">## ERROR: loading failed</span>
+<span class="co">## * removing ‘/home/biocbuild/bbs-3.14-bioc/R/library/affyPara’</span></code></pre>
+<p>Much of the content of these logs is routine unilluminating chatter. Isolating the information of functional value is a project for future effort.</p>
 </div>
 </div>
 </div>
