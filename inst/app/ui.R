@@ -25,7 +25,7 @@ if (!fromPkg) {
       tabPanel("macos", id="macos", verbatimTextOutput("curpackname3"), verbatimTextOutput( "errtxt_mac" )),
       tabPanel("about pkg", id="pkg", verbatimTextOutput("curpackname4"), 
                verbatimTextOutput("pkg_raw_info"), htmlOutput( "pkg_data" )),
-      tabPanel("about app", helpText("This shiny app is intended to help investigation of adverse events in the Bioconductor Build System.  The reports focus on packages exhibiting problems in different phases of build and check for different hosts."))
+      tabPanel("about app", helpText("This shiny app is intended to help investigation of adverse events in the Bioconductor Build System.  The reports focus on packages exhibiting problems in different phases of build and check for different hosts."), helpText("ArtifSet in use:"),  verbatimTextOutput("afdata"))
       )
      )
     )

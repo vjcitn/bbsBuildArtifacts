@@ -9,11 +9,25 @@ setClass("ArtifSet", representation(type="character", version="character",
 #' @export
 setMethod("show", "ArtifSet", function(object) {
   cat("bbsBuildArtifacts ArtifSet instance.\n")
-  cat(sprintf("  %d pkg paths for type %s, version %s.\n", length(slot(object, "pkg_paths")), 
+  cat(sprintf("  %d pkg paths for type %s, Bioconductor version %s.\n", length(slot(object, "pkg_paths")), 
     slot(object, "type"), slot(object, "version")))
   cat(sprintf("  %d extra file paths.\n", length(slot(object, "extra_paths"))))
-  cat("  use paths(aset)[...] to see selected paths.\n")
+  platinf = Platform_info(object)
+  cat(sprintf("R version: %s", platinf$R_info))
+  cat("Platforms: \n  ")
+  cat(platinf$OS_info, sep="\n  ")
+  cat("Use paths(aset)[...] to retrieve selected paths.\n")
 })
+
+Platform_info = function(af) {
+ nodeinfos = grep("NodeInfo", slot(af, "extra_paths"), value=TRUE)
+ os_info = vapply( slot(af, "hostnames"), function(node) { 
+   target = grep(node, nodeinfos, value=TRUE)
+   pull_R_meta(target)$os_meta
+   }, character(1))
+ R_info = pull_R_meta( nodeinfos[1] )$r_meta
+ list(OS_info = os_info, R_info = R_info )
+}
 
 #' helper
 #' @param x instance of ArtifSet

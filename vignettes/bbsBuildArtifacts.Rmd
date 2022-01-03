@@ -90,7 +90,7 @@ may lack information described below.
 
 This is a selection from content of an `info.dcf` produced for each package.
 
-```
+```{r lkrai}
 str(bbsBuildArtifacts:::make_raw_info(af, "SummarizedExperiment"))
 ```
 

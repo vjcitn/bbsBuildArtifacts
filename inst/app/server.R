@@ -6,6 +6,7 @@
 # SERVER
 #
   server = function(input, output, session) {
+    output$afdata = renderPrint( af )
     output$initlabel = renderUI({tags$span(
        popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
          "A package may produce multiple events in different classes."))
