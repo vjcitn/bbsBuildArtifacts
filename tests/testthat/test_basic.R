@@ -5,8 +5,9 @@ library(testthat)
 test_that("make_demo_ArtifSet works", {
   af = make_demo_ArtifSet()
   pa = paths(af)
-  expect_true(length(pa)==40)
+  expect_true(length(pa)==44)
   expect_true(length(pa["parody"])==1)
+  expect_true(length(pa["GenomicFeatures"])==1)
 })
 
 basic_url = "https://bioconductor.org/checkResults/3.14/bioc-LATEST/report.tgz"
@@ -39,7 +40,7 @@ test_that("ArtifSet coercion works", {
   expect_true( all.equal(
     colnames(adf), 
      c("host", "pkgname", "pkgversion", "status", "elapsed_time", "phase")))
-  expect_true( all.equal( dim(adf), c( 480, 6 ) ) )
+  expect_true( all.equal( dim(adf), c( 528, 6 ) ) )
 })
  
 

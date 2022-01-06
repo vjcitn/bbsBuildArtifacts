@@ -7,6 +7,7 @@
 get_report_tgz_cacheid(
   version = "3.14",
   type = "bioc",
+  date = Sys.Date(),
   cache = BiocFileCache::BiocFileCache(),
   url = NULL
 )
@@ -15,6 +16,8 @@ get_report_tgz_cacheid(
 \item{version}{character(1) defaults to "3.14"}
 
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
+
+\item{date}{character(1) defaults to Sys.Date(), format "yyyy-mm-dd", used to produce date-specific rname in cache}
 
 \item{cache}{instance of `BiocFileCache::BiocFileCache()`}
 

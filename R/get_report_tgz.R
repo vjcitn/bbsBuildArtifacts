@@ -21,13 +21,21 @@ build_report_tgz_url = function(version, type) {
 demo_url = function() paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz",
     package="bbsBuildArtifacts"))
 
+#' A demonstration URL with trimmed report.tgz in a local file, more recent than that for `demo_url`
+#' @export
+demo_url2 = function() paste0("file://", system.file("test_report_3.14_bioc_20220105/test_report_0105.tgz",
+    package="bbsBuildArtifacts"))
+
+
 isFileURL = function(x) substr(x, 1, 7) == "file://"
+is_online = function() !is.null(curl::nslookup("r-project.org", error = FALSE))
 
 #' get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)
 #' @import BiocFileCache
 #' @importFrom utils download.file untar
 #' @param version character(1) defaults to "3.14"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
+#' @param date character(1) defaults to Sys.Date(), format "yyyy-mm-dd", used to produce date-specific rname in cache
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param url defaults to NULL, if supplied, used to retrieve or cache tgz file
 #' @return A gzipped tarball is downloaded, informatively renamed, copied to a cache, and the cache reference is returned.
@@ -39,11 +47,11 @@ isFileURL = function(x) substr(x, 1, 7) == "file://"
 #' id = get_report_tgz_cacheid(url=cururl)
 #' BiocFileCache::bfcquery(BiocFileCache::BiocFileCache(), cururl)
 #' @export
-get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
+get_report_tgz_cacheid = function(version = "3.14", type="bioc", date = Sys.Date(), cache=BiocFileCache::BiocFileCache(),
      url=NULL) {
     if (is.null(url)) {
        current_url = build_report_tgz_url(version, type)
-       informative_name = paste0(type, "_", version, "_", as.character(Sys.Date()), "_report.tgz")
+       informative_name = paste0(type, "_", version, "_", as.character(date), "_report.tgz")
        }
     else {
        current_url = url
@@ -52,7 +60,8 @@ get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileC
     chk = bfcquery(cache, informative_name)
     if (!(length(chk$rpath)==0)) return(chk$rid)
     tf = tempfile()
-    download.file(current_url, tf)
+    if (is_online()) download.file(current_url, tf)
+     else stop("you are offline and requested artifact tarball is not in cache.")
     if (!isFileURL(current_url)) {
       base = dirname(tf)
       leaf = basename(tf)
