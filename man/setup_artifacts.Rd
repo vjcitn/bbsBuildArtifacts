@@ -7,10 +7,9 @@
 setup_artifacts(
   type = "bioc",
   version = "3.14",
-  date = Sys.Date(),
   hostnames = hostnames_by_release(version),
   cache = BiocFileCache::BiocFileCache(),
-  destination = paste0(tempdir(), "/", type, "_", date),
+  destination = tempfile(),
   verbose = TRUE,
   extracted = NULL,
   url = NULL,
@@ -22,14 +21,11 @@ setup_artifacts(
 
 \item{version}{character(1) defaults to "3.14"}
 
-\item{date}{character(1) "yyyy-mm-dd" format, defaults to Sys.Date()}
-
 \item{hostnames}{character() vector of host names for which build artifacts are available}
 
 \item{cache}{instance of `BiocFileCache::BiocFileCache()`}
 
-\item{destination}{character(1) path to folder to use for artifacts, 
-defaults to `paste0(tempdir(), "/" type, "_" date)`}
+\item{destination}{character(1) path to folder to use for artifacts}
 
 \item{verbose}{logical(1) if TRUE (default) will provide message about tar activity}
 

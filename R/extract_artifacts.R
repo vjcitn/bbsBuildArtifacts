@@ -57,11 +57,9 @@ avail_hostnames = function(x) {
 #' Create ArtifSet instance
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param version character(1) defaults to "3.14"
-#' @param date character(1) "yyyy-mm-dd" format, defaults to Sys.Date()
 #' @param hostnames character() vector of host names for which build artifacts are available
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
-#' @param destination character(1) path to folder to use for artifacts, 
-#' defaults to `paste0(tempdir(), "/" type, "_" date)`
+#' @param destination character(1) path to folder to use for artifacts
 #' @param verbose logical(1) if TRUE (default) will provide message about tar activity 
 #' @param extracted defaults to NULL, if non-null a character(1) path to folder that holds `report` folder
 #' @param url character(1) passed to `get_report_tgz_cacheid`
@@ -72,12 +70,14 @@ avail_hostnames = function(x) {
 #' z = setup_artifacts(url=cururl, destbase="test_report")
 #' z
 #' @export
-setup_artifacts = function(type="bioc", version="3.14", date = Sys.Date(), hostnames=hostnames_by_release(version),
-   cache=BiocFileCache::BiocFileCache(), destination=paste0(tempdir(), "/", type, "_", date),
+setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_release(version),
+   cache=BiocFileCache::BiocFileCache(), destination=tempfile(),
    verbose=TRUE, extracted=NULL, url=NULL, destbase="report") {
-   if (!is.null(extracted)) destination = extracted
+   if (!is.null(extracted)) {
+        destination = extracted
+        }
    else {
-       tag = get_report_tgz_cacheid(version=version, type=type, date = date, cache=cache, url=url)
+       tag = get_report_tgz_cacheid(version=version, type=type, cache=cache, url=url)
        tarpath = cache[[tag]]
        if (verbose) message("starting untar...")
        chk = try(untar(tarpath, exdir=destination))
@@ -131,7 +131,8 @@ ans
 #' @examples
 #' make_demo_ArtifSet()
 #' @export
-make_demo_ArtifSet = function(cache=BiocFileCache::BiocFileCache(), preclean=TRUE, demostring="test_report_3.14_bioc_20211210", url=demo_url(), destbase="test_report") {
+make_demo_ArtifSet = function(cache=BiocFileCache::BiocFileCache(), preclean=TRUE, 
+       demostring="test_report_3.14_bioc_20211210", url=demo_url(), destbase="test_report") {
   if (preclean) {
     ca = cache
     lk = BiocFileCache::bfcquery(ca, demostring)
