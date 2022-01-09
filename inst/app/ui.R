@@ -23,6 +23,8 @@ if (!fromPkg) {
       tabPanel("linux", id="linux", verbatimTextOutput("curpackname"), verbatimTextOutput( "errtxt_lin" )),
       tabPanel("windows", id="windows",verbatimTextOutput("curpackname2"), verbatimTextOutput( "errtxt_win" )),
       tabPanel("macos", id="macos", verbatimTextOutput("curpackname3"), verbatimTextOutput( "errtxt_mac" )),
+      tabPanel("timings", id="timing", helpText("Summaries per phase/host are followed by details for longest times"),
+                  verbatimTextOutput("timingSummaries"), verbatimTextOutput("timings")),
       tabPanel("about pkg", id="pkg", verbatimTextOutput("curpackname4"), 
                verbatimTextOutput("pkg_raw_info"), htmlOutput( "pkg_data" )),
       tabPanel("about app", helpText("This shiny app is intended to help investigation of adverse events in the Bioconductor Build System.  The reports focus on packages exhibiting problems in different phases of build and check for different hosts."), helpText("ArtifSet in use:"),  verbatimTextOutput("afdata"))

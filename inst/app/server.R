@@ -6,6 +6,9 @@
 # SERVER
 #
   server = function(input, output, session) {
+    timerep = time_report(af)
+    output$timings = renderPrint( timerep )
+    output$timingSummaries = renderPrint( summary(timerep) )
     output$afdata = renderPrint( af )
     output$initlabel = renderUI({tags$span(
        popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
