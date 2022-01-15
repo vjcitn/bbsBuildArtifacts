@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.39</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.41</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1 data-toc-skip>bbsBuildArtifacts: comparing BBS states over time</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">January 09, 2022</h4>
+            <h4 data-toc-skip class="date">January 14, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/comparison.Rmd" class="external-link"><code>vignettes/comparison.Rmd</code></a></small>
       <div class="hidden name"><code>comparison.Rmd</code></div>
@@ -145,6 +145,26 @@
 <span class="co">##  [5] "graphite"        "imageHTS"        "KnowSeq"         "martini"        </span>
 <span class="co">##  [9] "MGFR"            "MineICA"         "nanotatoR"       "ORFik"          </span>
 <span class="co">## [13] "psichomics"      "recount"         "SWATH2stats"</span></code></pre>
+<p>This report is host-dependent; the default here was nebbiolo2.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="fu"><a href="../reference/new_events.html">new_events</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span>, host<span class="op">=</span><span class="st">"tokay2"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "BiocPkgTools" "clustifyr"    "genotypeeval" "imageHTS"     "pathRender"  </span>
+<span class="co">## [6] "powerTCR"</span></code></pre>
+</div>
+<div class="section level1">
+<h1 id="packages-for-which-events-have-resolved">Packages for which events have resolved<a class="anchor" aria-label="anchor" href="#packages-for-which-events-have-resolved"></a>
+</h1>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="fu"><a href="../reference/becomes_OK.html">becomes_OK</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##  [1] "conclus"              "easyRNASeq"           "Gviz"                </span>
+<span class="co">##  [4] "MungeSumstats"        "NoRCE"                "Pigengene"           </span>
+<span class="co">##  [7] "PrecisionTrialDrawer" "recoup"               "RIPAT"               </span>
+<span class="co">## [10] "RLSeq"                "seqsetvis"            "sitadela"</span></code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="fu"><a href="../reference/becomes_OK.html">becomes_OK</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span>, host<span class="op">=</span><span class="st">"tokay2"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##  [1] "AlpsNMR"      "atSNP"        "BgeeCall"     "biodbUniprot" "ChIPpeakAnno"</span>
+<span class="co">##  [6] "cytomapper"   "imcRtools"    "MetNet"       "muscat"       "seqsetvis"   </span>
+<span class="co">## [11] "Travel"</span></code></pre>
 </div>
   </div>
 

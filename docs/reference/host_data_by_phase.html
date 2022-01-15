@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.39</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.41</span>
       </span>
     </div>
 
@@ -82,6 +82,38 @@
 <dd><p>character(1) valid phase</p></dd>
 </dl></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> done.</span>
+<span class="r-in"><span class="va">pd1</span> <span class="op">=</span> <span class="fu"><a href="make_BBS_package_data.html">make_BBS_package_data</a></span><span class="op">(</span><span class="va">af</span>, <span class="st">"SummarizedExperiment"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">hd</span> <span class="op">=</span> <span class="fu">host_data_by_phase</span><span class="op">(</span> <span class="va">pd1</span>, <span class="st">"nebbiolo2"</span>, <span class="st">"buildsrc"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hd</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "##############################################################################"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "##############################################################################"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "###"                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "### Running command:"                                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "###"                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "###   /home/biocbuild/bbs-3.14-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data SummarizedExperiment"</span>
+<span class="r-in"><span class="va">hd</span> <span class="op">=</span> <span class="fu">host_data_by_phase</span><span class="op">(</span> <span class="va">pd1</span>, <span class="st">"nebbiolo2"</span>, <span class="st">"checksrc"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hd</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "----"              "NO ERROR EVENTS"   "----"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "----"              "NO WARNING EVENTS" "----"             </span>
+<span class="r-in"><span class="va">pd2</span> <span class="op">=</span> <span class="fu"><a href="make_BBS_package_data.html">make_BBS_package_data</a></span><span class="op">(</span><span class="va">af</span>, <span class="st">"affyPara"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">hd</span> <span class="op">=</span> <span class="fu">host_data_by_phase</span><span class="op">(</span> <span class="va">pd2</span>, <span class="st">"nebbiolo2"</span>, <span class="st">"install"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">hd</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "  call: assign(\".affyParaInternalEnv\", .affyParaInternalEnv, envir = topenv(parent.frame()))"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "  error: cannot add binding of '.affyParaInternalEnv' to the base environment"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Error: loading failed"                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "Execution halted"                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "ERROR: loading failed"                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "* removing ‘/home/biocbuild/bbs-3.14-bioc/R/library/affyPara’"                                 </span>
+<span class="r-in"><span class="va">hd</span> <span class="op">=</span> <span class="fu">host_data_by_phase</span><span class="op">(</span> <span class="va">pd2</span>, <span class="st">"nebbiolo2"</span>, <span class="st">"checksrc"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hd</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "no checksrc-out.txt available for affyPara"</span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
