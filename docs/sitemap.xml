@@ -7,6 +7,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/bbsBuildArtifacts.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/comparison.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/index.html</loc>
   </url>
   <url>
@@ -34,6 +37,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/as.data.frame.ArtifSet.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/becomes_OK.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/browse_event_collection.html</loc>
   </url>
   <url>
@@ -46,7 +52,13 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/demo_url.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/demo_url2.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/event_freqs.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/examine_cache.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/get_events.html</loc>
@@ -79,6 +91,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/make_demo_ArtifSet.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/new_events.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/package_by_host_data.html</loc>
   </url>
   <url>
@@ -97,10 +112,16 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/paths.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/pkgs_with_event.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_folder_paths.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_paths.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.bbs_time_report.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.event_collection.html</loc>
@@ -142,9 +163,15 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/simplify_artifact_build_dcfs.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/summary.bbs_time_report.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/tabulate_bbs_metrics.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/tabulate_states.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/time_report.html</loc>
   </url>
 </urlset>

@@ -16,3 +16,16 @@ host_data_by_phase(bbspd, host, phase)
 \description{
 acquire data on a package's BBS state
 }
+\examples{
+af = make_demo_ArtifSet()
+pd1 = make_BBS_package_data(af, "SummarizedExperiment")
+hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+head(hd)
+hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+head(hd)
+pd2 = make_BBS_package_data(af, "affyPara")
+hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+tail(hd)
+hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+head(hd)
+}

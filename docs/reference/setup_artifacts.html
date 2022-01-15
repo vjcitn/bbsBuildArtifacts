@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.39</span>
       </span>
     </div>
 
@@ -34,6 +34,16 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/comparison.html">bbsBuildArtifacts: comparing BBS states over time</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/vjcitn/bbsBuildArtifacts" class="external-link">
     <span class="fa fa-github"></span>
@@ -64,7 +74,7 @@
   version <span class="op">=</span> <span class="st">"3.14"</span>,
   hostnames <span class="op">=</span> <span class="fu"><a href="hostnames_by_release.html">hostnames_by_release</a></span><span class="op">(</span><span class="va">version</span><span class="op">)</span>,
   cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,
-  destination <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,
+  destination <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>,
   extracted <span class="op">=</span> <span class="cn">NULL</span>,
   url <span class="op">=</span> <span class="cn">NULL</span>,
@@ -83,7 +93,7 @@
 <dt>cache</dt>
 <dd><p>instance of `BiocFileCache::BiocFileCache()`</p></dd>
 <dt>destination</dt>
-<dd><p>character(1) path to folder to use for artifacts, defaults to `tempdir()`</p></dd>
+<dd><p>character(1) path to folder to use for artifacts</p></dd>
 <dt>verbose</dt>
 <dd><p>logical(1) if TRUE (default) will provide message about tar activity</p></dd>
 <dt>extracted</dt>
@@ -106,8 +116,9 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> done.</span>
 <span class="r-in"><span class="va">z</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> bbsBuildArtifacts ArtifSet instance.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   40 pkg paths for type bioc, Bioconductor version 3.14.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   44 pkg paths for type bioc, Bioconductor version 3.14.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   8 extra file paths.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   tarball production date: 2021-12-22</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> R version: 4.1.2 (2021-11-01) -- "Bird Hippie"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Platforms: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Linux (Ubuntu 20.04.3 LTS)</span>

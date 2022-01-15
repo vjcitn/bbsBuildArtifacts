@@ -104,6 +104,7 @@ setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_r
 
 
 #' basic artifact data collected to tibble
+#' @importFrom BiocParallel bplapply
 #' @param x instance of ArtifSet
 #' @param row.names defaults to NULL
 #' @param optional defaults to FALSE
@@ -113,7 +114,7 @@ as.data.frame.ArtifSet = function (x, row.names = NULL, optional = FALSE, ...) {
   by_host = vector("list", length(x@hostnames))
   suppressWarnings({  # lots of try() here, we know some processes don't produce data
   for (i in seq_len(length(by_host))) {
-    by_host[[i]] = do.call(rbind, lapply(x@pkg_paths, function(z) simplify_artifact_build_dcfs(package_by_host_data(z,
+    by_host[[i]] = do.call(rbind, bplapply(x@pkg_paths, function(z) simplify_artifact_build_dcfs(package_by_host_data(z,
                host=x@hostnames[i])$dcfs)))
     }
   })

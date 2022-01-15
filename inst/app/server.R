@@ -6,9 +6,9 @@
 # SERVER
 #
   server = function(input, output, session) {
-    timerep = time_report(af)
-    output$timings = renderPrint( timerep )
-    output$timingSummaries = renderPrint( summary(timerep) )
+  #  timerep = time_report(af)
+  #  output$timings = renderPrint( timerep )
+  #  output$timingSummaries = renderPrint( summary(timerep) )
     output$afdata = renderPrint( af )
     output$initlabel = renderUI({tags$span(
        popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
@@ -40,7 +40,7 @@
        validate(need(nchar(input$eventtype)>0, "waiting"))
        validate(need(nchar(input$curpack)>0, "waiting"))
        validate(need(nchar(input$phase)>0, "waiting"))
-       make_BBS_package_data( af, input$curpack )
+       make_BBS_package_data( af, input$curpack, hosts=build_hosts )
        })
      get_event_txt = reactive({
        function(HOST) {
@@ -55,7 +55,12 @@
     observeEvent(input$stopBtn, {
        stopApp(returnValue=NULL)   # could return information here
       })
-    output$evfreq = renderTable(event_freqs(af))
+    output$evfreq = renderTable({
+      ho = build_hosts[c("linux", "windows", "macos")]
+      rmap = names(ho)
+      names(rmap) = ho
+      event_freqs(af, hostmap=rmap)
+      })
     output$pkg_data = renderUI({
        tags$a(href=paste0("http://bioconductor.org/packages/", input$curpack), target="_blank", "Landing page")
        })

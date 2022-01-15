@@ -74,6 +74,18 @@ hosts = function(bbspd) slot(bbspd, "hosts")
 #' @param bbspd instance of BBS_package_data
 #' @param host character(1) valid host name for BBS
 #' @param phase character(1) valid phase
+#' @examples
+#' af = make_demo_ArtifSet()
+#' pd1 = make_BBS_package_data(af, "SummarizedExperiment")
+#' hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+#' head(hd)
+#' hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+#' head(hd)
+#' pd2 = make_BBS_package_data(af, "affyPara")
+#' hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+#' tail(hd)
+#' hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+#' head(hd)
 #' @export
 setGeneric("host_data_by_phase", function(bbspd, host, phase) standardGeneric("host_data_by_phase"))
 
@@ -98,7 +110,11 @@ setGeneric("host_data_by_phase", function(bbspd, host, phase) standardGeneric("h
 setMethod("host_data_by_phase", c("BBS_package_data", "character", "character"),
     function(bbspd, host, phase) {
       stopifnot(phase %in% valid_phases())
-      stopifnot(host %in% hosts(bbspd))
+      if (!(host %in% hosts(bbspd))) {
+         message("host identity unexpected; hosts(bbspd) = ")
+         print(hosts(bbspd))
+         stop("cannot proceed")
+         }
       slot(slot(bbspd, "host_data")[[host]], phase)
     })
       

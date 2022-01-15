@@ -10,6 +10,7 @@ event_freqs = function(af, hostmap=c(nebbiolo2="linux", machv2="mac", tokay2="wi
  si = which(tt$state == "skipped")
  tt[si,]$state = paste(tt[si,]$phase, tt[si,]$state, sep=":")
  ttt =  table(tt$host, tt$state)
+ ttt = ttt[names(hostmap),]   # in case of multiple related hosts like introducing palomino3
  simplify.tab = function (x, hostmap) 
  {
     nr = nrow(x)

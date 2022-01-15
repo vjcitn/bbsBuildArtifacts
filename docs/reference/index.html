@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.39</span>
       </span>
     </div>
 
@@ -34,6 +34,16 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/comparison.html">bbsBuildArtifacts: comparing BBS states over time</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/vjcitn/bbsBuildArtifacts" class="external-link">
     <span class="fa fa-github"></span>
@@ -81,6 +91,10 @@
         </td>
         <td><p>basic artifact data collected to tibble</p></td>
       </tr><tr><td>
+          <p><code><a href="becomes_OK.html">becomes_OK()</a></code> </p>
+        </td>
+        <td><p>list packages that have resolved an event comparing af2 (later) to af1 (earlier)</p></td>
+      </tr><tr><td>
           <p><code><a href="browse_events.html">browse_events()</a></code> </p>
         </td>
         <td><p>app to get details on events in packages</p></td>
@@ -93,9 +107,17 @@
         </td>
         <td><p>A demonstration URL with trimmed report.tgz in a local file</p></td>
       </tr><tr><td>
+          <p><code><a href="demo_url2.html">demo_url2()</a></code> </p>
+        </td>
+        <td><p>A demonstration URL with trimmed report.tgz in a local file, more recent than that for `demo_url`</p></td>
+      </tr><tr><td>
           <p><code><a href="event_freqs.html">event_freqs()</a></code> </p>
         </td>
         <td><p>provide a concise table of events by host</p></td>
+      </tr><tr><td>
+          <p><code><a href="examine_cache.html">examine_cache()</a></code> </p>
+        </td>
+        <td><p>look at a cache for potential BBS build artifact tarballs</p></td>
       </tr><tr><td>
           <p><code><a href="get_report_tgz_cacheid.html">get_report_tgz_cacheid()</a></code> </p>
         </td>
@@ -121,6 +143,10 @@
         </td>
         <td><p>simplify production of the test ArtifSet</p></td>
       </tr><tr><td>
+          <p><code><a href="new_events.html">new_events()</a></code> </p>
+        </td>
+        <td><p>list packages that have a new event comparing af2 (later) to af1 (earlier)</p></td>
+      </tr><tr><td>
           <p><code><a href="package_by_host_data.html">package_by_host_data()</a></code> </p>
         </td>
         <td><p>ingest dcf files for a package</p></td>
@@ -145,9 +171,17 @@
         </td>
         <td><p>helper</p></td>
       </tr><tr><td>
+          <p><code><a href="pkgs_with_event.html">pkgs_with_event()</a></code> </p>
+        </td>
+        <td><p>list packages presenting with status on BBS</p></td>
+      </tr><tr><td>
           <p><code><a href="print.artifact_folder_paths.html">print(<i>&lt;artifact_folder_paths&gt;</i>)</a></code> </p>
         </td>
         <td><p>show artifact paths nicely</p></td>
+      </tr><tr><td>
+          <p><code><a href="print.bbs_time_report.html">print(<i>&lt;bbs_time_report&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>print method for time report, focusing on large times</p></td>
       </tr><tr><td>
           <p><code><a href="print.event_collection.html">print(<i>&lt;event_collection&gt;</i>)</a></code> </p>
         </td>
@@ -189,9 +223,17 @@
         </td>
         <td><p>produce a data.frame from a collection of `package_by_host_data` outputs</p></td>
       </tr><tr><td>
+          <p><code><a href="summary.bbs_time_report.html">summary(<i>&lt;bbs_time_report&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>print method for time report, focusing on large times</p></td>
+      </tr><tr><td>
           <p><code><a href="tabulate_states.html">tabulate_states()</a></code> </p>
         </td>
         <td><p>(can be memoised) retrieve data.frame from BUILD_STATUS_DB.txt</p></td>
+      </tr><tr><td>
+          <p><code><a href="time_report.html">time_report()</a></code> </p>
+        </td>
+        <td><p>produce a simple list with data on times</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
