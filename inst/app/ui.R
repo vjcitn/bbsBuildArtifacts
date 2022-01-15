@@ -21,6 +21,7 @@ if (!is.null(sc)) {
      verbatimTextOutput("bbsbavers"),
      div(tableOutput("evfreq"), style="font-size:75%"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),
+     helpText("use wontinstall with phase 'install'"),
      radioButtons("phase", "phase", choices=c("install", "buildsrc", "checksrc", "buildbin"),
        selected="checksrc"),
      helpText("Note: changing phase will alter the set of packages to be viewed and reset panel contents."),
