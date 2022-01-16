@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.41</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.44</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1 data-toc-skip>bbsBuildArtifacts: comparing BBS states over time</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">January 14, 2022</h4>
+            <h4 data-toc-skip class="date">January 16, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/comparison.Rmd" class="external-link"><code>vignettes/comparison.Rmd</code></a></small>
       <div class="hidden name"><code>comparison.Rmd</code></div>
@@ -165,6 +165,28 @@
 <pre><code><span class="co">##  [1] "AlpsNMR"      "atSNP"        "BgeeCall"     "biodbUniprot" "ChIPpeakAnno"</span>
 <span class="co">##  [6] "cytomapper"   "imcRtools"    "MetNet"       "muscat"       "seqsetvis"   </span>
 <span class="co">## [11] "Travel"</span></code></pre>
+</div>
+<div class="section level1">
+<h1 id="comprehensive-comparison">Comprehensive comparison<a class="anchor" aria-label="anchor" href="#comprehensive-comparison"></a>
+</h1>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hn</span> <span class="op">=</span> <span class="fu">slot</span><span class="op">(</span><span class="va">af1</span>, <span class="st">"hostnames"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">hn</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/becomes_OK.html">becomes_OK</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span>, host<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## $linux</span>
+<span class="co">##  [1] "conclus"              "easyRNASeq"           "Gviz"                </span>
+<span class="co">##  [4] "MungeSumstats"        "NoRCE"                "Pigengene"           </span>
+<span class="co">##  [7] "PrecisionTrialDrawer" "recoup"               "RIPAT"               </span>
+<span class="co">## [10] "RLSeq"                "seqsetvis"            "sitadela"            </span>
+<span class="co">## </span>
+<span class="co">## $macos</span>
+<span class="co">## [1] "censcyt"     "muscat"      "pulsedSilac" "ReactomeGSA" "seqsetvis"  </span>
+<span class="co">## [6] "TPP"        </span>
+<span class="co">## </span>
+<span class="co">## $windows</span>
+<span class="co">##  [1] "AlpsNMR"      "atSNP"        "BgeeCall"     "biodbUniprot" "ChIPpeakAnno"</span>
+<span class="co">##  [6] "cytomapper"   "imcRtools"    "MetNet"       "muscat"       "seqsetvis"   </span>
+<span class="co">## [11] "Travel"</span></code></pre>
+<p>Also iterate over event types. Note that resolution of events to OK does not imply that the identified packages have been changed. The dependency graph could be used to find the causative package.</p>
 </div>
   </div>
 

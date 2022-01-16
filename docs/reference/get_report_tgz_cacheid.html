@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.41</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.44</span>
       </span>
     </div>
 
@@ -73,7 +73,8 @@
   version <span class="op">=</span> <span class="st">"3.14"</span>,
   type <span class="op">=</span> <span class="st">"bioc"</span>,
   cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,
-  url <span class="op">=</span> <span class="cn">NULL</span>
+  url <span class="op">=</span> <span class="cn">NULL</span>,
+  date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -87,6 +88,8 @@
 <dd><p>instance of `BiocFileCache::BiocFileCache()`</p></dd>
 <dt>url</dt>
 <dd><p>defaults to NULL, if supplied, used to retrieve or cache tgz file</p></dd>
+<dt>date</dt>
+<dd><p>character(1) defaults to Sys.Date(), "yyyy-mm-dd" format, used to build informative name for caching/cache search</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -107,7 +110,7 @@ report.tgz content will be cached with name formed with type, version, and date 
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rid    rname  create_time access_time rpath rtype fpath last_modified_t… etag </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC643 file:… 2022-01-15… 2022-01-15… /Use… rela… /var…               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC801 file:… 2022-01-16… 2022-01-16… /Use… rela… /var…               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: expires &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>

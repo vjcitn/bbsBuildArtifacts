@@ -1,0 +1,65 @@
+---
+title: "bbsBuildArtifacts: comparing BBS states over time"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{bbsBuildArtifacts: comparing BBS states over time}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Identifying packages with new events relative to a prior build
+
+We have created "trimmed tarballs" from two dates: Dec 10 2021
+and Jan 5 2022 and included these with the package.
+
+Here's the more recent one.
+```{r lktwo}
+ suppressPackageStartupMessages({
+  library(bbsBuildArtifacts)
+ })
+ af2 = make_demo_ArtifSet(url = demo_url2(),
+        demostring = "test_report_3.14_bioc_20220105", destbase = "test_report_0105")
+ af2
+```
+
+The default demonstration ArtifSet is from Dec 10 2021.
+```{r lk1}
+ af1 = make_demo_ArtifSet()
+ af1
+```
+
+The `new_events` function will enumerate packages exhibiting new events.
+Arguments to the function specify the build phase and event
+type to be sought.
+```{r lkne}
+ new_events(af1, af2)
+```
+This report is host-dependent; the default here was nebbiolo2.
+```{r lkne2}
+ new_events(af1, af2, host="tokay2")
+```
+
+# Packages for which events have resolved
+
+```{r lkres}
+ becomes_OK(af1, af2)
+ becomes_OK(af1, af2, host="tokay2")
+```
+
+# Comprehensive comparison
+
+```{r lkcomp}
+hn = slot(af1, "hostnames")
+lapply(hn, function(x) becomes_OK(af1, af2, host=x))
+```
+
+Also iterate over event types.  Note that resolution of events to OK does not
+imply that the identified packages have been changed.  The dependency
+graph could be used to find the causative package.

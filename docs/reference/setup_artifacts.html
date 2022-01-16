@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.41</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.44</span>
       </span>
     </div>
 
@@ -72,6 +72,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">setup_artifacts</span><span class="op">(</span>
   type <span class="op">=</span> <span class="st">"bioc"</span>,
   version <span class="op">=</span> <span class="st">"3.14"</span>,
+  <span class="va">date</span>,
   hostnames <span class="op">=</span> <span class="fu"><a href="hostnames_by_release.html">hostnames_by_release</a></span><span class="op">(</span><span class="va">version</span><span class="op">)</span>,
   cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,
   destination <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>,
@@ -88,6 +89,8 @@
 <dd><p>character(1) defaults to 'bioc' which implies 'software'; see Note.</p></dd>
 <dt>version</dt>
 <dd><p>character(1) defaults to "3.14"</p></dd>
+<dt>date</dt>
+<dd><p>character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry</p></dd>
 <dt>hostnames</dt>
 <dd><p>character() vector of host names for which build artifacts are available</p></dd>
 <dt>cache</dt>
@@ -105,7 +108,9 @@
 </dl></div>
     <div id="note">
     <h2>Note</h2>
-    <p>Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.</p>
+    <p>Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  The logic
+of managing artifacts from multiple dates is very cumbersome and may be unreliable,
+but the 'date of tarball production' will be reported for each ArtifSet.</p>
     </div>
 
     <div id="ref-examples">
