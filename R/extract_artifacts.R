@@ -81,7 +81,7 @@ setup_artifacts = function(type="bioc", version="3.14", date, hostnames=hostname
         }
    else {
        if (missing(date)) date = Sys.Date()
-       tag = get_report_tgz_cacheid2(version=version, type=type, cache=cache, url=url, date=date) ## NEW
+       tag = get_report_tgz_cacheid(version=version, type=type, cache=cache, url=url, date=date) ## NEW
        tarpath = cache[[tag]]
        if (verbose) message("starting untar...")
        chk = try(untar(tarpath, exdir=destination))

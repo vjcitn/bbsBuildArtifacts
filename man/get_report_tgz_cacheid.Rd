@@ -8,7 +8,8 @@ get_report_tgz_cacheid(
   version = "3.14",
   type = "bioc",
   cache = BiocFileCache::BiocFileCache(),
-  url = NULL
+  url = NULL,
+  date = Sys.Date()
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ get_report_tgz_cacheid(
 \item{cache}{instance of `BiocFileCache::BiocFileCache()`}
 
 \item{url}{defaults to NULL, if supplied, used to retrieve or cache tgz file}
+
+\item{date}{character(1) defaults to Sys.Date(), "yyyy-mm-dd" format, used to build informative name for caching/cache search}
 }
 \value{
 A gzipped tarball is downloaded, informatively renamed, copied to a cache, and the cache reference is returned.

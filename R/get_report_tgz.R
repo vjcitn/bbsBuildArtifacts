@@ -35,6 +35,7 @@ is_online = function() !is.null(curl::nslookup("r-project.org", error = FALSE))
 #' @importFrom utils download.file untar
 #' @param version character(1) defaults to "3.14"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
+#' @param date character(1) defaults to Sys.Date(), "yyyy-mm-dd" format, used to build informative name for caching/cache search
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param url defaults to NULL, if supplied, used to retrieve or cache tgz file
 #' @return A gzipped tarball is downloaded, informatively renamed, copied to a cache, and the cache reference is returned.
@@ -46,10 +47,11 @@ is_online = function() !is.null(curl::nslookup("r-project.org", error = FALSE))
 #' id = get_report_tgz_cacheid(url=cururl)
 #' BiocFileCache::bfcquery(BiocFileCache::BiocFileCache(), cururl)
 #' @export
-get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL) {
+get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL,
+     date=Sys.Date()) {
     if (is.null(url)) {
        current_url = build_report_tgz_url(version, type)
-       informative_name = paste0(type, "_", version, "_", Sys.Date(), "_report.tgz")
+       informative_name = paste0(type, "_", version, "_", date, "_report.tgz")
        }
     else {
        current_url = url
@@ -152,13 +154,11 @@ print.artifact_folder_paths = function(x, ...) {
 #[5] "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//RtmpzkUheQ/report/a4/raw-results/nebbiolo2//install-out.txt"     
 #[6] "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//RtmpzkUheQ/report/a4/raw-results/nebbiolo2//install-summary.dcf" 
 
-#' try with date
-#' @export
-get_report_tgz_cacheid2 = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL,
-     date=Sys.Date()) {
+
+get_report_tgz_cacheid_obsolete = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL) {
     if (is.null(url)) {
        current_url = build_report_tgz_url(version, type)
-       informative_name = paste0(type, "_", version, "_", date, "_report.tgz")
+       informative_name = paste0(type, "_", version, "_", Sys.Date(), "_report.tgz")
        }
     else {
        current_url = url
