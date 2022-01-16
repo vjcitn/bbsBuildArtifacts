@@ -152,3 +152,31 @@ print.artifact_folder_paths = function(x, ...) {
 #[5] "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//RtmpzkUheQ/report/a4/raw-results/nebbiolo2//install-out.txt"     
 #[6] "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//RtmpzkUheQ/report/a4/raw-results/nebbiolo2//install-summary.dcf" 
 
+#' try with date
+#' @export
+get_report_tgz_cacheid2 = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL,
+     date=Sys.Date()) {
+    if (is.null(url)) {
+       current_url = build_report_tgz_url(version, type)
+       informative_name = paste0(type, "_", version, "_", date, "_report.tgz")
+       }
+    else {
+       current_url = url
+       informative_name = current_url
+       }
+    chk = bfcquery(cache, informative_name)
+    if (!(length(chk$rpath)==0)) return(chk$rid)
+    tf = tempfile()
+    if (is_online()) download.file(current_url, tf)
+     else stop("you are offline and requested artifact tarball is not in cache.")
+    if (!isFileURL(current_url)) {
+      base = dirname(tf)
+      leaf = basename(tf)
+      full_inf_name = paste0(base, "/", informative_name)
+      file.rename(tf, full_inf_name)
+      }
+    else full_inf_name = tf # if file:// just move content to cache
+    bfcadd(cache, rname=informative_name, fpath=full_inf_name, action="move")
+    chk = bfcquery(cache, informative_name)
+    chk$rid
+}

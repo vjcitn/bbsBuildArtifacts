@@ -7,6 +7,7 @@
 setup_artifacts(
   type = "bioc",
   version = "3.14",
+  date,
   hostnames = hostnames_by_release(version),
   cache = BiocFileCache::BiocFileCache(),
   destination = tempfile(),
@@ -20,6 +21,8 @@ setup_artifacts(
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
 
 \item{version}{character(1) defaults to "3.14"}
+
+\item{date}{character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry}
 
 \item{hostnames}{character() vector of host names for which build artifacts are available}
 
@@ -39,7 +42,9 @@ setup_artifacts(
 Create ArtifSet instance
 }
 \note{
-Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  The logic
+of managing artifacts from multiple dates is very cumbersome and may be unreliable,
+but the 'date of tarball production' will be reported for each ArtifSet.
 }
 \examples{
 cururl = demo_url()

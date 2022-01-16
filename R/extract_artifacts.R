@@ -57,6 +57,7 @@ avail_hostnames = function(x) {
 #' Create ArtifSet instance
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param version character(1) defaults to "3.14"
+#' @param date character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry
 #' @param hostnames character() vector of host names for which build artifacts are available
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param destination character(1) path to folder to use for artifacts
@@ -64,20 +65,23 @@ avail_hostnames = function(x) {
 #' @param extracted defaults to NULL, if non-null a character(1) path to folder that holds `report` folder
 #' @param url character(1) passed to `get_report_tgz_cacheid`
 #' @param destbase character(1) name of folder holding all artifacts, defaults to 'report'
-#' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.
+#' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  The logic
+#' of managing artifacts from multiple dates is very cumbersome and may be unreliable,
+#' but the 'date of tarball production' will be reported for each ArtifSet.
 #' @examples
 #' cururl = demo_url()
 #' z = setup_artifacts(url=cururl, destbase="test_report")
 #' z
 #' @export
-setup_artifacts = function(type="bioc", version="3.14", hostnames=hostnames_by_release(version),
+setup_artifacts = function(type="bioc", version="3.14", date, hostnames=hostnames_by_release(version),
    cache=BiocFileCache::BiocFileCache(), destination=tempfile(),
    verbose=TRUE, extracted=NULL, url=NULL, destbase="report") {
    if (!is.null(extracted)) {
         destination = extracted
         }
    else {
-       tag = get_report_tgz_cacheid(version=version, type=type, cache=cache, url=url)
+       if (missing(date)) date = Sys.Date()
+       tag = get_report_tgz_cacheid2(version=version, type=type, cache=cache, url=url, date=date) ## NEW
        tarpath = cache[[tag]]
        if (verbose) message("starting untar...")
        chk = try(untar(tarpath, exdir=destination))

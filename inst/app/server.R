@@ -37,9 +37,9 @@
            phase=input$phase, event_class=cur_event_class), selected=input$curpack)
      })
      get_package_data = reactive({
-       validate(need(nchar(input$eventtype)>0, "waiting"))
-       validate(need(nchar(input$curpack)>0, "waiting"))
-       validate(need(nchar(input$phase)>0, "waiting"))
+       validate(need(nchar(input$eventtype)>0, "waiting; are hosts properly identified to app?"))
+       validate(need(nchar(input$curpack)>0, "waiting; are hosts properly identified to app?"))
+       validate(need(nchar(input$phase)>0, "waiting; are hosts properly identified to app?"))
        make_BBS_package_data( af, input$curpack, hosts=build_hosts )
        })
      get_event_txt = reactive({
@@ -56,10 +56,10 @@
        stopApp(returnValue=NULL)   # could return information here
       })
     output$evfreq = renderTable({
-      ho = build_hosts[c("linux", "windows", "macos")]
-      rmap = names(ho)
-      names(rmap) = ho
-      event_freqs(af, hostmap=rmap)
+      #ho = build_hosts[c("linux", "windows", "macos")]
+      #rmap = names(ho)
+      #names(rmap) = ho
+      event_freqs(af) # , hostmap=rmap)
       })
     output$pkg_data = renderUI({
        tags$a(href=paste0("http://bioconductor.org/packages/", input$curpack), target="_blank", "Landing page")

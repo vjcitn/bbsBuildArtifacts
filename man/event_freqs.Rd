@@ -4,15 +4,10 @@
 \alias{event_freqs}
 \title{provide a concise table of events by host}
 \usage{
-event_freqs(
-  af,
-  hostmap = c(nebbiolo2 = "linux", machv2 = "mac", tokay2 = "win")
-)
+event_freqs(af)
 }
 \arguments{
 \item{af}{ArtifSet instance}
-
-\item{hostmap}{character() vector with values c("linux", "win", "mac") and names the names of hosts in use}
 }
 \description{
 provide a concise table of events by host
