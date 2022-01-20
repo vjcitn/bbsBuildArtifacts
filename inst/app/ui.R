@@ -18,6 +18,7 @@ if (!is.null(sc)) {
    sidebarLayout(
     sidebarPanel(
      helpText("Bioconductor build system event browser"),
+     verbatimTextOutput("state"),
      verbatimTextOutput("bbsbavers"),
      div(tableOutput("evfreq"), style="font-size:75%"),
      radioButtons("eventtype", "event type", choices=c("errors", "warnings", "wontinstall")),

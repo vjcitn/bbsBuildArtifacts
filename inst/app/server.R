@@ -9,6 +9,8 @@
   #  timerep = time_report(af)
   #  output$timings = renderPrint( timerep )
   #  output$timingSummaries = renderPrint( summary(timerep) )
+    output$state = renderText( sprintf("Bioc version %s, tarball produced %s\n", slot(af, "version"),
+       slot(af, "tarball_date")) )
     output$afdata = renderPrint( af )
     output$initlabel = renderUI({tags$span(
        popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
