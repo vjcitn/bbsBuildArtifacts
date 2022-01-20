@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.45</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1 data-toc-skip>bbsBuildArtifacts: filtering build reports</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">January 16, 2022</h4>
+            <h4 data-toc-skip class="date">January 20, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/bbsBuildArtifacts.Rmd" class="external-link"><code>vignettes/bbsBuildArtifacts.Rmd</code></a></small>
       <div class="hidden name"><code>bbsBuildArtifacts.Rmd</code></div>
@@ -96,9 +96,9 @@
 
     
     
-<div class="section level1">
-<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>We’d like to be able to get a quick overview of status for a subset of Bioconductor packages. “Status” is relative to Bioconductor version, package version, build platform, and condition of the platform.</p>
 <p>We want to be able to work with the current artifacts provided at, e.g., <code>https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz</code>. Such gzipped tar resources are prepared for different types of resource.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -115,9 +115,9 @@
 <span class="co">## [5] "bioc-longtests"</span></code></pre>
 <p>We’ll focus on type <code>bioc</code> for now, which associates with Software packages. We don’t yet know if report.gz has the same structure for all types, but we hope so.</p>
 <p>Our objective is to learn the status and processing times for various phases of the build process for all packages, and to analyze error, warning and note events programatically.</p>
-<div class="section level2">
-<h2 id="artifact-set-manager">Artifact set manager<a class="anchor" aria-label="anchor" href="#artifact-set-manager"></a>
-</h2>
+<div class="section level3">
+<h3 id="artifact-set-manager">Artifact set manager<a class="anchor" aria-label="anchor" href="#artifact-set-manager"></a>
+</h3>
 <p>We define an S4 class <code>ArtifSet</code> to manage key information about builds. <code>ArtifSet</code> instances are produced using <code>setup_artifacts</code>.</p>
 <p>We’ve produced a thinned version of the BBS report.tgz accessible in the package at <code><a href="../reference/demo_url.html">demo_url()</a></code>, which has prefix <code>file://</code> referring to a file in the locally installed <code>bbsBuildArtifacts</code> package. If <code>url</code> is not supplied to <code><a href="../reference/setup_artifacts.html">setup_artifacts()</a></code>, the report.tgz will be retrieved from bioconductor.org, and cached using <code>BiocFileCache</code> with an informative <code>rname</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -166,14 +166,14 @@
 <pre><code><span class="co">## Warning: Removed 106 rows containing non-finite values (stat_boxplot).</span></code></pre>
 <p><img src="bbsBuildArtifacts_files/figure-html/timings-1.png" width="700"></p>
 </div>
-<div class="section level2">
-<h2 id="information-recorded-about-a-package">Information recorded about a package<a class="anchor" aria-label="anchor" href="#information-recorded-about-a-package"></a>
-</h2>
-<p>Because the build/check processes are error prone, some packages may lack information described below.</p>
 <div class="section level3">
-<h3 id="raw_info">
-<code>raw_info</code><a class="anchor" aria-label="anchor" href="#raw_info"></a>
+<h3 id="information-recorded-about-a-package">Information recorded about a package<a class="anchor" aria-label="anchor" href="#information-recorded-about-a-package"></a>
 </h3>
+<p>Because the build/check processes are error prone, some packages may lack information described below.</p>
+<div class="section level4">
+<h4 id="raw_info">
+<code>raw_info</code><a class="anchor" aria-label="anchor" href="#raw_info"></a>
+</h4>
 <p>This is a selection from content of an <code>info.dcf</code> produced for each package.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">bbsBuildArtifacts</span><span class="fu">:::</span><span class="fu">make_raw_info</span><span class="op">(</span><span class="va">af</span>, <span class="st">"SummarizedExperiment"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -191,9 +191,9 @@
 <span class="co">##   ..@ maint_email     : Named chr "maintainer at bioconductor.org"</span>
 <span class="co">##   .. ..- attr(*, "names")= chr "MaintainerEmail"</span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="detailed-information-about-events">Detailed information about events<a class="anchor" aria-label="anchor" href="#detailed-information-about-events"></a>
-</h3>
+<div class="section level4">
+<h4 id="detailed-information-about-events">Detailed information about events<a class="anchor" aria-label="anchor" href="#detailed-information-about-events"></a>
+</h4>
 <p>Here’s how we can obtain the installation log for SummarizedExperiment on nebbiolo2, for December 10 2021.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_BBS_package_data.html">make_BBS_package_data</a></span><span class="op">(</span><span class="va">af</span>, <span class="st">"SummarizedExperiment"</span><span class="op">)</span>
@@ -288,7 +288,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
