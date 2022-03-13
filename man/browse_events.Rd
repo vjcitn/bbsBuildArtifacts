@@ -4,15 +4,10 @@
 \alias{browse_events}
 \title{app to get details on events in packages}
 \usage{
-browse_events(
-  af,
-  build_hosts = c(linux = "nebbiolo2", macos = "machv2", windows = "tokay2")
-)
+browse_events(af)
 }
 \arguments{
-\item{af}{ArtifSet S4 instance}
-
-\item{build_hosts}{named character(3) names of elements must be 'linux', 'macos', 'windows',
+\item{af}{ArtifSet S4 instance
 element values are the host names used in the construction of html in package build report.}
 }
 \description{

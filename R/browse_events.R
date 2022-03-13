@@ -1,6 +1,5 @@
 #' app to get details on events in packages
 #' @param af ArtifSet S4 instance
-#' @param build_hosts named character(3) names of elements must be 'linux', 'macos', 'windows',
 #' element values are the host names used in the construction of html in package build report.
 #' @import shiny
 #' @importFrom shinyBS popify bsButton
@@ -10,12 +9,13 @@
 #'  browse_events(af)
 #' }
 #' @export
-browse_events = function(af, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
+browse_events = function(af) { #, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
 #
 # note -- source code modified so there is only one ui.R and server.R to maintain
 # for both basic usage and shinyapps.io deployment
 #
   stopifnot(inherits(af, "ArtifSet"))
+  build_hosts = slot(af, "hostnames")
   stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
   fromPkg <<- TRUE  # should these be cleaned up on exit?  should we warn if found on startup?
                     # could have a kill_globals parameter

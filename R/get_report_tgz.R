@@ -60,7 +60,7 @@ get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileC
     chk = bfcquery(cache, informative_name)
     if (!(length(chk$rpath)==0)) return(chk$rid)
     tf = tempfile()
-    if (is_online()) download.file(current_url, tf)
+    if (is_online() | isFileURL(current_url)) download.file(current_url, tf)
      else stop("you are offline and requested artifact tarball is not in cache.")
     if (!isFileURL(current_url)) {
       base = dirname(tf)

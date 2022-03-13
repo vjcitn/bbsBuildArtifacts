@@ -1,8 +1,8 @@
 # determine whether we are being called from package or not
 sc = sys.call(which=1)
 sc2 = sys.call(which=2)
- print(as.character(sc))
- print(as.character(sc2))
+ #print(as.character(sc))  # fragile here
+ #print(as.character(sc2))
 if (!is.null(sc)) {
  chk = as.character(sc)[1]
 # if not, need to use the demo data
@@ -11,7 +11,7 @@ if (!is.null(sc)) {
   library(shiny)
   library(bbsBuildArtifacts)
   af <<- make_demo_ArtifSet()
-  build_hosts <<- c(linux="nebbiolo2", macos="machv2", windows="tokay2")
+  build_hosts <<- slot(af, "hostnames")
   }
  }
   ui = fluidPage(

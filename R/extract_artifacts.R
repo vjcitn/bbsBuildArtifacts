@@ -46,7 +46,7 @@ setMethod("paths", "ArtifSet", function(x) slot(x, "pkg_paths"))
 #' @export
 hostnames_by_release = function(release="3.14") {
  if (release=="3.14") return(c(linux="nebbiolo2", macos="machv2", windows="tokay2"))
- else if (release=="3.15") return(c(linux="nebbiolo1", macos="merida1", windows="riesling1"))
+ else if (release=="3.15") return(c(linux="nebbiolo1", macos="merida1", windows="palomino3"))
 }
 
 avail_hostnames = function(x) {
