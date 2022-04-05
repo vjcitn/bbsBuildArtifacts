@@ -63,3 +63,6 @@ lapply(hn, function(x) becomes_OK(af1, af2, host=x))
 Also iterate over event types.  Note that resolution of events to OK does not
 imply that the identified packages have been changed.  The dependency
 graph could be used to find the causative package.
+
+We have recently added `available_artifs()` to provide information
+on dates and versions of artifact sets in cache.
