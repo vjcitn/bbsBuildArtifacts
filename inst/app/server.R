@@ -42,7 +42,7 @@
        validate(need(nchar(input$eventtype)>0, "waiting; are hosts properly identified to app?"))
        validate(need(nchar(input$curpack)>0, "waiting; are hosts properly identified to app?"))
        validate(need(nchar(input$phase)>0, "waiting; are hosts properly identified to app?"))
-       make_BBS_package_data( af, input$curpack, hosts=build_hosts )
+       make_BBS_package_data( af, input$curpack )
        })
      get_event_txt = reactive({
        function(HOST) {

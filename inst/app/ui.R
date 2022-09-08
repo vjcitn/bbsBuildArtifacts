@@ -10,7 +10,7 @@ if (!is.null(sc)) {
   message("running app manually")
   library(shiny)
   library(bbsBuildArtifacts)
-  af <<- make_demo_ArtifSet()
+  af <<- setup_artifacts("bioc", version="3.15")
   build_hosts <<- slot(af, "hostnames")
   }
  }
