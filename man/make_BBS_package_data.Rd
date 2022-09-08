@@ -4,32 +4,28 @@
 \alias{make_BBS_package_data}
 \title{encapsulate BBS state for a package}
 \usage{
-make_BBS_package_data(
-  afset,
-  packagename,
-  hosts = c(linux = "nebbiolo2", macos = "machv2", windows = "tokay2")
-)
+make_BBS_package_data(afset, packagename)
 }
 \arguments{
 \item{afset}{instance of ArtifSet}
 
 \item{packagename}{character(1)}
-
-\item{hosts}{character() valid host names on which BBS was run}
 }
 \description{
 encapsulate BBS state for a package
 }
 \examples{
 af = make_demo_ArtifSet()
-pd1 = make_BBS_package_data(af, "SummarizedExperiment")
-hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+ho = slot(af, "hostnames")
+ho
+pd1 = make_BBS_package_data(af, "zinbwave")
+hd = host_data_by_phase( pd1, ho[1], "buildsrc")
 head(hd)
-hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+hd = host_data_by_phase( pd1, ho[1], "checksrc")
 head(hd)
-pd2 = make_BBS_package_data(af, "affyPara")
-hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+pd2 = make_BBS_package_data(af, "zlibbioc")
+hd = host_data_by_phase( pd2, ho[1], "install")
 tail(hd)
-hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+hd = host_data_by_phase( pd2, ho[1], "checksrc")
 head(hd)
 }

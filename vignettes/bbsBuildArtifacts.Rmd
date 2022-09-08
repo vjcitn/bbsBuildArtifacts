@@ -52,21 +52,21 @@ We define an S4 class `ArtifSet` to manage key information about builds.
 `ArtifSet` instances are produced using `setup_artifacts`.
 
 We've produced a thinned version of the BBS report.tgz accessible
-in the package at `demo_url()`, which
-has prefix `file://` referring to a file in the locally installed `bbsBuildArtifacts`
-package.  If `url` is not supplied
-to `setup_artifacts()`, the report.tgz will be retrieved
-from bioconductor.org, and cached using `BiocFileCache` with an informative `rname`.
+in the package at `demo_path()`.
 
 ```{r usecl}
-af = setup_artifacts(type="bioc", version="3.14", url=demo_url(),
-   destbase="test_report")
+od = getwd()
+td = tempdir()
+setwd(td)
+untar(demo_path())
+af = setup_artifacts(type="bioc", version="3.15", extracted=".")
 af
 ```
 
 Information of immediate interest can be derived and tabulated
 in a data.frame instance.
 ```{r convdf}
+setwd(td)
 d = as.data.frame(af)
 dim(d)
 head(d)
@@ -91,27 +91,21 @@ may lack information described below.
 This is a selection from content of an `info.dcf` produced for each package.
 
 ```{r lkrai}
-str(bbsBuildArtifacts:::make_raw_info(af, "SummarizedExperiment"))
+setwd(td) # need to be there
+str(bbsBuildArtifacts:::make_raw_info(af, "zinbwave"))
 ```
 
 ### Detailed information about events
 
 Here's how we can obtain the installation log for
-SummarizedExperiment on nebbiolo2, for December 10 2021.
+SummarizedExperiment on nebbiolo2.
 ```{r lklk}
-pd1 <- make_BBS_package_data(af, "SummarizedExperiment")
+setwd(td)
+pd1 <- make_BBS_package_data(af, "zinbwave")
 pd1
 names(slot(pd1, "host_data"))
 hd = slot(pd1, "host_data")
-cat(slot(hd$nebbiolo2, "install"), sep="\n")
-```
-The date of the build is not currently recorded in a convenient place.
-
-The installation information for affyPara is more interesting:
-```{r lklk2}
-pd2 <- make_BBS_package_data(af, "affyPara")
-hd = slot(pd2, "host_data")
-cat(slot(hd$nebbiolo2, "install"), sep="\n")
+cat(slot(hd$nebbiolo1, "install"), sep="\n")
 ```
 
 Much of the content of these logs is routine unilluminating chatter.

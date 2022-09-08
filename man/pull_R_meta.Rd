@@ -14,6 +14,7 @@ acquire information on build platform from BBS NodeInfo.html file
 }
 \examples{
 demaf = make_demo_ArtifSet()
-tokay_info = grep("tokay", slot(demaf, "extra_paths"), value=TRUE)
-pull_R_meta(tokay_info)
+ho = slot(demaf, "hostnames")
+ho2_info = grep(ho[2], slot(demaf, "extra_paths"), value=TRUE)
+pull_R_meta(grep("NodeInfo", ho2_info, value=TRUE))
 }

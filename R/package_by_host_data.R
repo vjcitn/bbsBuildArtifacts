@@ -10,11 +10,11 @@
 #' @param summary_types character() defaults to `c("install", "buildsrc", "checksrc", "buildbin")`
 #' @param read.dcf.silent logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note
 #' @examples
-#' cururl = demo_url()
-#' af = artifact_folder_paths(url=cururl, destbase="test_report")
-#' pbh = package_by_host_data(af["affyPara"])
+#' af = make_demo_ArtifSet()
+#' ho = slot(af, "hostnames")
+#' pbh = package_by_host_data(tail(paths(af),1), host=ho[2])
 #' pbh
-#' package_by_host_data(af["SummarizedExperiment"])
+#' package_by_host_data(head(paths(af),1), host=ho[2])
 #' @export
 package_by_host_data = function(afpath, host="nebbiolo2", 
       summary_types = c("install", "buildsrc", "checksrc", "buildbin"), read.dcf.silent = TRUE) {

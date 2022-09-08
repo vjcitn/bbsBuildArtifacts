@@ -18,14 +18,16 @@ acquire data on a package's BBS state
 }
 \examples{
 af = make_demo_ArtifSet()
-pd1 = make_BBS_package_data(af, "SummarizedExperiment")
-hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+ho = slot(af, "hostnames")
+ho
+pd1 = make_BBS_package_data(af, "zinbwave")
+hd = host_data_by_phase( pd1, ho[1], "buildsrc")
 head(hd)
-hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+hd = host_data_by_phase( pd1, ho[1], "checksrc")
 head(hd)
-pd2 = make_BBS_package_data(af, "affyPara")
-hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+pd2 = make_BBS_package_data(af, "zlibbioc")
+hd = host_data_by_phase( pd2, ho[1], "install")
 tail(hd)
-hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+hd = host_data_by_phase( pd2, ho[1], "checksrc")
 head(hd)
 }

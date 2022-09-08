@@ -25,10 +25,12 @@ pkgs_with_event = function(af, event="ERROR", phase="install", host="nebbiolo2")
 #' @param phase character(1) one of "install", "buildsrc", "checksrc", "buildbin"
 #' @param host character(1) relevant hostname
 #' @examples
+#' \dontrun{    # await new demo
 #' af2 = make_demo_ArtifSet(url = demo_url2(), 
 #'        demostring = "test_report_3.14_bioc_20220105", destbase = "test_report_0105")
 #' af1 = make_demo_ArtifSet()
 #' new_events(af1, af2)
+#' }
 #' @export
 new_events = function(af1, af2, event="ERROR", phase="checksrc", host="nebbiolo2") {
 # FIXME should check dates
@@ -44,10 +46,12 @@ new_events = function(af1, af2, event="ERROR", phase="checksrc", host="nebbiolo2
 #' @param phase character(1) one of "install", "buildsrc", "checksrc", "buildbin"
 #' @param host character(1) relevant hostname
 #' @examples
+#' \dontrun{
 #' af2 = make_demo_ArtifSet(url = demo_url2(), 
 #'        demostring = "test_report_3.14_bioc_20220105", destbase = "test_report_0105")
 #' af1 = make_demo_ArtifSet()
 #' becomes_OK(af1, af2)
+#' }
 #' @export
 becomes_OK = function(af1, af2, event="ERROR", phase="checksrc", host="nebbiolo2") {
   p2 = pkgs_with_event(af2, event="OK", phase=phase, host=host)

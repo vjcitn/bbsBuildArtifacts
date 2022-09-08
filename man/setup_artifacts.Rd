@@ -13,8 +13,7 @@ setup_artifacts(
   destination = tempfile(),
   verbose = TRUE,
   extracted = NULL,
-  url = NULL,
-  destbase = "report"
+  url = NULL
 )
 }
 \arguments{
@@ -35,8 +34,6 @@ setup_artifacts(
 \item{extracted}{defaults to NULL, if non-null a character(1) path to folder that holds `report` folder}
 
 \item{url}{character(1) passed to `get_report_tgz_cacheid`}
-
-\item{destbase}{character(1) name of folder holding all artifacts, defaults to 'report'}
 }
 \description{
 Create ArtifSet instance
@@ -47,7 +44,8 @@ of managing artifacts from multiple dates is very cumbersome and may be unreliab
 but the 'date of tarball production' will be reported for each ArtifSet.
 }
 \examples{
-cururl = demo_url()
-z = setup_artifacts(url=cururl, destbase="test_report")
+if (interactive()) {
+z = setup_artifacts(type="bioc", version="3.15")
 z
+}
 }

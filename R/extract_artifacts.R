@@ -65,18 +65,18 @@ avail_hostnames = function(x) {
 #' @param verbose logical(1) if TRUE (default) will provide message about tar activity 
 #' @param extracted defaults to NULL, if non-null a character(1) path to folder that holds `report` folder
 #' @param url character(1) passed to `get_report_tgz_cacheid`
-#' @param destbase character(1) name of folder holding all artifacts, defaults to 'report'
 #' @note Use bbsBuildArtifacts:::valid_types() to see valid values for `type`.  The logic
 #' of managing artifacts from multiple dates is very cumbersome and may be unreliable,
 #' but the 'date of tarball production' will be reported for each ArtifSet.
 #' @examples
-#' cururl = demo_url()
-#' z = setup_artifacts(url=cururl, destbase="test_report")
+#' if (interactive()) {
+#' z = setup_artifacts(type="bioc", version="3.15")
 #' z
+#' }
 #' @export
 setup_artifacts = function(type="bioc", version="3.15", date, hostnames=hostnames_by_release(version),
    cache=BiocFileCache::BiocFileCache(), destination=tempfile(),
-   verbose=TRUE, extracted=NULL, url=NULL, destbase="report") {
+   verbose=TRUE, extracted=NULL, url=NULL) {
    if (!is.null(extracted)) {
         destination = extracted
         }
@@ -90,7 +90,7 @@ setup_artifacts = function(type="bioc", version="3.15", date, hostnames=hostname
        if (inherits(chk, "try-error")) stop("could not untar artifact tgz")
        if (verbose) message("done.")
      }
-     allfiles = dir(paste0(destination, "/report"), full.names=TRUE) # paste0(destination, "/", destbase), full.names=TRUE)
+     allfiles = dir(paste0(destination, "/report"), full.names=TRUE) 
      all_pkg_folders = grep( non_package_pattern(), allfiles,
          invert=TRUE, value=TRUE)
      names(all_pkg_folders) = basename(all_pkg_folders)
@@ -134,16 +134,15 @@ ans
 #' @param preclean logical(1) defaults to TRUE, in which case we search `cache` for demostring in cache and remove
 #' @param demostring character(1) token to query BiocFileCache for in preclean step
 #' @param url character(1) url for local tgz
-#' @param destbase character(1) folder name under which all BBS content is held, defaults to `test_report`
 #' @examples
 #' make_demo_ArtifSet()
 #' @export
 make_demo_ArtifSet = function(cache=BiocFileCache::BiocFileCache(), preclean=TRUE, 
-       demostring="test_report_3.14_bioc_20211210", url=demo_url(), destbase="test_report") {
+       demostring="demo.tgz", url=paste0("file://", demo_path())) {
   if (preclean) {
     ca = cache
     lk = BiocFileCache::bfcquery(ca, demostring)
-    if (length(lk$rid)>0) bfcremove(ca, lk$rid)
+    if (length(lk$rid)>0) BiocFileCache::bfcremove(ca, lk$rid)
     }
-  setup_artifacts(url=url, destbase=destbase, cache=cache)
+  setup_artifacts(url=url, cache=cache)
 }

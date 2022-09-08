@@ -20,7 +20,7 @@ We have created "trimmed tarballs" from two dates: Dec 10 2021
 and Jan 5 2022 and included these with the package.
 
 Here's the more recent one.
-```{r lktwo}
+```{r lktwo, eval=FALSE}
  suppressPackageStartupMessages({
   library(bbsBuildArtifacts)
  })
@@ -30,7 +30,7 @@ Here's the more recent one.
 ```
 
 The default demonstration ArtifSet is from Dec 10 2021.
-```{r lk1}
+```{r lk1, eval=FALSE}
  af1 = make_demo_ArtifSet()
  af1
 ```
@@ -38,24 +38,24 @@ The default demonstration ArtifSet is from Dec 10 2021.
 The `new_events` function will enumerate packages exhibiting new events.
 Arguments to the function specify the build phase and event
 type to be sought.
-```{r lkne}
+```{r lkne, eval=FALSE}
  new_events(af1, af2)
 ```
 This report is host-dependent; the default here was nebbiolo2.
-```{r lkne2}
+```{r lkne2, eval=FALSE}
  new_events(af1, af2, host="tokay2")
 ```
 
 # Packages for which events have resolved
 
-```{r lkres}
+```{r lkres, eval=FALSE}
  becomes_OK(af1, af2)
  becomes_OK(af1, af2, host="tokay2")
 ```
 
 # Comprehensive comparison
 
-```{r lkcomp}
+```{r lkcomp, eval=FALSE}
 hn = slot(af1, "hostnames")
 lapply(hn, function(x) becomes_OK(af1, af2, host=x))
 ```

@@ -4,15 +4,17 @@
 \alias{event_freqs}
 \title{provide a concise table of events by host}
 \usage{
-event_freqs(af)
+event_freqs(af, simplify_columns = TRUE)
 }
 \arguments{
 \item{af}{ArtifSet instance}
+
+\item{simplify_columns}{logical(1) if FALSE, no simplification}
 }
 \description{
 provide a concise table of events by host
 }
 \examples{
 af = make_demo_ArtifSet()
-event_freqs(af)  # a package can generate events in multiple phases, so counts are not of 'packages'
+event_freqs(af, simplify_columns=FALSE)  # a package can generate events in multiple phases, so counts are not of 'packages'
 }

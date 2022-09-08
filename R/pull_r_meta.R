@@ -3,8 +3,9 @@
 #' @param htmlfile character(1) path to NodeInfo.html for a given platform
 #' @examples
 #' demaf = make_demo_ArtifSet()
-#' tokay_info = grep("tokay", slot(demaf, "extra_paths"), value=TRUE)
-#' pull_R_meta(tokay_info)
+#' ho = slot(demaf, "hostnames")
+#' ho2_info = grep(ho[2], slot(demaf, "extra_paths"), value=TRUE)
+#' pull_R_meta(grep("NodeInfo", ho2_info, value=TRUE))
 #' @export
 pull_R_meta = function(htmlfile) {
  z = rvest::read_html(htmlfile)

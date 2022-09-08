@@ -76,15 +76,17 @@ hosts = function(bbspd) slot(bbspd, "hosts")
 #' @param phase character(1) valid phase
 #' @examples
 #' af = make_demo_ArtifSet()
-#' pd1 = make_BBS_package_data(af, "SummarizedExperiment")
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+#' ho = slot(af, "hostnames")
+#' ho
+#' pd1 = make_BBS_package_data(af, "zinbwave")
+#' hd = host_data_by_phase( pd1, ho[1], "buildsrc")
 #' head(hd)
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+#' hd = host_data_by_phase( pd1, ho[1], "checksrc")
 #' head(hd)
-#' pd2 = make_BBS_package_data(af, "affyPara")
-#' hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+#' pd2 = make_BBS_package_data(af, "zlibbioc")
+#' hd = host_data_by_phase( pd2, ho[1], "install")
 #' tail(hd)
-#' hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+#' hd = host_data_by_phase( pd2, ho[1], "checksrc")
 #' head(hd)
 #' @export
 setGeneric("host_data_by_phase", function(bbspd, host, phase) standardGeneric("host_data_by_phase"))
@@ -96,15 +98,17 @@ setGeneric("host_data_by_phase", function(bbspd, host, phase) standardGeneric("h
 #' @param phase character(1) valid phase
 #' @examples
 #' af = make_demo_ArtifSet()
-#' pd1 = make_BBS_package_data(af, "SummarizedExperiment")
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+#' ho = slot(af, "hostnames")
+#' ho
+#' pd1 = make_BBS_package_data(af, "zinbwave")
+#' hd = host_data_by_phase( pd1, ho[1], "buildsrc")
 #' head(hd)
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+#' hd = host_data_by_phase( pd1, ho[1], "checksrc")
 #' head(hd)
-#' pd2 = make_BBS_package_data(af, "affyPara")
-#' hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+#' pd2 = make_BBS_package_data(af, "zlibbioc")
+#' hd = host_data_by_phase( pd2, ho[1], "install")
 #' tail(hd)
-#' hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+#' hd = host_data_by_phase( pd2, ho[1], "checksrc")
 #' head(hd)
 #' @export
 setMethod("host_data_by_phase", c("BBS_package_data", "character", "character"),
@@ -124,22 +128,23 @@ setMethod("host_data_by_phase", c("BBS_package_data", "character", "character"),
 #' encapsulate BBS state for a package
 #' @param afset instance of ArtifSet
 #' @param packagename character(1)
-#' @param hosts character() valid host names on which BBS was run
 #' @examples
 #' af = make_demo_ArtifSet()
-#' pd1 = make_BBS_package_data(af, "SummarizedExperiment")
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "buildsrc")
+#' ho = slot(af, "hostnames")
+#' ho
+#' pd1 = make_BBS_package_data(af, "zinbwave")
+#' hd = host_data_by_phase( pd1, ho[1], "buildsrc")
 #' head(hd)
-#' hd = host_data_by_phase( pd1, "nebbiolo2", "checksrc")
+#' hd = host_data_by_phase( pd1, ho[1], "checksrc")
 #' head(hd)
-#' pd2 = make_BBS_package_data(af, "affyPara")
-#' hd = host_data_by_phase( pd2, "nebbiolo2", "install")
+#' pd2 = make_BBS_package_data(af, "zlibbioc")
+#' hd = host_data_by_phase( pd2, ho[1], "install")
 #' tail(hd)
-#' hd = host_data_by_phase( pd2, "nebbiolo2", "checksrc")
+#' hd = host_data_by_phase( pd2, ho[1], "checksrc")
 #' head(hd)
 #' @export
-make_BBS_package_data = function(afset, packagename, 
-   hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
+make_BBS_package_data = function(afset, packagename) {
+ hosts = slot(afset, "hostnames") # get named vec
  perhost = lapply(hosts, function(host) make_pkg_data_for_host( afset=afset, host=host, 
               packagename=packagename))
  names(perhost) = as.character(hosts)

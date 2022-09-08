@@ -15,11 +15,15 @@ build_report_tgz_url = function(version, type) {
   sprintf("https://bioconductor.org/checkResults/%s/%s-LATEST/report.tgz", version, type)
 }
 
+#test_report_2022.09.08
 
 #' A demonstration URL with trimmed report.tgz in a local file
 #' @export
-demo_url = function() paste0("file://", system.file("test_report_3.14_bioc_20211210/test_report.tgz",
+demo_url = function() paste0("file://", system.file("test_report_2022.09.08/demo.tgz",
     package="bbsBuildArtifacts"))
+#' A demonstration URL with trimmed report.tgz in a local file
+#' @export
+demo_path = function() system.file("test_report_2022.09.08/demo.tgz", package="bbsBuildArtifacts")
 
 #' A demonstration URL with trimmed report.tgz in a local file, more recent than that for `demo_url`
 #' @export

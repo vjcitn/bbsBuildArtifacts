@@ -21,8 +21,10 @@ becomes_OK(af1, af2, event = "ERROR", phase = "checksrc", host = "nebbiolo2")
 list packages that have resolved an event comparing af2 (later) to af1 (earlier)
 }
 \examples{
+\dontrun{
 af2 = make_demo_ArtifSet(url = demo_url2(), 
        demostring = "test_report_3.14_bioc_20220105", destbase = "test_report_0105")
 af1 = make_demo_ArtifSet()
 becomes_OK(af1, af2)
+}
 }

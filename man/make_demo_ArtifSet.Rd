@@ -7,9 +7,8 @@
 make_demo_ArtifSet(
   cache = BiocFileCache::BiocFileCache(),
   preclean = TRUE,
-  demostring = "test_report_3.14_bioc_20211210",
-  url = demo_url(),
-  destbase = "test_report"
+  demostring = "demo.tgz",
+  url = paste0("file://", demo_path())
 )
 }
 \arguments{
@@ -20,8 +19,6 @@ make_demo_ArtifSet(
 \item{demostring}{character(1) token to query BiocFileCache for in preclean step}
 
 \item{url}{character(1) url for local tgz}
-
-\item{destbase}{character(1) folder name under which all BBS content is held, defaults to `test_report`}
 }
 \description{
 simplify production of the test ArtifSet
