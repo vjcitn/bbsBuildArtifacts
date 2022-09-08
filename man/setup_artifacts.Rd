@@ -6,7 +6,7 @@
 \usage{
 setup_artifacts(
   type = "bioc",
-  version = "3.14",
+  version = "3.15",
   date,
   hostnames = hostnames_by_release(version),
   cache = BiocFileCache::BiocFileCache(),
@@ -20,7 +20,7 @@ setup_artifacts(
 \arguments{
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
 
-\item{version}{character(1) defaults to "3.14"}
+\item{version}{character(1) defaults to "3.15"}
 
 \item{date}{character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry}
 

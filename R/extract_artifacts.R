@@ -42,11 +42,12 @@ setGeneric("paths", function(x) standardGeneric("paths"))
 setMethod("paths", "ArtifSet", function(x) slot(x, "pkg_paths"))
 
 #' vector of hostnames for build nodes
-#' @param release character(1) defaults to '3.14'
+#' @param release character(1) defaults to '3.15'
 #' @export
-hostnames_by_release = function(release="3.14") {
+hostnames_by_release = function(release="3.15") {
  if (release=="3.14") return(c(linux="nebbiolo2", macos="machv2", windows="tokay2"))
  else if (release=="3.15") return(c(linux="nebbiolo1", macos="merida1", windows="palomino3"))
+ else if (release=="3.16") return(c(linux="nebbiolo2", macos="lconway", windows="palomino4"))
 }
 
 avail_hostnames = function(x) {
@@ -56,7 +57,7 @@ avail_hostnames = function(x) {
 
 #' Create ArtifSet instance
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
-#' @param version character(1) defaults to "3.14"
+#' @param version character(1) defaults to "3.15"
 #' @param date character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry
 #' @param hostnames character() vector of host names for which build artifacts are available
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
@@ -73,7 +74,7 @@ avail_hostnames = function(x) {
 #' z = setup_artifacts(url=cururl, destbase="test_report")
 #' z
 #' @export
-setup_artifacts = function(type="bioc", version="3.14", date, hostnames=hostnames_by_release(version),
+setup_artifacts = function(type="bioc", version="3.15", date, hostnames=hostnames_by_release(version),
    cache=BiocFileCache::BiocFileCache(), destination=tempfile(),
    verbose=TRUE, extracted=NULL, url=NULL, destbase="report") {
    if (!is.null(extracted)) {
@@ -85,10 +86,11 @@ setup_artifacts = function(type="bioc", version="3.14", date, hostnames=hostname
        tarpath = cache[[tag]]
        if (verbose) message("starting untar...")
        chk = try(untar(tarpath, exdir=destination))
+# always produces [destination]/report
        if (inherits(chk, "try-error")) stop("could not untar artifact tgz")
        if (verbose) message("done.")
      }
-     allfiles = dir(paste0(destination, "/", destbase), full.names=TRUE)
+     allfiles = dir(paste0(destination, "/report"), full.names=TRUE) # paste0(destination, "/", destbase), full.names=TRUE)
      all_pkg_folders = grep( non_package_pattern(), allfiles,
          invert=TRUE, value=TRUE)
      names(all_pkg_folders) = basename(all_pkg_folders)
