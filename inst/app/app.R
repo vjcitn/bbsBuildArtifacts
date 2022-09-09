@@ -19,6 +19,8 @@
  library(shiny)
  library(bbsBuildArtifacts)
 
+     eventmap = c(errors="ERROR", warnings="WARNINGS", 
+             wontinstall="wontinstall", skipped="skipped", timeout="TIMEOUT")
 
   #  timerep = time_report(af)
   #  output$timings = renderPrint( timerep )
@@ -29,6 +31,10 @@
          })
     output$state = renderText( sprintf("Bioc version %s, tarball produced %s\n", slot(af, "version"),
        slot(af, "tarball_date")) )
+    output$idio = renderPrint( {
+         idiosync_status(af, phase.in=input$phase, state=eventmap[input$eventtype])
+         } )
+           
     output$afdata = renderPrint( af )
     output$initlabel = renderUI({tags$span(
        popify(bsButton("pointlessButton1", "Event browser", style = "primary", size = "large"),
@@ -45,8 +51,6 @@
      # above is a hack to ensure that looking at 'about' tabs doesn't change the list of packages offered
 
      curhost = build_hosts[ input$curtab ]
-     eventmap = c(errors="ERROR", warnings="WARNINGS", 
-             wontinstall="wontinstall", skipped="skipped", timeout="TIMEOUT")
      cur_event_class = eventmap[input$eventtype]
 #
 # the 'selected' parameter below is intended to make this 'sticky' as we
@@ -123,6 +127,7 @@
           verbatimTextOutput( "errtxt_mac" )),
 #      tabPanel("timings", id="timing", helpText("Summaries per phase/host are followed by details for longest times"),
 #                  verbatimTextOutput("timingSummaries"), verbatimTextOutput("timings")),
+      tabPanel("idiosync", id="idio", helpText("platform-specific problems"), verbatimTextOutput("idio")),
       tabPanel("about pkg", id="pkg", verbatimTextOutput("curpackname4"), 
                verbatimTextOutput("pkg_raw_info"), htmlOutput( "pkg_data" )),
       tabPanel("about app", helpText("This shiny app is intended to help investigation of adverse events in the Bioconductor Build System.  The reports focus on packages exhibiting problems in different phases of build and check for different hosts."), helpText("ArtifSet in use:"),  verbatimTextOutput("afdata"))
