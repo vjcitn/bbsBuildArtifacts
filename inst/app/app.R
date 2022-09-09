@@ -2,13 +2,15 @@
   library(shiny)
   library(bbsBuildArtifacts)
 
+ VERSION = "3.15"
  if (!file.exists("report")) {
-  ur = build_report_tgz_url("3.15", "bioc")
+  ur = build_report_tgz_url(version=VERSION, type="bioc")
   download.file(ur, "cur.tgz")
   untar("cur.tgz")
   }
   af = setup_artifacts(extracted=".")
   build_hosts <<- slot(af, "hostnames")
+  bpl = BiocPkgTools::biocPkgList(version=VERSION)
 
 #
 # SERVER
@@ -21,6 +23,10 @@
   #  timerep = time_report(af)
   #  output$timings = renderPrint( timerep )
   #  output$timingSummaries = renderPrint( summary(timerep) )
+    output$curemail = renderText({ 
+         validate(need(is.character(input$curpack), "waiting..."))
+         paste("Maintainer: ", bbsBuildArtifacts::maint4pkg(pkg=input$curpack, version=VERSION, bpl=bpl))
+         })
     output$state = renderText( sprintf("Bioc version %s, tarball produced %s\n", slot(af, "version"),
        slot(af, "tarball_date")) )
     output$afdata = renderPrint( af )
@@ -105,9 +111,16 @@
      ),
     mainPanel(
      tabsetPanel(id="curtab",
-      tabPanel("linux", id="linux", verbatimTextOutput("curpackname"), verbatimTextOutput( "errtxt_lin" )),
-      tabPanel("windows", id="windows",verbatimTextOutput("curpackname2"), verbatimTextOutput( "errtxt_win" )),
-      tabPanel("macos", id="macos", verbatimTextOutput("curpackname3"), verbatimTextOutput( "errtxt_mac" )),
+      tabPanel("linux", id="linux", 
+          verbatimTextOutput("curpackname"), 
+          verbatimTextOutput("curemail"), 
+          verbatimTextOutput( "errtxt_lin" )),
+      tabPanel("windows", id="windows",
+          verbatimTextOutput("curpackname2"), 
+          verbatimTextOutput( "errtxt_win" )),
+      tabPanel("macos", id="macos", 
+          verbatimTextOutput("curpackname3"), 
+          verbatimTextOutput( "errtxt_mac" )),
 #      tabPanel("timings", id="timing", helpText("Summaries per phase/host are followed by details for longest times"),
 #                  verbatimTextOutput("timingSummaries"), verbatimTextOutput("timings")),
       tabPanel("about pkg", id="pkg", verbatimTextOutput("curpackname4"), 
