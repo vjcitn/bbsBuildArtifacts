@@ -79,7 +79,7 @@ get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileC
       file.rename(tf, full_inf_name)
       }
     else full_inf_name = tf # if file:// just move content to cache
-    bfcadd(cache, rname=informative_name, fpath=full_inf_name, action="move")
+    bfcadd(cache, rname=informative_name, fpath=full_inf_name, action="copy")
     chk = bfcquery(cache, informative_name)
     chk$rid
 }
@@ -186,7 +186,7 @@ get_report_tgz_cacheid_obsolete = function(version = "3.14", type="bioc", cache=
       file.rename(tf, full_inf_name)
       }
     else full_inf_name = tf # if file:// just move content to cache
-    bfcadd(cache, rname=informative_name, fpath=full_inf_name, action="move")
+    bfcadd(cache, rname=informative_name, fpath=full_inf_name, action="copy")
     chk = bfcquery(cache, informative_name)
     chk$rid
 }
