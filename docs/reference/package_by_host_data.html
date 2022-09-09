@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.45</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.52</span>
       </span>
     </div>
 
@@ -35,7 +35,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,40 +69,46 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">package_by_host_data</span><span class="op">(</span>
-  <span class="va">afpath</span>,
-  host <span class="op">=</span> <span class="st">"nebbiolo2"</span>,
-  summary_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"install"</span>, <span class="st">"buildsrc"</span>, <span class="st">"checksrc"</span>, <span class="st">"buildbin"</span><span class="op">)</span>,
-  read.dcf.silent <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">package_by_host_data</span><span class="op">(</span></span>
+<span>  <span class="va">afpath</span>,</span>
+<span>  host <span class="op">=</span> <span class="st">"nebbiolo2"</span>,</span>
+<span>  summary_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"install"</span>, <span class="st">"buildsrc"</span>, <span class="st">"checksrc"</span>, <span class="st">"buildbin"</span><span class="op">)</span>,</span>
+<span>  read.dcf.silent <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>afpath</dt>
 <dd><p>an element of an artifact_folder_paths instance</p></dd>
+
+
 <dt>host</dt>
 <dd><p>character(1) host used in BBS</p></dd>
+
+
 <dt>summary_types</dt>
 <dd><p>character() defaults to `c("install", "buildsrc", "checksrc", "buildbin")`</p></dd>
+
+
 <dt>read.dcf.silent</dt>
 <dd><p>logical(1) defaults to TRUE, otherwise bad DCF or build will emit error note</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">cururl</span> <span class="op">=</span> <span class="fu"><a href="demo_url.html">demo_url</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="artifact_folder_paths.html">artifact_folder_paths</a></span><span class="op">(</span>url<span class="op">=</span><span class="va">cururl</span>, destbase<span class="op">=</span><span class="st">"test_report"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> done</span>
-<span class="r-in"><span class="va">pbh</span> <span class="op">=</span> <span class="fu">package_by_host_data</span><span class="op">(</span><span class="va">af</span><span class="op">[</span><span class="st">"affyPara"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pbh</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for affyPara on host nebbiolo2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   last commit: 2021-10-26 16:52:06, n_err=NA, n_warn=NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [NA for n_err implies R CMD check could not be run...]</span>
-<span class="r-in"><span class="fu">package_by_host_data</span><span class="op">(</span><span class="va">af</span><span class="op">[</span><span class="st">"SummarizedExperiment"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for SummarizedExperiment on host nebbiolo2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   last commit: 2021-10-26 17:20:46, n_err=0, n_warn=0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> done.</span>
+<span class="r-in"><span><span class="va">ho</span> <span class="op">=</span> <span class="fu">slot</span><span class="op">(</span><span class="va">af</span>, <span class="st">"hostnames"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pbh</span> <span class="op">=</span> <span class="fu">package_by_host_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="paths.html">paths</a></span><span class="op">(</span><span class="va">af</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>, host<span class="op">=</span><span class="va">ho</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pbh</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for zlibbioc on host merida1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   last commit: 2022-04-26 15:07:57, n_err=0, n_warn=0</span>
+<span class="r-in"><span><span class="fu">package_by_host_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="paths.html">paths</a></span><span class="op">(</span><span class="va">af</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>, host<span class="op">=</span><span class="va">ho</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pkg_by_host_data instance for GA4GHclient on host merida1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   last commit: 2022-04-26 15:39:48, n_err=0, n_warn=0</span>
 </code></pre></div>
     </div>
   </div>
@@ -117,7 +123,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

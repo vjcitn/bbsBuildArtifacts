@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.45</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.52</span>
       </span>
     </div>
 
@@ -35,7 +35,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,43 +69,47 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_demo_ArtifSet</span><span class="op">(</span>
-  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,
-  preclean <span class="op">=</span> <span class="cn">TRUE</span>,
-  demostring <span class="op">=</span> <span class="st">"test_report_3.14_bioc_20211210"</span>,
-  url <span class="op">=</span> <span class="fu"><a href="demo_url.html">demo_url</a></span><span class="op">(</span><span class="op">)</span>,
-  destbase <span class="op">=</span> <span class="st">"test_report"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_demo_ArtifSet</span><span class="op">(</span></span>
+<span>  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  preclean <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  demostring <span class="op">=</span> <span class="st">"demo.tgz"</span>,</span>
+<span>  url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"file://"</span>, <span class="fu"><a href="demo_path.html">demo_path</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>cache</dt>
 <dd><p>BiocFileCache instance to use for checking for available image and retrieving if possible</p></dd>
+
+
 <dt>preclean</dt>
 <dd><p>logical(1) defaults to TRUE, in which case we search `cache` for demostring in cache and remove</p></dd>
+
+
 <dt>demostring</dt>
 <dd><p>character(1) token to query BiocFileCache for in preclean step</p></dd>
+
+
 <dt>url</dt>
 <dd><p>character(1) url for local tgz</p></dd>
-<dt>destbase</dt>
-<dd><p>character(1) folder name under which all BBS content is held, defaults to `test_report`</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">make_demo_ArtifSet</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">make_demo_ArtifSet</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> done.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> bbsBuildArtifacts ArtifSet instance.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   44 pkg paths for type bioc, Bioconductor version 3.14.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   8 extra file paths.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   tarball production date: 2021-12-22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> R version: 4.1.2 (2021-11-01) -- "Bird Hippie"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   11 pkg paths for type bioc, Bioconductor version 3.15.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   18 extra file paths.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   tarball production date: 2022-09-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> R version: 4.2.1 (2022-06-23) -- "Funny-Looking Kid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Platforms: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Linux (Ubuntu 20.04.3 LTS)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Linux (Ubuntu 20.04.4 LTS)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   macOS 10.14.6 Mojave</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Windows Server 2012 R2 Standard</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Windows Server 2022 Datacenter</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Use paths(aset)[...] to retrieve selected paths.</span>
 </code></pre></div>
     </div>
@@ -121,7 +125,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

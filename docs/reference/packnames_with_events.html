@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.45</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.52</span>
       </span>
     </div>
 
@@ -35,7 +35,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,38 +69,46 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">packnames_with_events</span><span class="op">(</span>
-  <span class="va">af</span>,
-  host <span class="op">=</span> <span class="st">"nebbiolo2"</span>,
-  phase <span class="op">=</span> <span class="st">"checksrc"</span>,
-  event_class <span class="op">=</span> <span class="st">"ERROR"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">packnames_with_events</span><span class="op">(</span></span>
+<span>  <span class="va">af</span>,</span>
+<span>  host <span class="op">=</span> <span class="st">"nebbiolo2"</span>,</span>
+<span>  phase <span class="op">=</span> <span class="st">"checksrc"</span>,</span>
+<span>  event_class <span class="op">=</span> <span class="st">"ERROR"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>af</dt>
 <dd><p>ArtifSet instance</p></dd>
+
+
 <dt>host</dt>
 <dd><p>character(1) name of build host</p></dd>
+
+
 <dt>phase</dt>
 <dd><p>character(1) one of 'install', 'buildsrc', 'checksrc', 'buildbin'</p></dd>
+
+
 <dt>event_class</dt>
 <dd><p>character(1) one of 'ERROR', 'WARNINGS', 'TIMEOUT', 'skipped', 'wontinstall'</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>character vector or NULL</p>
+    
+
+<p>character vector or NULL</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> done.</span>
-<span class="r-in"><span class="fu">packnames_with_events</span><span class="op">(</span><span class="va">af</span><span class="op">)</span> <span class="co"># uses a large BUILD_STATUS_DB.txt in demo ArtifSet</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "annmap"       "compEpiTools" "conclus"      "NetSAM"       "NoRCE"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "RepViz"       "seqsetvis"   </span>
+<span class="r-in"><span><span class="fu">packnames_with_events</span><span class="op">(</span><span class="va">af</span><span class="op">)</span> <span class="co"># uses a large BUILD_STATUS_DB.txt in demo ArtifSet</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
 </code></pre></div>
     </div>
   </div>
@@ -115,7 +123,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

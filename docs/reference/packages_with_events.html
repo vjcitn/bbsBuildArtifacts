@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.45</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.52</span>
       </span>
     </div>
 
@@ -35,7 +35,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,189 +69,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">packages_with_events</span><span class="op">(</span><span class="va">aset</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">packages_with_events</span><span class="op">(</span><span class="va">aset</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>aset</dt>
 <dd><p>ArtifSet instance</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list with one element per phase in which some package produced non-OK state</p>
+    
+
+<p>a list with one element per phase in which some package produced non-OK state</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">z</span> <span class="op">=</span> <span class="fu"><a href="make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">z</span> <span class="op">=</span> <span class="fu"><a href="make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> starting untar...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> done.</span>
-<span class="r-in"><span class="fu">packages_with_events</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $buildbin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               package   host           ph.stat    phase   state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 337          affyPara tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 341          affyPara machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1165  BadRegionFinder tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5621         Director tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7017    FindMyFriends tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7021    FindMyFriends machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8113          GenoGAM tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8117          GenoGAM machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8311          genphen tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8315          genphen machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9422           Herper machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10714     KEGGprofile tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10718     KEGGprofile machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17014     ReactomeGSA tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17179        regioneR tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17183        regioneR machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19253         seqbias tokay2   buildbin: ERROR buildbin   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21515           TOAST tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21519           TOAST machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22303    VariantTools tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22611            XCIR tokay2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22615            XCIR machv2 buildbin: skipped buildbin skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $buildsrc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               package      host           ph.stat    phase   state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 332          affyPara nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 335          affyPara    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 339          affyPara    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 845      ArrayExpress nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1163  BadRegionFinder    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5619         Director    tokay2 buildsrc: TIMEOUT buildsrc TIMEOUT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7012    FindMyFriends nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7015    FindMyFriends    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7019    FindMyFriends    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8108          GenoGAM nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8111          GenoGAM    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8115          GenoGAM    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8309          genphen    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8313          genphen    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9413           Herper nebbiolo2 buildsrc: TIMEOUT buildsrc TIMEOUT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9420           Herper    machv2 buildsrc: TIMEOUT buildsrc TIMEOUT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10709     KEGGprofile nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10712     KEGGprofile    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10716     KEGGprofile    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17012     ReactomeGSA    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17174        regioneR nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17177        regioneR    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17181        regioneR    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21158    TCGAbiolinks nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21510           TOAST nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21513           TOAST    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21517           TOAST    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22301    VariantTools    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22606            XCIR nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22609            XCIR    tokay2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22613            XCIR    machv2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22650            XINA nebbiolo2   buildsrc: ERROR buildsrc   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">packages_with_events</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $checksrc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   package      host            ph.stat    phase    state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 245                  affy nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 248                  affy    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 252                  affy    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 333              affyPara nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 336              affyPara    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 340              affyPara    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 630                annmap nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 633                annmap    machv2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 791              APAlyzer nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 794              APAlyzer    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 798              APAlyzer    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 846          ArrayExpress nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1164      BadRegionFinder    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1725         BiocGenerics nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1728         BiocGenerics    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1732         BiocGenerics    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3686    clusterExperiment nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3689    clusterExperiment    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3693    clusterExperiment    machv2  checksrc: TIMEOUT checksrc  TIMEOUT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4137         compEpiTools nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4140         compEpiTools    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4144         compEpiTools    machv2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4170              conclus nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5620             Director    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7013        FindMyFriends nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7016        FindMyFriends    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7020        FindMyFriends    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8109              GenoGAM nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8112              GenoGAM    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8116              GenoGAM    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8197      GenomicFeatures nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8200      GenomicFeatures    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8204      GenomicFeatures    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8222   genomicInstability    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8226   genomicInstability    machv2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8310              genphen    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8314              genphen    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8321              GenVisR    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8325              GenVisR    machv2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9414               Herper nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9421               Herper    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10710         KEGGprofile nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10713         KEGGprofile    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10717         KEGGprofile    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14074              NetSAM nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14077              NetSAM    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14110               NeuCA    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14173               NoRCE nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14176               NoRCE    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17013         ReactomeGSA    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17017         ReactomeGSA    machv2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17175            regioneR nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17178            regioneR    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17182            regioneR    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17252              RepViz nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17255              RepViz    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17259              RepViz    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18113           Rsamtools nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18116           Rsamtools    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18120           Rsamtools    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18996               scran nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18999               scran    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19003               scran    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19249             seqbias nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19252             seqbias    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19256             seqbias    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19337           seqsetvis nebbiolo2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19340           seqsetvis    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19344           seqsetvis    machv2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20752 SummarizedBenchmark nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20755 SummarizedBenchmark    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20759 SummarizedBenchmark    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21159        TCGAbiolinks nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21162        TCGAbiolinks    tokay2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21166        TCGAbiolinks    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21511               TOAST nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21514               TOAST    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21518               TOAST    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22299        VariantTools nebbiolo2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22302        VariantTools    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22306        VariantTools    machv2 checksrc: WARNINGS checksrc WARNINGS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22607                XCIR nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22610                XCIR    tokay2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22614                XCIR    machv2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22643                Xeva    tokay2    checksrc: ERROR checksrc    ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22651                XINA nebbiolo2  checksrc: skipped checksrc  skipped</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $install</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             package      host          ph.stat   phase   state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 331        affyPara nebbiolo2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 334        affyPara    tokay2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 338        affyPara    machv2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4138   compEpiTools    tokay2 install: TIMEOUT install TIMEOUT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7011  FindMyFriends nebbiolo2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7014  FindMyFriends    tokay2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7018  FindMyFriends    machv2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10708   KEGGprofile nebbiolo2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10711   KEGGprofile    tokay2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10715   KEGGprofile    machv2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21509         TOAST nebbiolo2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21512         TOAST    tokay2   install: ERROR install   ERROR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21516         TOAST    machv2   install: ERROR install   ERROR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       package      host            ph.stat    phase    state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15313  pandaR nebbiolo1 checksrc: WARNINGS checksrc WARNINGS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15316  pandaR palomino3 checksrc: WARNINGS checksrc WARNINGS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15320  pandaR   merida1 checksrc: WARNINGS checksrc WARNINGS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23021   viper nebbiolo1 checksrc: WARNINGS checksrc WARNINGS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23024   viper palomino3 checksrc: WARNINGS checksrc WARNINGS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23028   viper   merida1 checksrc: WARNINGS checksrc WARNINGS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
@@ -267,7 +114,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

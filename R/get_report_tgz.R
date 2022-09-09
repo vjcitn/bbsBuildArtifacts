@@ -3,6 +3,8 @@
 #
 
 
+#' available types in a vector
+#' @export
 valid_types = function() c("bioc", "data-experiment", "workflows", "books", "bioc-longtests")
 
 #
@@ -10,6 +12,10 @@ valid_types = function() c("bioc", "data-experiment", "workflows", "books", "bio
 #
 non_package_pattern = function() "\\.png$|\\.html$|\\.txt$|Renviron.*|\\.dcf$|\\.css$|report\\.js"
 
+#' make url for a checkResults instance
+#' @param version character(1)
+#' @param type character(1)
+#' @export
 build_report_tgz_url = function(version, type) {
   stopifnot(type %in% valid_types())
   sprintf("https://bioconductor.org/checkResults/%s/%s-LATEST/report.tgz", version, type)
