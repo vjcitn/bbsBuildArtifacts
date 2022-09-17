@@ -1,22 +1,22 @@
-
+# FOR DEVEL BRANCH
 
   library(shiny)
   library(bbsBuildArtifacts)
 
- VERSION = "3.15"
+ VERSION = "3.16"
  if (!file.exists("report")) {
   ur = build_report_tgz_url(version=VERSION, type="bioc")
-  download.file(ur, "cur.tgz")
-  untar("cur.tgz")
+  download.file(ur, "curdev.tgz")
+  untar("curdev.tgz")
   }
-   bdb = readLines("./report/BUILD_STATUS_DB.txt")
-   bb = strsplit(bdb, "#")
-   hh = unique(sapply(bb, "[", 2))
-   hnmap = c(nebbiolo1="linux", nebbiolo2="linux", lconway="macos",
-      merida1="macos", palomino3="windows", palomino4="windows")
-   osnames = hnmap[hh]
-   names(hh) = as.character(osnames)
-   af = setup_artifacts(extracted=".", version=VERSION, hostnames=hh)
+  bdb = readLines("./report/BUILD_STATUS_DB.txt")
+  bb = strsplit(bdb, "#")
+  hh = unique(sapply(bb, "[", 2))
+  hnmap = c(nebbiolo1="linux", nebbiolo2="linux", lconway="macos",
+     merida1="macos", palomino3="windows", palomino4="windows")
+  osnames = hnmap[hh]
+  names(hh) = as.character(osnames)
+  af = setup_artifacts(extracted=".", version=VERSION, hostnames=hh)
   build_hosts <<- slot(af, "hostnames")
   bpl = BiocPkgTools::biocPkgList(version=VERSION)
 
@@ -81,43 +81,29 @@
          }
       })
        
-#    output$errtxt_lin = renderPrint({  
-#          ans = try(get_event_txt()(build_hosts["linux"])) 
-#          if (inherits(ans, "try-error")) ans = "No linux host available this run."
-#          ans
-#          })
-#    output$errtxt_win = renderPrint({  
-#          ans = try(get_event_txt()(build_hosts["windows"]))
-#          if (inherits(ans, "try-error")) ans = "No windows host available this run."
-#          ans
-#          })
-#    output$errtxt_mac = renderPrint({  
-#          ans = try(get_event_txt()(build_hosts["macos"]))
-#          if (inherits(ans, "try-error")) ans = "No macos host available this run."
-#          ans
-#          })
-
-   output$errtxt_lin = renderPrint({
-              if ("linux" %in% names(af@hostnames)) ans = get_event_txt()(build_hosts["linux"])
+    output$errtxt_lin = renderPrint({  
+              if ("linux" %in% names(af@hostnames)) ans = get_event_txt()(build_hosts["linux"]) 
               else ans = "no linux host for this build"
               ans
-              })
-    output$errtxt_win = renderPrint({
-              if ("windows" %in% names(af@hostnames)) ans = get_event_txt()(build_hosts["windows"])
+              })  
+    output$errtxt_win = renderPrint({  
+              if ("windows" %in% names(af@hostnames)) ans = get_event_txt()(build_hosts["windows"]) 
               else ans = "no windows host for this build"
               ans
-              })
-    output$errtxt_mac = renderPrint({
-              if ("macos" %in% names(af@hostnames)) ans = get_event_txt()(build_hosts["macos"])
+              })  
+    output$errtxt_mac = renderPrint({  
+              if ("macos" %in% names(af@hostnames)) ans = get_event_txt()(build_hosts["macos"]) 
               else ans = "no macos host for this build"
               ans
               })
-
     observeEvent(input$stopBtn, {
        stopApp(returnValue=NULL)   # could return information here
       })
     output$evfreq = renderTable({
-      event_freqs(af) 
+      #ho = build_hosts[c("linux", "windows", "macos")]
+      #rmap = names(ho)
+      #names(rmap) = ho
+      event_freqs(af) # , hostmap=rmap)
       })
     output$pkg_data = renderUI({
        tags$a(href=paste0("http://bioconductor.org/packages/", input$curpack), target="_blank", "Landing page")

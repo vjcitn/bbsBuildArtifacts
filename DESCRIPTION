@@ -1,6 +1,6 @@
 Package: bbsBuildArtifacts
 Title: analyze build artifacts for Bioconductor
-Version: 0.0.57
+Version: 0.0.58
 Authors@R:
     person(given = "Vince",
            family = "Carey",

@@ -4,18 +4,16 @@
 \alias{browse_events}
 \title{app to get details on events in packages}
 \usage{
-browse_events(af)
+browse_events(version)
 }
 \arguments{
-\item{af}{ArtifSet S4 instance
-element values are the host names used in the construction of html in package build report.}
+\item{version}{character(1) defaults to "3.15"}
 }
 \description{
 app to get details on events in packages
 }
 \examples{
-af = make_demo_ArtifSet()
 if (interactive()) {
- browse_events(af)
+ browse_events()
 }
 }

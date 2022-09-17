@@ -1,27 +1,32 @@
 #' app to get details on events in packages
-#' @param af ArtifSet S4 instance
-#' element values are the host names used in the construction of html in package build report.
+#' @param version character(1) defaults to "3.15"
 #' @import shiny
 #' @importFrom shinyBS popify bsButton
 #' @examples
-#' af = make_demo_ArtifSet()
 #' if (interactive()) {
-#'  browse_events(af)
+#'  browse_events()
 #' }
 #' @export
-browse_events = function(af) { #, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
+browse_events = function(version="3.15") { #, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
 #
 # note -- source code modified so there is only one ui.R and server.R to maintain
 # for both basic usage and shinyapps.io deployment
 #
-  stopifnot(inherits(af, "ArtifSet"))
-  build_hosts = slot(af, "hostnames")
-  stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
-  fromPkg <<- TRUE  # should these be cleaned up on exit?  should we warn if found on startup?
-                    # could have a kill_globals parameter
-  build_hosts <<- build_hosts
-  af <<- af
-  runApp(appDir = system.file("app", package="bbsBuildArtifacts"))
+  #stopifnot(inherits(af, "ArtifSet"))
+  #build_hosts = slot(af, "hostnames")
+  #stopifnot(all(names(build_hosts) %in% c("linux", "macos", "windows")))
+  #fromPkg <<- TRUE  # should these be cleaned up on exit?  should we warn if found on startup?
+  #                  # could have a kill_globals parameter
+  #build_hosts <<- build_hosts
+  #af <<- af
+  curd = getwd()
+  on.exit( { try(unlink("./report", recursive=TRUE)); setwd(curd) } )
+  if (version=="3.15") foldername="app"
+  else if (version=="3.16") foldername="app_dev"
+  td = tempdir()
+  setwd(td)
+  file.copy(system.file(paste(foldername, "app.R", sep="/"), package="bbsBuildArtifacts"), ".", overwrite=TRUE)
+  runApp(appDir = ".") #  = system.file(foldername, package="bbsBuildArtifacts"))
 }
   
 

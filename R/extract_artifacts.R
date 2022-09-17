@@ -50,6 +50,7 @@ hostnames_by_release = function(release="3.15") {
  else if (release=="3.16") return(c(linux="nebbiolo2", macos="lconway", windows="palomino4"))
 }
 
+# following is not great, probably better to get out of BUILD_STATUS_DB.txt
 avail_hostnames = function(x) {
   top = grep("install.html$", dir(x@pkg_paths[1]), value=TRUE)
   gsub("-install.html", "", top)
