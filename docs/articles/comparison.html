@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.52</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.58</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1 data-toc-skip>bbsBuildArtifacts: comparing BBS states over time</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">September 08, 2022</h4>
+            <h4 data-toc-skip class="date">September 17, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/comparison.Rmd" class="external-link"><code>vignettes/comparison.Rmd</code></a></small>
       <div class="hidden name"><code>comparison.Rmd</code></div>
@@ -99,41 +99,64 @@
 <div class="section level2">
 <h2 id="identifying-packages-with-new-events-relative-to-a-prior-build">Identifying packages with new events relative to a prior build<a class="anchor" aria-label="anchor" href="#identifying-packages-with-new-events-relative-to-a-prior-build"></a>
 </h2>
-<p>We have created “trimmed tarballs” from two dates: Dec 10 2021 and Jan 5 2022 and included these with the package.</p>
-<p>Here’s the more recent one.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vjcitn/bbsBuildArtifacts" class="external-link">bbsBuildArtifacts</a></span><span class="op">)</span></span>
-<span> <span class="op">}</span><span class="op">)</span></span>
-<span> <span class="va">af2</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span>url <span class="op">=</span> <span class="fu"><a href="../reference/demo_url2.html">demo_url2</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        demostring <span class="op">=</span> <span class="st">"test_report_3.14_bioc_20220105"</span>, destbase <span class="op">=</span> <span class="st">"test_report_0105"</span><span class="op">)</span></span>
-<span> <span class="va">af2</span></span></code></pre></div>
-<p>The default demonstration ArtifSet is from Dec 10 2021.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="va">af1</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_demo_ArtifSet.html">make_demo_ArtifSet</a></span><span class="op">(</span><span class="op">)</span></span>
-<span> <span class="va">af1</span></span></code></pre></div>
-<p>The <code>new_events</code> function will enumerate packages exhibiting new events. Arguments to the function specify the build phase and event type to be sought.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu"><a href="../reference/new_events.html">new_events</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span><span class="op">)</span></span></code></pre></div>
-<p>This report is host-dependent; the default here was nebbiolo2.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu"><a href="../reference/new_events.html">new_events</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span>, host<span class="op">=</span><span class="st">"tokay2"</span><span class="op">)</span></span></code></pre></div>
+<p>We have introduced <code>new_events</code> and <code>becomes_OK</code> functions to help assess differences in package state over time.</p>
+<p>To use this, we need multiple ArtifSet instances. This is time-consuming so we just record a past application:</p>
+<pre><code>&gt; rel_911 = setup_artifacts(date="2022-09-11", version="3.15")
+starting untar...
+done.
+
+&gt; rel_916 = setup_artifacts(date="2022-09-16", version="3.15")
+starting untar...
+done.</code></pre>
+<p>We indicate the type of event and the host name to get a report on which packages have been revised to eliminate all errors between 9-11 and 9-16.</p>
+<pre><code>&gt; becomes_OK(rel_911, rel_916, event="ERROR", host="nebbiolo1")
+[1] "GSVA"        "NetSAM"      "netZooR"     "OrganismDbi" "PPInfer"    
+[6] "pRoloc"      "TFHAZ"      </code></pre>
+<p>Here are some additional examples:</p>
+<pre><code>&gt; new_events(rel_911, rel_916, event="ERROR", host="nebbiolo1")
+[1] "BEclear"      "imageHTS"     "iPAC"         "martini"      "singleCellTK"
+
+&gt; new_events(rel_911, rel_916, event="ERROR", host="palomino3")
+[1] "BEclear"      "martini"      "NuPoP"        "SCANVIS"      "singleCellTK"
+[6] "Travel"      
+
+&gt; new_events(rel_911, rel_916, event="WARNINGS", host="palomino3")
+[1] "edge"  "normr" "ORFik"</code></pre>
 </div>
 <div class="section level2">
-<h2 id="packages-for-which-events-have-resolved">Packages for which events have resolved<a class="anchor" aria-label="anchor" href="#packages-for-which-events-have-resolved"></a>
+<h2 id="comparing-package-states-across-platforms">Comparing package states across platforms<a class="anchor" aria-label="anchor" href="#comparing-package-states-across-platforms"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu"><a href="../reference/becomes_OK.html">becomes_OK</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span><span class="op">)</span></span>
-<span> <span class="fu"><a href="../reference/becomes_OK.html">becomes_OK</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span>, host<span class="op">=</span><span class="st">"tokay2"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="comprehensive-comparison">Comprehensive comparison<a class="anchor" aria-label="anchor" href="#comprehensive-comparison"></a>
-</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">hn</span> <span class="op">=</span> <span class="fu">slot</span><span class="op">(</span><span class="va">af1</span>, <span class="st">"hostnames"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">hn</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/becomes_OK.html">becomes_OK</a></span><span class="op">(</span><span class="va">af1</span>, <span class="va">af2</span>, host<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Also iterate over event types. Note that resolution of events to OK does not imply that the identified packages have been changed. The dependency graph could be used to find the causative package.</p>
-<p>We have recently added <code><a href="../reference/available_artifs.html">available_artifs()</a></code> to provide information on dates and versions of artifact sets in cache.</p>
+<p>The <code>idiosync_status</code> function will report on packages that exhibit events of specific types on only a subset of platforms in use.</p>
+<pre><code>&gt; af = setup_artifacts()
+trying URL 'https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz'
+Content type 'application/x-gzip' length 52390769 bytes (50.0 MB)
+==================================================
+downloaded 50.0 MB
+
+starting untar...
+done.
+&gt; idiosync_status(af)
+$linux_only
+[1] "HTSeqGenie" "iPAC"      
+
+$win_only
+ [1] "affyPLM"      "BiocParallel" "FlowSOM"      "GRridge"      "IgGeneUsage" 
+ [6] "Macarron"     "motifcounter" "NetSAM"       "NuPoP"        "OmnipathR"   
+[11] "oneSENSE"     "RGMQL"        "rtracklayer"  "SCANVIS"      "Travel"      
+[16] "waddR"       
+
+$mac_only
+[1] "biodbMirbase" "netZooR"     
+
+&gt; idiosync_status(af, phase="install")
+$linux_only
+character(0)
+
+$win_only
+[1] "CONFESS"    "ddPCRclust" "flowPeaks"  "rifi"      
+
+$mac_only
+character(0)</code></pre>
 </div>
   </div>
 

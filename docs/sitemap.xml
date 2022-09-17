@@ -49,6 +49,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/browse_events.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/build_report_tgz_url.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/collect_events.html</loc>
   </url>
   <url>
@@ -85,10 +88,16 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/hostnames_by_release.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/idiosync_status.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/index.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/infr.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/maint4pkg.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/make_BBS_package_data.html</loc>
@@ -179,5 +188,8 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/time_report.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/valid_types.html</loc>
   </url>
 </urlset>

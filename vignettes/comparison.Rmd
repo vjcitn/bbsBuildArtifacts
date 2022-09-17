@@ -16,53 +16,81 @@ output:
 
 # Identifying packages with new events relative to a prior build
 
-We have created "trimmed tarballs" from two dates: Dec 10 2021
-and Jan 5 2022 and included these with the package.
+We have introduced `new_events` and `becomes_OK` functions
+to help assess differences in package state over time.
 
-Here's the more recent one.
-```{r lktwo, eval=FALSE}
- suppressPackageStartupMessages({
-  library(bbsBuildArtifacts)
- })
- af2 = make_demo_ArtifSet(url = demo_url2(),
-        demostring = "test_report_3.14_bioc_20220105", destbase = "test_report_0105")
- af2
+To use this, we need multiple ArtifSet instances.  This is
+time-consuming so we just record a past application:
+```
+> rel_911 = setup_artifacts(date="2022-09-11", version="3.15")
+starting untar...
+done.
+
+> rel_916 = setup_artifacts(date="2022-09-16", version="3.15")
+starting untar...
+done.
 ```
 
-The default demonstration ArtifSet is from Dec 10 2021.
-```{r lk1, eval=FALSE}
- af1 = make_demo_ArtifSet()
- af1
+We indicate the type of event and the host name to get a report
+on which packages have been revised to eliminate all errors between
+9-11 and 9-16.
+
+```
+> becomes_OK(rel_911, rel_916, event="ERROR", host="nebbiolo1")
+[1] "GSVA"        "NetSAM"      "netZooR"     "OrganismDbi" "PPInfer"    
+[6] "pRoloc"      "TFHAZ"      
 ```
 
-The `new_events` function will enumerate packages exhibiting new events.
-Arguments to the function specify the build phase and event
-type to be sought.
-```{r lkne, eval=FALSE}
- new_events(af1, af2)
+Here are some additional examples:
 ```
-This report is host-dependent; the default here was nebbiolo2.
-```{r lkne2, eval=FALSE}
- new_events(af1, af2, host="tokay2")
-```
+> new_events(rel_911, rel_916, event="ERROR", host="nebbiolo1")
+[1] "BEclear"      "imageHTS"     "iPAC"         "martini"      "singleCellTK"
 
-# Packages for which events have resolved
+> new_events(rel_911, rel_916, event="ERROR", host="palomino3")
+[1] "BEclear"      "martini"      "NuPoP"        "SCANVIS"      "singleCellTK"
+[6] "Travel"      
 
-```{r lkres, eval=FALSE}
- becomes_OK(af1, af2)
- becomes_OK(af1, af2, host="tokay2")
+> new_events(rel_911, rel_916, event="WARNINGS", host="palomino3")
+[1] "edge"  "normr" "ORFik"
 ```
 
-# Comprehensive comparison
+# Comparing package states across platforms
 
-```{r lkcomp, eval=FALSE}
-hn = slot(af1, "hostnames")
-lapply(hn, function(x) becomes_OK(af1, af2, host=x))
+The `idiosync_status` function will report on 
+packages that exhibit events of specific types
+on only a subset of platforms in use.
+
+```
+> af = setup_artifacts()
+trying URL 'https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz'
+Content type 'application/x-gzip' length 52390769 bytes (50.0 MB)
+==================================================
+downloaded 50.0 MB
+
+starting untar...
+done.
+> idiosync_status(af)
+$linux_only
+[1] "HTSeqGenie" "iPAC"      
+
+$win_only
+ [1] "affyPLM"      "BiocParallel" "FlowSOM"      "GRridge"      "IgGeneUsage" 
+ [6] "Macarron"     "motifcounter" "NetSAM"       "NuPoP"        "OmnipathR"   
+[11] "oneSENSE"     "RGMQL"        "rtracklayer"  "SCANVIS"      "Travel"      
+[16] "waddR"       
+
+$mac_only
+[1] "biodbMirbase" "netZooR"     
+
+> idiosync_status(af, phase="install")
+$linux_only
+character(0)
+
+$win_only
+[1] "CONFESS"    "ddPCRclust" "flowPeaks"  "rifi"      
+
+$mac_only
+character(0)
 ```
 
-Also iterate over event types.  Note that resolution of events to OK does not
-imply that the identified packages have been changed.  The dependency
-graph could be used to find the causative package.
 
-We have recently added `available_artifs()` to provide information
-on dates and versions of artifact sets in cache.
