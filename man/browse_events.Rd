@@ -4,7 +4,7 @@
 \alias{browse_events}
 \title{app to get details on events in packages}
 \usage{
-browse_events(version)
+browse_events(version = "3.15")
 }
 \arguments{
 \item{version}{character(1) defaults to "3.15"}

@@ -5,7 +5,7 @@
 \title{get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)}
 \usage{
 get_report_tgz_cacheid(
-  version = "3.14",
+  version = "3.16",
   type = "bioc",
   cache = BiocFileCache::BiocFileCache(),
   url = NULL,
@@ -13,7 +13,7 @@ get_report_tgz_cacheid(
 )
 }
 \arguments{
-\item{version}{character(1) defaults to "3.14"}
+\item{version}{character(1) defaults to "3.16"}
 
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
 

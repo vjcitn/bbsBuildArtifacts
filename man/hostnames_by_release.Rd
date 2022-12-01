@@ -4,10 +4,10 @@
 \alias{hostnames_by_release}
 \title{vector of hostnames for build nodes}
 \usage{
-hostnames_by_release(release = "3.15")
+hostnames_by_release(release = "3.16")
 }
 \arguments{
-\item{release}{character(1) defaults to '3.15'}
+\item{release}{character(1) defaults to '3.16'}
 }
 \description{
 vector of hostnames for build nodes

@@ -43,7 +43,7 @@ is_online = function() !is.null(curl::nslookup("r-project.org", error = FALSE))
 #' get reporting artifacts for a Bioconductor collection (e.g., software, experiment, workflow, ...)
 #' @import BiocFileCache
 #' @importFrom utils download.file untar
-#' @param version character(1) defaults to "3.14"
+#' @param version character(1) defaults to "3.16"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param date character(1) defaults to Sys.Date(), "yyyy-mm-dd" format, used to build informative name for caching/cache search
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
@@ -57,7 +57,7 @@ is_online = function() !is.null(curl::nslookup("r-project.org", error = FALSE))
 #' id = get_report_tgz_cacheid(url=cururl)
 #' BiocFileCache::bfcquery(BiocFileCache::BiocFileCache(), cururl)
 #' @export
-get_report_tgz_cacheid = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL,
+get_report_tgz_cacheid = function(version = "3.16", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL,
      date=Sys.Date()) {
     if (is.null(url)) {
        current_url = build_report_tgz_url(version, type)
@@ -95,7 +95,7 @@ clean_cache = function(version, type, cache=BiocFileCache::BiocFileCache()) {
 }
 
 #' untar the artifact archive and return the path
-#' @param version character(1) defaults to "3.14"
+#' @param version character(1) defaults to "3.16"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param destination character(1) path to folder to use, defaults to `tempdir()`
@@ -112,7 +112,7 @@ clean_cache = function(version, type, cache=BiocFileCache::BiocFileCache()) {
 #' td = tempdir()
 #' path_to_untarred_artifact_folders(url=cururl, destination=td, destbase="test_report")
 #' @export
-path_to_untarred_artifact_folders = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
+path_to_untarred_artifact_folders = function(version = "3.16", type="bioc", cache=BiocFileCache::BiocFileCache(),
        destination=tempdir(), verbose=TRUE, url=NULL, destbase="/report") {
     rid = get_report_tgz_cacheid(version = version, type=type, cache=cache, url=url)
     path = cache[[rid]]
@@ -125,7 +125,7 @@ path_to_untarred_artifact_folders = function(version = "3.14", type="bioc", cach
 # length(grep(non_package_pattern(), dir(paste0(pp, "/report"), full=TRUE), invert=TRUE)
     
 #' obtain all package artifact folder paths
-#' @param version character(1) defaults to "3.14"
+#' @param version character(1) defaults to "3.16"
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
 #' @param url passed to `get_report_tgz_cacheid`
@@ -135,7 +135,7 @@ path_to_untarred_artifact_folders = function(version = "3.14", type="bioc", cach
 #' cururl = demo_url()
 #' artifact_folder_paths(url=cururl, destbase="test_report")
 #' @export
-artifact_folder_paths = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(),
+artifact_folder_paths = function(version = "3.16", type="bioc", cache=BiocFileCache::BiocFileCache(),
    url=NULL, destbase="report") {
    pa = path_to_untarred_artifact_folders(version=version, type=type, cache=cache, url=url, destbase=destbase)
    allpa = dir(pa, full.names=TRUE)
@@ -165,7 +165,7 @@ print.artifact_folder_paths = function(x, ...) {
 #[6] "/var/folders/n4/p9th81md60s8nv12yv40sv8m0000gp/T//RtmpzkUheQ/report/a4/raw-results/nebbiolo2//install-summary.dcf" 
 
 
-get_report_tgz_cacheid_obsolete = function(version = "3.14", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL) {
+get_report_tgz_cacheid_obsolete = function(version = "3.16", type="bioc", cache=BiocFileCache::BiocFileCache(), url=NULL) {
     if (is.null(url)) {
        current_url = build_report_tgz_url(version, type)
        informative_name = paste0(type, "_", version, "_", Sys.Date(), "_report.tgz")

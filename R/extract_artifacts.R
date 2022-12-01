@@ -42,9 +42,9 @@ setGeneric("paths", function(x) standardGeneric("paths"))
 setMethod("paths", "ArtifSet", function(x) slot(x, "pkg_paths"))
 
 #' vector of hostnames for build nodes
-#' @param release character(1) defaults to '3.15'
+#' @param release character(1) defaults to '3.16'
 #' @export
-hostnames_by_release = function(release="3.15") {
+hostnames_by_release = function(release="3.16") {
  if (release=="3.14") return(c(linux="nebbiolo2", macos="machv2", windows="tokay2"))
  else if (release=="3.15") return(c(linux="nebbiolo1", macos="merida1", windows="palomino3"))
  else if (release=="3.16") return(c(linux="nebbiolo2", macos="lconway", windows="palomino4"))

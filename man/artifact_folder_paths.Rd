@@ -5,7 +5,7 @@
 \title{obtain all package artifact folder paths}
 \usage{
 artifact_folder_paths(
-  version = "3.14",
+  version = "3.16",
   type = "bioc",
   cache = BiocFileCache::BiocFileCache(),
   url = NULL,
@@ -13,7 +13,7 @@ artifact_folder_paths(
 )
 }
 \arguments{
-\item{version}{character(1) defaults to "3.14"}
+\item{version}{character(1) defaults to "3.16"}
 
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
 
