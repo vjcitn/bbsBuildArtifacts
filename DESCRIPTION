@@ -1,6 +1,6 @@
 Package: bbsBuildArtifacts
 Title: analyze build artifacts for Bioconductor
-Version: 0.0.60
+Version: 0.0.62
 Authors@R:
     person(given = "Vince",
            family = "Carey",
@@ -15,7 +15,7 @@ Imports: methods, rcmdcheck, dplyr, BiocFileCache, shiny, BiocParallel,
 License: Artistic-2.0
 VignetteBuilder: knitr
 biocViews: Infrastructure
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 BugReports: https://github.com/vjcitn/bbsBuildArtifacts/issues
 URL: https://github.com/vjcitn/bbsBuildArtifacts

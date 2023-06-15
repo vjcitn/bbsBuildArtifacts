@@ -1,5 +1,5 @@
 #' app to get details on events in packages
-#' @param version character(1) defaults to "3.15"
+#' @param version character(1) defaults to "3.17"
 #' @import shiny
 #' @importFrom shinyBS popify bsButton
 #' @examples
@@ -7,7 +7,7 @@
 #'  browse_events()
 #' }
 #' @export
-browse_events = function(version="3.15") { #, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
+browse_events = function(version="3.17") { #, build_hosts=c(linux="nebbiolo2", macos="machv2", windows="tokay2")) {
 #
 # note -- source code modified so there is only one ui.R and server.R to maintain
 # for both basic usage and shinyapps.io deployment
@@ -23,6 +23,8 @@ browse_events = function(version="3.15") { #, build_hosts=c(linux="nebbiolo2", m
   on.exit( { try(unlink("./report", recursive=TRUE)); setwd(curd) } )
   if (version=="3.15") foldername="app"
   else if (version=="3.16") foldername="app_dev"
+  else if (version=="3.17") foldername="app"
+  else if (version=="3.18") foldername="app_dev"
   td = tempdir()
   setwd(td)
   file.copy(system.file(paste(foldername, "app.R", sep="/"), package="bbsBuildArtifacts"), ".", overwrite=TRUE)

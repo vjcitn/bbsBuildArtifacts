@@ -3,20 +3,26 @@
   library(shiny)
   library(bbsBuildArtifacts)
 
- VERSION = "3.15"
- if (!file.exists("report")) {
-  ur = build_report_tgz_url(version=VERSION, type="bioc")
-  download.file(ur, "cur.tgz")
-  untar("cur.tgz")
-  }
-   bdb = readLines("./report/BUILD_STATUS_DB.txt")
-   bb = strsplit(bdb, "#")
-   hh = unique(sapply(bb, "[", 2))
-   hnmap = c(nebbiolo1="linux", nebbiolo2="linux", lconway="macos",
-      merida1="macos", palomino3="windows", palomino4="windows")
-   osnames = hnmap[hh]
-   names(hh) = as.character(osnames)
-   af = setup_artifacts(extracted=".", version=VERSION, hostnames=hh)
+ VERSION = "3.17"
+# if (!file.exists("report")) {
+#  ur = build_report_tgz_url(version=VERSION, type="bioc")
+#  download.file(ur, "cur.tgz")
+ if (!dir.exists("report")) untar("cur.tgz")
+#  }
+#   bdb = readLines("./report/BUILD_STATUS_DB.txt")
+#   bb = strsplit(bdb, "#")
+#   hh = unique(sapply(bb, "[", 2))
+#   hnmap = c(nebbiolo1="linux", nebbiolo2="linux", lconway="macos",
+#      merida1="macos", palomino3="windows", palomino4="windows")
+#   osnames = hnmap[hh]
+#   names(hh) = as.character(osnames)
+
+#load("~/zz.rda")
+#af = zz
+
+af = setup_artifacts(extracted=".", host=c(linux="nebbiolo1", macos="merida1"))
+
+#   af = setup_artifacts(extracted=".", version=VERSION, hostnames=hh)
   build_hosts <<- slot(af, "hostnames")
   bpl = BiocPkgTools::biocPkgList(version=VERSION)
 
@@ -34,6 +40,14 @@
   #  output$timings = renderPrint( timerep )
   #  output$timingSummaries = renderPrint( summary(timerep) )
     output$curemail = renderText({ 
+         validate(need(is.character(input$curpack), "waiting..."))
+         paste("Maintainer: ", bbsBuildArtifacts::maint4pkg(pkg=input$curpack, version=VERSION, bpl=bpl))
+         })
+    output$curemail_win = renderText({ 
+         validate(need(is.character(input$curpack), "waiting..."))
+         paste("Maintainer: ", bbsBuildArtifacts::maint4pkg(pkg=input$curpack, version=VERSION, bpl=bpl))
+         })
+    output$curemail_mac = renderText({ 
          validate(need(is.character(input$curpack), "waiting..."))
          paste("Maintainer: ", bbsBuildArtifacts::maint4pkg(pkg=input$curpack, version=VERSION, bpl=bpl))
          })
@@ -155,9 +169,11 @@
           verbatimTextOutput( "errtxt_lin" )),
       tabPanel("windows", id="windows",
           verbatimTextOutput("curpackname2"), 
+          verbatimTextOutput("curemail_win"), 
           verbatimTextOutput( "errtxt_win" )),
       tabPanel("macos", id="macos", 
           verbatimTextOutput("curpackname3"), 
+          verbatimTextOutput("curemail_mac"), 
           verbatimTextOutput( "errtxt_mac" )),
 #      tabPanel("timings", id="timing", helpText("Summaries per phase/host are followed by details for longest times"),
 #                  verbatimTextOutput("timingSummaries"), verbatimTextOutput("timings")),

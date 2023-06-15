@@ -17,6 +17,6 @@ maint4pkg(pkg, version, bpl)
 given a package name, version, and biocPkgList instance, obtain the email for the maintainer
 }
 \examples{
-bpl = BiocPkgTools::biocPkgList(version="3.15")
-maint4pkg("parody", "3.15", bpl)
+bpl = BiocPkgTools::biocPkgList(version="3.17")
+maint4pkg("parody", "3.17", bpl)
 }

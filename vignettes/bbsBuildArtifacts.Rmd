@@ -22,7 +22,7 @@ Bioconductor version, package version, build platform, and
 condition of the platform.
 
 We want to be able to work with the current artifacts provided
-at, e.g., `https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz`.
+at, e.g., `https://bioconductor.org/checkResults/3.17/bioc-LATEST/report.tgz`.
 Such gzipped tar resources are prepared for different types
 of resource.
 
@@ -59,7 +59,7 @@ od = getwd()
 td = tempdir()
 setwd(td)
 untar(demo_path())
-af = setup_artifacts(type="bioc", version="3.15", extracted=".")
+af = setup_artifacts(type="bioc", version="3.17", extracted=".")
 af
 ```
 

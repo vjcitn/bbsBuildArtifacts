@@ -44,10 +44,12 @@ setMethod("paths", "ArtifSet", function(x) slot(x, "pkg_paths"))
 #' vector of hostnames for build nodes
 #' @param release character(1) defaults to '3.16'
 #' @export
-hostnames_by_release = function(release="3.16") {
+hostnames_by_release = function(release="3.17") {
  if (release=="3.14") return(c(linux="nebbiolo2", macos="machv2", windows="tokay2"))
  else if (release=="3.15") return(c(linux="nebbiolo1", macos="merida1", windows="palomino3"))
  else if (release=="3.16") return(c(linux="nebbiolo2", macos="lconway", windows="palomino4"))
+ else if (release=="3.17") return(c(linux="nebbiolo1", macos="merida1", windows="palomino3"))
+ else if (release=="3.18") return(c(linux="nebbiolo2", macos="lconway", windows="palomino4"))
 }
 
 # following is not great, probably better to get out of BUILD_STATUS_DB.txt
@@ -58,7 +60,7 @@ avail_hostnames = function(x) {
 
 #' Create ArtifSet instance
 #' @param type character(1) defaults to 'bioc' which implies 'software'; see Note.
-#' @param version character(1) defaults to "3.15"
+#' @param version character(1) defaults to "3.17"
 #' @param date character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry
 #' @param hostnames character() vector of host names for which build artifacts are available
 #' @param cache instance of `BiocFileCache::BiocFileCache()`
@@ -71,13 +73,15 @@ avail_hostnames = function(x) {
 #' but the 'date of tarball production' will be reported for each ArtifSet.
 #' @examples
 #' if (interactive()) {
-#' z = setup_artifacts(type="bioc", version="3.15")
+#' z = setup_artifacts(type="bioc", version="3.17")
 #' z
 #' }
 #' @export
-setup_artifacts = function(type="bioc", version="3.15", date, hostnames=hostnames_by_release(version),
+setup_artifacts = function(type="bioc", version="3.17", date, hostnames=hostnames_by_release(version),
    cache=BiocFileCache::BiocFileCache(), destination=tempfile(),
    verbose=TRUE, extracted=NULL, url=NULL) {
+   hn = names(hostnames)
+   stopifnot(length(intersect(hn, c("linux", "macos", "windows")))>0)
    if (!is.null(extracted)) {
         destination = extracted
         }
@@ -147,3 +151,22 @@ make_demo_ArtifSet = function(cache=BiocFileCache::BiocFileCache(), preclean=TRU
     }
   setup_artifacts(url=url, cache=cache)
 }
+
+#' simple extractor
+#' @param x ArtifSet instance
+#' @export
+hostnames = function (x) 
+{
+    stopifnot(is(x, "ArtifSet"))
+    dat = bbsBuildArtifacts:::Platform_info(x)
+    names(dat$OS_info)
+}
+
+#' simple extractor
+#' @param x ArtifSet instance
+#' @export
+hostos = function (x) {
+    stopifnot(is(x, "ArtifSet"))
+    bbsBuildArtifacts:::Platform_info(x)$OS_info
+}
+

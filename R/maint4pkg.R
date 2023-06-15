@@ -3,8 +3,8 @@
 #' @param version character(1)
 #' @param bpl biocPkgList instance
 #' @examples
-#' bpl = BiocPkgTools::biocPkgList(version="3.15")
-#' maint4pkg("parody", "3.15", bpl)
+#' bpl = BiocPkgTools::biocPkgList(version="3.17")
+#' maint4pkg("parody", "3.17", bpl)
 #' @export
 maint4pkg = function(pkg, version, bpl) {
  stopifnot(is.character(pkg))

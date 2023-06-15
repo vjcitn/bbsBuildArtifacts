@@ -6,7 +6,7 @@
 \usage{
 setup_artifacts(
   type = "bioc",
-  version = "3.15",
+  version = "3.17",
   date,
   hostnames = hostnames_by_release(version),
   cache = BiocFileCache::BiocFileCache(),
@@ -19,7 +19,7 @@ setup_artifacts(
 \arguments{
 \item{type}{character(1) defaults to 'bioc' which implies 'software'; see Note.}
 
-\item{version}{character(1) defaults to "3.15"}
+\item{version}{character(1) defaults to "3.17"}
 
 \item{date}{character(1) "yyyy-mm-dd", not obligatory but can be used to retrieve earlier cache entry}
 
@@ -45,7 +45,7 @@ but the 'date of tarball production' will be reported for each ArtifSet.
 }
 \examples{
 if (interactive()) {
-z = setup_artifacts(type="bioc", version="3.15")
+z = setup_artifacts(type="bioc", version="3.17")
 z
 }
 }
