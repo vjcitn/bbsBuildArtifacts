@@ -38,7 +38,7 @@ melt_artifset_scan = function(x) {
 #' @param x instance of artifset_scan
 #' @examples
 #' data(scan_demo_3.17)
-#' plot_scan_chk(scan_demo_3.17) + ggplot2::ylim(1600,1720)
+#' plot_scan_chk(scan_demo_3.17) + ggplot2::ylim(1590,1720)
 #' @export
 plot_scan_chk = function(x) {
    dat = melt_artifset_scan(x) |> dplyr::filter(phase=="checksrc")

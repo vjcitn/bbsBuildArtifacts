@@ -14,5 +14,5 @@ plot counts of checksrc OK for a scan
 }
 \examples{
 data(scan_demo_3.17)
-plot_scan_chk(scan_demo_3.17) + ggplot2::ylim(1600,1720)
+plot_scan_chk(scan_demo_3.17) + ggplot2::ylim(1590,1720)
 }
