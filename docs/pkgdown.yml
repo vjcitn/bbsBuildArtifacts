@@ -1,10 +1,11 @@
 pandoc: '2.5'
-pkgdown: 2.0.6
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   bbsBuildArtifacts: bbsBuildArtifacts.html
   comparison: comparison.html
-last_built: 2022-09-17T14:22Z
+  scan: scan.html
+last_built: 2023-07-17T02:13Z
 urls:
   reference: https://vjcitn.github.io/bbsBuildArtifacts/reference
   article: https://vjcitn.github.io/bbsBuildArtifacts/articles

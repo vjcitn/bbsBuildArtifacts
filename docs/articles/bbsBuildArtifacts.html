@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.58</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.66</span>
       </span>
     </div>
 
@@ -60,6 +60,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/comparison.html">bbsBuildArtifacts: comparing BBS states over time</a>
+    </li>
+    <li>
+      <a href="../articles/scan.html">Scanning a series of build reports</a>
     </li>
   </ul>
 </li>
@@ -87,7 +90,7 @@
       <h1 data-toc-skip>bbsBuildArtifacts: filtering build reports</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">September 17, 2022</h4>
+            <h4 data-toc-skip class="date">July 16, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/bbsBuildArtifacts.Rmd" class="external-link"><code>vignettes/bbsBuildArtifacts.Rmd</code></a></small>
       <div class="hidden name"><code>bbsBuildArtifacts.Rmd</code></div>
@@ -100,7 +103,7 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>We’d like to be able to get a quick overview of status for a subset of Bioconductor packages. “Status” is relative to Bioconductor version, package version, build platform, and condition of the platform.</p>
-<p>We want to be able to work with the current artifacts provided at, e.g., <code>https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz</code>. Such gzipped tar resources are prepared for different types of resource.</p>
+<p>We want to be able to work with the current artifacts provided at, e.g., <code>https://bioconductor.org/checkResults/3.17/bioc-LATEST/report.tgz</code>. Such gzipped tar resources are prepared for different types of resource.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="op">{</span></span>
 <span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span></span>
@@ -125,10 +128,10 @@
 <span><span class="va">td</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">td</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/untar.html" class="external-link">untar</a></span><span class="op">(</span><span class="fu"><a href="../reference/demo_path.html">demo_path</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_artifacts.html">setup_artifacts</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"bioc"</span>, version<span class="op">=</span><span class="st">"3.15"</span>, extracted<span class="op">=</span><span class="st">"."</span><span class="op">)</span></span>
+<span><span class="va">af</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_artifacts.html">setup_artifacts</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"bioc"</span>, version<span class="op">=</span><span class="st">"3.17"</span>, extracted<span class="op">=</span><span class="st">"."</span><span class="op">)</span></span>
 <span><span class="va">af</span></span></code></pre></div>
 <pre><code><span><span class="co">## bbsBuildArtifacts ArtifSet instance.</span></span>
-<span><span class="co">##   11 pkg paths for type bioc, Bioconductor version 3.15.</span></span>
+<span><span class="co">##   11 pkg paths for type bioc, Bioconductor version 3.17.</span></span>
 <span><span class="co">##   18 extra file paths.</span></span>
 <span><span class="co">##   tarball production date: 2022-09-09</span></span>
 <span><span class="co">## R version: 4.2.1 (2022-06-23) -- "Funny-Looking Kid"</span></span>
@@ -164,7 +167,8 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">d</span>, elapsed_time_sec<span class="op">=</span><span class="va">elapsed_time</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">elapsed_time_sec</span>, x<span class="op">=</span><span class="va">host</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span><span class="va">.</span><span class="op">~</span><span class="va">phase</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## Warning: Removed 11 rows containing non-finite values (stat_boxplot).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 11 rows containing non-finite values</span></span>
+<span><span class="co">## (`stat_boxplot()`).</span></span></code></pre>
 <p><img src="bbsBuildArtifacts_files/figure-html/timings-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -201,7 +205,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">td</span><span class="op">)</span></span>
 <span><span class="va">pd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_BBS_package_data.html">make_BBS_package_data</a></span><span class="op">(</span><span class="va">af</span>, <span class="st">"zinbwave"</span><span class="op">)</span></span>
 <span><span class="va">pd1</span></span></code></pre></div>
-<pre><code><span><span class="co">## BBS_package_data for package 'zinbwave' version 3.15</span></span></code></pre>
+<pre><code><span><span class="co">## BBS_package_data for package 'zinbwave' version 3.17</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">pd1</span>, <span class="st">"host_data"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "nebbiolo1" "merida1"   "palomino3"</span></span></code></pre>
@@ -258,7 +262,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

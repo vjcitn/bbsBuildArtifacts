@@ -16,4 +16,67 @@ output:
 
 # Introduction
 
+
 Build reports on 3.17 were collected from 2023-06-15 to 2023-07-15.
+
+The report.tgz are cached using a cron job that in turn uses R and
+bbsBuildArtifacts.  This takes care of locating and renaming the
+report.tgz files.
+
+```
+# m h  dom mon dow   command
+37 12 * * * Rscript -e 'library(bbsBuildArtifacts); setup_artifacts(version="3.17", hostnames=c(linux="nebbiolo1", macos="merida1"))' >> mylog.log
+37 13 * * * Rscript -e 'library(bbsBuildArtifacts); setup_artifacts(version="3.18", hostnames=c(linux="nebbiolo2", macos="lconway"))' >> mylog.log
+```
+
+The entries of the log file look like:
+```
+bsBuildArtifacts ArtifSet instance.
+  2230 pkg paths for type bioc, Bioconductor version 3.17.
+  23 extra file paths.
+  tarball production date: 2023-07-14
+R version: 4.3.1 (2023-06-16) -- "Beagle Scouts"
+Platforms:
+  Linux (Ubuntu 22.04.2 LTS)
+  macOS 12.6.4 Monterey
+Use paths(aset)[...] to retrieve selected paths.
+bbsBuildArtifacts ArtifSet instance.
+  2214 pkg paths for type bioc, Bioconductor version 3.18.
+  26 extra file paths.
+  tarball production date: 2023-07-15
+R version: 4.3.1 (2023-06-16) -- "Beagle Scouts"
+Platforms:
+  Linux (Ubuntu 22.04.2 LTS)
+  macOS 12.6.5 Monterey
+Use paths(aset)[...] to retrieve selected paths.
+```
+
+There are version-, host-, package-, and phase-specific data collected
+on all software packages every time `setup_artifacts` is run.  Our task
+is to harvest the information in ways that are useful to developers and core.
+
+# Time series extraction
+
+We serialized the results of `scan_artifs` for dates ranging
+from 2023-06-15 to 2023-07-15.  This was done for 3.17 and 3.18.
+Two types of information are retrieved in these scans -- the
+number of OK outcomes for installation, and the number of OK outcomes
+for checksrc.
+
+```{r setup,message=FALSE}
+library(bbsBuildArtifacts)
+data(scan_demo_3.17)
+scan_demo_3.17
+```
+
+We visualize the series:
+
+```{r lks}
+plot_scan_inst(scan_demo_3.17) + ggplot2::ylim(2120,2250)
+```
+
+Similarly for checksrc outcomes:
+
+```{r lks2}
+plot_scan_chk(scan_demo_3.17) + ggplot2::ylim(1590,1720)
+```

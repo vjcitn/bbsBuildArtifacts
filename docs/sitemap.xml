@@ -13,6 +13,9 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/articles/scan.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/authors.html</loc>
   </url>
   <url>
@@ -85,7 +88,13 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/host_data_by_phase.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/hostnames.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/hostnames_by_release.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/hostos.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/idiosync_status.html</loc>
@@ -130,10 +139,19 @@
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/pkgs_with_event.html</loc>
   </url>
   <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/plot_scan_chk.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/plot_scan_inst.html</loc>
+  </url>
+  <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_folder_paths.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifact_paths.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.artifset_scan.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/print.bbs_time_report.html</loc>
@@ -149,6 +167,15 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/sc_614.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/scan_artifs.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/scan_demo_3.17.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/scan_demo_3.18.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/select_artifacts.html</loc>
@@ -188,6 +215,9 @@
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/time_report.html</loc>
+  </url>
+  <url>
+    <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/unlink_artifset.html</loc>
   </url>
   <url>
     <loc>https://vjcitn.github.io/bbsBuildArtifacts/reference/valid_types.html</loc>

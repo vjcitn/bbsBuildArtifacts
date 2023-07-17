@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.58</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.66</span>
       </span>
     </div>
 
@@ -42,6 +42,9 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/comparison.html">bbsBuildArtifacts: comparing BBS states over time</a>
+    </li>
+    <li>
+      <a href="../articles/scan.html">Scanning a series of build reports</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -70,7 +73,7 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_report_tgz_cacheid</span><span class="op">(</span></span>
-<span>  version <span class="op">=</span> <span class="st">"3.14"</span>,</span>
+<span>  version <span class="op">=</span> <span class="st">"3.16"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"bioc"</span>,</span>
 <span>  cache <span class="op">=</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  url <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -81,7 +84,7 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>version</dt>
-<dd><p>character(1) defaults to "3.14"</p></dd>
+<dd><p>character(1) defaults to "3.16"</p></dd>
 
 
 <dt>type</dt>
@@ -119,11 +122,10 @@ report.tgz content will be cached with name formed with type, version, and date 
 <span class="r-in"><span><span class="va">id</span> <span class="op">=</span> <span class="fu">get_report_tgz_cacheid</span><span class="op">(</span>url<span class="op">=</span><span class="va">cururl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">bfcquery</a></span><span class="op">(</span><span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">cururl</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rid    rname           creat…¹ acces…² rpath rtype fpath last_…³ etag  expires</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC254 file:///tmp/Rt… 2022-0… 2022-0… /hom… rela… /tmp…      <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​create_time, ²​access_time,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​last_modified_time</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rid   rname create_time access_time rpath rtype fpath last_modified_time etag </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BFC1… file… 2023-07-17… 2023-07-17… /hom… rela… /tmp…                 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: expires &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -138,7 +140,7 @@ report.tgz content will be cached with name formed with type, version, and date 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

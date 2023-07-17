@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bbsBuildArtifacts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.58</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.66</span>
       </span>
     </div>
 
@@ -42,6 +42,9 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/comparison.html">bbsBuildArtifacts: comparing BBS states over time</a>
+    </li>
+    <li>
+      <a href="../articles/scan.html">Scanning a series of build reports</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -89,13 +92,12 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">bpl</span> <span class="op">=</span> <span class="fu">BiocPkgTools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocPkgTools/man/biocPkgList.html" class="external-link">biocPkgList</a></span><span class="op">(</span>version<span class="op">=</span><span class="st">"3.15"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">bpl</span> <span class="op">=</span> <span class="fu">BiocPkgTools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocPkgTools/man/biocPkgList.html" class="external-link">biocPkgList</a></span><span class="op">(</span>version<span class="op">=</span><span class="st">"3.17"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 'getOption("repos")' replaces Bioconductor standard repositories, see</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> '?repositories' for details</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> replacement repositories:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 'help("repositories", package = "BiocManager")' for details.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Replacement repositories:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     CRAN: https://cloud.r-project.org</span>
-<span class="r-in"><span><span class="fu">maint4pkg</span><span class="op">(</span><span class="st">"parody"</span>, <span class="st">"3.15"</span>, <span class="va">bpl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">maint4pkg</span><span class="op">(</span><span class="st">"parody"</span>, <span class="st">"3.17"</span>, <span class="va">bpl</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "stvjc@channing.harvard.edu"</span>
 </code></pre></div>
     </div>
@@ -111,7 +113,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

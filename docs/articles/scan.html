@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bbsBuildArtifacts: comparing BBS states over time • bbsBuildArtifacts</title>
+<title>Scanning a series of build reports • bbsBuildArtifacts</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="bbsBuildArtifacts: comparing BBS states over time">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Scanning a series of build reports">
 <meta property="og:description" content="bbsBuildArtifacts">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -87,79 +87,67 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>bbsBuildArtifacts: comparing BBS states over time</h1>
+      <h1 data-toc-skip>Scanning a series of build reports</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
             <h4 data-toc-skip class="date">July 16, 2023</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/comparison.Rmd" class="external-link"><code>vignettes/comparison.Rmd</code></a></small>
-      <div class="hidden name"><code>comparison.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/vjcitn/bbsBuildArtifacts/blob/HEAD/vignettes/scan.Rmd" class="external-link"><code>vignettes/scan.Rmd</code></a></small>
+      <div class="hidden name"><code>scan.Rmd</code></div>
 
     </div>
 
     
     
 <div class="section level2">
-<h2 id="identifying-packages-with-new-events-relative-to-a-prior-build">Identifying packages with new events relative to a prior build<a class="anchor" aria-label="anchor" href="#identifying-packages-with-new-events-relative-to-a-prior-build"></a>
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>We have introduced <code>new_events</code> and <code>becomes_OK</code> functions to help assess differences in package state over time.</p>
-<p>To use this, we need multiple ArtifSet instances. This is time-consuming so we just record a past application:</p>
-<pre><code>&gt; rel_911 = setup_artifacts(date="2022-09-11", version="3.15")
-starting untar...
-done.
-
-&gt; rel_916 = setup_artifacts(date="2022-09-16", version="3.15")
-starting untar...
-done.</code></pre>
-<p>We indicate the type of event and the host name to get a report on which packages have been revised to eliminate all errors between 9-11 and 9-16.</p>
-<pre><code>&gt; becomes_OK(rel_911, rel_916, event="ERROR", host="nebbiolo1")
-[1] "GSVA"        "NetSAM"      "netZooR"     "OrganismDbi" "PPInfer"    
-[6] "pRoloc"      "TFHAZ"      </code></pre>
-<p>Here are some additional examples:</p>
-<pre><code>&gt; new_events(rel_911, rel_916, event="ERROR", host="nebbiolo1")
-[1] "BEclear"      "imageHTS"     "iPAC"         "martini"      "singleCellTK"
-
-&gt; new_events(rel_911, rel_916, event="ERROR", host="palomino3")
-[1] "BEclear"      "martini"      "NuPoP"        "SCANVIS"      "singleCellTK"
-[6] "Travel"      
-
-&gt; new_events(rel_911, rel_916, event="WARNINGS", host="palomino3")
-[1] "edge"  "normr" "ORFik"</code></pre>
+<p>Build reports on 3.17 were collected from 2023-06-15 to 2023-07-15.</p>
+<p>The report.tgz are cached using a cron job that in turn uses R and bbsBuildArtifacts. This takes care of locating and renaming the report.tgz files.</p>
+<pre><code># m h  dom mon dow   command
+37 12 * * * Rscript -e 'library(bbsBuildArtifacts); setup_artifacts(version="3.17", hostnames=c(linux="nebbiolo1", macos="merida1"))' &gt;&gt; mylog.log
+37 13 * * * Rscript -e 'library(bbsBuildArtifacts); setup_artifacts(version="3.18", hostnames=c(linux="nebbiolo2", macos="lconway"))' &gt;&gt; mylog.log</code></pre>
+<p>The entries of the log file look like:</p>
+<pre><code>bsBuildArtifacts ArtifSet instance.
+  2230 pkg paths for type bioc, Bioconductor version 3.17.
+  23 extra file paths.
+  tarball production date: 2023-07-14
+R version: 4.3.1 (2023-06-16) -- "Beagle Scouts"
+Platforms:
+  Linux (Ubuntu 22.04.2 LTS)
+  macOS 12.6.4 Monterey
+Use paths(aset)[...] to retrieve selected paths.
+bbsBuildArtifacts ArtifSet instance.
+  2214 pkg paths for type bioc, Bioconductor version 3.18.
+  26 extra file paths.
+  tarball production date: 2023-07-15
+R version: 4.3.1 (2023-06-16) -- "Beagle Scouts"
+Platforms:
+  Linux (Ubuntu 22.04.2 LTS)
+  macOS 12.6.5 Monterey
+Use paths(aset)[...] to retrieve selected paths.</code></pre>
+<p>There are version-, host-, package-, and phase-specific data collected on all software packages every time <code>setup_artifacts</code> is run. Our task is to harvest the information in ways that are useful to developers and core.</p>
 </div>
 <div class="section level2">
-<h2 id="comparing-package-states-across-platforms">Comparing package states across platforms<a class="anchor" aria-label="anchor" href="#comparing-package-states-across-platforms"></a>
+<h2 id="time-series-extraction">Time series extraction<a class="anchor" aria-label="anchor" href="#time-series-extraction"></a>
 </h2>
-<p>The <code>idiosync_status</code> function will report on packages that exhibit events of specific types on only a subset of platforms in use.</p>
-<pre><code>&gt; af = setup_artifacts()
-trying URL 'https://bioconductor.org/checkResults/3.15/bioc-LATEST/report.tgz'
-Content type 'application/x-gzip' length 52390769 bytes (50.0 MB)
-==================================================
-downloaded 50.0 MB
-
-starting untar...
-done.
-&gt; idiosync_status(af)
-$linux_only
-[1] "HTSeqGenie" "iPAC"      
-
-$win_only
- [1] "affyPLM"      "BiocParallel" "FlowSOM"      "GRridge"      "IgGeneUsage" 
- [6] "Macarron"     "motifcounter" "NetSAM"       "NuPoP"        "OmnipathR"   
-[11] "oneSENSE"     "RGMQL"        "rtracklayer"  "SCANVIS"      "Travel"      
-[16] "waddR"       
-
-$mac_only
-[1] "biodbMirbase" "netZooR"     
-
-&gt; idiosync_status(af, phase="install")
-$linux_only
-character(0)
-
-$win_only
-[1] "CONFESS"    "ddPCRclust" "flowPeaks"  "rifi"      
-
-$mac_only
-character(0)</code></pre>
+<p>We serialized the results of <code>scan_artifs</code> for dates ranging from 2023-06-15 to 2023-07-15. This was done for 3.17 and 3.18. Two types of information are retrieved in these scans – the number of OK outcomes for installation, and the number of OK outcomes for checksrc.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vjcitn/bbsBuildArtifacts" class="external-link">bbsBuildArtifacts</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">scan_demo_3.17</span><span class="op">)</span></span>
+<span><span class="va">scan_demo_3.17</span></span></code></pre></div>
+<pre><code><span><span class="co">## bbsBuildArtifacts artifset_scan for version 3.17</span></span>
+<span><span class="co">##  start 2023-06-15, end 2023-07-15</span></span></code></pre>
+<p>We visualize the series:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_scan_inst.html">plot_scan_inst</a></span><span class="op">(</span><span class="va">scan_demo_3.17</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fl">2120</span>,<span class="fl">2250</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (`geom_line()`).</span></span></code></pre>
+<p><img src="scan_files/figure-html/lks-1.png" width="700"></p>
+<p>Similarly for checksrc outcomes:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_scan_chk.html">plot_scan_chk</a></span><span class="op">(</span><span class="va">scan_demo_3.17</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fl">1590</span>,<span class="fl">1720</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (`geom_line()`).</span></span></code></pre>
+<p><img src="scan_files/figure-html/lks2-1.png" width="700"></p>
 </div>
   </div>
 
